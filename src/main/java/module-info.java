@@ -42,5 +42,4 @@ module rho_mu {
 	exports org.cicirello.math.la;
 	exports org.cicirello.math.rand;
 	exports org.cicirello.math.stats;
-	requires java.base;
 }
