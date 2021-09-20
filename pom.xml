@@ -216,6 +216,11 @@
 							<goal>jar</goal>
 						</goals>
 					</execution>
+					<execution>
+						<goals>
+						  <goal>javadoc</goal>
+						</goals>
+					</execution>
 				</executions>
 				<configuration>
 					<failOnWarnings>true</failOnWarnings>
