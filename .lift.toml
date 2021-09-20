@@ -1,0 +1,16 @@
+build = "mvn"
+
+jdk11 = true
+
+# Ignore warnings not relevant to this specific project:
+#
+# 1) FindSecBugs identifies our use of ThreadLocalRandom as predictable.
+# However, the aim of this library is to provide implementations of various
+# randomization utilities with support for any of Java's current random 
+# number generators, including ThreadLocalRandom, SplittableRandom, Random. 
+# Of course, if randomness is used within a security context, 
+# the SecureRandom class should instead be used.  But this is not the case here.
+
+ignore = ["PREDICTABLE_RANDOM"]
+
+
