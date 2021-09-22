@@ -23,7 +23,6 @@
 
 package org.cicirello.math.rand;
 
-import org.cicirello.math.MathFunctions;
 import java.util.SplittableRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
