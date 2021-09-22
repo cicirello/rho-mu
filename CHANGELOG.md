@@ -21,6 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Other
 
 
+## [1.1.0] - 2021-9-22
+
+### Added
+* Gaussian random number generators, specifically integrated the implementations
+  from the [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) library.
+
+
 ## [1.0.0] - 2021-9-22
 
 ### Added
