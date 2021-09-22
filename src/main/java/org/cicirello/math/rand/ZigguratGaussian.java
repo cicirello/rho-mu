@@ -290,7 +290,7 @@ public final class ZigguratGaussian {
 	
 	/**
 	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation, sigma, or your choosing.
+	 * mean 0 and standard deviation, sigma, of your choosing.
 	 * {@link ThreadLocalRandom} is used as the pseudorandom number generator for the 
 	 * source of randomness.
 	 * @param sigma The standard deviation of the Gaussian.
@@ -303,7 +303,7 @@ public final class ZigguratGaussian {
 	
 	/**
 	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation, sigma, or your choosing.
+	 * mean 0 and standard deviation, sigma, of your choosing.
 	 * @param sigma The standard deviation of the Gaussian.
 	 * @param r The pseudorandom number generator to use for the 
 	 * source of randomness.
@@ -316,7 +316,7 @@ public final class ZigguratGaussian {
 	
 	/**
 	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation, sigma, or your choosing.
+	 * mean 0 and standard deviation, sigma, of your choosing.
 	 * @param sigma The standard deviation of the Gaussian.
 	 * @param r The pseudorandom number generator to use for the 
 	 * source of randomness.
