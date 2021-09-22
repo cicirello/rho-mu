@@ -62,6 +62,17 @@ examples. For example Chips-n-Salsa is a library of parallel and adaptive
 stochastic local search algorithms, and as such requires extensive use of
 random number generation.
 
+## Java Modules
+
+This library provides a Java module, `org.cicirello.rho_mu`. To use in your project,
+add the following to your `module-info.java`:
+
+```Java
+module your.module.name.here {
+	requires org.cicirello.rho_mu;
+}
+```
+
 ## Importing the Library from Maven Central
 
 Add this to the dependencies section of your pom.xml, replacing 
