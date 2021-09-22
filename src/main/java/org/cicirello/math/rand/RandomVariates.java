@@ -23,7 +23,6 @@
 
 package org.cicirello.math.rand;
 
-import org.cicirello.math.MathFunctions;
 import java.util.SplittableRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -138,6 +137,105 @@ public final class RandomVariates {
 	 */
 	public static double nextCauchy(double scale, SplittableRandom r) {
 		return internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean 0 and standard deviation, sigma, of your choosing. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 * {@link ThreadLocalRandom} is used as the pseudorandom number generator for the 
+	 * source of randomness.
+	 * @param sigma The standard deviation of the Gaussian.
+	 * @return A random number from a Gaussian distribution with mean 0 and
+	 * standard deviation sigma.
+	 */
+	public static double nextGaussian(double sigma) {
+		return ZigguratGaussian.nextGaussian(sigma);
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean 0 and standard deviation, sigma, of your choosing. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 * @param sigma The standard deviation of the Gaussian.
+	 * @param r The pseudorandom number generator to use for the 
+	 * source of randomness.
+	 * @return A random number from a Gaussian distribution with mean 0 and
+	 * standard deviation sigma.
+	 */
+	public static double nextGaussian(double sigma, Random r) {
+		return ZigguratGaussian.nextGaussian(sigma, r);
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean 0 and standard deviation, sigma, of your choosing. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 * @param sigma The standard deviation of the Gaussian.
+	 * @param r The pseudorandom number generator to use for the 
+	 * source of randomness.
+	 * @return A random number from a Gaussian distribution with mean 0 and
+	 * standard deviation sigma.
+	 */
+	public static double nextGaussian(double sigma, SplittableRandom r) {
+		return ZigguratGaussian.nextGaussian(sigma, r);
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean 0 and standard deviation 1. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 * {@link ThreadLocalRandom} is used as the pseudorandom number generator for the 
+	 * source of randomness.
+	 * @return A random number from a Gaussian distribution with mean 0 and
+	 * standard deviation 1.
+	 */
+	public static double nextGaussian() {
+		return ZigguratGaussian.nextGaussian();
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean 0 and standard deviation 1. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 * @param r The pseudorandom number generator to use for the 
+	 * source of randomness.
+	 * @return A random number from a Gaussian distribution with mean 0 and
+	 * standard deviation 1.
+	 */
+	public static double nextGaussian(Random r) {
+		return ZigguratGaussian.nextGaussian(r);
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean 0 and standard deviation 1. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 * @param r The pseudorandom number generator to use for the 
+	 * source of randomness.
+	 * @return A random number from a Gaussian distribution with mean 0 and
+	 * standard deviation 1.
+	 */
+	public static double nextGaussian(SplittableRandom r) {
+		return ZigguratGaussian.nextGaussian(r);
 	}
 	
 	/*
