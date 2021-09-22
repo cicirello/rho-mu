@@ -1,5 +1,7 @@
 # &rho;&mu; - Java library of Randomization enHancements and Other Math Utilities
 
+Copyright (C) 2017-2021 [Vincent A. Cicirello](https://www.cicirello.org/).
+
 ## Overview
 
 &rho;&mu; is a Java library of Randomization enHancements and Other Math Utilities
@@ -16,4 +18,95 @@ and [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa). However, we fou
 beginning to add one or the other of those libraries as dependencies in some other projects
 strictly for the randomization utilities, which is certainly less than ideal. Therefore, we 
 have extracted &rho;&mu; from those libraries.
+
+## Java 11+
+
+We currently support Java 11+. Our development process utilizes OpenJDK 11, and all
+jar files released via Maven Central, GitHub Packages, and GitHub Releases are built
+with a Java 11 target. 
+
+The initial release consists entirely of source code that can be compiled for a 
+Java 8 target (e.g., if you modify the "pom.xml" and remove the 
+"module-info.java"). However, we do not guarantee that this will remain true, as we have 
+decided upon Java 11 as our minimum supported Java version to enable utilizing newer
+language features in our ongoing development efforts.
+
+## Versioning Scheme
+
+&rho;&mu; uses [Semantic Versioning](https://semver.org/) with 
+version numbers of the form: MAJOR.MINOR.PATCH, where differences 
+in MAJOR correspond to incompatible API changes, differences in MINOR 
+correspond to introduction of backwards compatible new functionality, 
+and PATCH corresponds to backwards compatible bug fixes. 
+
+## Building the Library (with Maven)
+
+The &rho;&mu; library is built using Maven. The root of the
+repository contains a Maven `pom.xml`.  To build the library, 
+execute `mvn package` at the root of the repository, which
+will compile all classes, run all tests, run javadoc, and generate 
+jar files of the library, the sources, and the javadocs. The file names
+make this distinction explicit.  All build outputs will then
+be found in the directory `target`.
+
+To include generation of a code coverage report during the build,
+execute `mvn package -Pcoverage` at the root of the repository to 
+enable a Maven profile that executes JaCoCo during the test phase.
+
+## Examples
+
+Some of our other projects make extensive use of this library. You may
+consult the source code of [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools)
+and/or [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) for code
+examples. For example Chips-n-Salsa is a library of parallel and adaptive
+stochastic local search algorithms, and as such requires extensive use of
+random number generation.
+
+## Importing the Library from Maven Central
+
+Add this to the dependencies section of your pom.xml, replacing 
+the version number with the version that you want to use.
+
+```XML
+<dependency>
+  <groupId>org.cicirello</groupId>
+  <artifactId>rho-mu</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+## Importing the Library from GitHub Packages
+
+If you'd prefer to import from GitHub Packages, rather than Maven Central, 
+then: (1) add the dependency as indicated in previous section above, and (2) add 
+the following to the repositories section of your pom.xml:
+
+```XML
+<repository>
+  <id>github</id>
+  <name>GitHub cicirello Apache Maven Packages</name>
+  <url>https://maven.pkg.github.com/cicirello/rho-mu</url>
+  <releases><enabled>true</enabled></releases>
+  <snapshots><enabled>true</enabled></snapshots>
+</repository>
+```
+
+## Downloading Jar Files
+
+If you don't use a dependency manager that supports importing from Maven Central,
+or if you simply prefer to download manually, prebuilt jars are also attached to 
+each [GitHub Release](https://github.com/cicirello/rho-mu/releases).
+
+## License
+
+The &rho;&mu; library is licensed under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+## Contribute
+
+If you would like to contribute to &rho;&mu; in any way, such 
+as reporting bugs, suggesting new functionality, or code contributions 
+such as bug fixes or implementations of new functionality, then start 
+by reading the [contribution guidelines](https://github.com/cicirello/.github/blob/main/CONTRIBUTING.md).
+This project has adopted 
+the [Contributor Covenant Code of Conduct](https://github.com/cicirello/.github/blob/main/CODE_OF_CONDUCT.md).
 
