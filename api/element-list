@@ -1,4 +1,4 @@
-module:rho_mu
+module:org.cicirello.rho_mu
 org.cicirello.math
 org.cicirello.math.la
 org.cicirello.math.rand

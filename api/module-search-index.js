@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"rho_mu"}]
+moduleSearchIndex = [{"l":"org.cicirello.rho_mu"}]
