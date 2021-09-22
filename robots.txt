@@ -1,0 +1,4 @@
+User-agent: SemanticScholarBot
+Disallow: /
+
+Sitemap: https://rho-mu.cicirello.org/sitemap.xml
