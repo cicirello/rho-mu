@@ -1,8 +1,8 @@
-# rho-mu
+# &rho;&mu; - Java library of Randomization enHancements and Other Math Utilities
 
 ## Overview
 
-&rho;&mu; is a library of Randomization enHancements and Other Math Utilities
+&rho;&mu; is a Java library of Randomization enHancements and Other Math Utilities
 (rho mu). It includes implementations of various algorithms for efficiently 
 randomly sampling combinations of indexes into arrays and other sequential
 structures. It also includes efficient implementations of random number generation from
