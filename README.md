@@ -2,6 +2,13 @@
 
 Copyright (C) 2017-2021 [Vincent A. Cicirello](https://www.cicirello.org/).
 
+| | |
+| :--- | :--- |
+| __Artifacts and Releases__ | |
+| __Build Status__ | [![build](https://github.com/cicirello/rho-mu/workflows/build/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![docs](https://github.com/cicirello/rho-mu/workflows/docs/badge.svg)](https://www.cicirello.org/rho-mu/api/) [![CodeQL](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml) |
+| __JaCoCo Test Coverage__ | [![coverage](../badges/jacoco.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![branches coverage](../badges/branches.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) | 
+| __License__ | [![GitHub](https://img.shields.io/github/license/cicirello/rho-mu)](https://github.com/cicirello/rho-mu/blob/main/LICENSE) | 
+
 ## Overview
 
 &rho;&mu; is a Java library of Randomization enHancements and Other Math Utilities
