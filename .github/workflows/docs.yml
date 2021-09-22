@@ -42,7 +42,7 @@ jobs:
       id: tidy
       uses: cicirello/javadoc-cleanup@v1
       with:
-        base-url-path: https://www.cicirello.org/rho-mu/
+        base-url-path: https://rho-mu.cicirello.org/
         path-to-root: docs
 
     - name: Log javadoc-cleanup output
@@ -50,7 +50,7 @@ jobs:
       run: |
         echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
 
-    - name: Commit documentation changes
+    - name: Commit documentation changes without pushing
       if: ${{ github.event_name != 'pull_request' }}
       run: |
         cd docs
@@ -59,36 +59,34 @@ jobs:
           git config --global user.email 'cicirello@users.noreply.github.com'
           git add -A
           git commit -m "Automated API website updates."
-          git push
         fi
         cd ..
 
-# Need to decide on domain for this first
-#    - name: Generate the sitemap
-#      if: ${{ github.event_name != 'pull_request' }}
-#      id: sitemap
-#      uses: cicirello/generate-sitemap@v1
-#      with:
-#        base-url-path: https://chips-n-salsa.cicirello.org/
-#        path-to-root: docs
+    - name: Generate the sitemap
+      if: ${{ github.event_name != 'pull_request' }}
+      id: sitemap
+      uses: cicirello/generate-sitemap@v1
+      with:
+        base-url-path: https://rho-mu.cicirello.org/
+        path-to-root: docs
 
-#    - name: Output stats
-#      if: ${{ github.event_name != 'pull_request' }}
-#      run: |
-#        echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
-#        echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
-#        echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
+    - name: Output stats
+      if: ${{ github.event_name != 'pull_request' }}
+      run: |
+        echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
+        echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
+        echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
 
-#    - name: Commit documentation website sitemap
-#      if: ${{ github.event_name != 'pull_request' }}
-#      run: |
-#        cd docs
-#        if [[ `git status --porcelain` ]]; then
-#          git config --global user.name 'Vincent A. Cicirello'
-#          git config --global user.email 'cicirello@users.noreply.github.com'
-#          git add -A
-#          git commit -m "Automated API website updates."
-#          git push
-#        fi
-#        cd ..
+    - name: Commit documentation website sitemap and push all commits
+      if: ${{ github.event_name != 'pull_request' }}
+      run: |
+        cd docs
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'Vincent A. Cicirello'
+          git config --global user.email 'cicirello@users.noreply.github.com'
+          git add -A
+          git commit -m "Automated API website updates."
+        fi
+        git push
+        cd ..
 
