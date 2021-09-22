@@ -37,7 +37,7 @@
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-module rho_mu {
+module org.cicirello.rho_mu {
 	exports org.cicirello.math;
 	exports org.cicirello.math.la;
 	exports org.cicirello.math.rand;

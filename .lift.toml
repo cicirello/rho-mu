@@ -2,6 +2,10 @@ build = "mvn"
 
 jdk11 = true
 
+ignoreFiles = """
+src/test/
+"""
+
 # Ignore warnings not relevant to this specific project:
 #
 # 1) FindSecBugs identifies our use of ThreadLocalRandom as predictable.
