@@ -44,6 +44,8 @@ jobs:
       with:
         base-url-path: https://rho-mu.cicirello.org/
         path-to-root: docs
+        user-defined-block: |
+          <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
 
     - name: Log javadoc-cleanup output
       if: ${{ github.event_name != 'pull_request' }}
