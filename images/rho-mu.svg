@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+<rect fill="#bfd9bf" stroke="#4CAF50" stroke-width="80" width="1200" height="560" x="40" y="40"/>
+<g font-family="Verdana,Geneva,DejaVu Sans,sans-serif">
+<text x="50%" y="35%" text-anchor="middle" font-size="165pt" font-weight="600" fill="#862d2d" lengthAdjust="spacingAndGlyphs" textLength="315">ρμ</text>
+<text x="50%" y="350" text-anchor="middle" font-size="48px" fill="#305030">A Java library of</text>
+<text x="50%" y="398" text-anchor="middle" font-size="48px" fill="#305030"><tspan fill="#862d2d" font-weight="600">R</tspan>andomization en<tspan fill="#862d2d" font-weight="600">H</tspan>ancements</text>
+<text x="50%" y="446" text-anchor="middle" font-size="48px" fill="#305030">and <tspan fill="#862d2d" font-weight="600">O</tspan>ther <tspan fill="#862d2d" font-weight="600">M</tspan>ath <tspan fill="#862d2d" font-weight="600">U</tspan>tilities</text>
+<text x="50%" y="540" text-anchor="middle" font-size="48px" font-weight="600" fill="#862d2d">https://rho-mu.cicirello.org/</text>
+</g>
+<g transform="translate(84,476)"><svg width="80" height="80" viewBox="0 0 32 32"><rect style="fill:#f6f0bb;stroke:#862d2d;stroke-width:1.5;" width="30.5" height="30.5" x="0.75" y="0.75" rx="4"/><text x="50%" y="35%" dominant-baseline="central" text-anchor="middle" font-size="20px" fill="#862d2d" font-family="Times New Roman,Georgia,serif">VC</text><text x="50%" y="65%" dominant-baseline="central" text-anchor="middle" font-size="20px" fill="#862d2d" font-family="Times New Roman,Georgia,serif">A</text></svg></g>
+</svg>
