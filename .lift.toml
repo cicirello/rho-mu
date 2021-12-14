@@ -15,6 +15,6 @@ src/test/
 # Of course, if randomness is used within a security context, 
 # the SecureRandom class should instead be used.  But this is not the case here.
 
-ignore = ["PREDICTABLE_RANDOM"]
+ignoreRules = ["PREDICTABLE_RANDOM"]
 
 
