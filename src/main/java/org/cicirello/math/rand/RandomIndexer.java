@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -33,7 +33,8 @@ import java.util.SplittableRandom;
  * be used wherever you need random integer values.  The name of the class is derived
  * from the motivating case, the case of efficiently generating random indexes into an array.
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
 public final class RandomIndexer {
 	
@@ -524,7 +525,6 @@ public final class RandomIndexer {
 	 * @param n The number of integers to choose from.
 	 * @param p The probability that each of the n integers is included in the sample.
 	 * @return An array containing the sample.
-	 * @since 2.0
 	 */
 	public static int[] sample(int n, double p) {
 		return sample(n, p, ThreadLocalRandom.current());
@@ -542,7 +542,6 @@ public final class RandomIndexer {
 	 * @param p The probability that each of the n integers is included in the sample.
 	 * @param r The source of randomness.
 	 * @return An array containing the sample.
-	 * @since 2.0
 	 */
 	public static int[] sample(int n, double p, SplittableRandom r) {
 		if (p <= 0) {
@@ -568,7 +567,6 @@ public final class RandomIndexer {
 	 * @param p The probability that each of the n integers is included in the sample.
 	 * @param r The source of randomness.
 	 * @return An array containing the sample.
-	 * @since 2.0
 	 */
 	public static int[] sample(int n, double p, Random r) {
 		if (p <= 0) {
@@ -993,7 +991,6 @@ public final class RandomIndexer {
 	 * @param n The length of the array mask.
 	 * @param p The probability that an element of the result is true.
 	 * @return An array of n boolean values, such that each element is true with probability p.
-	 * @since 1.5
 	 */
 	public static boolean[] arrayMask(int n, double p) {
 		return arrayMask(n, p, ThreadLocalRandom.current());
@@ -1008,7 +1005,6 @@ public final class RandomIndexer {
 	 * @param p The probability that an element of the result is true.
 	 * @param gen The source of randomness.
 	 * @return An array of n boolean values, such that each element is true with probability p.
-	 * @since 1.5
 	 */
 	public static boolean[] arrayMask(int n, double p, SplittableRandom gen) {
 		boolean[] result = new boolean[n];
@@ -1032,7 +1028,6 @@ public final class RandomIndexer {
 	 * @param p The probability that an element of the result is true.
 	 * @param gen The source of randomness.
 	 * @return An array of n boolean values, such that each element is true with probability p.
-	 * @since 1.5
 	 */
 	public static boolean[] arrayMask(int n, double p, Random gen) {
 		boolean[] result = new boolean[n];
@@ -1169,7 +1164,6 @@ public final class RandomIndexer {
 	 * from the interval [0, n), such that |i-j| &le; window, and 
 	 * |i-k| &le; window, and |k-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-	 * @since 2.0
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort) {
 		return nextWindowedIntTriple(n, window, result, sort, ThreadLocalRandom.current());
@@ -1223,7 +1217,6 @@ public final class RandomIndexer {
 	 * from the interval [0, n), such that |i-j| &le; window, and 
 	 * |i-k| &le; window, and |k-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-	 * @since 2.0
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort, SplittableRandom gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, sort, gen);
@@ -1286,7 +1279,6 @@ public final class RandomIndexer {
 	 * from the interval [0, n), such that |i-j| &le; window, and 
 	 * |i-k| &le; window, and |k-j| &le; window.  
 	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-	 * @since 2.0
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort, Random gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, sort, gen);

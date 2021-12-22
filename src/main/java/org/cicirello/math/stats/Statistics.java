@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -18,7 +18,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with the rho mu library.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 package org.cicirello.math.stats;
@@ -26,7 +25,8 @@ package org.cicirello.math.stats;
 /**
  * Utility class of basic statistics.
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a> 
  */
 public final class Statistics {
 	
@@ -266,7 +266,6 @@ public final class Statistics {
 	 * @param data1 First dataset.
 	 * @param data2 Second dataset.
 	 * @return The t statistic.
-	 * @since 1.4
 	 */
 	public static double tTestUnequalVariances(double[] data1, double[] data2) {
 		return (mean(data1)-mean(data2)) / Math.sqrt(varianceSample(data1)/data1.length + varianceSample(data2)/data2.length);
@@ -280,7 +279,6 @@ public final class Statistics {
 	 * @param data1 First dataset.
 	 * @param data2 Second dataset.
 	 * @return The t statistic.
-	 * @since 1.4
 	 */
 	public static double tTestUnequalVariances(int[] data1, int[] data2) {
 		return (mean(data1)-mean(data2)) / Math.sqrt(varianceSample(data1)/data1.length + varianceSample(data2)/data2.length);
@@ -296,7 +294,6 @@ public final class Statistics {
 	 * @param data2 Second dataset.
 	 * @return An array, a, of length 2 such that a[0] is the t statistic (as a Double object), and
 	 * a[1] is the degrees of freedom (as an Integer object).
-	 * @since 1.4
 	 */
 	public static Number[] tTestWelch(double[] data1, double[] data2) {
 		Number[] result = new Number[2];
@@ -322,7 +319,6 @@ public final class Statistics {
 	 * @param data2 Second dataset.
 	 * @return An array, a, of length 2 such that a[0] is the t statistic (as a Double object), and
 	 * a[1] is the degrees of freedom (as an Integer object).
-	 * @since 1.4
 	 */
 	public static Number[] tTestWelch(int[] data1, int[] data2) {
 		Number[] result = new Number[2];

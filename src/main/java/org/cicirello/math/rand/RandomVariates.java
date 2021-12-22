@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -31,7 +31,8 @@ import java.util.concurrent.ThreadLocalRandom;
  * This utility class provides methods for generating random variates from
  * different distributions.
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 public final class RandomVariates {
 	
