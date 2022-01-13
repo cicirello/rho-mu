@@ -32,7 +32,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package -Pcoverage
 
-    - name: Generate JaCoCo Badge
+    - name: Generate JaCoCo badge
       id: jacoco
       uses: cicirello/jacoco-badge-generator@v2
       with:
@@ -72,5 +72,6 @@ jobs:
         NEWLINE=$'\n'
         BODY="## JaCoCo Test Coverage Summary Statistics${NEWLINE}* __Coverage:__ ${COVERAGE}${NEWLINE}* __Branches:__ ${BRANCHES}"
         gh pr comment ${{github.event.pull_request.number}} -b "${BODY}"
+      continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
