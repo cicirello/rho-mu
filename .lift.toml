@@ -1,6 +1,4 @@
-build = "mvn"
-
-jdk11 = true
+jdkVersion = "11"
 
 ignoreFiles = """
 src/test/
