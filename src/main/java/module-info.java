@@ -1,8 +1,8 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello
  *
- * This file is part of the rho mu library.
+ * This file is part of the rho mu library (https://rho-mu.cicirello.org/).
  *
  * The rho mu library is free software: you can 
  * redistribute it and/or modify it under the terms of the GNU 
@@ -23,6 +23,25 @@
 
 /**
  * <h2>&rho;&mu; - A Java library of randomization enhancements and other math utilities.</h2>
+ *
+ * <p>Copyright &copy; 2017-2022 <a href="https://www.cicirello.org/" target=_top>Vincent A. Cicirello</a>.</p>
+ *
+ * <p><a href="https://search.maven.org/artifact/org.cicirello/rho-mu"><img 
+ * src="https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?logo=apachemaven" 
+ * alt="Maven Central" height="20" width="153"></a>
+ * <a href="https://github.com/cicirello/rho-mu/releases"><img 
+ * src="https://img.shields.io/github/v/release/cicirello/rho-mu?logo=GitHub" 
+ * alt="GitHub release (latest by date)" height="20" width="111"></a>
+ * <a href="https://github.com/cicirello/rho-mu"><img 
+ * src="https://rho-mu.cicirello.org/images/GitHub.svg" 
+ * alt="GitHub Repository" width="68" height="20"></a>
+ * <a href="https://github.com/cicirello/rho-mu/blob/main/LICENSE"><img 
+ * src="https://img.shields.io/github/license/cicirello/rho-mu" 
+ * alt="GNU General Public License Version 3 (GPLv3)" height="20" width="102"></a>
+ * </p>
+ *
+ * <h3>About the &rho;&mu; Library</h3>
+ *
  * <p>The &rho;&mu; library is a library of
  * Randomization enHancements and Other Math Utilities.
  * It includes implementations of various algorithms for
@@ -35,7 +54,20 @@
  * math functions that are either needed by the randomization 
  * utilities, or needed by some of our other projects.</p>
  *
- * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
+ * <p>The <a href="https://github.com/cicirello/rho-mu" target=_top>source code repository</a> 
+ * is hosted on GitHub.
+ * The source code is licensed under the 
+ * <a href="https://www.gnu.org/licenses/gpl-3.0.html" target=_top>GNU General Public License Version 3 (GPLv3)</a>.  For more information see the <a href="https://rho-mu.cicirello.org/" target=_top>&rho;&mu; 
+ * website</a>.</p>
+ *
+ * <h3>Support &rho;&mu;</h3>
+ *
+ * <p><a href="https://github.com/sponsors/cicirello"><img src="https://rho-mu.cicirello.org/images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28"></a>
+ * <a href="https://liberapay.com/cicirello"><img src="https://rho-mu.cicirello.org/images/Liberapay.svg" alt="Liberapay" width="119" height="28"></a>
+ * <a href="https://ko-fi.com/cicirello"><img src="https://rho-mu.cicirello.org/images/ko-fi.svg" alt="Ko-Fi" width="82" height="28"></a></p>
+ *
+ * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
+ * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
 module org.cicirello.rho_mu {
 	exports org.cicirello.math;
