@@ -41,7 +41,7 @@ public final class Statistics {
 	public static double mean(int[] data) {
 		int sum = 0;
 		for (int e : data) sum = sum + e;
-		return 1.0 * sum / data.length;
+		return ((double)sum) / data.length;
 	}
 	
 	/**
@@ -124,6 +124,24 @@ public final class Statistics {
 			sum = sum + (e-mean);
 		}
 		return (sumSquares - sum*sum/data.length)/(data.length-1.0);
+	}
+	
+	/**
+	 * Computes the sample standard deviation.
+	 * @param data The dataset.
+	 * @return the sample standard deviation.
+	 */
+	public static double stdev(int[] data) {
+		return Math.sqrt(varianceSample(data));
+	}
+	
+	/**
+	 * Computes the sample standard deviation.
+	 * @param data The dataset.
+	 * @return the sample standard deviation.
+	 */
+	public static double stdev(double[] data) {
+		return Math.sqrt(varianceSample(data));
 	}
 	
 	/**
