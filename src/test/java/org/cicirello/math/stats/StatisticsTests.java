@@ -147,6 +147,44 @@ public class StatisticsTests {
 	}
 	
 	@Test
+	public void testStdevOfInts() {
+		for (int n = 1; n <= 10; n++) {
+			int[] data = new int[n];
+			for (int i = 0; i < n; i++) {
+				data[i] = 3;
+			}
+			assertEquals("All elements the same", 0.0, Statistics.stdev(data), EPSILON);
+		}
+		// Note: This assumes that the variance method passes its tests.
+		for (int n = 2; n <= 10; n++) {
+			int[] data = new int[n];
+			for (int i = 0; i < n; i++) {
+				data[i] = i+1;
+			}
+			assertEquals("ints from 1 to n", Math.sqrt(Statistics.variance(data)*n/(n-1)), Statistics.stdev(data), EPSILON);
+		}	
+	}
+	
+	@Test
+	public void testStdevOfDoubles() {
+		for (int n = 1; n <= 10; n++) {
+			double[] data = new double[n];
+			for (int i = 0; i < n; i++) {
+				data[i] = 3;
+			}
+			assertEquals("All elements the same", 0.0, Statistics.stdev(data), EPSILON);
+		}
+		// Note: This assumes that the variance method passes its tests.
+		for (int n = 2; n <= 10; n++) {
+			double[] data = new double[n];
+			for (int i = 0; i < n; i++) {
+				data[i] = i+1;
+			}
+			assertEquals("ints from 1 to n", Math.sqrt(Statistics.variance(data)*n/(n-1)), Statistics.stdev(data), EPSILON);
+		}	
+	}
+	
+	@Test
 	public void testCovarianceOfInts() {
 		for (int n = 1; n <= 10; n++) {
 			int[] data = new int[n];
