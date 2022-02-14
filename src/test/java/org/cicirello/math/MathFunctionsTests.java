@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -23,8 +23,8 @@
 
 package org.cicirello.math;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test cases for the methods of the MathFunctions class.

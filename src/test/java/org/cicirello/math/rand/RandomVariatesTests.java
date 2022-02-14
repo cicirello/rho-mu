@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -23,15 +23,15 @@
 
 package org.cicirello.math.rand;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Random;
 import java.util.SplittableRandom;
 import org.cicirello.math.MathFunctions;
 
 /**
- * JUnit 4 tests for the methods of the RandomVariates class.
+ * JUnit tests for the methods of the RandomVariates class.
  */
 public class RandomVariatesTests {
 	
@@ -57,7 +57,7 @@ public class RandomVariatesTests {
 					buckets[b]++;
 				}
 				double chi = chiSquare(buckets, dist);
-				assertTrue("n="+n+" p="+p+ " chi="+chi, chi <= crit[n-1]);
+				assertTrue(chi <= crit[n-1], "n="+n+" p="+p+ " chi="+chi);
 			}
 		}
 		for (double p : P) {
@@ -76,7 +76,7 @@ public class RandomVariatesTests {
 				}
 				double chi = chiSquare(buckets, dist);
 				double critV = n == 30 ? 43.77 : 67.50;
-				assertTrue("n="+n+" p="+p+ " chi="+chi, chi <= critV);
+				assertTrue(chi <= critV, "n="+n+" p="+p+ " chi="+chi);
 			}
 		}
 	}
@@ -98,11 +98,11 @@ public class RandomVariatesTests {
 				int[] buckets = new int[n+1];
 				for (int i = 0; i < TRIALS; i++) {
 					int b = RandomVariates.nextBinomial(n, p, r);
-					assertTrue("Invalid result, (n, p)=("+n+", "+p+"), r="+b, b >= 0 && b <= n);
+					assertTrue( b >= 0 && b <= n, "Invalid result, (n, p)=("+n+", "+p+"), r="+b);
 					buckets[b]++;
 				}
 				double chi = chiSquare(buckets, dist);
-				assertTrue("n="+n+" p="+p+ " chi="+chi, chi <= crit[n-1]);
+				assertTrue( chi <= crit[n-1], "n="+n+" p="+p+ " chi="+chi);
 			}
 		}
 		for (double p : P) {
@@ -121,7 +121,7 @@ public class RandomVariatesTests {
 				}
 				double chi = chiSquare(buckets, dist);
 				double critV = n == 30 ? 43.77 : 67.50;
-				assertTrue("n="+n+" p="+p+ " chi="+chi, chi <= critV);
+				assertTrue( chi <= critV, "n="+n+" p="+p+ " chi="+chi);
 			}
 		}
 	}
@@ -197,7 +197,7 @@ public class RandomVariatesTests {
 						if (count >= n-1) break;
 					} 
 				}
-				assertTrue("Verifying most possible outcomes produced over large number of trials", count >= n-1);
+				assertTrue( count >= n-1, "Verifying most possible outcomes produced over large number of trials");
 			}
 		}
 	}
@@ -221,7 +221,7 @@ public class RandomVariatesTests {
 			}
 			double chi = chiSquare(buckets);
 			// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
-			assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+			assertTrue( chi <= 14.07, "Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07");
 		}
 		double median = 5.0;
 		double s = 1.0;
@@ -237,7 +237,7 @@ public class RandomVariatesTests {
 		}
 		double chi = chiSquare(buckets);
 		// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
-		assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+		assertTrue( chi <= 14.07, "Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07");
 	}
 	
 	@Test
@@ -264,7 +264,7 @@ public class RandomVariatesTests {
 				buckets[i]++;
 			}
 			for (int i = 0; i < buckets.length; i++) {
-				assertTrue("verifying at least 1 sample in each bucket, scale="+s + " bucket="+i, buckets[i] > 0);
+				assertTrue( buckets[i] > 0, "verifying at least 1 sample in each bucket, scale="+s + " bucket="+i);
 			}
 		}
 		double median = 5.0;
@@ -280,7 +280,7 @@ public class RandomVariatesTests {
 			buckets[i]++;
 		}
 		for (int i = 0; i < buckets.length; i++) {
-			assertTrue("verifying at least 1 sample in each bucket, median=5 bucket="+i, buckets[i] > 0);
+			assertTrue( buckets[i] > 0, "verifying at least 1 sample in each bucket, median=5 bucket="+i);
 		}
 	}
 	
@@ -303,7 +303,7 @@ public class RandomVariatesTests {
 			}
 			double chi = chiSquare(buckets);
 			// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
-			assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+			assertTrue( chi <= 14.07, "Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07");
 		}
 		double median = 5.0;
 		double s = 1.0;
@@ -319,7 +319,7 @@ public class RandomVariatesTests {
 		}
 		double chi = chiSquare(buckets);
 		// critical value for 8-1=7 degrees of freedom is 14.07 (at the .95 level).
-		assertTrue("Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07", chi <= 14.07);
+		assertTrue( chi <= 14.07, "Verifying chi square statistic below .95 critical value: chi="+chi+" crit=14.07");
 	}
 	
 	@Test
