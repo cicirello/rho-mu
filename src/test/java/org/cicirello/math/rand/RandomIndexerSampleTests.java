@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -18,21 +18,19 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with the rho mu library.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-
 
 package org.cicirello.math.rand;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Random;
 import java.util.Arrays;
 import java.util.SplittableRandom;
 
 /**
- * JUnit 4 tests for the methods of the RandomIndexer class.
+ * JUnit tests for the methods of the RandomIndexer class.
  */
 public class RandomIndexerSampleTests {
 	
@@ -62,11 +60,11 @@ public class RandomIndexerSampleTests {
 			int sum = 0;
 			for (int i = 0; i < TRIALS; i++) {
 				int[] result = RandomIndexer.sample(n, p, r);
-				assertTrue("verify correct range and no duplicates", validSample(n, result));
+				assertTrue( validSample(n, result), "verify correct range and no duplicates");
 				sum += result.length;
 			}
 			double ave = 1.0 * sum / TRIALS;
-			assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
+			assertTrue( Math.abs(n*p-ave) <= 5, "verify correct sampling frequency");
 		}
 		int[] result = RandomIndexer.sample(4, 0.0, r);
 		assertEquals(0, result.length);
@@ -84,11 +82,11 @@ public class RandomIndexerSampleTests {
 			int sum = 0;
 			for (int i = 0; i < TRIALS; i++) {
 				int[] result = RandomIndexer.sample(n, p, r);
-				assertTrue("verify correct range and no duplicates", validSample(n, result));
+				assertTrue( validSample(n, result), "verify correct range and no duplicates");
 				sum += result.length;
 			}
 			double ave = 1.0 * sum / TRIALS;
-			assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
+			assertTrue( Math.abs(n*p-ave) <= 5, "verify correct sampling frequency");
 		}
 		int[] result = RandomIndexer.sample(4, 0.0, r);
 		assertEquals(0, result.length);
@@ -105,7 +103,7 @@ public class RandomIndexerSampleTests {
 			int sum = 0;
 			for (int i = 0; i < TRIALS; i++) {
 				int[] result = RandomIndexer.sample(n, p);
-				assertTrue("verify correct range and no duplicates", validSample(n, result));
+				assertTrue( validSample(n, result), "verify correct range and no duplicates");
 				sum += result.length;
 			}
 			// Don't do this check since we can't seed.
@@ -123,11 +121,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleReservoir(n, k, null);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -146,11 +144,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -176,7 +174,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -184,7 +182,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -194,7 +192,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
 								}
 							}
 						}
@@ -203,7 +201,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH, countH <= 10);
+				assertTrue( countH <= 10, "chi square too high too often, countHigh=" + countH);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -226,11 +224,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -256,7 +254,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -264,7 +262,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -274,7 +272,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
 								}
 							}
 						}
@@ -283,7 +281,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH, countH <= 10);
+				assertTrue( countH <= 10, "chi square too high too often, countHigh=" + countH);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -303,11 +301,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.samplePool(n, k, null);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -327,11 +325,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.samplePool(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -357,7 +355,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -365,7 +363,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -375,7 +373,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
 								}
 							}
 						}
@@ -384,7 +382,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+				assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n+" k="+k);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -408,11 +406,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.samplePool(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -438,7 +436,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -446,7 +444,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -456,7 +454,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
 								}
 							}
 						}
@@ -465,7 +463,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+				assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n+" k="+k);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -486,11 +484,11 @@ public class RandomIndexerSampleTests {
 			for (int k = 0; k <= n; k++) {
 				int[] result = null;
 				result = RandomIndexer.sample(n, k, result);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -506,11 +504,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sample(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -536,7 +534,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -544,7 +542,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -554,7 +552,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
 								}
 							}
 						}
@@ -563,7 +561,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+				assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n+" k="+k);
 			}
 		}
 	}
@@ -577,11 +575,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sample(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals( k, result.length, "Length of result should be " + k);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
+					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
 					inResult[result[i]] = true;
 				}
 			}
@@ -607,7 +605,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -615,7 +613,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -625,7 +623,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
 								}
 							}
 						}
@@ -634,7 +632,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+				assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n+" k="+k);
 			}
 		}
 	}
@@ -647,12 +645,12 @@ public class RandomIndexerSampleTests {
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntPair(n, null);
-				assertEquals("Length of result should be 2", 2, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[1] < n);
-				assertTrue("integers should be at least 0", result[1] >= 0);
-				assertTrue("integers should be less than " + n, result[0] < n);
+				assertEquals( 2, result.length, "Length of result should be 2");
+				assertNotEquals( result[0], result[1], "integers should be different");
+				assertTrue( result[0] >= 0, "integers should be at least 0");
+				assertTrue( result[1] < n, "integers should be less than " + n);
+				assertTrue( result[1] >= 0, "integers should be at least 0");
+				assertTrue( result[0] < n, "integers should be less than " + n);
 			}
 		}
 		
@@ -675,7 +673,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 	}
 	
@@ -687,13 +685,13 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[2], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
+				assertEquals(3, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertNotEquals(result[2], result[1]);
+				assertNotEquals(result[0], result[2]);
 				Arrays.sort(result);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
 			}
 		}
 		
@@ -717,7 +715,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue(countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 	}
 	
@@ -729,14 +727,14 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, true);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[2], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertTrue("result should be sorted", result[0] < result[1]);
-				assertTrue("result should be sorted", result[1] < result[2]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
+				assertEquals(3, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertNotEquals(result[2], result[1]);
+				assertNotEquals(result[0], result[2]);
+				assertTrue(result[0] < result[1]);
+				assertTrue(result[1] < result[2]);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
 			}
 		}
 		
@@ -759,7 +757,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquare(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue(countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 	}
 	
@@ -773,13 +771,13 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[2], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
+				assertEquals(3, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertNotEquals(result[2], result[1]);
+				assertNotEquals(result[0], result[2]);
 				Arrays.sort(result);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
 			}
 		}
 		for (int n = 3; n <= 6; n++) {
@@ -794,7 +792,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 		
 		int[] expected = new int[3];
@@ -813,14 +811,14 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[2], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertTrue("result should be sorted", result[0] < result[1]);
-				assertTrue("result should be sorted", result[1] < result[2]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
+				assertEquals(3, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertNotEquals(result[2], result[1]);
+				assertNotEquals(result[0], result[2]);
+				assertTrue(result[0] < result[1]);
+				assertTrue(result[1] < result[2]);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
 			}
 		}
 		for (int n = 3; n <= 6; n++) {
@@ -835,7 +833,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquare(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 		
 		int[] expected = new int[3];
@@ -854,13 +852,13 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[2], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
+				assertEquals(3, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertNotEquals(result[2], result[1]);
+				assertNotEquals(result[0], result[2]);
 				Arrays.sort(result);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
 			}
 		}
 		for (int n = 3; n <= 6; n++) {
@@ -875,7 +873,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 		
 		int[] expected = new int[3];
@@ -894,14 +892,14 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[2], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertTrue("result should be sorted", result[0] < result[1]);
-				assertTrue("result should be sorted", result[1] < result[2]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
+				assertEquals(3, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertNotEquals(result[2], result[1]);
+				assertNotEquals(result[0], result[2]);
+				assertTrue(result[0] < result[1]);
+				assertTrue(result[1] < result[2]);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
 			}
 		}
 		for (int n = 3; n <= 6; n++) {
@@ -916,7 +914,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquare(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue(countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 		
 		int[] expected = new int[3];
@@ -935,12 +933,12 @@ public class RandomIndexerSampleTests {
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntPair(n, null, gen);
-				assertEquals("Length of result should be 2", 2, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[1] < n);
-				assertTrue("integers should be at least 0", result[1] >= 0);
-				assertTrue("integers should be less than " + n, result[0] < n);
+				assertEquals(2, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[1] < n);
+				assertTrue(result[1] >= 0);
+				assertTrue(result[0] < n);
 			}
 		}
 		for (int n = 2; n <= 6; n++) {
@@ -955,7 +953,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue(countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 		
 		int[] expected = new int[2];
@@ -974,12 +972,12 @@ public class RandomIndexerSampleTests {
 		for (int n = 2; n <= 6; n++) {
 			for (int i = 0; i < 10; i++) {
 				int[] result = RandomIndexer.nextIntPair(n, null, gen);
-				assertEquals("Length of result should be 2", 2, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[1] < n);
-				assertTrue("integers should be at least 0", result[1] >= 0);
-				assertTrue("integers should be less than " + n, result[0] < n);
+				assertEquals(2, result.length);
+				assertNotEquals(result[0], result[1]);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[1] < n);
+				assertTrue(result[1] >= 0);
+				assertTrue(result[0] < n);
 			}
 		}
 		for (int n = 2; n <= 6; n++) {
@@ -994,7 +992,7 @@ public class RandomIndexerSampleTests {
 				double chi = chiSquareAll(buckets, numBuckets);
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
-			assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+			assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 		
 		int[] expected = new int[2];
@@ -1009,11 +1007,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleInsertion(n, k, null);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals(k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue(result[i] < n && result[i] >= 0);
+					assertFalse(inResult[result[i]]);
 					inResult[result[i]] = true;
 				}
 			}
@@ -1033,11 +1031,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals(k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue(result[i] < n && result[i] >= 0);
+					assertFalse(inResult[result[i]]);
 					inResult[result[i]] = true;
 				}
 			}
@@ -1063,7 +1061,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue(buckets1[x]>0);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -1071,7 +1069,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue(buckets2[x][y]>0);
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -1081,7 +1079,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue(buckets3[x][y][z]>0);
 								}
 							}
 						}
@@ -1090,7 +1088,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+				assertTrue( countH <= TRIALS*0.1);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -1114,11 +1112,11 @@ public class RandomIndexerSampleTests {
 		for (int n = 1; n <= 6; n++) {
 			for (int k = 0; k <= n; k++) {
 				int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
-				assertEquals("Length of result should be " + k, k, result.length);
+				assertEquals(k, result.length);
 				boolean[] inResult = new boolean[n];
 				for (int i = 0; i < k; i++) {
-					assertTrue("Each integer should be at least 0 and less than " + k, result[i] < n && result[i] >= 0);
-					assertFalse("Result shouldn't contain duplicates", inResult[result[i]]);
+					assertTrue(result[i] < n && result[i] >= 0);
+					assertFalse(inResult[result[i]]);
 					inResult[result[i]] = true;
 				}
 			}
@@ -1144,7 +1142,7 @@ public class RandomIndexerSampleTests {
 					switch (k) {
 						case 1: 
 						for (int x = 0; x < n; x++) {
-							assertTrue("failed to generate any samples: "+x, buckets1[x]>0);
+							assertTrue(buckets1[x]>0);
 						}
 						double chi1 = chiSquare(buckets1, numBuckets);
 						if (chi1 > limit95[numBuckets-1]) countH++;
@@ -1152,7 +1150,7 @@ public class RandomIndexerSampleTests {
 						case 2: 
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
-								assertTrue("failed to generate any samples: ("+x+", "+y+")", buckets2[x][y]>0);
+								assertTrue(buckets2[x][y]>0);
 							}
 						}
 						double chi2 = chiSquare(buckets2, numBuckets);
@@ -1162,7 +1160,7 @@ public class RandomIndexerSampleTests {
 						for (int x = 0; x < n; x++) {
 							for (int y = x+1; y < n; y++) {
 								for (int z = y+1; z < n; z++) {
-									assertTrue("failed to generate any samples: ("+x+", "+y+", "+z+")", buckets3[x][y][z]>0);
+									assertTrue(buckets3[x][y][z]>0);
 								}
 							}
 						}
@@ -1171,7 +1169,7 @@ public class RandomIndexerSampleTests {
 						break;
 					}
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n+" k="+k, countH <= TRIALS*0.1);
+				assertTrue(countH <= TRIALS*0.1);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -1194,16 +1192,16 @@ public class RandomIndexerSampleTests {
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntPair(n, w, null);
-				assertEquals("Length of result should be 2", 2, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
+				assertEquals(2, result.length);
+				assertNotEquals(result[0], result[1]);
 				if (result[0] > result[1]) {
 					int temp = result[0];
 					result[0] = result[1];
 					result[1] = temp;
 				}
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[1] < n);
-				assertTrue("integers should be within window w="+w, result[1]-result[0] <= w);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[1] < n);
+				assertTrue(result[1]-result[0] <= w);
 			}
 		}
 		
@@ -1239,7 +1237,7 @@ public class RandomIndexerSampleTests {
 					double chi = chiSquare(flatBuckets, numBuckets);
 					if (chi > limit95[numBuckets-1]) countH++;
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+				assertTrue(countH <= TRIALS*0.1);
 			}
 		}
 	}
@@ -1253,16 +1251,16 @@ public class RandomIndexerSampleTests {
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
-				assertEquals("Length of result should be 2", 2, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
+				assertEquals(2, result.length);
+				assertNotEquals(result[0], result[1]);
 				if (result[0] > result[1]) {
 					int temp = result[0];
 					result[0] = result[1];
 					result[1] = temp;
 				}
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[1] < n);
-				assertTrue("integers should be within window w="+w, result[1]-result[0] <= w);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[1] < n);
+				assertTrue(result[1]-result[0] <= w);
 			}
 		}
 		for (int n = 2; n <= 7; n++) {
@@ -1290,7 +1288,7 @@ public class RandomIndexerSampleTests {
 					double chi = chiSquare(flatBuckets, numBuckets);
 					if (chi > limit95[numBuckets-1]) countH++;
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+				assertTrue(countH <= TRIALS*0.1);
 			}
 		}
 		
@@ -1310,16 +1308,16 @@ public class RandomIndexerSampleTests {
 		for (int n = 2; n <= 10; n++) {
 			for (int w = 1; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
-				assertEquals("Length of result should be 2", 2, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
+				assertEquals(2, result.length);
+				assertNotEquals(result[0], result[1]);
 				if (result[0] > result[1]) {
 					int temp = result[0];
 					result[0] = result[1];
 					result[1] = temp;
 				}
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[1] < n);
-				assertTrue("integers should be within window w="+w, result[1]-result[0] <= w);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[1] < n);
+				assertTrue(result[1]-result[0] <= w);
 			}
 		}
 		for (int n = 2; n <= 7; n++) {
@@ -1347,7 +1345,7 @@ public class RandomIndexerSampleTests {
 					double chi = chiSquare(flatBuckets, numBuckets);
 					if (chi > limit95[numBuckets-1]) countH++;
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+				assertTrue(countH <= TRIALS*0.1);
 			}
 		}
 		
@@ -1366,25 +1364,25 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertNotEquals("integers should be different", result[2], result[1]);
+				assertEquals( 3, result.length);
+				assertNotEquals( result[0], result[1]);
+				assertNotEquals( result[0], result[2]);
+				assertNotEquals( result[2], result[1]);
 				Arrays.sort(result);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
-				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				assertTrue( result[0] >= 0);
+				assertTrue( result[2] < n);
+				assertTrue( result[2]-result[0] <= w);
 				result = RandomIndexer.nextWindowedIntTriple(n, w, null, true);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertNotEquals("integers should be different", result[2], result[1]);
+				assertEquals( 3, result.length);
+				assertNotEquals( result[0], result[1]);
+				assertNotEquals( result[0], result[2]);
+				assertNotEquals( result[2], result[1]);
 				String state = "result=(" + result[0] + ", " + result[1] + ", " + result[2] + "), w="+w + " n="+n;
-				assertTrue("integers should be sorted: " + state, result[0] < result[1]);
-				assertTrue("integers should be sorted: " + state, result[1] < result[2]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
-				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				assertTrue( result[0] < result[1], "integers should be sorted: " + state);
+				assertTrue( result[1] < result[2], "integers should be sorted: " + state);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
+				assertTrue(result[2]-result[0] <= w);
 			}
 		}
 		
@@ -1429,7 +1427,7 @@ public class RandomIndexerSampleTests {
 					double chi = chiSquare(flatBuckets, numBuckets);
 					if (chi > limit95[numBuckets-1]) countH++;
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+				assertTrue(countH <= TRIALS*0.1);
 			}
 		}
 	}
@@ -1450,7 +1448,7 @@ public class RandomIndexerSampleTests {
 			// should be sufficient with n=3 and w=2.
 			for (int i = 0; i < 3; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(3, 2, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
+				assertEquals(3, result.length);
 				assertEquals(0, result[0]);
 				assertEquals(1, result[1]);
 				assertEquals(2, result[2]);
@@ -1463,7 +1461,7 @@ public class RandomIndexerSampleTests {
 			int w = n-1;
 			for (int i = 0; i < 30; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
+				assertEquals(3, result.length);
 				assertTrue(result[0] < result[1]);
 				assertTrue(result[1] < result[2]);
 			}
@@ -1471,7 +1469,7 @@ public class RandomIndexerSampleTests {
 			w = n-1;
 			for (int i = 0; i < 30; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
+				assertEquals(3, result.length);
 				assertTrue(result[0] < result[1]);
 				assertTrue(result[1] < result[2]);
 			}
@@ -1479,7 +1477,7 @@ public class RandomIndexerSampleTests {
 			w = n-1;
 			for (int i = 0; i < 30; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
+				assertEquals(3, result.length);
 				assertTrue(result[0] < result[1]);
 				assertTrue(result[1] < result[2]);
 			}
@@ -1487,7 +1485,7 @@ public class RandomIndexerSampleTests {
 			w = n-1;
 			for (int i = 0; i < 30; i++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
+				assertEquals( 3, result.length);
 				assertTrue(result[0] < result[1]);
 				assertTrue(result[1] < result[2]);
 			}
@@ -1496,25 +1494,25 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertNotEquals("integers should be different", result[2], result[1]);
+				assertEquals(3, result.length);
+				assertNotEquals( result[0], result[1]);
+				assertNotEquals( result[0], result[2]);
+				assertNotEquals( result[2], result[1]);
 				Arrays.sort(result);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
-				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				assertTrue( result[0] >= 0);
+				assertTrue(result[2] < n);
+				assertTrue( result[2]-result[0] <= w);
 				result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertNotEquals("integers should be different", result[2], result[1]);
+				assertEquals(3, result.length);
+				assertNotEquals( result[0], result[1]);
+				assertNotEquals( result[0], result[2]);
+				assertNotEquals( result[2], result[1]);
 				String state = "result=(" + result[0] + ", " + result[1] + ", " + result[2] + "), w="+w + " n="+n;
-				assertTrue("integers should be sorted: " + state, result[0] < result[1]);
-				assertTrue("integers should be sorted: " + state, result[1] < result[2]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
-				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				assertTrue( result[0] < result[1], "integers should be sorted: " + state);
+				assertTrue( result[1] < result[2], "integers should be sorted: " + state);
+				assertTrue(result[0] >= 0);
+				assertTrue(result[2] < n);
+				assertTrue(result[2]-result[0] <= w);
 			}
 		}
 		for (int n = 3; n <= 6; n++) {
@@ -1546,7 +1544,7 @@ public class RandomIndexerSampleTests {
 					double chi = chiSquare(flatBuckets, numBuckets);
 					if (chi > limit95[numBuckets-1]) countH++;
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+				assertTrue(countH <= TRIALS*0.1);
 			}
 		}
 		
@@ -1571,25 +1569,25 @@ public class RandomIndexerSampleTests {
 		for (int n = 3; n <= 10; n++) {
 			for (int w = 2; w < n; w++) {
 				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertNotEquals("integers should be different", result[2], result[1]);
+				assertEquals(3, result.length);
+				assertNotEquals( result[0], result[1]);
+				assertNotEquals( result[0], result[2]);
+				assertNotEquals( result[2], result[1]);
 				Arrays.sort(result);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
-				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				assertTrue( result[0] >= 0);
+				assertTrue( result[2] < n);
+				assertTrue( result[2]-result[0] <= w);
 				result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
-				assertEquals("Length of result should be 3", 3, result.length);
-				assertNotEquals("integers should be different", result[0], result[1]);
-				assertNotEquals("integers should be different", result[0], result[2]);
-				assertNotEquals("integers should be different", result[2], result[1]);
+				assertEquals( 3, result.length);
+				assertNotEquals( result[0], result[1]);
+				assertNotEquals(result[0], result[2]);
+				assertNotEquals( result[2], result[1]);
 				String state = "result=(" + result[0] + ", " + result[1] + ", " + result[2] + "), w="+w + " n="+n;
-				assertTrue("integers should be sorted: " + state, result[0] < result[1]);
-				assertTrue("integers should be sorted: " + state, result[1] < result[2]);
-				assertTrue("integers should be at least 0", result[0] >= 0);
-				assertTrue("integers should be less than " + n, result[2] < n);
-				assertTrue("integers should be within window w="+w, result[2]-result[0] <= w);
+				assertTrue( result[0] < result[1], "integers should be sorted: " + state);
+				assertTrue( result[1] < result[2], "integers should be sorted: " + state);
+				assertTrue( result[0] >= 0);
+				assertTrue( result[2] < n);
+				assertTrue( result[2]-result[0] <= w);
 			}
 		}
 		for (int n = 3; n <= 6; n++) {
@@ -1621,7 +1619,7 @@ public class RandomIndexerSampleTests {
 					double chi = chiSquare(flatBuckets, numBuckets);
 					if (chi > limit95[numBuckets-1]) countH++;
 				}
-				assertTrue("chi square too high too often, countHigh=" + countH + " n="+n, countH <= TRIALS*0.1);
+				assertTrue(countH <= TRIALS*0.1);
 			}
 		}
 		

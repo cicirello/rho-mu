@@ -1,7 +1,7 @@
 /*
  * JUnit test cases for ZigguratGaussian.
  *
- * Copyright 2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * The JUnit test cases for ZigguratGaussian is free software: you can 
  * redistribute it and/or modify it under the terms of the GNU 
@@ -22,14 +22,14 @@
 
 package org.cicirello.math.rand;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 import java.util.SplittableRandom;
 import java.util.Arrays;
 
 /**
- * JUnit 4 test cases for the methods of the ZigguratGaussian class.
+ * JUnit test cases for the methods of the ZigguratGaussian class.
  */
 public class ZigguratGaussianTests {
 	

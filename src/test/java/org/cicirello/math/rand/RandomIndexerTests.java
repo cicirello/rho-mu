@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -21,17 +21,16 @@
  *
  */
 
-
 package org.cicirello.math.rand;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Random;
 import java.util.SplittableRandom;
 
 /**
- * JUnit 4 tests for the methods of the RandomIndexer class.
+ * JUnit tests for the methods of the RandomIndexer class.
  */
 public class RandomIndexerTests {
 	
@@ -44,37 +43,37 @@ public class RandomIndexerTests {
 		for (int n = 1; n <= 5; n++) {
 			for (int k = 0; k <= n; k++) {
 				boolean[] mask = RandomIndexer.arrayMask(n, k);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				int count = 0;
 				for (int i = 0; i < mask.length; i++) {
 					if (mask[i]) count++;
 				}
-				assertEquals("wrong number of true values", k, count);
+				assertEquals( k, count);
 				
 				mask = RandomIndexer.arrayMask(n, k, r1);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				count = 0;
 				for (int i = 0; i < mask.length; i++) {
 					if (mask[i]) count++;
 				}
-				assertEquals("wrong number of true values", k, count);
+				assertEquals( k, count);
 				
 				mask = RandomIndexer.arrayMask(n, k, r2);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				count = 0;
 				for (int i = 0; i < mask.length; i++) {
 					if (mask[i]) count++;
 				}
-				assertEquals("wrong number of true values", k, count);
+				assertEquals( k, count);
 				
 				mask = RandomIndexer.arrayMask(n);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, r1);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, r2);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 			}
 		}
 		
@@ -90,7 +89,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets);
-			assertTrue("Using ThreadLocalRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -103,7 +102,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets);
-			assertTrue("Using SplittableRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -116,7 +115,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets);
-			assertTrue("Using Random, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using Random, chi square goodness of fit test: " + chi);
 		}
 	}
 	
@@ -128,13 +127,13 @@ public class RandomIndexerTests {
 		for (int n = 1; n <= 5; n++) {
 			for (int k = 0; k <= n; k++) {
 				boolean[] mask = RandomIndexer.arrayMask(n, p);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, p, r1);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, p, r2);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 			}
 		}
 		
@@ -150,7 +149,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets);
-			assertTrue("Using ThreadLocalRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -163,7 +162,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets);
-			assertTrue("Using SplittableRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -176,7 +175,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets);
-			assertTrue("Using Random, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using Random, chi square goodness of fit test: " + chi);
 		}
 	}
 	
@@ -189,13 +188,13 @@ public class RandomIndexerTests {
 		for (int n = 1; n <= 5; n++) {
 			for (int k = 0; k <= n; k++) {
 				boolean[] mask = RandomIndexer.arrayMask(n, p);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, p, r1);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, p, r2);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 			}
 		}
 		
@@ -211,7 +210,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets, pa);
-			assertTrue("Using ThreadLocalRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -224,7 +223,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets, pa);
-			assertTrue("Using SplittableRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -237,7 +236,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets, pa);
-			assertTrue("Using Random, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using Random, chi square goodness of fit test: " + chi);
 		}
 	}
 	
@@ -250,13 +249,13 @@ public class RandomIndexerTests {
 		for (int n = 1; n <= 5; n++) {
 			for (int k = 0; k <= n; k++) {
 				boolean[] mask = RandomIndexer.arrayMask(n, p);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, p, r1);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 				
 				mask = RandomIndexer.arrayMask(n, p, r2);
-				assertEquals("length incorrect", n, mask.length);
+				assertEquals( n, mask.length);
 			}
 		}
 		
@@ -272,7 +271,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets, pa);
-			assertTrue("Using ThreadLocalRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -285,7 +284,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets, pa);
-			assertTrue("Using SplittableRandom, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
 		}
 		for (int n = 1; n <= 5; n++) {
 			final int MAX = TRIALS / n;
@@ -298,7 +297,7 @@ public class RandomIndexerTests {
 				}
 			}
 			double chi = chiSquare(buckets, pa);
-			assertTrue("Using Random, chi square goodness of fit test: " + chi, chi <= 3.841);
+			assertTrue( chi <= 3.841, "Using Random, chi square goodness of fit test: " + chi);
 		}
 	}
 	
@@ -342,17 +341,17 @@ public class RandomIndexerTests {
 				int[] a = new int[i];
 				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
 					int k = RandomIndexer.nextInt(i);
-					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					assertTrue( k < i && k >= 0, "nextInt outside range for bound="+i);
 					a[k] += 1;
 				}
 				for (int k = 0; k < i; k++) {
-					assertTrue("failed to generate any samples of "+k,a[k]>0);
+					assertTrue(a[k]>0, "failed to generate any samples of "+k);
 				}
 				double chi = chiSquare(a);
 				if (chi > limit95[i-1]) countH++;
 			}
 		}
-		assertTrue("chi square too high too often, countHigh=" + countH, countH <= 130);
+		assertTrue( countH <= 130, "chi square too high too often, countHigh=" + countH);
 	}
 	
 	@Test
@@ -370,17 +369,17 @@ public class RandomIndexerTests {
 				int[] a = new int[i];
 				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
 					int k = RandomIndexer.nextInt(i, gen);
-					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					assertTrue( k < i && k >= 0, "nextInt outside range for bound="+i);
 					a[k] += 1;
 				}
 				for (int k = 0; k < i; k++) {
-					assertTrue("failed to generate any samples of "+k,a[k]>0);
+					assertTrue(a[k]>0, "failed to generate any samples of "+k);
 				}
 				double chi = chiSquare(a);
 				if (chi > limit95[i-1]) countH++;
 			}
 		}
-		assertTrue("chi square too high too often, countHigh=" + countH, countH <= 130);
+		assertTrue( countH <= 130, "chi square too high too often, countHigh=" + countH);
 	}
 	
 	@Test
@@ -398,17 +397,17 @@ public class RandomIndexerTests {
 				int[] a = new int[i];
 				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
 					int k = RandomIndexer.nextInt(i, gen);
-					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					assertTrue( k < i && k >= 0, "nextInt outside range for bound="+i);
 					a[k] += 1;
 				}
 				for (int k = 0; k < i; k++) {
-					assertTrue("failed to generate any samples of "+k,a[k]>0);
+					assertTrue(a[k]>0, "failed to generate any samples of "+k);
 				}
 				double chi = chiSquare(a);
 				if (chi > limit95[i-1]) countH++;
 			}
 		}
-		assertTrue("chi square too high too often, countHigh=" + countH, countH <= 130);
+		assertTrue( countH <= 130, "chi square too high too often, countHigh=" + countH);
 	}
 	
 	@Test
@@ -455,11 +454,11 @@ public class RandomIndexerTests {
 				int[] a = new int[i];
 				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
 					int k = RandomIndexer.nextBiasedInt(i);
-					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					assertTrue( k < i && k >= 0, "nextInt outside range for bound="+i);
 					a[k] += 1;
 				}
 				for (int k = 0; k < i; k++) {
-					assertTrue("failed to generate any samples of "+k,a[k]>0);
+					assertTrue(a[k]>0, "failed to generate any samples of "+k);
 				}
 			}
 		}
@@ -474,11 +473,11 @@ public class RandomIndexerTests {
 				int[] a = new int[i];
 				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
 					int k = RandomIndexer.nextBiasedInt(i, gen);
-					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					assertTrue( k < i && k >= 0, "nextInt outside range for bound="+i);
 					a[k] += 1;
 				}
 				for (int k = 0; k < i; k++) {
-					assertTrue("failed to generate any samples of "+k,a[k]>0);
+					assertTrue(a[k]>0, "failed to generate any samples of "+k);
 				}
 			}
 		}
@@ -493,11 +492,11 @@ public class RandomIndexerTests {
 				int[] a = new int[i];
 				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
 					int k = RandomIndexer.nextBiasedInt(i, gen);
-					assertTrue("nextInt outside range for bound="+i, k < i && k >= 0);
+					assertTrue( k < i && k >= 0, "nextInt outside range for bound="+i);
 					a[k] += 1;
 				}
 				for (int k = 0; k < i; k++) {
-					assertTrue("failed to generate any samples of "+k,a[k]>0);
+					assertTrue(a[k]>0, "failed to generate any samples of "+k);
 				}
 			}
 		}

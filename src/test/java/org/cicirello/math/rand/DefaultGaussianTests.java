@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -23,14 +23,14 @@
 
 package org.cicirello.math.rand;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 import java.util.SplittableRandom;
 import java.util.Arrays;
 
 /**
- * JUnit 4 test cases for the methods of the library's default Gaussian class.
+ * JUnit test cases for the methods of the library's default Gaussian class.
  */
 public class DefaultGaussianTests {
 	

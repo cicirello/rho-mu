@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -18,18 +18,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with the rho mu library.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
-
 
 package org.cicirello.math.la;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
 /**
- * JUnit 4 tests for the methods of the Statistics class.
+ * JUnit tests for the methods of the Statistics class.
  */
 public class LinearAlgebraTests {
 	
@@ -41,10 +39,10 @@ public class LinearAlgebraTests {
 			int[][] m = getSquareIntsForTranspose(n);
 			int[][] transpose = getSquareIntsForTranspose(n);
 			int[][] result = MatrixOps.transposeSquareMatrixInline(transpose);
-			assertEquals("should return reference to parameter", (Object)transpose, (Object)result);
+			assertEquals((Object)transpose, (Object)result, "should return reference to parameter");
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
-					assertEquals("position [i][j] should be equal to position [j][i] of original", m[j][i], transpose[i][j]);
+					assertEquals(m[j][i], transpose[i][j], "position [i][j] should be equal to position [j][i] of original");
 				}
 			}
 		}
@@ -60,10 +58,10 @@ public class LinearAlgebraTests {
 			double[][] m = getSquareDoublesForTranspose(n);
 			double[][] transpose = getSquareDoublesForTranspose(n);
 			double[][] result = MatrixOps.transposeSquareMatrixInline(transpose);
-			assertEquals("should return reference to parameter", (Object)transpose, (Object)result);
+			assertEquals((Object)transpose, (Object)result, "should return reference to parameter");
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
-					assertEquals("position [i][j] should be equal to position [j][i] of original", m[j][i], transpose[i][j], 0.0);
+					assertEquals(m[j][i], transpose[i][j], 0.0, "position [i][j] should be equal to position [j][i] of original");
 				}
 			}
 		}
@@ -80,20 +78,20 @@ public class LinearAlgebraTests {
 				int[][] a = getMatrixAInts(n,m);
 				int[][] b = getMatrixBInts(n,m);
 				int[][] c = MatrixOps.sum(a,b,null);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals(m, c[0].length, "result cols");
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("sum",n*m+1, c[i][j]);
+						assertEquals(n*m+1, c[i][j], "sum");
 					}
 				}
 				c = null;
 				c = MatrixOps.sum(a,b);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals(m, c[0].length, "result cols");
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("sum",n*m+1, c[i][j]);
+						assertEquals(n*m+1, c[i][j], "sum");
 					}
 				}
 				int[][] c2 = new int[n][m];
@@ -101,7 +99,7 @@ public class LinearAlgebraTests {
 				assertEquals((Object)c2, (Object)c3);
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("sum",n*m+1, c2[i][j]);
+						assertEquals(n*m+1, c2[i][j], "sum");
 					}
 				}
 			}
@@ -135,20 +133,20 @@ public class LinearAlgebraTests {
 				double[][] a = getMatrixA_D(n,m);
 				double[][] b = getMatrixB_D(n,m);
 				double[][] c = MatrixOps.sum(a,b,null);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals(m, c[0].length, "result cols");
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("sum",n*m+1, c[i][j], EPSILON);
+						assertEquals(n*m+1, c[i][j], EPSILON, "sum");
 					}
 				}
 				c = null;
 				c = MatrixOps.sum(a,b);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals( m, c[0].length, "result cols");
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("sum",n*m+1, c[i][j], EPSILON);
+						assertEquals(n*m+1, c[i][j], EPSILON, "sum");
 					}
 				}
 				double[][] c2 = new double[n][m];
@@ -156,7 +154,7 @@ public class LinearAlgebraTests {
 				assertEquals((Object)c2, (Object)c3);
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("sum",n*m+1, c2[i][j], EPSILON);
+						assertEquals(n*m+1, c2[i][j], EPSILON, "sum");
 					}
 				}
 			}
@@ -190,23 +188,23 @@ public class LinearAlgebraTests {
 				int[][] a = fillMatrix(n,m,n*m+1);
 				int[][] b = getMatrixBInts(n,m);
 				int[][] c = MatrixOps.difference(a,b,null);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals(m, c[0].length, "result cols");
 				int k = 1;
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("diff",k, c[i][j]);
+						assertEquals(k, c[i][j], "diff");
 						k++;
 					}
 				}
 				c = null;
 				c = MatrixOps.difference(a,b);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals(m, c[0].length, "result cols");
 				k = 1;
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("diff",k, c[i][j]);
+						assertEquals(k, c[i][j], "diff");
 						k++;
 					}
 				}
@@ -216,7 +214,7 @@ public class LinearAlgebraTests {
 				k = 1;
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("diff",k, c2[i][j]);
+						assertEquals(k, c2[i][j], "diff");
 						k++;
 					}
 				}
@@ -251,23 +249,23 @@ public class LinearAlgebraTests {
 				double[][] a = fillMatrix(n,m,n*m+1.0);
 				double[][] b = getMatrixB_D(n,m);
 				double[][] c = MatrixOps.difference(a,b,null);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals( m, c[0].length, "result cols");
 				int k = 1;
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("diff",k, c[i][j], EPSILON);
+						assertEquals(k, c[i][j], EPSILON, "diff");
 						k++;
 					}
 				}
 				c = null;
 				c = MatrixOps.difference(a,b);
-				assertEquals("result rows",n, c.length);
-				if (n > 0) assertEquals("result cols", m, c[0].length);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals( m, c[0].length, "result cols");
 				k = 1;
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("diff",k, c[i][j], EPSILON);
+						assertEquals(k, c[i][j], EPSILON, "diff");
 						k++;
 					}
 				}
@@ -277,7 +275,7 @@ public class LinearAlgebraTests {
 				k = 1;
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < m; j++) {
-						assertEquals("diff",k, c2[i][j], EPSILON);
+						assertEquals(k, c2[i][j], EPSILON, "diff");
 						k++;
 					}
 				}
@@ -445,10 +443,10 @@ public class LinearAlgebraTests {
 				int[][] C = MatrixOps.product(A, B);
 				assertEquals(A.length, C.length);
 				assertEquals(B[0].length, C[0].length);
-				assertEquals("[0][0]", (m)*(m+1)*(2*m+1)/6, C[0][0]);
+				assertEquals((m)*(m+1)*(2*m+1)/6, C[0][0], "[0][0]");
 				int sum = (m+1)*m/2;
 				for (int i = 1; i < C[0].length; i++) {
-					assertEquals("[0][i]", i*sum, C[0][i]);
+					assertEquals(i*sum, C[0][i], "[0][i]");
 				}
 				for (int i = 1; i < C.length; i++) {
 					assertArrayEquals(C[0], C[i]);
@@ -457,9 +455,9 @@ public class LinearAlgebraTests {
 				C = MatrixOps.product(A, B, null);
 				assertEquals(A.length, C.length);
 				assertEquals(B[0].length, C[0].length);
-				assertEquals("[0][0]", (m)*(m+1)*(2*m+1)/6, C[0][0]);
+				assertEquals((m)*(m+1)*(2*m+1)/6, C[0][0], "[0][0]");
 				for (int i = 1; i < C[0].length; i++) {
-					assertEquals("[0][i]", i*sum, C[0][i]);
+					assertEquals(i*sum, C[0][i], "[0][i]");
 				}
 				for (int i = 1; i < C.length; i++) {
 					assertArrayEquals(C[0], C[i]);
@@ -470,9 +468,9 @@ public class LinearAlgebraTests {
 				assertEquals((Object)C, (Object)C2);
 				assertEquals(A.length, C.length);
 				assertEquals(B[0].length, C[0].length);
-				assertEquals("[0][0]", (m)*(m+1)*(2*m+1)/6, C[0][0]);
+				assertEquals((m)*(m+1)*(2*m+1)/6, C[0][0], "[0][0]");
 				for (int i = 1; i < C[0].length; i++) {
-					assertEquals("[0][i]", i*sum, C[0][i]);
+					assertEquals(i*sum, C[0][i], "[0][i]");
 				}
 				for (int i = 1; i < C.length; i++) {
 					assertArrayEquals(C[0], C[i]);
@@ -514,10 +512,10 @@ public class LinearAlgebraTests {
 				double[][] C = MatrixOps.product(A, B);
 				assertEquals(A.length, C.length);
 				assertEquals(B[0].length, C[0].length);
-				assertEquals("[0][0]", (m)*(m+1)*(2*m+1)/6.0, C[0][0], EPSILON);
+				assertEquals((m)*(m+1)*(2*m+1)/6.0, C[0][0], EPSILON, "[0][0]");
 				double sum = (m+1)*m/2;
 				for (int i = 1; i < C[0].length; i++) {
-					assertEquals("[0][i]", i*sum, C[0][i], EPSILON);
+					assertEquals(i*sum, C[0][i], EPSILON, "[0][i]");
 				}
 				for (int i = 1; i < C.length; i++) {
 					assertArrayEquals(C[0], C[i], EPSILON);
@@ -526,9 +524,9 @@ public class LinearAlgebraTests {
 				C = MatrixOps.product(A, B, null);
 				assertEquals(A.length, C.length);
 				assertEquals(B[0].length, C[0].length);
-				assertEquals("[0][0]", (m)*(m+1)*(2*m+1)/6.0, C[0][0], EPSILON);
+				assertEquals( (m)*(m+1)*(2*m+1)/6.0, C[0][0], EPSILON, "[0][0]");
 				for (int i = 1; i < C[0].length; i++) {
-					assertEquals("[0][i]", i*sum, C[0][i], EPSILON);
+					assertEquals(i*sum, C[0][i], EPSILON, "[0][i]");
 				}
 				for (int i = 1; i < C.length; i++) {
 					assertArrayEquals(C[0], C[i], EPSILON);
@@ -539,9 +537,9 @@ public class LinearAlgebraTests {
 				assertEquals((Object)C, (Object)C2);
 				assertEquals(A.length, C.length);
 				assertEquals(B[0].length, C[0].length);
-				assertEquals("[0][0]", (m)*(m+1)*(2*m+1)/6.0, C[0][0], EPSILON);
+				assertEquals((m)*(m+1)*(2*m+1)/6.0, C[0][0], EPSILON, "[0][0]");
 				for (int i = 1; i < C[0].length; i++) {
-					assertEquals("[0][i]", i*sum, C[0][i], EPSILON);
+					assertEquals(i*sum, C[0][i], EPSILON, "[0][i]");
 				}
 				for (int i = 1; i < C.length; i++) {
 					assertArrayEquals(C[0], C[i], EPSILON);
@@ -593,14 +591,14 @@ public class LinearAlgebraTests {
 			assertEquals(left.length, right.length);
 			assertEquals(left[0].length, right[0].length);
 			for (int i = 0; i < left.length; i++) {
-				assertArrayEquals("diagonal already", left[i], right[i], JacobiDiagonalization.EPSILON);
+				assertArrayEquals(left[i], right[i], JacobiDiagonalization.EPSILON, "diagonal already");
 			}
 			if (n <= 5) {
 				A = getSymmetric(n);
 				jd = new JacobiDiagonalization(A);
-				assertNull("eigvectors should be null", jd.eigenvectors());
-				assertNull("eigvalues should be null", jd.eigenvalues());
-				assertTrue("should converge", jd.compute());
+				assertNull( jd.eigenvectors(), "eigvectors should be null");
+				assertNull( jd.eigenvalues(), "eigvalues should be null");
+				assertTrue(jd.compute(), "should converge");
 				P = jd.eigenvectors();
 				eig = jd.eigenvalues();
 				lambda = new double[eig.length][eig.length];
@@ -612,7 +610,7 @@ public class LinearAlgebraTests {
 				assertEquals(left.length, right.length);
 				assertEquals(left[0].length, right[0].length);
 				for (int i = 0; i < left.length; i++) {
-					assertArrayEquals("symmetric: " + n, left[i], right[i], 10*n*JacobiDiagonalization.EPSILON);
+					assertArrayEquals(left[i], right[i], 10*n*JacobiDiagonalization.EPSILON, "symmetric: " + n);
 				}
 			}
 		}
@@ -649,15 +647,15 @@ public class LinearAlgebraTests {
 			assertEquals(left.length, right.length);
 			assertEquals(left[0].length, right[0].length);
 			for (int i = 0; i < left.length; i++) {
-				assertArrayEquals("diagonal already", left[i], right[i], JacobiDiagonalization.EPSILON);
+				assertArrayEquals(left[i], right[i], JacobiDiagonalization.EPSILON, "diagonal already");
 			}
 			if (n <= 5) {
 				Aint = getSymmetricInt(n);
 				A = toDoubleMatrix(Aint, false);
 				jd = new JacobiDiagonalization(A);
-				assertNull("eigvectors should be null", jd.eigenvectors());
-				assertNull("eigvalues should be null", jd.eigenvalues());
-				assertTrue("should converge", jd.compute(JacobiDiagonalization.MAX_ITERATIONS/10));
+				assertNull( jd.eigenvectors(), "eigvectors should be null");
+				assertNull( jd.eigenvalues(), "eigvalues should be null");
+				assertTrue( jd.compute(JacobiDiagonalization.MAX_ITERATIONS/10), "should converge");
 				P = jd.eigenvectors();
 				eig = jd.eigenvalues();
 				lambda = new double[eig.length][eig.length];
@@ -669,7 +667,7 @@ public class LinearAlgebraTests {
 				assertEquals(left.length, right.length);
 				assertEquals(left[0].length, right[0].length);
 				for (int i = 0; i < left.length; i++) {
-					assertArrayEquals("symmetric: " + n, left[i], right[i], 10*n*JacobiDiagonalization.EPSILON);
+					assertArrayEquals( left[i], right[i], 10*n*JacobiDiagonalization.EPSILON, "symmetric: " + n);
 				}
 			}
 		}

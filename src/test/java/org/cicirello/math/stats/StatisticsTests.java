@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2019 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -21,14 +21,13 @@
  *
  */
 
-
 package org.cicirello.math.stats;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * JUnit 4 tests for the methods of the Statistics class.
+ * JUnit tests for the methods of the Statistics class.
  */
 public class StatisticsTests {
 	
@@ -41,14 +40,14 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 3.0, Statistics.mean(data), EPSILON);
+			assertEquals(3.0, Statistics.mean(data), EPSILON, "All elements the same");
 		}
 		for (int n = 1; n <= 10; n++) {
 			int[] data = new int[n];
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n", (n+1)/2.0, Statistics.mean(data), EPSILON);
+			assertEquals((n+1)/2.0, Statistics.mean(data), EPSILON, "ints from 1 to n");
 		}	
 	}
 	
@@ -59,14 +58,14 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 3.0, Statistics.mean(data), EPSILON);
+			assertEquals(3.0, Statistics.mean(data), EPSILON, "All elements the same");
 		}
 		for (int n = 1; n <= 10; n++) {
 			double[] data = new double[n];
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n as doubles", (n+1)/2.0, Statistics.mean(data), EPSILON);
+			assertEquals((n+1)/2.0, Statistics.mean(data), EPSILON, "ints from 1 to n as doubles");
 		}	
 	}
 	
@@ -77,7 +76,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 0.0, Statistics.variance(data), EPSILON);
+			assertEquals(0.0, Statistics.variance(data), EPSILON, "All elements the same");
 		}
 		double[] expected = {0.25, 2.0/3.0, 5.0/4.0 };
 		for (int n = 2; n <= 4; n++) {
@@ -85,7 +84,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n", expected[n-2], Statistics.variance(data), EPSILON);
+			assertEquals(expected[n-2], Statistics.variance(data), EPSILON, "ints from 1 to n");
 		}	
 	}
 	
@@ -96,7 +95,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 0.0, Statistics.variance(data), EPSILON);
+			assertEquals(0.0, Statistics.variance(data), EPSILON, "All elements the same");
 		}
 		double[] expected = {0.25, 2.0/3.0, 5.0/4.0 };
 		for (int n = 2; n <= 4; n++) {
@@ -104,7 +103,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n", expected[n-2], Statistics.variance(data), EPSILON);
+			assertEquals(expected[n-2], Statistics.variance(data), EPSILON, "ints from 1 to n");
 		}	
 	}
 	
@@ -115,7 +114,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 0.0, Statistics.varianceSample(data), EPSILON);
+			assertEquals(0.0, Statistics.varianceSample(data), EPSILON, "All elements the same");
 		}
 		// Note: This assumes that the variance method passes its tests.
 		for (int n = 2; n <= 10; n++) {
@@ -123,7 +122,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n", Statistics.variance(data)*n/(n-1), Statistics.varianceSample(data), EPSILON);
+			assertEquals(Statistics.variance(data)*n/(n-1), Statistics.varianceSample(data), EPSILON, "ints from 1 to n");
 		}	
 	}
 	
@@ -134,7 +133,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 0.0, Statistics.varianceSample(data), EPSILON);
+			assertEquals(0.0, Statistics.varianceSample(data), EPSILON, "All elements the same");
 		}
 		// Note: This assumes that the variance method passes its tests.
 		for (int n = 2; n <= 10; n++) {
@@ -142,7 +141,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n", Statistics.variance(data)*n/(n-1), Statistics.varianceSample(data), EPSILON);
+			assertEquals(Statistics.variance(data)*n/(n-1), Statistics.varianceSample(data), EPSILON, "ints from 1 to n");
 		}	
 	}
 	
@@ -153,7 +152,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 0.0, Statistics.stdev(data), EPSILON);
+			assertEquals(0.0, Statistics.stdev(data), EPSILON, "All elements the same");
 		}
 		// Note: This assumes that the variance method passes its tests.
 		for (int n = 2; n <= 10; n++) {
@@ -161,7 +160,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n", Math.sqrt(Statistics.variance(data)*n/(n-1)), Statistics.stdev(data), EPSILON);
+			assertEquals(Math.sqrt(Statistics.variance(data)*n/(n-1)), Statistics.stdev(data), EPSILON, "ints from 1 to n");
 		}	
 	}
 	
@@ -172,7 +171,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("All elements the same", 0.0, Statistics.stdev(data), EPSILON);
+			assertEquals(0.0, Statistics.stdev(data), EPSILON, "All elements the same");
 		}
 		// Note: This assumes that the variance method passes its tests.
 		for (int n = 2; n <= 10; n++) {
@@ -180,7 +179,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = i+1;
 			}
-			assertEquals("ints from 1 to n", Math.sqrt(Statistics.variance(data)*n/(n-1)), Statistics.stdev(data), EPSILON);
+			assertEquals(Math.sqrt(Statistics.variance(data)*n/(n-1)), Statistics.stdev(data), EPSILON, "ints from 1 to n");
 		}	
 	}
 	
@@ -191,7 +190,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("covariance of X with itself, X all same", 0.0, Statistics.covariance(data, data.clone()), EPSILON);
+			assertEquals(0.0, Statistics.covariance(data, data.clone()), EPSILON, "covariance of X with itself, X all same");
 		}
 		double[] expected = {0.25, 2.0/3.0, 5.0/4.0 };
 		for (int n = 2; n <= 4; n++) {
@@ -204,8 +203,8 @@ public class StatisticsTests {
 				data3[i] = 4 * data[i];
 			}
 			// assumes variance method already tested... uses it in expected result
-			assertEquals("covariance of X with itself", Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON);
-			assertEquals("covariance of X with itself", 3*4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON);
+			assertEquals(Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON, "covariance of X with itself");
+			assertEquals(3*4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON, "covariance of X with itself");
 		}	
 		IllegalArgumentException thrown = assertThrows( 
 			IllegalArgumentException.class,
@@ -220,7 +219,7 @@ public class StatisticsTests {
 			for (int i = 0; i < n; i++) {
 				data[i] = 3;
 			}
-			assertEquals("covariance of X with itself, X all same", 0.0, Statistics.covariance(data, data.clone()), EPSILON);
+			assertEquals(0.0, Statistics.covariance(data, data.clone()), EPSILON, "covariance of X with itself, X all same");
 		}
 		double[] expected = {0.25, 2.0/3.0, 5.0/4.0 };
 		for (int n = 2; n <= 4; n++) {
@@ -233,8 +232,8 @@ public class StatisticsTests {
 				data3[i] = 1.4 * data[i];
 			}
 			// assumes variance method already tested... uses it in expected result
-			assertEquals("covariance of X with itself", Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON);
-			assertEquals("covariance of X with itself", 3.3*1.4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON);
+			assertEquals( Statistics.variance(data), Statistics.covariance(data, data.clone()), EPSILON, "covariance of X with itself");
+			assertEquals( 3.3*1.4*Statistics.variance(data), Statistics.covariance(data2, data3), EPSILON, "covariance of X with itself");
 		}
 		IllegalArgumentException thrown = assertThrows( 
 			IllegalArgumentException.class,
@@ -251,19 +250,19 @@ public class StatisticsTests {
 				x[i] = i+1;
 			}
 			int[] y = x.clone();
-			assertEquals("X and Y identical", 1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( 1.0, Statistics.correlation(x, y), EPSILON, "X and Y identical");
 			for (int i = 0; i < n; i++) {
 				y[i] *= -1;
 			}
-			assertEquals("Y = -X", -1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( -1.0, Statistics.correlation(x, y), EPSILON, "Y = -X");
 			for (int i = 0; i < n; i++) {
 				y[i] = 3*x[i];
 			}
-			assertEquals("Y = alpha * X", 1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( 1.0, Statistics.correlation(x, y), EPSILON, "Y = alpha * X");
 			for (int i = 0; i < n; i++) {
 				y[i] *= -1;
 			}
-			assertEquals("Y = -alpha * X", -1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( -1.0, Statistics.correlation(x, y), EPSILON, "Y = -alpha * X");
 		}
 		int[] x = { 2, 2, 2 };
 		int[] y = { 2, 1, 3 };
@@ -281,19 +280,19 @@ public class StatisticsTests {
 				x[i] = i+1;
 			}
 			double[] y = x.clone();
-			assertEquals("X and Y identical", 1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( 1.0, Statistics.correlation(x, y), EPSILON, "X and Y identical");
 			for (int i = 0; i < n; i++) {
 				y[i] *= -1;
 			}
-			assertEquals("Y = -X", -1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( -1.0, Statistics.correlation(x, y), EPSILON, "Y = -X");
 			for (int i = 0; i < n; i++) {
 				y[i] = 3*x[i];
 			}
-			assertEquals("Y = alpha * X", 1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( 1.0, Statistics.correlation(x, y), EPSILON, "Y = alpha * X");
 			for (int i = 0; i < n; i++) {
 				y[i] *= -1;
 			}
-			assertEquals("Y = -alpha * X", -1.0, Statistics.correlation(x, y), EPSILON);
+			assertEquals( -1.0, Statistics.correlation(x, y), EPSILON, "Y = -alpha * X");
 		}
 		double[] x = { 2, 2, 2 };
 		double[] y = { 2, 1, 3 };
