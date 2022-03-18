@@ -1,4 +1,4 @@
-jdkVersion = "11"
+jdkVersion = "17"
 
 ignoreFiles = """
 src/test/
