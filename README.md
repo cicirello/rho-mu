@@ -34,17 +34,13 @@ beginning to add one or the other of those libraries as dependencies in some oth
 strictly for the randomization utilities, which is certainly less than ideal. Therefore, we 
 have extracted &rho;&mu; from those libraries.
 
-## Java 11+
+## Java 17+
 
-We currently support Java 11+. Our development process utilizes OpenJDK 11, and all
+We currently support Java 17+. Our development process utilizes OpenJDK 17, and all
 jar files released via Maven Central, GitHub Packages, and GitHub Releases are built
-with a Java 11 target. 
+with a Java 17 target. 
 
-The initial release consists entirely of source code that can be compiled for a 
-Java 8 target (e.g., if you modify the "pom.xml" and remove the 
-"module-info.java"). However, we do not guarantee that this will remain true, as we have 
-decided upon Java 11 as our minimum supported Java version to enable utilizing newer
-language features in our ongoing development efforts.
+Earlier versions (prior to 2.0.0) require Java 11+.
 
 ## Versioning Scheme
 
