@@ -177,7 +177,7 @@ tool's documentation for the equivalent):</p>
 <pre><code>&lt;dependency&gt;
   &lt;groupId&gt;org.cicirello&lt;/groupId&gt;
   &lt;artifactId&gt;rho-mu&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0&lt;/version&gt;
+  &lt;version&gt;2.0.0&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 <p>Just replace the version number with your desired version of the library.</p>
@@ -224,7 +224,8 @@ potential code improvements. At the
 present time, this includes 
 running <a href="https://codeql.github.com/docs/">CodeQL</a> 
 on all push and pull request events.
-Additionally, we run <a href="https://lift.sonatype.com/">Lift</a> on 
+Additionally, we run both <a href="https://snyk.io/">Snyk</a> as well 
+as <a href="https://lift.sonatype.com/">Lift</a> on 
 all pull requests. Sonatype's Lift runs a suite of several 
 tools that includes 
 Google's <a href="https://errorprone.info/">Errorprone</a>, 
