@@ -6,15 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2022-03-21
 
-Contains breaking changes, including increasing minimum supported Java version to Java 17.
-
 ### Added
 
 ### Changed
-* Minimum supported Java version is now Java 17.
-* Refactored all classes in package org.cicirello.math.rand to use Java 17's new
-  RandomGenerator interface.
-* Migrated test cases to JUnit Jupiter 5.8.2.
 
 ### Deprecated
 
@@ -25,6 +19,18 @@ Contains breaking changes, including increasing minimum supported Java version t
 ### CI/CD
 
 ### Other
+
+
+## [2.0.0] - 2022-03-21
+
+**Breaking Changes**
+Contains breaking changes, including increasing minimum supported Java version to Java 17.
+
+### Changed
+* Minimum supported Java version is now Java 17.
+* Refactored all classes in package org.cicirello.math.rand to use Java 17's new
+  RandomGenerator interface.
+* Migrated test cases to JUnit Jupiter 5.8.2.
 
 
 ## [1.2.0] - 2022-02-11
