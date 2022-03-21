@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -23,8 +23,7 @@
 
 package org.cicirello.math.rand;
 
-import java.util.SplittableRandom;
-import java.util.Random;
+import java.util.random.RandomGenerator;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -61,18 +60,7 @@ public final class RandomVariates {
 	 * @param r The source of randomness.
 	 * @return A pseudorandom integer from a binomial distribution.
 	 */
-	public static int nextBinomial(int n, double p, Random r) {
-		return BTPE.nextBinomial(n, p, r);
-	}
-	
-	/**
-	 * Generates a pseudorandom integer from a binomial distribution.
-	 * @param n Number of trials for the binomial distribution.
-	 * @param p The probability of a successful trial.
-	 * @param r The source of randomness.
-	 * @return A pseudorandom integer from a binomial distribution.
-	 */
-	public static int nextBinomial(int n, double p, SplittableRandom r) {
+	public static int nextBinomial(int n, double p, RandomGenerator r) {
 		return BTPE.nextBinomial(n, p, r);
 	}	
 	
@@ -103,7 +91,7 @@ public final class RandomVariates {
 	 * @param r The source of randomness.
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
-	public static double nextCauchy(double median, double scale, Random r) {
+	public static double nextCauchy(double median, double scale, RandomGenerator r) {
 		return median + internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
@@ -114,29 +102,7 @@ public final class RandomVariates {
 	 * @param r The source of randomness.
 	 * @return a pseudorandom number from a Cauchy distribution
 	 */
-	public static double nextCauchy(double scale, Random r) {
-		return internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
-	}
-	
-	/**
-	 * Generates a pseudorandom number from a Cauchy distribution.
-	 * @param median The median of the Cauchy.
-	 * @param scale The scale parameter of the Cauchy.
-	 * @param r The source of randomness.
-	 * @return a pseudorandom number from a Cauchy distribution
-	 */
-	public static double nextCauchy(double median, double scale, SplittableRandom r) {
-		return median + internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
-	}
-	
-	/**
-	 * Generates a pseudorandom number from a Cauchy distribution with median 0
-	 * and chosen scale parameter.
-	 * @param scale The scale parameter of the Cauchy.
-	 * @param r The source of randomness.
-	 * @return a pseudorandom number from a Cauchy distribution
-	 */
-	public static double nextCauchy(double scale, SplittableRandom r) {
+	public static double nextCauchy(double scale, RandomGenerator r) {
 		return internalNextCauchy(scale, internalNextTransformedU(r, r.nextDouble()));
 	}
 	
@@ -170,24 +136,7 @@ public final class RandomVariates {
 	 * @return A random number from a Gaussian distribution with mean 0 and
 	 * standard deviation sigma.
 	 */
-	public static double nextGaussian(double sigma, Random r) {
-		return ZigguratGaussian.nextGaussian(sigma, r);
-	}
-	
-	/**
-	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation, sigma, of your choosing. This method uses
-	 * the library's current most-efficient algorithm for Gaussian random number
-	 * generation, which may change in future releases. If you require a 
-	 * guarantee of the algorithm used, then see the API for the classes that
-	 * implement specific Gaussian algorithms.
-	 * @param sigma The standard deviation of the Gaussian.
-	 * @param r The pseudorandom number generator to use for the 
-	 * source of randomness.
-	 * @return A random number from a Gaussian distribution with mean 0 and
-	 * standard deviation sigma.
-	 */
-	public static double nextGaussian(double sigma, SplittableRandom r) {
+	public static double nextGaussian(double sigma, RandomGenerator r) {
 		return ZigguratGaussian.nextGaussian(sigma, r);
 	}
 	
@@ -219,23 +168,7 @@ public final class RandomVariates {
 	 * @return A random number from a Gaussian distribution with mean 0 and
 	 * standard deviation 1.
 	 */
-	public static double nextGaussian(Random r) {
-		return ZigguratGaussian.nextGaussian(r);
-	}
-	
-	/**
-	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation 1. This method uses
-	 * the library's current most-efficient algorithm for Gaussian random number
-	 * generation, which may change in future releases. If you require a 
-	 * guarantee of the algorithm used, then see the API for the classes that
-	 * implement specific Gaussian algorithms.
-	 * @param r The pseudorandom number generator to use for the 
-	 * source of randomness.
-	 * @return A random number from a Gaussian distribution with mean 0 and
-	 * standard deviation 1.
-	 */
-	public static double nextGaussian(SplittableRandom r) {
+	public static double nextGaussian(RandomGenerator r) {
 		return ZigguratGaussian.nextGaussian(r);
 	}
 	
@@ -280,14 +213,7 @@ public final class RandomVariates {
 	/*
 	 * package-private to facilitate testing.
 	 */
-	static double internalNextTransformedU(Random r, double u) {
-		return u == 0.5 && r.nextBoolean() ? -0.5 : u;
-	}
-	
-	/*
-	 * package-private to facilitate testing.
-	 */
-	static double internalNextTransformedU(SplittableRandom r, double u) {
+	static double internalNextTransformedU(RandomGenerator r, double u) {
 		return u == 0.5 && r.nextBoolean() ? -0.5 : u;
 	}
 }

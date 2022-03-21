@@ -5,9 +5,9 @@
  * random numbers.
  *
  * Modifications made to port to the Java language are subject to
- * the following copyright:
+ * the following copyright and license:
  *
- * Copyright 2015, 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2015-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * ZigguratGaussian.java is free software: you can 
  * redistribute it and/or modify it under the terms of the GNU 
@@ -49,8 +49,7 @@
  
 package org.cicirello.math.rand;
  
-import java.util.Random;
-import java.util.SplittableRandom;
+import java.util.random.RandomGenerator;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -70,7 +69,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * up the runtime of a parallel genetic algorithm (PGA).  The PGA in
  * question evolved its control parameters (i.e., crossover and mutation rates,
  * etc) using Gaussian mutation.  The only Gaussian implementation within the
- * Java API is the polar method (nextGaussian method of the {@link Random} and
+ * Java API, at that time, was the polar method (nextGaussian method of the {@link java.util.Random Random} and
  * {@link ThreadLocalRandom} classes, however the polar method is quite slow
  * relative to other newer available alternatives, such as the Ziggurat method.</p>
  *
@@ -109,7 +108,9 @@ public final class ZigguratGaussian {
 	 * - I wanted to support generating Gaussian distributed random 
 	 *   numbers via the Ziggurat method using any of the following 
 	 *   Java classes as the underlying pseudorandom number generator:
-	 *   Random, ThreadLocalRandom, and SplittableRandom.
+	 *   Random, ThreadLocalRandom, and SplittableRandom. Aside from SecureRandom,
+	 *   these were all of the random number generator classes available
+	 *   in the Java API at the time this was originally implemented for Java 8.
 	 *
 	 * - One option to accomplish that would be to have three classes,
 	 *   each extending one of those three and either overriding
@@ -155,6 +156,14 @@ public final class ZigguratGaussian {
 	 *   I intend to watch the progress of this JEP.  If that JEP is implemented
 	 *   in a future version of the Java API, I will likely revisit my approach here to
 	 *   this Gaussian implementation.
+	 *
+	 * COMMENT UPDATE (3/21/2022):
+	 * - As of Java 17, there is now a RandomGenerator interface that provides a common
+	 *   interface for all of the random number geenrators in the Java API, which now
+	 *   also supports several others as well. This update consolidates redundant code
+	 *   by using this interface. That is, rather than the previous one method that takes 
+	 *   a Random and another method that takes a SplittableRandom, we now have a single
+	 *   method that takes a RandomGenerator.
 	 */
 	
 	/* 
@@ -310,20 +319,7 @@ public final class ZigguratGaussian {
 	 * @return A random number from a Gaussian distribution with mean 0 and
 	 * standard deviation sigma.
 	 */
-	public static double nextGaussian(double sigma, Random r) {
-		return sigma * nextGaussian(r);
-	}
-	
-	/**
-	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation, sigma, of your choosing.
-	 * @param sigma The standard deviation of the Gaussian.
-	 * @param r The pseudorandom number generator to use for the 
-	 * source of randomness.
-	 * @return A random number from a Gaussian distribution with mean 0 and
-	 * standard deviation sigma.
-	 */
-	public static double nextGaussian(double sigma, SplittableRandom r) {
+	public static double nextGaussian(double sigma, RandomGenerator r) {
 		return sigma * nextGaussian(r);
 	}
 	
@@ -347,59 +343,7 @@ public final class ZigguratGaussian {
 	 * @return A random number from a Gaussian distribution with mean 0 and
 	 * standard deviation 1.
 	 */
-	public static double nextGaussian(Random r) {
-		double x, y;
-		int sign;
-
-		// Original C code used infinite loop with 2 breaks for escaping.
-		// Rewrote as do-while loop since one of the break conditions was at end anyway.
-		do {
-			// In the original C language version, there were 2
-			// calls to the pseudorandom number generator here.
-			// One of them was to get a random 8 bit integer for i.
-			// And the other was to get a random 24 bit integer for j.
-			// The left most bit of i was then used for the random sign
-			// and the other 7 bits for i.
-			//
-			// In this Java language port, I instead make a single call to
-			// the nextInt() method to get one random 32 bit integer, using the
-			// left most bit for sign, the next 7 bits for i, and the right
-			// 24 bits for j.  
-			int i = r.nextInt();	  
-			sign = (i < 0) ? 1 : -1; 
-			int j = i & 0x00ffffff;	
-			i = (i >>> 24) & 0x7f;
-
-			x = j * wtab[i];
-
-			if (j < ktab[i]) break;
-
-			if (i < 127) {
-				double y0 = ytab[i];
-				double y1 = ytab[i+1];
-				y = y1 + (y0 - y1) * r.nextDouble();
-			} else {
-				// Includes a couple optimizations not done in original C version.
-				// See the comments where PARAM_R_INV and HALF_PARAM_R are declared
-				// for explanation.
-				x = PARAM_R - StrictMath.log(1.0 - r.nextDouble()) * PARAM_R_INV;
-				y = StrictMath.exp(-PARAM_R * (x - HALF_PARAM_R)) * r.nextDouble();
-			}
-
-		} while (y >= StrictMath.exp(-0.5 * x * x));
-
-		return sign * x;
-	}
-	
-	/**
-	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation 1.
-	 * @param r The pseudorandom number generator to use for the 
-	 * source of randomness.
-	 * @return A random number from a Gaussian distribution with mean 0 and
-	 * standard deviation 1.
-	 */
-	public static double nextGaussian(SplittableRandom r) {
+	public static double nextGaussian(RandomGenerator r) {
 		double x, y;
 		int sign;
 

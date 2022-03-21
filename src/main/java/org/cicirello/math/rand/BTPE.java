@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -23,8 +23,7 @@
 package org.cicirello.math.rand;
 
 import org.cicirello.math.MathFunctions;
-import java.util.SplittableRandom;
-import java.util.Random;
+import java.util.random.RandomGenerator;
 
 /**
  * <p>This class enables generating random variates from a binomial distribution.
@@ -58,18 +57,7 @@ final class BTPE {
 	 * @param generator The source of randomness.
 	 * @return A pseudorandom integer from a binomial distribution.
 	 */
-	public static int nextBinomial(int n, double p, Random generator) {
-		return threadLocalInstance(n, p).next(generator);
-	}
-	
-	/**
-	 * Generates a pseudorandom integer from a binomial distribution.
-	 * @param n Number of trials for the binomial distribution.
-	 * @param p The probability of a successful trial.
-	 * @param generator The source of randomness.
-	 * @return A pseudorandom integer from a binomial distribution.
-	 */
-	public static int nextBinomial(int n, double p, SplittableRandom generator) {
+	public static int nextBinomial(int n, double p, RandomGenerator generator) {
 		return threadLocalInstance(n, p).next(generator);
 	}
 	
@@ -166,96 +154,7 @@ final class BTPE {
 		}
 	}
 	
-	private int next(Random generator) {
-				
-		if (nr < BTPE_CUTOFF) {
-			// Use simple algorithm based on inverse transform since BTPE is only valid
-			// when n*min(p, 1-p) >= 10.
-			double u = generator.nextDouble();
-			int y = 0;
-			double pow = pow0;
-			while (u > pow) {
-				u -= pow;
-				y++;
-				pow = pow * (a/y-s);
-			}
-			return p > 0.5 ? n - y : y;
-		}
-		
-		int y;
-		while (true) {
-			
-			// Step 1.
-			double u = p4 * generator.nextDouble(); 
-			double v = generator.nextDouble(); 
-			if (u <= p1) { 
-				y = (int)(x_m - p1*v + u); 
-				break;
-			}
-			
-			// Step 2: parallelograms
-			if (u <= p2) {
-				double x = x_l + (u - p1) / c;
-				v = v*c + 1 - Math.abs(m - x + 0.5) / p1;
-				if (v > 1) continue;
-				y = (int)x;
-			} else {
-				// Step 3: left exponential tail
-				if (u <= p3) {
-					y = (int)Math.floor(x_l + Math.log(v)/lambda_l);
-					if (y < 0) continue;
-					v = v * (u - p2) * lambda_l;
-				} else {
-					// Step 4: right exponential tail
-					y = (int)Math.floor(x_r - Math.log(v)/lambda_r);
-					if (y > n) continue;
-					v = v * (u - p3) * lambda_r;
-				}
-			}
-			
-			// Step 5: Acceptance/rejection comparisons.
-			
-			// Step 5.0
-			int k = m > y ? m - y : y - m;
-			if (k <= 20 || k >= nrq * 0.5 - 1) {
-				// Step 5.1
-				a = s * (n+1);
-				double f = 1.0;
-				if (m < y) {
-					for (int i = m + 1; i <= y; i++) {
-						f = f*(a/i-s);
-					}
-				} else if (m > y) {
-					for (int i = y + 1; i <= m; i++) {
-						f = f/(a/i-s);
-					}
-				}
-				if (v > f) continue;
-				break;
-			} else {
-				// Step 5.2: Squeezing
-				double rho = (k * nrqInv) * ((k * (k*0.3333333333333333 + 0.625) + 0.16666666666666666) * nrqInv + 0.5);
-				double t = -k*k*(0.5*nrqInv);
-				a = Math.log(v);
-				if (a < t - rho) {
-					break;
-				}
-				if (a > t + rho) continue;
-			}
-			
-			// Step 5.3: Final acceptance/rejection test
-			int x1 = y + 1;
-			int f1 = m + 1;
-			int z = n + 1 - m;
-			int w = n - y + 1;
-			if (a > x_m * Math.log(((double)f1)/x1) + (n - m + 0.5)*Math.log(((double)z)/w) + (y-m)*Math.log(w*r/(x1*q)) + stirlingApproximation(f1) + stirlingApproximation(z) + stirlingApproximation(x1) + stirlingApproximation(w)) continue;
-			break;
-		}
-		
-		return p > 0.5 ? n - y : y;
-	}
-	
-	private int next(SplittableRandom generator) {
+	private int next(RandomGenerator generator) {
 				
 		if (nr < BTPE_CUTOFF) {
 			// Use simple algorithm based on inverse transform since BTPE is only valid
@@ -348,5 +247,4 @@ final class BTPE {
 		int x2 = x * x;
 		return (13860.0 - (462.0 - (132.0 - (99.0 - 140.0 / x2) / x2) / x2) / x2) / x / 166320.0;
 	}
-	
 }
