@@ -12,6 +12,8 @@ Contains breaking changes, including increasing minimum supported Java version t
 
 ### Changed
 * Minimum supported Java version is now Java 17.
+* Refactored all classes in package org.cicirello.math.rand to use Java 17's new
+  RandomGenerator interface.
 * Migrated test cases to JUnit Jupiter 5.8.2.
 
 ### Deprecated
