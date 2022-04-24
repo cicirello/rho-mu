@@ -54,6 +54,30 @@ public class EnhancedRandomGeneratorTests {
 		assertEquals(0x42, b[0]);
 		assertEquals(0x43, b[1]);
 		assertTrue(e.nextBoolean());
+		LongStream longStream = e.longs();
+		assertEquals(4208, longStream.findFirst().getAsLong());
+		longStream.close();
+		longStream = e.longs(5);
+		assertEquals(4209, longStream.findFirst().getAsLong());
+		longStream.close();
+		longStream = e.longs(4000, 5000);
+		assertEquals(4210, longStream.findFirst().getAsLong());
+		longStream.close();
+		longStream = e.longs(5, 4000, 5000);
+		assertEquals(4211, longStream.findFirst().getAsLong());
+		longStream.close();
+		IntStream intStream = e.ints();
+		assertEquals(4212, intStream.findFirst().getAsInt());
+		intStream.close();
+		intStream = e.ints(5);
+		assertEquals(4213, intStream.findFirst().getAsInt());
+		intStream.close();
+		DoubleStream dStream = e.doubles();
+		assertEquals(4214.0, dStream.findFirst().getAsDouble(), 0.0);
+		dStream.close();
+		dStream = e.doubles(5);
+		assertEquals(4215.0, dStream.findFirst().getAsDouble(), 0.0);
+		dStream.close();
 	}
 	
 	@Test
@@ -63,6 +87,8 @@ public class EnhancedRandomGeneratorTests {
 		e.nextInt(0, 128);
 		e.nextGaussian();
 		e.nextGaussian(10, 1);
+		
+		// Need to add cases to confirm that ints with bounds are not delegated
 	}
 	
 	private static class FakeRNG implements RandomGenerator {
@@ -138,6 +164,38 @@ public class EnhancedRandomGeneratorTests {
 		
 		@Override public boolean nextBoolean() {
 			return true;
+		}
+		
+		@Override public LongStream longs() {
+			return LongStream.generate(() -> 4208).sequential();
+		}
+		
+		@Override public LongStream longs(long streamSize) {
+			return LongStream.generate(() -> 4209).sequential().limit(streamSize);
+		}
+		
+		@Override public LongStream longs(long origin, long bound) {
+			return LongStream.generate(() -> 4210).sequential();
+		}
+		
+		@Override public LongStream longs(long streamSize, long origin, long bound) {
+			return LongStream.generate(() -> 4211).sequential().limit(streamSize);
+		}
+		
+		@Override public IntStream ints() {
+			return IntStream.generate(() -> 4212).sequential();
+		}
+		
+		@Override public IntStream ints(long streamSize) {
+			return IntStream.generate(() -> 4213).sequential().limit(streamSize);
+		}
+		
+		@Override public DoubleStream doubles() {
+			return DoubleStream.generate(() -> 4214.0).sequential();
+		}
+		
+		@Override public DoubleStream doubles(long streamSize) {
+			return DoubleStream.generate(() -> 4215.0).sequential().limit(streamSize);
 		}
 	}
 }
