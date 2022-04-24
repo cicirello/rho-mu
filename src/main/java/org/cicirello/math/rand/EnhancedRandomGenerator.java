@@ -47,6 +47,15 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	private final RandomGenerator generator;
 	
 	/**
+	 * Constructs the EnhancedRandomGenerator to wrap an instance of
+	 * the default random number generator as obtained via a call to
+	 * {@link RandomGenerator#getDefault}.
+	 */
+	public EnhancedRandomGenerator() {
+		this.generator = RandomGenerator.getDefault();
+	}
+	
+	/**
 	 * Constructs the EnhancedRandomGenerator from the RandomGenerator
 	 * to wrap.
 	 *
@@ -146,63 +155,209 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 		return origin + RandomIndexer.nextInt(bound - origin, generator);
 	}
 	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom int values, each value
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+	 *
+	 * <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
+	 * by an implementation of the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
+	 *
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound)
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom int values,
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound
+	 */
+	@Override
+	public final IntStream ints(int randomNumberOrigin, int randomNumberBound) {
+		return IntStream.generate(() -> nextInt(randomNumberOrigin, randomNumberBound)).sequential();
+	}
+	
+	/**
+	 * <p>Returns a stream of pseudorandom int values, each value
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+	 *
+	 * <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
+	 * by an implementation of the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound).
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return a stream of pseudorandom int values,
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound, or if streamSize is negative.
+	 */
+	@Override
+	public final IntStream ints(long streamSize, int randomNumberOrigin, int randomNumberBound) {
+		return IntStream.generate(() -> nextInt(randomNumberOrigin, randomNumberBound)).sequential().limit(streamSize);
+	}
+	
 	// METHODS THAT DELEGATE TO WRAPPED OBJECT:
 	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom double values, each value
+	 * uniformly random from the interval [0.0, 1.0).
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @return an effectively unlimited stream of pseudorandom double values,
+	 * uniformly random from the interval [0.0, 1.0).
+	 */
 	@Override
 	public final DoubleStream doubles() {
 		return generator.doubles();
 	}
 	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom double values, each value
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound)
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom double values,
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound, or if randomNumberOrigin is not finite.
+	 * or if randomNumberBound is not finite. 
+	 */
 	@Override
 	public final DoubleStream doubles(double randomNumberOrigin, double randomNumberBound) {
 		return generator.doubles(randomNumberOrigin, randomNumberBound);
 	}
 	
+	/**
+	 * <p>Returns a stream of pseudorandom double values, each value
+	 * uniformly random from the interval [0.0, 1.0).
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 *
+	 * @return a stream of pseudorandom double values,
+	 * uniformly random from the interval [0.0, 1.0).
+	 *
+	 * @throws IllegalArgumentException if streamSize is negative.
+	 */
 	@Override
 	public final DoubleStream doubles(long streamSize) {
 		return generator.doubles(streamSize);
 	}
 	
+	/**
+	 * <p>Returns a stream of pseudorandom double values, each value
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 * <b>Delegates implementation to the wrapped object.</b></p>
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound).
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return a stream of pseudorandom double values,
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound, or if streamSize is negative.
+	 */
 	@Override
 	public final DoubleStream doubles(long streamSize, double randomNumberOrigin, double randomNumberBound) {
 		return generator.doubles(streamSize, randomNumberOrigin, randomNumberBound);
 	}
 	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom int values.
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @return an effectively unlimited stream of pseudorandom int values.
+	 */
 	@Override
 	public final IntStream ints() {
 		return generator.ints();
 	}
 	
-	@Override
-	public final IntStream ints(int randomNumberOrigin, int randomNumberBound) {
-		return generator.ints(randomNumberOrigin, randomNumberBound);
-	}
-	
+	/**
+	 * <p>Returns a stream of pseudorandom int values.
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * 
+	 * @return a stream of pseudorandom int values.
+	 *
+	 * @throws IllegalArgumentException if streamSize is negative.
+	 */
 	@Override
 	public final IntStream ints(long streamSize) {
 		return generator.ints(streamSize);
 	}
 	
-	@Override
-	public final IntStream ints(long streamSize, int randomNumberOrigin, int randomNumberBound) {
-		return generator.ints(streamSize, randomNumberOrigin, randomNumberBound);
-	}
-	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom long values.
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @return an effectively unlimited stream of pseudorandom long values.
+	 */
 	@Override
 	public final LongStream longs() {
 		return generator.longs();
 	}
 	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom long values, each value
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound)
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom long values,
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound
+	 */
 	@Override
 	public final LongStream longs(long randomNumberOrigin, long randomNumberBound) {
 		return generator.longs(randomNumberOrigin, randomNumberBound);
 	}
 	
+	/**
+	 * <p>Returns a stream of pseudorandom long values.
+	 * <b>Delegates implementation to the wrapped object.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * 
+	 * @return a stream of pseudorandom long values.
+	 *
+	 * @throws IllegalArgumentException if streamSize is negative.
+	 */
 	@Override
 	public final LongStream longs(long streamSize) {
 		return generator.longs(streamSize);
 	}
 	
+	/**
+	 * <p>Returns a stream of pseudorandom long values, each value
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 * <b>Delegates implementation to the wrapped object.</b></p>
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound).
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return a stream of pseudorandom long values,
+	 * uniformly random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound, or if streamSize is negative.
+	 */
 	@Override
 	public final LongStream longs(long streamSize, long randomNumberOrigin, long randomNumberBound) {
 		return generator.longs(streamSize, randomNumberOrigin, randomNumberBound);
