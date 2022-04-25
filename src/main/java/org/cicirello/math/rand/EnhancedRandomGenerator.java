@@ -47,6 +47,8 @@ import java.util.stream.LongStream;
  * <li>Additional distributions available beyond what is supported by
  *     the Java API's RandomGenerator classes, such as Binomial and Cauchy
  *     random vaiables.</li>
+ * <li>An ultrafast, but biased, nextBiasedInt method that sacrifices uniformity
+ *     for speed by excluding the rejection sampling necessary to ensure uniformity.</li>
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
