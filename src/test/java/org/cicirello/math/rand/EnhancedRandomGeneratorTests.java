@@ -34,168 +34,146 @@ import static org.junit.jupiter.api.Assertions.*;
  * JUnit tests for the methods of the EnhancedRandomGenerator class.
  */
 public class EnhancedRandomGeneratorTests {
-	
+
 	@Test
-	public void testDelegation() {
-		EnhancedRandomGenerator e = new EnhancedRandomGenerator(new FakeRNG());
-		assertEquals(4201, e.nextLong());
-		assertEquals(4202, e.nextLong(5000));
-		assertEquals(4203, e.nextLong(4000, 5000));
-		assertEquals(32, e.nextInt());
-		assertEquals(4204.0f, e.nextFloat(), 0.0f);
-		assertEquals(4205.0f, e.nextFloat(5000), 0.0f);
-		assertEquals(4206.0f, e.nextFloat(4000, 5000), 0.0f);
-		assertEquals(4207.0, e.nextExponential(), 0.0);
-		assertEquals(0.0, e.nextDouble(), 0.0);
-		assertEquals(Math.ulp(0.0), e.nextDouble(5000), 0.0);
-		assertEquals(2.0*Math.ulp(0.0), e.nextDouble(0, 5000), 0.0);
-		byte[] b = new byte[2];
-		e.nextBytes(b);
-		assertEquals(0x42, b[0]);
-		assertEquals(0x43, b[1]);
-		assertTrue(e.nextBoolean());
-		LongStream longStream = e.longs();
-		assertEquals(4208, longStream.findFirst().getAsLong());
-		longStream.close();
-		longStream = e.longs(5);
-		assertEquals(4209, longStream.findFirst().getAsLong());
-		longStream.close();
-		longStream = e.longs(4000, 5000);
-		assertEquals(4210, longStream.findFirst().getAsLong());
-		longStream.close();
-		longStream = e.longs(5, 4000, 5000);
-		assertEquals(4211, longStream.findFirst().getAsLong());
-		longStream.close();
-		IntStream intStream = e.ints();
-		assertEquals(4212, intStream.findFirst().getAsInt());
-		intStream.close();
-		intStream = e.ints(5);
-		assertEquals(4213, intStream.findFirst().getAsInt());
-		intStream.close();
-		DoubleStream dStream = e.doubles();
-		assertEquals(4214.0, dStream.findFirst().getAsDouble(), 0.0);
-		dStream.close();
-		dStream = e.doubles(5);
-		assertEquals(4215.0, dStream.findFirst().getAsDouble(), 0.0);
-		dStream.close();
+	public void testNextIntBound() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		assertEquals(0, erg.nextInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100);
+			assertTrue(x < 100);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
 	}
 	
 	@Test
-	public void testNoDelegation() {
-		EnhancedRandomGenerator e = new EnhancedRandomGenerator(new FakeRNG());
-		e.nextInt(128);
-		e.nextInt(0, 128);
-		e.nextGaussian();
-		e.nextGaussian(10, 1);
-		
-		// Need to add cases to confirm that ints with bounds are not delegated
+	public void testNextIntOriginBound() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		for (int low = 0; low <= 5; low++) {
+			assertEquals(low, erg.nextInt(low,low+1));
+		}
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100, 200);
+			assertTrue(x < 200);
+			assertTrue(x >= 100);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
 	}
 	
-	private static class FakeRNG implements RandomGenerator {
-		
-		@Override public long nextLong() {
-			return 4201;
+	@Test
+	public void testIntsOriginBound() {
+		class Wrapper {
+			boolean different;
+			int last = -1;
 		}
-		
-		@Override public long nextLong(long bound) {
-			return 4202;
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		final Wrapper w = new Wrapper();
+		erg.ints(100, 200).limit(10).forEach(
+			x -> {
+				assertTrue(x < 200);
+				assertTrue(x >= 100);
+				if (w.last >= 0 && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+			}
+		);
+		assertTrue(w.different);
+	}
+	
+	@Test
+	public void testIntsSizeOriginBound() {
+		class Wrapper {
+			int count;
+			boolean different;
+			int last = -1;
 		}
-		
-		@Override public long nextLong(long origin, long bound) {
-			return 4203;
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		final Wrapper w = new Wrapper();
+		erg.ints(5, 100, 200).forEach(
+			x -> {
+				assertTrue(x < 200);
+				assertTrue(x >= 100);
+				if (w.last >= 0 && w.last != x) {
+					w.different = true;
+				} 
+				w.last = x;
+				w.count++;
+			}
+		);
+		assertEquals(5, w.count);
+		assertTrue(w.different);
+	}
+	
+	@Test
+	public void testGaussian() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int positive = 0;
+		int negative = 0;
+		for (int i = 0; i < 20; i++) {
+			double g = erg.nextGaussian();
+			if (g > 0) positive++;
+			if (g < 0) negative++;
+			assertTrue(Math.abs(g) < 5.0);
 		}
-		
-		@Override public int nextInt() {
-			return 32;
+		assertTrue(positive > 0);
+		assertTrue(negative > 0);
+	}
+	
+	@Test
+	public void testGaussianStDev() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int positive = 0;
+		int negative = 0;
+		double stdev = 0.05;
+		for (int i = 0; i < 20; i++) {
+			double g = erg.nextGaussian(stdev);
+			if (g > 0) positive++;
+			if (g < 0) negative++;
+			assertTrue(Math.abs(g) < 5.0*stdev);
 		}
-		
-		@Override public int nextInt(int bound) {
-			fail("Should not delegate nextInt(bound)");
-			return 32;
+		assertTrue(positive > 0);
+		assertTrue(negative > 0);
+	}
+	
+	@Test
+	public void testGaussianMeanStDev() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int greater = 0;
+		int lesser = 0;
+		double stdev = 0.05;
+		double mean = 42.0;
+		for (int i = 0; i < 20; i++) {
+			double g = erg.nextGaussian(mean, stdev);
+			if (g > mean) greater++;
+			if (g < mean) lesser++;
+			assertTrue(Math.abs(g-mean) < 5.0*stdev);
 		}
-		
-		@Override public int nextInt(int origin, int bound) {
-			fail("Should not delegate nextInt(origin, bound)");
-			return 32;
+		assertTrue(greater > 0);
+		assertTrue(lesser > 0);
+		mean = -42.0;
+		greater = 0;
+		lesser = 0;
+		for (int i = 0; i < 20; i++) {
+			double g = erg.nextGaussian(mean, stdev);
+			if (g > mean) greater++;
+			if (g < mean) lesser++;
+			assertTrue(Math.abs(g-mean) < 5.0*stdev);
 		}
-		
-		@Override public double nextGaussian() {
-			fail("Should not delegate nextGaussian()");
-			return 0.0;
-		}
-		
-		@Override public double nextGaussian(double mean, double stdev) {
-			fail("Should not delegate nextGaussian(mean, stdev)");
-			return mean;
-		}
-		
-		@Override public float nextFloat() {
-			return 4204.0f;
-		}
-		
-		@Override public float nextFloat(float bound) {
-			return 4205.0f;
-		}
-		
-		@Override public float nextFloat(float origin, float bound) {
-			return 4206.0f;
-		}
-		
-		@Override public double nextExponential() {
-			return 4207.0;
-		}
-		
-		@Override public double nextDouble() {
-			return 0.0;
-		}
-		
-		@Override public double nextDouble(double bound) {
-			return Math.ulp(0.0);
-		}
-		
-		@Override public double nextDouble(double origin, double bound) {
-			return 2*Math.ulp(0.0);
-		}
-		
-		@Override public void nextBytes(byte[] bytes) {
-			bytes[0] = 0x42;
-			bytes[1] = 0x43;
-		}
-		
-		@Override public boolean nextBoolean() {
-			return true;
-		}
-		
-		@Override public LongStream longs() {
-			return LongStream.generate(() -> 4208).sequential();
-		}
-		
-		@Override public LongStream longs(long streamSize) {
-			return LongStream.generate(() -> 4209).sequential().limit(streamSize);
-		}
-		
-		@Override public LongStream longs(long origin, long bound) {
-			return LongStream.generate(() -> 4210).sequential();
-		}
-		
-		@Override public LongStream longs(long streamSize, long origin, long bound) {
-			return LongStream.generate(() -> 4211).sequential().limit(streamSize);
-		}
-		
-		@Override public IntStream ints() {
-			return IntStream.generate(() -> 4212).sequential();
-		}
-		
-		@Override public IntStream ints(long streamSize) {
-			return IntStream.generate(() -> 4213).sequential().limit(streamSize);
-		}
-		
-		@Override public DoubleStream doubles() {
-			return DoubleStream.generate(() -> 4214.0).sequential();
-		}
-		
-		@Override public DoubleStream doubles(long streamSize) {
-			return DoubleStream.generate(() -> 4215.0).sequential().limit(streamSize);
-		}
+		assertTrue(greater > 0);
+		assertTrue(lesser > 0);
 	}
 }
