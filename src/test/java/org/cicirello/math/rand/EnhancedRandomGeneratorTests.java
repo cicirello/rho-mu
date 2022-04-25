@@ -502,4 +502,98 @@ public class EnhancedRandomGeneratorTests {
 		assertTrue(result2[0] < result2[1]);
 		assertTrue(result2[1] < result2[2]);
 	}
+	
+	@Test
+	public void testSample() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int n = 6;
+		int[] result = null;
+		for (int k = 1; k <= 6; k++) {
+			boolean[] in = new boolean[n];
+			result = erg.sample(n, k, null);
+			assertEquals(k, result.length);
+			for (int e : result) {
+				assertFalse(in[e]);
+				in[e] = true;
+			}
+		}
+	}
+	
+	@Test
+	public void testSamplePool() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int n = 6;
+		int[] result = null;
+		for (int k = 1; k <= 6; k++) {
+			boolean[] in = new boolean[n];
+			result = erg.samplePool(n, k, null);
+			assertEquals(k, result.length);
+			for (int e : result) {
+				assertFalse(in[e]);
+				in[e] = true;
+			}
+		}
+	}
+	
+	@Test
+	public void testSampleReservoir() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int n = 6;
+		int[] result = null;
+		for (int k = 1; k <= 6; k++) {
+			boolean[] in = new boolean[n];
+			result = erg.sampleReservoir(n, k, null);
+			assertEquals(k, result.length);
+			for (int e : result) {
+				assertFalse(in[e]);
+				in[e] = true;
+			}
+		}
+	}
+	
+	@Test
+	public void testSampleInsertion() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int n = 6;
+		int[] result = null;
+		for (int k = 1; k <= 6; k++) {
+			boolean[] in = new boolean[n];
+			result = erg.sampleInsertion(n, k, null);
+			assertEquals(k, result.length);
+			for (int e : result) {
+				assertFalse(in[e]);
+				in[e] = true;
+			}
+		}
+	}
+	
+	@Test
+	public void testSamplePoolProbability() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
+		int n = 100;
+		int[] result = erg.sample(n, 0.05);
+		boolean[] in = new boolean[n];
+		for (int e : result) {
+			assertFalse(in[e]);
+			in[e] = true;
+		}
+		assertTrue(result.length < n);
+		
+		result = erg.sample(n, 0.95);
+		in = new boolean[n];
+		for (int e : result) {
+			assertFalse(in[e]);
+			in[e] = true;
+		}
+		assertTrue(result.length > 0);
+		
+		result = erg.sample(n, 0.5);
+		in = new boolean[n];
+		for (int e : result) {
+			assertFalse(in[e]);
+			in[e] = true;
+		}
+		assertTrue(result.length > 0);
+		assertTrue(result.length < n);
+	}
 }

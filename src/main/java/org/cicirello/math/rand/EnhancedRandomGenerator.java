@@ -51,6 +51,7 @@ import java.util.stream.LongStream;
  *     for speed by excluding the rejection sampling necessary to ensure uniformity.</li>
  * <li>Methods for generating random pairs of integers without replacement, and random
  *    triples of integers without replacement.</li>
+ * <li>Methods for generating random samples without replacement from a range of integers.</li>
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
@@ -376,7 +377,118 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 		return RandomIndexer.nextWindowedIntTriple(n, window, result, sort, generator);
 	}
 	
+	/**
+	 * <p>Generates a random sample, without replacement, from the
+	 * set of integers in the interval [0, n).  Each of the n integers 
+	 * has a probability p of inclusion in the sample.
+	 * <b>Enhanced Functionality.</b></p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param p The probability that each of the n integers is included in the sample.
+	 * @return An array containing the sample.
+	 */
+	public final int[] sample(int n, double p) {
+		return RandomIndexer.sample(n, p, generator);
+	}
 	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely. <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>This method chooses among the {@link #samplePool}, 
+	 * {@link #sampleReservoir}, and {@link #sampleInsertion} 
+	 * methods based on the values of n and k.</p>
+	 *
+	 * <p>The runtime is O(min(n, k<sup>2</sup>))
+	 * and it generates O(min(k, n-k)) random numbers.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 */
+	public final int[] sample(int n, int k, int[] result) {
+		return RandomIndexer.sample(n, k, result, generator);
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely. <b>Enhanced Functionality.</b></p>  
+	 *
+	 * <p>The runtime is O(k<sup>2</sup>)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
+	 * Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
+	 * while samplePool requires O(n) extra space.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 */
+	public final int[] sampleInsertion(int n, int k, int[] result) {
+		return RandomIndexer.sampleInsertion(n, k, result, generator);
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely. <b>Enhanced Functionality.</b></p> 
+	 * 
+	 * <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
+	 * J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
+	 * Computer Journal, 25(1):45-47, 1982.</p>
+	 *
+	 * <p>The runtime is O(n)
+	 * and it generates O(k) random numbers.  Thus, it is a better 
+	 * choice than sampleReservoir when k &lt; n-k.
+	 * However, this uses O(n) extra space, whereas the reservoir algorithm
+	 * uses no extra space.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 */
+	public final int[] samplePool(int n, int k, int[] result) {
+		return RandomIndexer.samplePool(n, k, result, generator);
+	}
+	
+	/**
+	 * <p>Generates a random sample of k integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose k combinations are equally
+	 * likely. <b>Enhanced Functionality.</b></p>  
+	 *
+	 * <p>Uses the reservoir sampling algorithm (Algorithm R) 
+	 * from J. Vitter's 1985 article "Random Sampling
+	 * with a Reservoir" from ACM Transactions on Mathematical Software.</p> 
+	 * <p>The runtime is O(n)
+	 * and it generates O(n-k) random numbers.  Thus, it is an 
+	 * especially good choice as k
+	 * approaches n.  Only constant extra space required.</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param k The size of the desired sample.
+	 * @param result An array to hold the sample that is generated.  If result is null
+	 * or if result.length is less than k, then this method will construct an array for the result. 
+	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if k &gt; n.
+	 * @throws NegativeArraySizeException if k &lt; 0.
+	 */
+	public final int[] sampleReservoir(int n, int k, int[] result) {
+		return RandomIndexer.sampleReservoir(n, k, result, generator);
+	}
 	
 	
 	
