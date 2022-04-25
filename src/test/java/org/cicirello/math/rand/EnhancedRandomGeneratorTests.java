@@ -54,6 +54,60 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testNextIntBoundWithNamedRNG() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator("SplittableRandom");
+		assertEquals(0, erg.nextInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100);
+			assertTrue(x < 100);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
+	
+	@Test
+	public void testNextIntBoundOfMethod() {
+		EnhancedRandomGenerator erg = EnhancedRandomGenerator.of("SplittableRandom");
+		assertEquals(0, erg.nextInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100);
+			assertTrue(x < 100);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
+	
+	@Test
+	public void testNextIntBoundGetDefaultMethod() {
+		EnhancedRandomGenerator erg = EnhancedRandomGenerator.getDefault();
+		assertEquals(0, erg.nextInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100);
+			assertTrue(x < 100);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
+	
+	@Test
 	public void testNextIntOriginBound() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		for (int low = 0; low <= 5; low++) {

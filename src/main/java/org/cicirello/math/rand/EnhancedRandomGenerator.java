@@ -66,6 +66,53 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 		this.generator = generator;
 	}
 	
+	/**
+	 * Constructs the EnhancedRandomGenerator to wrap an instance of
+	 * any random number generator supported by your version of Java
+	 * as specified by its name, as documented via the {@link RandomGenerator#of}
+	 * method.
+	 *
+	 * @param algorithmName The name of the random number generator as documented
+	 * by the {@link RandomGenerator#of} method.
+	 *
+	 * @throws NullPointerException if algorithmName is null.
+	 * @throws IllegalArgumentException if algorithmName is not found.
+	 */
+	public EnhancedRandomGenerator(String algorithmName) {
+		this(RandomGenerator.of(algorithmName));
+	}
+	
+	/**
+	 * Gets an EnhancedRandomGenerator wrapping an instance of
+	 * the default random number generator as obtained via a call to
+	 * {@link RandomGenerator#getDefault}.
+	 *
+	 * @return an EnhancedRandomGenerator wrapping an instance of
+	 * the default random number generator
+	 */
+	public static EnhancedRandomGenerator getDefault() {
+		return new EnhancedRandomGenerator();
+	}
+	
+	/**
+	 * Gets an EnhancedRandomGenerator wrapping an instance of
+	 * any random number generator supported by your version of Java
+	 * as specified by its name, as documented via the {@link RandomGenerator#of}
+	 * method.
+	 *
+	 * @param algorithmName The name of the random number generator as documented
+	 * by the {@link RandomGenerator#of} method.
+	 *
+	 * @return an EnhancedRandomGenerator wrapping an instance of your chosen
+	 * random number generator.
+	 *
+	 * @throws NullPointerException if algorithmName is null.
+	 * @throws IllegalArgumentException if algorithmName is not found.
+	 */
+	public static EnhancedRandomGenerator of(String algorithmName) {
+		return new EnhancedRandomGenerator(algorithmName);
+	}
+	
 	// METHODS THAT ADD FUNCTIONALITY:
 	
 	/**
