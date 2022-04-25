@@ -26,6 +26,7 @@ import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import java.util.SplittableRandom;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -192,7 +193,7 @@ public class EnhancedRandomGeneratorTests {
 	
 	@Test
 	public void testBinomial() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		for (int i = 0; i < 10; i++) {
 			int lowB = erg.nextBinomial(100, 0.05);
 			assertTrue(lowB < 100);
@@ -206,7 +207,7 @@ public class EnhancedRandomGeneratorTests {
 	
 	@Test
 	public void testCauchyScale() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		int positive = 0;
 		int negative = 0;
 		double scale = 0.5;
@@ -214,7 +215,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(scale);
 			if (g > 0) positive++;
 			if (g < 0) negative++;
-			assertTrue(Math.abs(g) < 500.0*scale);
+			assertTrue(Math.abs(g) < 100.0*scale);
 		}
 		assertTrue(positive > 0);
 		assertTrue(negative > 0);
@@ -222,7 +223,7 @@ public class EnhancedRandomGeneratorTests {
 	
 	@Test
 	public void testCauchyMedianScale() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		int greater = 0;
 		int lesser = 0;
 		double scale = 0.05;
@@ -231,7 +232,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(median, scale);
 			if (g > median) greater++;
 			if (g < median) lesser++;
-			assertTrue(Math.abs(g-median) < 500.0*scale);
+			assertTrue(Math.abs(g-median) < 100.0*scale);
 		}
 		assertTrue(greater > 0);
 		assertTrue(lesser > 0);
@@ -242,7 +243,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(median, scale);
 			if (g > median) greater++;
 			if (g < median) lesser++;
-			assertTrue(Math.abs(g-median) < 500.0*scale);
+			assertTrue(Math.abs(g-median) < 100.0*scale);
 		}
 		assertTrue(greater > 0);
 		assertTrue(lesser > 0);
@@ -250,7 +251,7 @@ public class EnhancedRandomGeneratorTests {
 	
 	@Test
 	public void testGaussian() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		int positive = 0;
 		int negative = 0;
 		for (int i = 0; i < 20; i++) {
@@ -265,7 +266,7 @@ public class EnhancedRandomGeneratorTests {
 	
 	@Test
 	public void testGaussianStDev() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		int positive = 0;
 		int negative = 0;
 		double stdev = 0.05;
@@ -281,7 +282,7 @@ public class EnhancedRandomGeneratorTests {
 	
 	@Test
 	public void testGaussianMeanStDev() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		int greater = 0;
 		int lesser = 0;
 		double stdev = 0.05;
@@ -380,5 +381,47 @@ public class EnhancedRandomGeneratorTests {
 		assertNotEquals(result2[0], result2[1]);
 		assertTrue(result2[0] < 6);
 		assertTrue(result2[1] < 6);
+	}
+	
+	@Test
+	public void testNextIntTriple() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int[] result = erg.nextIntTriple(8, null);
+		assertEquals(3, result.length);
+		assertNotEquals(result[0], result[1]);
+		assertNotEquals(result[0], result[2]);
+		assertNotEquals(result[2], result[1]);
+		assertTrue(result[0] < 8);
+		assertTrue(result[1] < 8);
+		assertTrue(result[2] < 8);
+		int[] result2 = erg.nextIntTriple(8, result);
+		assertTrue(result == result2);
+		assertEquals(3, result2.length);
+		assertNotEquals(result2[0], result2[1]);
+		assertNotEquals(result2[0], result2[2]);
+		assertNotEquals(result2[2], result2[1]);
+		assertTrue(result2[0] < 8);
+		assertTrue(result2[1] < 8);
+		assertTrue(result2[2] < 8);
+	}
+	
+	@Test
+	public void testNextIntTripleSorted() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int[] result = erg.nextIntTriple(8, null, true);
+		assertEquals(3, result.length);
+		assertTrue(result[0] < result[1]);
+		assertTrue(result[1] < result[2]);
+		assertTrue(result[0] < 8);
+		assertTrue(result[1] < 8);
+		assertTrue(result[2] < 8);
+		int[] result2 = erg.nextIntTriple(8, result, true);
+		assertTrue(result == result2);
+		assertEquals(3, result2.length);
+		assertTrue(result2[0] < result2[1]);
+		assertTrue(result2[1] < result2[2]);
+		assertTrue(result2[0] < 8);
+		assertTrue(result2[1] < 8);
+		assertTrue(result2[2] < 8);
 	}
 }

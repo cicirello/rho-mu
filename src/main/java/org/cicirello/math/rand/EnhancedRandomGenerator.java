@@ -49,6 +49,8 @@ import java.util.stream.LongStream;
  *     random vaiables.</li>
  * <li>An ultrafast, but biased, nextBiasedInt method that sacrifices uniformity
  *     for speed by excluding the rejection sampling necessary to ensure uniformity.</li>
+ * <li>Methods for generating random pairs of integers without replacement, and random
+ *    triples of integers without replacement.</li>
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
@@ -267,6 +269,43 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 */
 	public final int[] nextIntPair(int n, int[] result) {
 		return RandomIndexer.nextIntPair(n, result, generator);
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n). All n choose 3 combinations are equally
+	 * likely. <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 */
+	public final int[] nextIntTriple(int n, int[] result) {
+		return RandomIndexer.nextIntTriple(n, result, generator);
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, without replacement, from the
+	 * set of integers in the interval [0, n).  All n choose 3 combinations are equally
+	 * likely. <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
+	 * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary order.
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).  
+	 * @throws IllegalArgumentException if n &lt; 3.
+	 */
+	public final int[] nextIntTriple(int n, int[] result, boolean sort) {
+		return RandomIndexer.nextIntTriple(n, result, sort, generator);
 	}
 	
 	
