@@ -214,7 +214,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(scale);
 			if (g > 0) positive++;
 			if (g < 0) negative++;
-			assertTrue(Math.abs(g) < 200.0*scale);
+			assertTrue(Math.abs(g) < 500.0*scale);
 		}
 		assertTrue(positive > 0);
 		assertTrue(negative > 0);
@@ -231,7 +231,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(median, scale);
 			if (g > median) greater++;
 			if (g < median) lesser++;
-			assertTrue(Math.abs(g-median) < 200.0*scale);
+			assertTrue(Math.abs(g-median) < 500.0*scale);
 		}
 		assertTrue(greater > 0);
 		assertTrue(lesser > 0);
@@ -242,7 +242,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(median, scale);
 			if (g > median) greater++;
 			if (g < median) lesser++;
-			assertTrue(Math.abs(g-median) < 200.0*scale);
+			assertTrue(Math.abs(g-median) < 500.0*scale);
 		}
 		assertTrue(greater > 0);
 		assertTrue(lesser > 0);
@@ -364,5 +364,21 @@ public class EnhancedRandomGeneratorTests {
 		}
 		assertTrue(count > 0);
 		assertTrue(count < N);
+	}
+	
+	@Test
+	public void testNextIntPair() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int[] result = erg.nextIntPair(6, null);
+		assertEquals(2, result.length);
+		assertNotEquals(result[0], result[1]);
+		assertTrue(result[0] < 6);
+		assertTrue(result[1] < 6);
+		int[] result2 = erg.nextIntPair(6, result);
+		assertTrue(result == result2);
+		assertEquals(2, result2.length);
+		assertNotEquals(result2[0], result2[1]);
+		assertTrue(result2[0] < 6);
+		assertTrue(result2[1] < 6);
 	}
 }

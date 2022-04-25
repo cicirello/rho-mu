@@ -251,6 +251,29 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 		return RandomVariates.nextGaussian(stddev, generator);
 	}
 	
+	/**
+	 * <p>Generates a random sample of 2 integers, without replacement, from the
+	 * set of integers in the interval [0, n). All n choose 2 combinations are equally
+	 * likely. <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
+	 * @return An array containing the pair of 
+	 * randomly chosen integers from the interval [0, n).
+	 * @throws IllegalArgumentException if n &lt; 2.
+	 */
+	public final int[] nextIntPair(int n, int[] result) {
+		return RandomIndexer.nextIntPair(n, result, generator);
+	}
+	
+	
+	
+	
+	
+	
 	// METHODS THAT CHANGE FUNCTIONALITY:
 	
 	/**
