@@ -44,6 +44,9 @@ import java.util.stream.LongStream;
  * <li>Faster generation of random int values subject to a bound or bound and origin.</li>
  * <li>Faster generation of random int values within an IntStream subject to a bound and origin.</li>
  * <li>Faster generation of Gaussian distributed random doubles.</li>
+ * <li>Additional distributions available beyond what is supported by
+ *     the Java API's RandomGenerator classes, such as Binomial and Cauchy
+ *     random vaiables.</li>
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
