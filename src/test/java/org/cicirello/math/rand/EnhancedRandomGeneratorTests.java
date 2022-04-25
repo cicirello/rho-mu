@@ -187,6 +187,50 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testCauchyScale() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int positive = 0;
+		int negative = 0;
+		double scale = 0.5;
+		for (int i = 0; i < 20; i++) {
+			double g = erg.nextCauchy(scale);
+			if (g > 0) positive++;
+			if (g < 0) negative++;
+			assertTrue(Math.abs(g) < 100.0*scale);
+		}
+		assertTrue(positive > 0);
+		assertTrue(negative > 0);
+	}
+	
+	@Test
+	public void testCauchyMedianScale() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int greater = 0;
+		int lesser = 0;
+		double scale = 0.05;
+		double median = 42.0;
+		for (int i = 0; i < 20; i++) {
+			double g = erg.nextCauchy(median, scale);
+			if (g > median) greater++;
+			if (g < median) lesser++;
+			assertTrue(Math.abs(g-median) < 100.0*scale);
+		}
+		assertTrue(greater > 0);
+		assertTrue(lesser > 0);
+		median = -42.0;
+		greater = 0;
+		lesser = 0;
+		for (int i = 0; i < 20; i++) {
+			double g = erg.nextCauchy(median, scale);
+			if (g > median) greater++;
+			if (g < median) lesser++;
+			assertTrue(Math.abs(g-median) < 100.0*scale);
+		}
+		assertTrue(greater > 0);
+		assertTrue(lesser > 0);
+	}
+	
+	@Test
 	public void testGaussian() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int positive = 0;

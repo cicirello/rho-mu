@@ -135,6 +135,29 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	}
 	
 	/**
+	 * Generates a pseudorandom number from a Cauchy distribution with median 0
+	 * and chosen scale parameter. <b>Enhanced Functionality.</b>
+	 *
+	 * @param scale The scale parameter of the Cauchy.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public final double nextCauchy(double scale) {
+		return RandomVariates.nextCauchy(scale, generator);
+	}
+	
+	/**
+	 * Generates a pseudorandom number from a Cauchy distribution.
+	 * <b>Enhanced Functionality.</b>
+	 *
+	 * @param median The median of the Cauchy.
+	 * @param scale The scale parameter of the Cauchy.
+	 * @return a pseudorandom number from a Cauchy distribution
+	 */
+	public final double nextCauchy(double median, double scale) {
+		return RandomVariates.nextCauchy(median, scale, generator);
+	}
+	
+	/**
 	 * <p>Generates a random number from a Gaussian distribution with
 	 * mean 0 and standard deviation, stddev, of your choosing.</p> 
 	 *
