@@ -34,6 +34,24 @@ import static org.junit.jupiter.api.Assertions.*;
  * JUnit tests for the methods of the EnhancedRandomGenerator class.
  */
 public class EnhancedRandomGeneratorTests {
+	
+	@Test
+	public void testNextBiasedInt() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		assertEquals(0, erg.nextBiasedInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextBiasedInt(128);
+			assertTrue(x < 128);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
 
 	@Test
 	public void testNextIntBound() {
@@ -196,7 +214,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(scale);
 			if (g > 0) positive++;
 			if (g < 0) negative++;
-			assertTrue(Math.abs(g) < 100.0*scale);
+			assertTrue(Math.abs(g) < 200.0*scale);
 		}
 		assertTrue(positive > 0);
 		assertTrue(negative > 0);
@@ -213,7 +231,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(median, scale);
 			if (g > median) greater++;
 			if (g < median) lesser++;
-			assertTrue(Math.abs(g-median) < 100.0*scale);
+			assertTrue(Math.abs(g-median) < 200.0*scale);
 		}
 		assertTrue(greater > 0);
 		assertTrue(lesser > 0);
@@ -224,7 +242,7 @@ public class EnhancedRandomGeneratorTests {
 			double g = erg.nextCauchy(median, scale);
 			if (g > median) greater++;
 			if (g < median) lesser++;
-			assertTrue(Math.abs(g-median) < 100.0*scale);
+			assertTrue(Math.abs(g-median) < 200.0*scale);
 		}
 		assertTrue(greater > 0);
 		assertTrue(lesser > 0);
