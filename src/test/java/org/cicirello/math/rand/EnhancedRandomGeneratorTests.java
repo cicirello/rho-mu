@@ -424,4 +424,22 @@ public class EnhancedRandomGeneratorTests {
 		assertTrue(result2[1] < 8);
 		assertTrue(result2[2] < 8);
 	}
+	
+	@Test
+	public void testNextWindowedIntPair() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int[] result = erg.nextWindowedIntPair(100, 5, null);
+		assertEquals(2, result.length);
+		assertNotEquals(result[0], result[1]);
+		assertTrue(result[0] < 100);
+		assertTrue(result[1] < 100);
+		assertTrue(Math.abs(result[0]-result[1]) <= 5);
+		int[] result2 = erg.nextWindowedIntPair(100, 5, result);
+		assertTrue(result == result2);
+		assertEquals(2, result2.length);
+		assertNotEquals(result2[0], result2[1]);
+		assertTrue(result2[0] < 100);
+		assertTrue(result2[1] < 100);
+		assertTrue(Math.abs(result[0]-result[1]) <= 5);
+	}
 }

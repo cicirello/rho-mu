@@ -308,6 +308,27 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 		return RandomIndexer.nextIntTriple(n, result, sort, generator);
 	}
 	
+	/**
+	 * <p>Generates a random sample of 2 integers, i, j, without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window.  
+	 * All pairs that satisfy the window constraint are equally likely.
+	 * <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the pair.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 2, then this method will construct an array for the result. 
+	 * @return An array containing the pair of 
+	 * randomly chosen integers, i, j, 
+	 * from the interval [0, n), such that |i-j| &le; window.  
+	 * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+	 */
+	public final int[] nextWindowedIntPair(int n, int window, int[] result) {
+		return RandomIndexer.nextWindowedIntPair(n, window, result, generator);
+	}
+	
 	
 	
 	
