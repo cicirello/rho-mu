@@ -39,6 +39,13 @@ import java.util.stream.LongStream;
  * of {@link RandomIndexer} or {@link RandomVariates} are simply delegated
  * to the wrapped {@link RandomGenerator}.</p>
  *
+ * <p>Enhanced Functionality provided by this class includes:</p>
+ * <ul>
+ * <li>Faster generation of random int values subject to a bound or bound and origin.</li>
+ * <li>Faster generation of random int values within an IntStream subject to a bound and origin.</li>
+ * <li>Faster generation of Gaussian distributed random doubles.</li>
+ * </ul>
+ *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
