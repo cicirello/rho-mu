@@ -329,6 +329,53 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 		return RandomIndexer.nextWindowedIntPair(n, window, result, generator);
 	}
 	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.
+	 * <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result. 
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 */
+	public final int[] nextWindowedIntTriple(int n, int window, int[] result) {
+		return RandomIndexer.nextWindowedIntTriple(n, window, result, generator);
+	}
+	
+	/**
+	 * <p>Generates a random sample of 3 integers, i, j, k without replacement, from the
+	 * set of integers in the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * All triples that satisfy the window constraint are equally likely.
+	 * <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>The runtime is O(1).</p>
+	 *
+	 * @param n The number of integers to choose from.
+	 * @param window The maximum difference between the integers of the triple.
+	 * @param result An array to hold the pair that is generated.  If result is null
+	 * or if result.length is less than 3, then this method will construct an array for the result.
+	 * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
+	 * @return An array containing the triple of 
+	 * randomly chosen integers, i, j, k 
+	 * from the interval [0, n), such that |i-j| &le; window, and 
+	 * |i-k| &le; window, and |k-j| &le; window.  
+	 * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+	 */
+	public final int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort) {
+		return RandomIndexer.nextWindowedIntTriple(n, window, result, sort, generator);
+	}
+	
 	
 	
 	

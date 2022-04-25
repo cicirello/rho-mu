@@ -442,4 +442,64 @@ public class EnhancedRandomGeneratorTests {
 		assertTrue(result2[1] < 100);
 		assertTrue(Math.abs(result[0]-result[1]) <= 5);
 	}
+	
+	@Test
+	public void testNextWindowedIntTriple() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int[] result = erg.nextWindowedIntTriple(100, 6, null);
+		assertEquals(3, result.length);
+		assertNotEquals(result[0], result[1]);
+		assertNotEquals(result[0], result[2]);
+		assertNotEquals(result[2], result[1]);
+		assertTrue(result[0] < 100);
+		assertTrue(result[1] < 100);
+		assertTrue(result[2] < 100);
+		assertTrue(Math.abs(result[0]-result[1]) <= 6);
+		assertTrue(Math.abs(result[0]-result[2]) <= 6);
+		assertTrue(Math.abs(result[2]-result[1]) <= 6);
+		int[] result2 = erg.nextWindowedIntTriple(8, 6, result);
+		assertTrue(result == result2);
+		assertEquals(3, result2.length);
+		assertNotEquals(result2[0], result2[1]);
+		assertNotEquals(result2[0], result2[2]);
+		assertNotEquals(result2[2], result2[1]);
+		assertTrue(result2[0] < 100);
+		assertTrue(result2[1] < 100);
+		assertTrue(result2[2] < 100);
+		assertTrue(Math.abs(result2[0]-result2[1]) <= 6);
+		assertTrue(Math.abs(result2[0]-result2[2]) <= 6);
+		assertTrue(Math.abs(result2[2]-result2[1]) <= 6);
+	}
+	
+	@Test
+	public void testNextWindowedIntTripleSorted() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int[] result = erg.nextWindowedIntTriple(100, 6, null, true);
+		assertEquals(3, result.length);
+		assertNotEquals(result[0], result[1]);
+		assertNotEquals(result[0], result[2]);
+		assertNotEquals(result[2], result[1]);
+		assertTrue(result[0] < 100);
+		assertTrue(result[1] < 100);
+		assertTrue(result[2] < 100);
+		assertTrue(Math.abs(result[0]-result[1]) <= 6);
+		assertTrue(Math.abs(result[0]-result[2]) <= 6);
+		assertTrue(Math.abs(result[2]-result[1]) <= 6);
+		assertTrue(result[0] < result[1]);
+		assertTrue(result[1] < result[2]);
+		int[] result2 = erg.nextWindowedIntTriple(100, 6, result, true);
+		assertTrue(result == result2);
+		assertEquals(3, result2.length);
+		assertNotEquals(result2[0], result2[1]);
+		assertNotEquals(result2[0], result2[2]);
+		assertNotEquals(result2[2], result2[1]);
+		assertTrue(result2[0] < 100);
+		assertTrue(result2[1] < 100);
+		assertTrue(result2[2] < 100);
+		assertTrue(Math.abs(result2[0]-result2[1]) <= 6);
+		assertTrue(Math.abs(result2[0]-result2[2]) <= 6);
+		assertTrue(Math.abs(result2[2]-result2[1]) <= 6);
+		assertTrue(result2[0] < result2[1]);
+		assertTrue(result2[1] < result2[2]);
+	}
 }
