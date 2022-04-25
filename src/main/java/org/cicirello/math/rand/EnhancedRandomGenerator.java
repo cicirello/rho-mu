@@ -28,7 +28,7 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 /**
- * An EnhancedRandomGenerator is used to wrap an object of any
+ * <p>An EnhancedRandomGenerator is used to wrap an object of any
  * class that implements {@link RandomGenerator} for the purpose
  * of adding all of the functionality of the {@link RandomIndexer}
  * and {@link RandomVariates}. In this way, the EnhancedRandomGenerator
@@ -37,7 +37,7 @@ import java.util.stream.LongStream;
  * in some cases, or adding functionality in others. Methods of the 
  * {@link RandomGenerator} without equivalent replacements in one or the other
  * of {@link RandomIndexer} or {@link RandomVariates} are simply delegated
- * to the wrapped {@link RandomGenerator}.
+ * to the wrapped {@link RandomGenerator}.</p>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
@@ -52,7 +52,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * {@link RandomGenerator#getDefault}.
 	 */
 	public EnhancedRandomGenerator() {
-		this.generator = RandomGenerator.getDefault();
+		this(RandomGenerator.getDefault());
 	}
 	
 	/**
@@ -199,6 +199,9 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	public final IntStream ints(long streamSize, int randomNumberOrigin, int randomNumberBound) {
 		return IntStream.generate(() -> nextInt(randomNumberOrigin, randomNumberBound)).sequential().limit(streamSize);
 	}
+	
+	
+	
 	
 	// METHODS THAT DELEGATE TO WRAPPED OBJECT:
 	
