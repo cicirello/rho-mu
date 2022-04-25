@@ -173,6 +173,20 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testBinomial() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		for (int i = 0; i < 10; i++) {
+			int lowB = erg.nextBinomial(100, 0.05);
+			assertTrue(lowB < 100);
+			int highB = erg.nextBinomial(100, 0.95);
+			assertTrue(highB > 0);
+			int midB = erg.nextBinomial(100, 0.5);
+			assertTrue(midB < 100);
+			assertTrue(midB > 0);
+		}
+	}
+	
+	@Test
 	public void testGaussian() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int positive = 0;

@@ -123,6 +123,18 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	// METHODS THAT ADD FUNCTIONALITY:
 	
 	/**
+	 * Generates a pseudorandom integer from a binomial distribution.
+	 * <b>Enhanced Functionality.</b>
+	 *
+	 * @param n Number of trials for the binomial distribution.
+	 * @param p The probability of a successful trial.
+	 * @return A pseudorandom integer from a binomial distribution.
+	 */
+	public final int nextBinomial(int n, double p) {
+		return RandomVariates.nextBinomial(n, p, generator);
+	}
+	
+	/**
 	 * <p>Generates a random number from a Gaussian distribution with
 	 * mean 0 and standard deviation, stddev, of your choosing.</p> 
 	 *
