@@ -123,7 +123,55 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 		return new EnhancedRandomGenerator(algorithmName);
 	}
 	
+	
+	
+	
 	// METHODS THAT ADD FUNCTIONALITY:
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.
+	 * Each position in the result is equally likely true or false.
+	 * <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>Runtime: O(n).</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @return An array of n randomly generated boolean values.
+	 */
+	public final boolean[] arrayMask(int n) {
+		return RandomIndexer.arrayMask(n, generator);
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length and specified number of true values,
+	 * where an "array mask" is an array of boolean values of the same length as another array.
+	 * <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>Runtime: O(min(n, k<sup>2</sup>)), and it uses O(min(k, n-k)) random numbers.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param k The desired number of true values, which must be no greater than n.
+	 * @return An array of n boolean values, exactly k of which are equal to true.
+	 */
+	public final boolean[] arrayMask(int n, int k) {
+		return RandomIndexer.arrayMask(n, k, generator);
+	}
+	
+	/**
+	 * <p>Generates an "array mask" of a specified length,
+	 * where an "array mask" is an array of boolean values of the same length as another array.
+	 * <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>Runtime: O(n), and it uses O(n) random doubles.</p>
+	 *
+	 * @param n The length of the array mask.
+	 * @param p The probability that an element of the result is true.
+	 * @return An array of n boolean values, such that each element is true with probability p.
+	 */
+	public final boolean[] arrayMask(int n, double p) {
+		return RandomIndexer.arrayMask(n, p, generator);
+	}
 	
 	/**
 	 * Generates a pseudorandom integer from a binomial distribution.

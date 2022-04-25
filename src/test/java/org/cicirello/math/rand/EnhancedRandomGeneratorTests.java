@@ -288,4 +288,63 @@ public class EnhancedRandomGeneratorTests {
 		assertTrue(greater > 0);
 		assertTrue(lesser > 0);
 	}
+	
+	@Test
+	public void testArrayMask() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		boolean[] b = erg.arrayMask(100);
+		assertEquals(100, b.length);
+		int count = 0;
+		for (boolean bool : b) {
+			if (bool) count++;
+		}
+		assertTrue(count > 0);
+		assertTrue(count < 100);
+	}
+	
+	@Test
+	public void testArrayMaskNK() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int N = 5;
+		for (int k = 0; k <= N; k++) {
+			boolean[] b = erg.arrayMask(N, k);
+			assertEquals(N, b.length);
+			int count = 0;
+			for (int i = 0; i < N; i++) {
+				if (b[i]) count++;
+			}
+			assertEquals(k, count);
+		}
+	}
+	
+	@Test
+	public void testArrayMaskNP() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int N = 100;
+		double p = 0.05;
+		boolean[] b = erg.arrayMask(N, p);
+		assertEquals(N, b.length);
+		int count = 0;
+		for (int i = 0; i < N; i++) {
+			if (b[i]) count++;
+		}
+		assertTrue(count < N);
+		p = 0.95;
+		b = erg.arrayMask(N, p);
+		assertEquals(N, b.length);
+		count = 0;
+		for (int i = 0; i < N; i++) {
+			if (b[i]) count++;
+		}
+		assertTrue(count > 0);
+		p = 0.5;
+		b = erg.arrayMask(N, p);
+		assertEquals(N, b.length);
+		count = 0;
+		for (int i = 0; i < N; i++) {
+			if (b[i]) count++;
+		}
+		assertTrue(count > 0);
+		assertTrue(count < N);
+	}
 }
