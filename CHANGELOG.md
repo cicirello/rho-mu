@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-04-26
 
 ### Added
-* EnhancedRandomGenerator class: wrapper for objects of classes that implement RandomGenerator,
-  adding to those objects all of the functionality of the RandomIndexer and RandomVariates classes.
 
 ### Changed
 
@@ -22,6 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Other
 
+
+## [2.1.0] - 2022-04-26
+
+### Added
+* EnhancedRandomGenerator class: wrapper for objects of classes that implement RandomGenerator,
+  adding to those objects all of the functionality of the RandomIndexer and RandomVariates classes.
+  
 
 ## [2.0.0] - 2022-03-21
 
