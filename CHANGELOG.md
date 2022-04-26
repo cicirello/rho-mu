@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-04-26
 
 ### Added
+* EnhancedStreamableGenerator class, which is a wrapper for objects that implement
+  RandomGenerator.StreamableGenerator, adding to those objects all of the functionality 
+  of the RandomIndexer and RandomVariates classes.
 
 ### Changed
 
