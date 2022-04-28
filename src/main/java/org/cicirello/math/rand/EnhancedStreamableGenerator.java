@@ -113,7 +113,7 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator impleme
 	}
 	
 	/**
-	 * <p>Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
+	 * <p>Gets a stream of {@link EnhancedRandomGenerator} objects,
 	 * each wrapping an object of the same random number generator algorithm as this
 	 * one.</p>
 	 *
@@ -148,7 +148,7 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator impleme
 	}
 	
 	/**
-	 * <p>Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
+	 * <p>Gets a stream of {@link EnhancedRandomGenerator} objects,
 	 * each wrapping an object of the same random number generator algorithm as this
 	 * one.</p> 
 	 *
