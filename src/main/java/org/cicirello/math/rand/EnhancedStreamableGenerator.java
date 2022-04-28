@@ -33,6 +33,15 @@ import java.util.stream.Stream;
  * for documentation of the enhanced functionality that is added to the
  * wrapped object.</p>
  *
+ * <p>The methods of the {@link RandomGenerator.StreamableGenerator} interface,
+ * such as {@link #rngs}, that return streams of RandomGenerator are implemented to return streams
+ * of EnhancedRandomGenerator objects that wrap the RandomGenerator objects in the
+ * streams returned by the enclosed StreamableGenerator. However, additionally
+ * this class provides a counterpart, such as {@link #erngs}, for each of these 
+ * whose return type is explicitly a 
+ * stream of EnhancedRandomGenerator objects to simplify usage without the need to cast
+ * the objects of the stream in order to utilize the enhancements.</p>
+ *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
@@ -89,9 +98,47 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator impleme
 	}
 	
 	/**
-	 * Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
+	 * <p>Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
 	 * each wrapping an object of the same random number generator algorithm as this
-	 * one. 
+	 * one.</p>
+	 *
+	 * <p>The behavior of this method is identical to that of {@link #rngs}, but may be
+	 * more convenient to use due to explicit return type of a stream of EnhancedRandomGenerator
+	 * objects.</p>
+	 *
+	 * @return a stream of EnhancedRandomGenerator objects
+	 */
+	public final Stream<EnhancedRandomGenerator> erngs() {
+		return generator.rngs().map(gen -> new EnhancedRandomGenerator(gen));
+	}
+	
+	/**
+	 * <p>Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
+	 * each wrapping an object of the same random number generator algorithm as this
+	 * one.</p>
+	 *
+	 * <p>The behavior of this method is identical to that of {@link #rngs(long)}, but may be
+	 * more convenient to use due to explicit return type of a stream of EnhancedRandomGenerator
+	 * objects.</p>
+	 *
+	 * @param streamSize the number of EnhancedRandomGenerator objects in the stream
+	 *
+	 * @return a stream of EnhancedRandomGenerator objects
+	 */
+	public final Stream<EnhancedRandomGenerator> erngs(long streamSize) {
+		return generator.rngs(streamSize).map(gen -> new EnhancedRandomGenerator(gen));
+	}
+	
+	/**
+	 * <p>Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
+	 * each wrapping an object of the same random number generator algorithm as this
+	 * one.</p>
+	 *
+	 * <p>The implementation of this method from the {@link RandomGenerator.StreamableGenerator}
+	 * interface returns a stream of {@link EnhancedRandomGenerator} objects, and is thus
+	 * safe to cast the objects of the stream to {@link EnhancedRandomGenerator}. However,
+	 * you may find it more convenient to instead utilize the {@link #erngs} method, whose
+	 * behavior is identical aside from the return type.</p>
 	 *
 	 * @return a stream of EnhancedRandomGenerator objects
 	 */
@@ -101,9 +148,15 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator impleme
 	}
 	
 	/**
-	 * Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
+	 * <p>Gets an effectively unlimited stream of {@link EnhancedRandomGenerator} objects,
 	 * each wrapping an object of the same random number generator algorithm as this
-	 * one. 
+	 * one.</p> 
+	 *
+	 * <p>The implementation of this method from the {@link RandomGenerator.StreamableGenerator}
+	 * interface returns a stream of {@link EnhancedRandomGenerator} objects, and is thus
+	 * safe to cast the objects of the stream to {@link EnhancedRandomGenerator}. However,
+	 * you may find it more convenient to instead utilize the {@link #erngs(long)} method, whose
+	 * behavior is identical aside from the return type.</p>
 	 *
 	 * @param streamSize the number of EnhancedRandomGenerator objects in the stream
 	 *

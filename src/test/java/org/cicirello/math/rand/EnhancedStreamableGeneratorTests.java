@@ -61,4 +61,36 @@ public class EnhancedStreamableGeneratorTests {
 		);
 		assertEquals(5, c.count);
 	}
+	
+	@Test
+	public void testUnlimitedStreamE() {
+		EnhancedStreamableGenerator esg = new EnhancedStreamableGenerator(new SplittableRandom(42));
+		class Counter {
+			int count;
+		}
+		final Counter c = new Counter();
+		esg.erngs().limit(10).forEach(gen -> {
+				// calls a method added by the EnhancedRandomGenerator class
+				gen.nextCauchy(1.0);
+				c.count++;
+			}
+		);
+		assertEquals(10, c.count);
+	}
+	
+	@Test
+	public void testLimitedStreamE() {
+		EnhancedStreamableGenerator esg = EnhancedStreamableGenerator.of("SplittableRandom");
+		class Counter {
+			int count;
+		}
+		final Counter c = new Counter();
+		esg.erngs(5).forEach(gen -> {
+				// calls a method added by the EnhancedRandomGenerator class
+				gen.nextCauchy(1.0);
+				c.count++;
+			}
+		);
+		assertEquals(5, c.count);
+	}
 }
