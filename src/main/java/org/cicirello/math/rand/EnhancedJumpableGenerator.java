@@ -136,7 +136,7 @@ public class EnhancedJumpableGenerator extends EnhancedStreamableGenerator imple
 	
 	/**
 	 * Returns the distance by which the {@link #jump} method will jump ahead in this
-	 * EnhancedJumpableGenerator instances state cycle.
+	 * EnhancedJumpableGenerator instance's state cycle.
 	 *
 	 * @return the jump distance
 	 */
