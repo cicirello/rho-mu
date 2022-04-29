@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   RandomIndexer and RandomVariates classes. The new subclasses of EnhancedRandomGenerator include:
   * EnhancedSplittableGenerator, which is a wrapper for RandomGenerator.SplittableGenerator,
   * EnhancedJumpableGenerator, which is a wrapper for RandomGenerator.JumpableGenerator,
+  * EnhancedLeapableGenerator, which is a wrapper for RandomGenerator.LeapableGenerator,
   * EnhancedStreamableGenerator, which is a wrapper for RandomGenerator.StreamableGenerator.
 
 ### Changed

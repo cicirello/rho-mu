@@ -119,7 +119,7 @@ public class EnhancedJumpableGenerator extends EnhancedStreamableGenerator imple
 	 * @return a copy of this EnhancedJumpableGenerator before the jump occurred.
 	 */
 	@Override
-	public EnhancedJumpableGenerator copyAndJump() {
+	public final EnhancedJumpableGenerator copyAndJump() {
 		EnhancedJumpableGenerator c = copy();
 		jump();
 		return c;
@@ -136,7 +136,7 @@ public class EnhancedJumpableGenerator extends EnhancedStreamableGenerator imple
 	
 	/**
 	 * Returns the distance by which the {@link #jump} method will jump ahead in this
-	 * EnhancedJumpableGenerator instances state cycle.
+	 * EnhancedJumpableGenerator instance's state cycle.
 	 *
 	 * @return the jump distance
 	 */
