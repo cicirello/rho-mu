@@ -119,7 +119,7 @@ public class EnhancedJumpableGenerator extends EnhancedStreamableGenerator imple
 	 * @return a copy of this EnhancedJumpableGenerator before the jump occurred.
 	 */
 	@Override
-	public EnhancedJumpableGenerator copyAndJump() {
+	public final EnhancedJumpableGenerator copyAndJump() {
 		EnhancedJumpableGenerator c = copy();
 		jump();
 		return c;
