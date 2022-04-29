@@ -4,15 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-04-28
+## [Unreleased] - 2022-04-29
 
 ### Added
-* EnhancedSplittableGenerator class, which is a wrapper for objects that implement
-  RandomGenerator.SplittableGenerator, adding to those objects all of the functionality 
-  of the RandomIndexer and RandomVariates classes.
-* EnhancedStreamableGenerator class, which is a wrapper for objects that implement
-  RandomGenerator.StreamableGenerator, adding to those objects all of the functionality 
-  of the RandomIndexer and RandomVariates classes.
+* Subclasses of EnhancedRandomGenerator to serve as wrappers for objects that implement
+  the subinterfaces of RandomGenerator enabling adding to those objects all of the functionality 
+  of the RandomIndexer and RandomVariates classes. The new subclasses of EnhancedRandomGenerator
+  include:
+  * EnhancedSplittableGenerator, which is a wrapper for RandomGenerator.SplittableGenerator,
+  * EnhancedJumpableGenerator, which is a wrapper for RandomGenerator.JumpableGenerator,
+  * EnhancedStreamableGenerator, which is a wrapper for RandomGenerator.StreamableGenerator.
 
 ### Changed
 
