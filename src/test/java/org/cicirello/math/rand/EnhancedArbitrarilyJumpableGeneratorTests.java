@@ -28,12 +28,28 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 
+import java.util.random.RandomGeneratorFactory;
+
 /**
  * JUnit tests for the methods of the EnhancedArbitrarilyJumpableGenerator class.
  */
 public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
 	private static final String arbitrarilyJumpableAlgorithmName = "Xoroshiro128PlusPlus";
+	
+	@Test
+	public void testWillFailOnceJavaIncludesArbitrarilyJumpableGeneratorAlgorithm() {
+		// When this begins failing:
+		// 1) Remove fake rng internal class, 
+		// 2) Replace with commented out calls to of in other test methods,
+		// 3) Remove unnecessary exception tests.
+		RandomGeneratorFactory.all().forEach( gen -> {
+			if (gen.isArbitrarilyJumpable()) {
+				System.out.println("ARBITRARILY JUMPABLE: " + gen.name() );
+			}
+		});
+		assertFalse(RandomGeneratorFactory.all().anyMatch( gen -> gen.isArbitrarilyJumpable() ));
+	}
 	
 	@Test
 	public void testCopy() {
@@ -71,6 +87,23 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 		for (int i = 0; i < 3; i++) {
 			ejg1.jump(((double)(1 << 17)) * (i+5));
 			ejg2.jump(((double)(1 << 17)) * (i+5));
+			assertEquals(ejg1.jumpDistance(), ejg2.jumpDistance(), 0.0);
+			assertEquals(ejg1.nextInt(), ejg2.nextInt());
+			assertEquals(ejg1.nextDouble(), ejg2.nextDouble(), 0.0);
+			assertEquals(ejg1.nextInt(10), ejg2.nextInt(10));
+			assertEquals(ejg1.nextCauchy(1.0), ejg2.nextCauchy(1.0), 0.0);
+		}
+	}
+	
+	@Test
+	public void testJumpPowerOfTwo() {
+		//EnhancedArbitrarilyJumpableGenerator ejg1 = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator ejg1 = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
+		EnhancedArbitrarilyJumpableGenerator ejg2 = ejg1.copy();
+		assertFalse(ejg1 == ejg2);
+		for (int i = 0; i < 3; i++) {
+			ejg1.jumpPowerOfTwo(17);
+			ejg2.jump(((double)(1 << 17)));
 			assertEquals(ejg1.jumpDistance(), ejg2.jumpDistance(), 0.0);
 			assertEquals(ejg1.nextInt(), ejg2.nextInt());
 			assertEquals(ejg1.nextDouble(), ejg2.nextDouble(), 0.0);
