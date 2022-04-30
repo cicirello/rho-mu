@@ -25,16 +25,20 @@ package org.cicirello.math.rand;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.random.RandomGenerator;
+import java.util.stream.Stream;
+
 /**
  * JUnit tests for the methods of the EnhancedArbitrarilyJumpableGenerator class.
  */
 public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
-	private static final String jumpableAlgorithmName = "Xoshiro256PlusPlus";
+	private static final String arbitrarilyJumpableAlgorithmName = "Xoroshiro128PlusPlus";
 	
 	@Test
 	public void testCopy() {
-		EnhancedArbitrarilyJumpableGenerator ejg1 = EnhancedArbitrarilyJumpableGenerator.of(jumpableAlgorithmName);
+		//EnhancedArbitrarilyJumpableGenerator ejg1 = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator ejg1 = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
 		EnhancedArbitrarilyJumpableGenerator ejg2 = ejg1.copy();
 		assertFalse(ejg1 == ejg2);
 		assertEquals(ejg1.jumpDistance(), ejg2.jumpDistance(), 0.0);
@@ -46,11 +50,12 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
 	@Test
 	public void testCopyAndJump() {
-		EnhancedArbitrarilyJumpableGenerator ejg1 = EnhancedArbitrarilyJumpableGenerator.of(jumpableAlgorithmName);
-		EnhancedArbitrarilyJumpableGenerator ejg2 = ejg1.copyAndJump(10000.5);
+		//EnhancedArbitrarilyJumpableGenerator ejg1 = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator ejg1 = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
+		EnhancedArbitrarilyJumpableGenerator ejg2 = ejg1.copyAndJump((double)(1 << 17));
 		assertFalse(ejg1 == ejg2);
 		assertEquals(ejg1.jumpDistance(), ejg2.jumpDistance(), 0.0);
-		ejg2.jump(10000.5);
+		ejg2.jump((double)(1 << 17));
 		assertEquals(ejg1.nextInt(), ejg2.nextInt());
 		assertEquals(ejg1.nextDouble(), ejg2.nextDouble(), 0.0);
 		assertEquals(ejg1.nextInt(10), ejg2.nextInt(10));
@@ -59,12 +64,13 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
 	@Test
 	public void testJump() {
-		EnhancedArbitrarilyJumpableGenerator ejg1 = EnhancedArbitrarilyJumpableGenerator.of(jumpableAlgorithmName);
+		//EnhancedArbitrarilyJumpableGenerator ejg1 = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator ejg1 = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
 		EnhancedArbitrarilyJumpableGenerator ejg2 = ejg1.copy();
 		assertFalse(ejg1 == ejg2);
 		for (int i = 0; i < 3; i++) {
-			ejg1.jump(10000.5 * (i+5));
-			ejg2.jump(10000.5 * (i+5));
+			ejg1.jump(((double)(1 << 17)) * (i+5));
+			ejg2.jump(((double)(1 << 17)) * (i+5));
 			assertEquals(ejg1.jumpDistance(), ejg2.jumpDistance(), 0.0);
 			assertEquals(ejg1.nextInt(), ejg2.nextInt());
 			assertEquals(ejg1.nextDouble(), ejg2.nextDouble(), 0.0);
@@ -75,12 +81,13 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
 	@Test
 	public void testUnlimitedStream() {
-		EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(jumpableAlgorithmName);
+		//EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator esg = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
 		class Counter {
 			int count;
 		}
 		final Counter c = new Counter();
-		esg.jumps(10000.5).limit(10).forEach(gen -> {
+		esg.jumps((double)(1 << 17)).limit(10).forEach(gen -> {
 				assertTrue(gen instanceof EnhancedArbitrarilyJumpableGenerator);
 				c.count++;
 			}
@@ -90,12 +97,13 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
 	@Test
 	public void testLimitedStream() {
-		EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(jumpableAlgorithmName);
+		//EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator esg = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
 		class Counter {
 			int count;
 		}
 		final Counter c = new Counter();
-		esg.jumps(5, 10000.5).forEach(gen -> {
+		esg.jumps(5, (double)(1 << 17)).forEach(gen -> {
 				assertTrue(gen instanceof EnhancedArbitrarilyJumpableGenerator);
 				c.count++;
 			}
@@ -105,12 +113,13 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
 	@Test
 	public void testUnlimitedStreamE() {
-		EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(jumpableAlgorithmName);
+		//EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator esg = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
 		class Counter {
 			int count;
 		}
 		final Counter c = new Counter();
-		esg.ejumps(10000.5).limit(10).forEach(gen -> {
+		esg.ejumps((double)(1 << 17)).limit(10).forEach(gen -> {
 				// calls a method added by the EnhancedArbitrarilyJumpableGenerator class
 				gen.nextCauchy(1.0);
 				c.count++;
@@ -121,17 +130,57 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 	
 	@Test
 	public void testLimitedStreamE() {
-		EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(jumpableAlgorithmName);
+		//EnhancedArbitrarilyJumpableGenerator esg = EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName);
+		EnhancedArbitrarilyJumpableGenerator esg = new EnhancedArbitrarilyJumpableGenerator(new FakeArbitrarilyJumpableRNG());
 		class Counter {
 			int count;
 		}
 		final Counter c = new Counter();
-		esg.ejumps(5, 10000.5).forEach(gen -> {
+		esg.ejumps(5, (double)(1 << 17)).forEach(gen -> {
 				// calls a method added by the EnhancedArbitrarilyJumpableGenerator class
 				gen.nextCauchy(1.0);
 				c.count++;
 			}
 		);
 		assertEquals(5, c.count);
+	}
+	
+	/*
+	 * Java 17 doesn't have any RandomGenerator.ArbitrarilyJumpableGenerator in the API.
+	 * This class is a fake one for testing purposes only. It is not real. Just serves
+	 * testing purposes. Do not use in any real application.
+	 */
+	private static class FakeArbitrarilyJumpableRNG implements RandomGenerator.ArbitrarilyJumpableGenerator {
+		
+		private RandomGenerator.LeapableGenerator generator;
+		
+		private FakeArbitrarilyJumpableRNG() {
+			generator = RandomGenerator.LeapableGenerator.of("Xoroshiro128PlusPlus");
+		}
+		
+		private FakeArbitrarilyJumpableRNG(RandomGenerator.LeapableGenerator gen) {
+			generator = gen;
+		}
+		
+		@Override public long nextLong() { return generator.nextLong(); }
+		
+		@Override public double jumpDistance() { return generator.jumpDistance(); }
+		
+		@Override public FakeArbitrarilyJumpableRNG copy() { 
+			return new FakeArbitrarilyJumpableRNG(generator.copy()); 
+		}
+		
+		@Override public double leapDistance() { return generator.leapDistance(); }
+		
+		@Override public void jump(double distance) {
+			int count = (int)Math.round(Math.log(distance) / Math.log(2.0));
+			for (int i = 0; i < count; i++) {
+				generator.jump();
+			}
+		}
+		
+		@Override public void jumpPowerOfTwo(int logDistance) {
+			jump(Math.pow(2, logDistance));
+		}
 	}
 }
