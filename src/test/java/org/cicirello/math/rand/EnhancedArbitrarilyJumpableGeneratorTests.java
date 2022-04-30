@@ -41,14 +41,28 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
 	public void testWillFailOnceJavaIncludesArbitrarilyJumpableGeneratorAlgorithm() {
 		// When this begins failing:
 		// 1) Remove fake rng internal class, 
-		// 2) Replace with commented out calls to of in other test methods,
-		// 3) Remove unnecessary exception tests.
+		// 2) Insert relevant algorithm name above for arbitrarilyJumpableAlgorithmName,
+		// 3) Replace with commented out calls to of in other test methods,
+		// 4) Remove unnecessary exception tests,
+		// 5 ) Remove this test method.
+		final StringBuilder sb = new StringBuilder("ARBITRARILY JUMPABLE:");
 		RandomGeneratorFactory.all().forEach( gen -> {
 			if (gen.isArbitrarilyJumpable()) {
 				System.out.println("ARBITRARILY JUMPABLE: " + gen.name() );
+				sb.append(" ");
+				sb.append(gen.name());
 			}
 		});
-		assertFalse(RandomGeneratorFactory.all().anyMatch( gen -> gen.isArbitrarilyJumpable() ));
+		assertFalse(RandomGeneratorFactory.all().anyMatch( gen -> gen.isArbitrarilyJumpable() ), sb.toString());
+		
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> EnhancedArbitrarilyJumpableGenerator.of(arbitrarilyJumpableAlgorithmName)
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> new EnhancedArbitrarilyJumpableGenerator(arbitrarilyJumpableAlgorithmName)
+		);		
 	}
 	
 	@Test
