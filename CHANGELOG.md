@@ -7,14 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-04-30
 
 ### Added
-* Subclasses of EnhancedRandomGenerator as wrappers for objects that implement the subinterfaces 
-  of RandomGenerator enabling adding to those objects all of the functionality of the 
-  RandomIndexer and RandomVariates classes. The new subclasses of EnhancedRandomGenerator include:
-  * EnhancedSplittableGenerator, which is a wrapper for RandomGenerator.SplittableGenerator,
-  * EnhancedJumpableGenerator, which is a wrapper for RandomGenerator.JumpableGenerator,
-  * EnhancedLeapableGenerator, which is a wrapper for RandomGenerator.LeapableGenerator,
-  * EnhancedStreamableGenerator, which is a wrapper for RandomGenerator.StreamableGenerator, and
-  * EnhancedArbitrarilyJumpableGenerator, which is a wrapper for RandomGenerator.ArbitrarilyJumpableGenerator.
 
 ### Changed
 
@@ -27,6 +19,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [2.2.0] - 2022-04-30
+
+### Added
+* Subclasses of EnhancedRandomGenerator as wrappers for objects that implement the subinterfaces 
+  of RandomGenerator enabling adding to those objects all of the functionality of the 
+  RandomIndexer and RandomVariates classes. The new subclasses of EnhancedRandomGenerator include:
+  * EnhancedSplittableGenerator, which is a wrapper for RandomGenerator.SplittableGenerator,
+  * EnhancedJumpableGenerator, which is a wrapper for RandomGenerator.JumpableGenerator,
+  * EnhancedLeapableGenerator, which is a wrapper for RandomGenerator.LeapableGenerator,
+  * EnhancedStreamableGenerator, which is a wrapper for RandomGenerator.StreamableGenerator, and
+  * EnhancedArbitrarilyJumpableGenerator, which is a wrapper for RandomGenerator.ArbitrarilyJumpableGenerator.
 
 
 ## [2.1.0] - 2022-04-26
