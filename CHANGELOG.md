@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-04-29
+## [Unreleased] - 2022-04-30
 
 ### Added
 * Subclasses of EnhancedRandomGenerator as wrappers for objects that implement the subinterfaces 
@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * EnhancedSplittableGenerator, which is a wrapper for RandomGenerator.SplittableGenerator,
   * EnhancedJumpableGenerator, which is a wrapper for RandomGenerator.JumpableGenerator,
   * EnhancedLeapableGenerator, which is a wrapper for RandomGenerator.LeapableGenerator,
-  * EnhancedStreamableGenerator, which is a wrapper for RandomGenerator.StreamableGenerator.
+  * EnhancedStreamableGenerator, which is a wrapper for RandomGenerator.StreamableGenerator, and
+  * EnhancedArbitrarilyJumpableGenerator, which is a wrapper for RandomGenerator.ArbitrarilyJumpableGenerator.
 
 ### Changed
 
