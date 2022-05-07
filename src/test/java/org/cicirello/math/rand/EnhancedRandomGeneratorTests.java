@@ -73,6 +73,24 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testNextIntBoundWithSeed() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		assertEquals(0, erg.nextInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100);
+			assertTrue(x < 100);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
+	
+	@Test
 	public void testNextIntBoundWithNamedRNG() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator("SplittableRandom");
 		assertEquals(0, erg.nextInt(1));
