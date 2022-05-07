@@ -192,6 +192,35 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	}
 	
 	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom int values, each value
+	 * generated from a binomial distribution. <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param n Number of trials for the binomial distribution.
+	 * @param p The probability of a successful trial.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom int values
+	 * generated from a binomial distribution.
+	 */
+	public final IntStream binomials(int n, double p) {
+		return IntStream.generate(() -> nextBinomial(n, p)).sequential();
+	}
+	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom int values, each value
+	 * generated from a binomial distribution. <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * @param n Number of trials for the binomial distribution.
+	 * @param p The probability of a successful trial.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom int values
+	 * generated from a binomial distribution.
+	 */
+	public final IntStream binomials(long streamSize, int n, double p) {
+		return IntStream.generate(() -> nextBinomial(n, p)).sequential().limit(streamSize);
+	}
+	
+	/**
 	 * <p>Generates a random integer in the interval: [0, bound). <b>Enhanced Functionality.</b></p>
 	 *
 	 * <p>The nextBiasedInt(bound) method computes a random int in the target interval
