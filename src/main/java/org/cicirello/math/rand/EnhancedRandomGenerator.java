@@ -53,6 +53,8 @@ import java.util.SplittableRandom;
  * <li>Methods for generating random pairs of integers without replacement, and random
  *    triples of integers without replacement.</li>
  * <li>Methods for generating random samples without replacement from a range of integers.</li>
+ * <li>Methods to generate streams of numbers from distributions other than uniform, such
+ * as streams of random numbers of binomial distributions.</li>
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
