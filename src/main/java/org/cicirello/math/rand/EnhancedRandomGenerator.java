@@ -26,6 +26,7 @@ import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import java.util.SplittableRandom;
 
 /**
  * <p>An EnhancedRandomGenerator is used to wrap an object of any
@@ -68,6 +69,18 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 */
 	public EnhancedRandomGenerator() {
 		this(RandomGenerator.getDefault());
+	}
+	
+	/**
+	 * Constructs the EnhancedRandomGenerator to wrap an instance
+	 * of a random number generator initialized with a specified seed
+	 * to enable replicating the same sequence of random numbers during
+	 * subsequent runs.
+	 *
+	 * @param seed The seed for the random number generator.
+	 */
+	public EnhancedRandomGenerator(long seed) {
+		this(new SplittableRandom(seed));
 	}
 	
 	/**

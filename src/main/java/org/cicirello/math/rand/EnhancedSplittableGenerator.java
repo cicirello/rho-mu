@@ -24,6 +24,7 @@ package org.cicirello.math.rand;
 
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
+import java.util.SplittableRandom;
 
 /**
  * <p>An EnhancedSplittableGenerator is used to wrap an object of any
@@ -50,6 +51,18 @@ import java.util.stream.Stream;
 public class EnhancedSplittableGenerator extends EnhancedStreamableGenerator implements RandomGenerator.SplittableGenerator {
 	
 	private final RandomGenerator.SplittableGenerator generator;
+	
+	/**
+	 * Constructs the EnhancedSplittableGenerator to wrap an instance
+	 * of a random number generator initialized with a specified seed
+	 * to enable replicating the same sequence of random numbers during
+	 * subsequent runs.
+	 *
+	 * @param seed The seed for the random number generator.
+	 */
+	public EnhancedSplittableGenerator(long seed) {
+		this(new SplittableRandom(seed));
+	}
 	
 	/**
 	 * Constructs an EnhancedSplittableGenerator to wrap and enhance a given 
