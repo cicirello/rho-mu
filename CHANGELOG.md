@@ -7,14 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-05-09
 
 ### Added
-* Streams of integers from binomial distributions.
-* Streams of doubles from Cauchy distributions.
-* Streams of doubles from exponential distributions.
-* Streams of doubles from Gaussian distributions.
-* Streams of not strictly uniform random integers.
-* Seeded constructors for the EnhancedSplittableGenerator, EnhancedStreamableGenerator, and
-  EnhancedRandomGenerator classes.
-* Default constructors for the EnhancedStreamableGenerator and EnhancedSplittableGenerator classes.
 
 ### Changed
 
@@ -27,6 +19,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [2.3.0] - 2022-05-09
+
+### Added
+* Streams of integers from binomial distributions.
+* Streams of doubles from Cauchy distributions.
+* Streams of doubles from exponential distributions.
+* Streams of doubles from Gaussian distributions.
+* Streams of not strictly uniform random integers.
+* Seeded constructors for the EnhancedSplittableGenerator, EnhancedStreamableGenerator, and
+  EnhancedRandomGenerator classes.
+* Default constructors for the EnhancedStreamableGenerator and EnhancedSplittableGenerator classes.
 
 
 ## [2.2.0] - 2022-04-30
