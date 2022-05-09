@@ -423,6 +423,29 @@ public class RandomIndexerTests {
 	}
 	
 	@Test
+	public void testBiasedIntOriginBound_ThreadLocalRandom() {
+		final int ORIGIN = 5;
+		for (int bound = ORIGIN + 1; bound <= 10; bound++) {
+			for (int i = 0; i < 10; i++) {
+				int k = RandomIndexer.nextBiasedInt(ORIGIN, bound);
+				assertTrue( k < bound && k >= ORIGIN, "nextInt outside range for (origin, bound)=("+ORIGIN+ ", "+(ORIGIN+i)+")");
+			}
+		}
+	}
+	
+	@Test
+	public void testBiasedIntOriginBound_SplittableRandom() {
+		final int ORIGIN = 5;
+		SplittableRandom gen = new SplittableRandom(42);
+		for (int bound = ORIGIN + 1; bound <= 10; bound++) {
+			for (int i = 0; i < 10; i++) {
+				int k = RandomIndexer.nextBiasedInt(ORIGIN, bound, gen);
+				assertTrue( k < bound && k >= ORIGIN, "nextInt outside range for (origin, bound)=("+ORIGIN+ ", "+(ORIGIN+i)+")");
+			}
+		}
+	}
+	
+	@Test
 	public void testRandInt_Random() {
 		final int REPS_PER_BUCKET = 100;
 		Random gen = new Random(42);

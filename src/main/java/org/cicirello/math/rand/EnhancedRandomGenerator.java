@@ -246,6 +246,30 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	}
 	
 	/**
+	 * <p>Generates a random integer in the interval: [origin, bound). <b>Enhanced Functionality.</b></p>
+	 *
+	 * <p>The nextBiasedInt(origin, bound) method computes a random int in the target interval
+	 * but faster than nextInt(origin, bound). It does not
+	 * correct for bias via rejection sampling, and thus some values in the interval [origin, bound)
+	 * may be more likely than others. There is no bias interval width is a power of 2.
+	 * Otherwise, the smaller the interval, the less bias; and the larger
+	 * the interval, the more bias. If your interval is relatively low, and if your application
+	 * does not require strict uniformity, then this method is significantly faster than any
+	 * approach that corrects for bias. We started with  
+	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+	 * But we removed from it the rejection sampling portion.</p>
+	 *
+	 * @param origin Lower bound, inclusive, on range of random integers.
+	 * @param bound Upper bound, exclusive, on range of random integers (must be greater than origin).
+	 * @return a random integer between origin (inclusive) and bound (exclusive).
+	 * @throws IllegalArgumentException if the bound is not greater than origin
+	 */
+	public final int nextBiasedInt(int origin, int bound) {
+		return RandomIndexer.nextBiasedInt(origin, bound, generator);
+	}
+	
+	/**
 	 * Generates a pseudorandom integer from a binomial distribution.
 	 * <b>Enhanced Functionality.</b>
 	 *

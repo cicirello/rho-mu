@@ -165,6 +165,26 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testNextBiasedIntOriginBound() {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42);
+		for (int low = 0; low <= 5; low++) {
+			assertEquals(low, erg.nextBiasedInt(low,low+1));
+		}
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextBiasedInt(100, 200);
+			assertTrue(x < 200);
+			assertTrue(x >= 100);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
+	
+	@Test
 	public void testBinomials() {
 		class Wrapper {
 			boolean different;
