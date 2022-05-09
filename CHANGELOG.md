@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Streams of not strictly uniform random integers.
 * Seeded constructors for the EnhancedSplittableGenerator, EnhancedStreamableGenerator, and
   EnhancedRandomGenerator classes.
+* Default constructors for the EnhancedStreamableGenerator, and EnhancedSplittableGenerator
+  classes.
 
 ### Changed
 
