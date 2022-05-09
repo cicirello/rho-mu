@@ -603,7 +603,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 */
 	@Override
 	public final int nextInt(int origin, int bound) {
-		return origin + RandomIndexer.nextInt(bound - origin, generator);
+		return RandomIndexer.nextInt(origin, bound, generator);
 	}
 	
 	/**

@@ -61,6 +61,45 @@ public final class RandomIndexer {
 	}
 	
 	/**
+	 * <p>Generates a random integer uniformly distributed in the interval: [origin, bound).</p>
+	 * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus
+	 * safe, and efficient (i.e., non-blocking), for use with threads.  However, 
+	 * it does not use ThreadLocalRandom.nextInt(int origin, int bound)
+	 * method.  Instead, our nextInt(int origin, int bound) method is an implementation of 
+	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
+	 * <p>This method is significantly faster than ThreadLocalRandom.nextInt(int bound).</p>
+	 *
+	 * @param origin Lower bound, inclusive, on range of random integers.
+	 * @param bound Upper bound, exclusive, on range of random integers (must be greater than origin).
+	 * @return a random integer between origin (inclusive) and bound (exclusive).
+	 * @throws IllegalArgumentException if the bound is not greater than origin
+	 */
+	public static int nextInt(int origin, int bound) {
+		return nextInt(origin, bound, ThreadLocalRandom.current());
+	}
+	
+	/**
+	 * <p>Generates a random integer uniformly distributed in the interval: [origin, bound).</p>
+	 * <p>This method uses a RandomGenerator passed as a parameter 
+	 * as the pseudorandom number generator.  
+	 * However, it does not use RandomGenerator.nextInt(int origin, int bound)
+	 * method.  Instead, our nextInt(int origin, int bound) method is an implementation of 
+	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
+	 *
+	 * @param origin Lower bound, inclusive, on range of random integers.
+	 * @param bound Upper bound, exclusive, on range of random integers (must be greater than origin).
+	 * @param gen A source of randomness.
+	 * 
+	 * @return a random integer between origin (inclusive) and bound (exclusive).
+	 * @throws IllegalArgumentException if the bound is not greater than origin
+	 */
+	public static int nextInt(int origin, int bound, RandomGenerator gen) {
+		return origin + nextInt(bound - origin, gen);
+	}
+	
+	/**
 	 * <p>Generates a random integer uniformly distributed in the interval: [0, bound).</p>
 	 * <p>This method uses a RandomGenerator passed as a parameter 
 	 * as the pseudorandom number generator.  

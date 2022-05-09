@@ -383,6 +383,46 @@ public class RandomIndexerTests {
 	}
 	
 	@Test
+	public void testRandIntOriginBound_SplittableRandom() {
+		final int ORIGIN = 5;
+		final int REPS_PER_BUCKET = 100;
+		SplittableRandom gen = new SplittableRandom(42);
+		double[] limit95 = {
+			EPSILON, 3.841, 5.991, 7.815, 9.488, 
+			11.07, 12.59, 14.07, 15.51, 16.92, 
+			18.31, 19.68, 21.03
+		};
+		int countH = 0;
+		for (int i = 1; i <= 13; i++) {
+			for (int trial = 0; trial < 100; trial++) {
+				int[] a = new int[i];
+				for (int j = 0; j < REPS_PER_BUCKET * i; j++) {
+					int k = RandomIndexer.nextInt(ORIGIN, ORIGIN+i, gen);
+					assertTrue( k < ORIGIN+i && k >= ORIGIN, "nextInt outside range for (origin, bound)=("+ORIGIN+ ", "+(ORIGIN+i)+")");
+					a[k-ORIGIN] += 1;
+				}
+				for (int k = 0; k < i; k++) {
+					assertTrue(a[k]>0, "failed to generate any samples of "+(ORIGIN+k));
+				}
+				double chi = chiSquare(a);
+				if (chi > limit95[i-1]) countH++;
+			}
+		}
+		assertTrue( countH <= 130, "chi square too high too often, countHigh=" + countH);
+	}
+	
+	@Test
+	public void testRandIntOriginBound_ThreadLocalRandom() {
+		final int ORIGIN = 5;
+		for (int bound = ORIGIN + 1; bound <= 10; bound++) {
+			for (int i = 0; i < 10; i++) {
+				int k = RandomIndexer.nextInt(ORIGIN, bound);
+				assertTrue( k < bound && k >= ORIGIN, "nextInt outside range for (origin, bound)=("+ORIGIN+ ", "+(ORIGIN+i)+")");
+			}
+		}
+	}
+	
+	@Test
 	public void testRandInt_Random() {
 		final int REPS_PER_BUCKET = 100;
 		Random gen = new Random(42);
