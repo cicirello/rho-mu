@@ -33,6 +33,24 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EnhancedSplittableGeneratorTests {
 	
 	@Test
+	public void testDefault() {
+		EnhancedSplittableGenerator erg = new EnhancedSplittableGenerator();
+		assertEquals(0, erg.nextInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100);
+			assertTrue(x < 100);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
+	
+	@Test
 	public void testWithSeed() {
 		EnhancedSplittableGenerator erg = new EnhancedSplittableGenerator(42L);
 		assertEquals(0, erg.nextInt(1));

@@ -54,6 +54,18 @@ public class EnhancedSplittableGenerator extends EnhancedStreamableGenerator imp
 	
 	/**
 	 * Constructs the EnhancedSplittableGenerator to wrap an instance
+	 * of a default SplittableGenerator. The library's current default
+	 * is to wrap an instance of {@link SplittableRandom}, chosen due to
+	 * Java's designation of that class as a legacy random number generator,
+	 * and likely longterm existence. However, the rho-mu library makes no 
+	 * guarantee that this choice will remain the default. 
+	 */
+	public EnhancedSplittableGenerator() {
+		this(new SplittableRandom());
+	}
+	
+	/**
+	 * Constructs the EnhancedSplittableGenerator to wrap an instance
 	 * of a random number generator initialized with a specified seed
 	 * to enable replicating the same sequence of random numbers during
 	 * subsequent runs.

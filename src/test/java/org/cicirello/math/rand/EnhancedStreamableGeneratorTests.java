@@ -33,6 +33,24 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EnhancedStreamableGeneratorTests {
 	
 	@Test
+	public void testDefault() {
+		EnhancedStreamableGenerator erg = new EnhancedStreamableGenerator();
+		assertEquals(0, erg.nextInt(1));
+		boolean different = false;
+		int last = -1;
+		for (int i = 0; i < 10; i++) {
+			int x = erg.nextInt(100);
+			assertTrue(x < 100);
+			assertTrue(x >= 0);
+			if (last >= 0 && last != x) {
+				different = true;
+			} 
+			last = x;
+		}
+		assertTrue(different);
+	}
+	
+	@Test
 	public void testWithSeed() {
 		EnhancedStreamableGenerator erg = new EnhancedStreamableGenerator(42L);
 		assertEquals(0, erg.nextInt(1));
