@@ -61,6 +61,45 @@ public final class RandomIndexer {
 	}
 	
 	/**
+	 * <p>Generates a random integer uniformly distributed in the interval: [origin, bound).</p>
+	 * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus
+	 * safe, and efficient (i.e., non-blocking), for use with threads.  However, 
+	 * it does not use ThreadLocalRandom.nextInt(int origin, int bound)
+	 * method.  Instead, our nextInt(int origin, int bound) method is an implementation of 
+	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
+	 * <p>This method is significantly faster than ThreadLocalRandom.nextInt(int bound).</p>
+	 *
+	 * @param origin Lower bound, inclusive, on range of random integers.
+	 * @param bound Upper bound, exclusive, on range of random integers (must be greater than origin).
+	 * @return a random integer between origin (inclusive) and bound (exclusive).
+	 * @throws IllegalArgumentException if the bound is not greater than origin
+	 */
+	public static int nextInt(int origin, int bound) {
+		return nextInt(origin, bound, ThreadLocalRandom.current());
+	}
+	
+	/**
+	 * <p>Generates a random integer uniformly distributed in the interval: [origin, bound).</p>
+	 * <p>This method uses a RandomGenerator passed as a parameter 
+	 * as the pseudorandom number generator.  
+	 * However, it does not use RandomGenerator.nextInt(int origin, int bound)
+	 * method.  Instead, our nextInt(int origin, int bound) method is an implementation of 
+	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
+	 *
+	 * @param origin Lower bound, inclusive, on range of random integers.
+	 * @param bound Upper bound, exclusive, on range of random integers (must be greater than origin).
+	 * @param gen A source of randomness.
+	 * 
+	 * @return a random integer between origin (inclusive) and bound (exclusive).
+	 * @throws IllegalArgumentException if the bound is not greater than origin
+	 */
+	public static int nextInt(int origin, int bound, RandomGenerator gen) {
+		return origin + nextInt(bound - origin, gen);
+	}
+	
+	/**
 	 * <p>Generates a random integer uniformly distributed in the interval: [0, bound).</p>
 	 * <p>This method uses a RandomGenerator passed as a parameter 
 	 * as the pseudorandom number generator.  
@@ -117,6 +156,57 @@ public final class RandomIndexer {
 	public static int nextBiasedInt(int bound) {
 		if (bound < 1) throw new IllegalArgumentException("bound must be positive");
 		return (int)(((long)(ThreadLocalRandom.current().nextInt() & 0x7fffffff) * (long)bound) >> 31);
+	}
+	
+	/**
+	 * <p>Generates a random integer in the interval: [origin, bound).</p>
+	 * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus
+	 * safe, and efficient (i.e., non-blocking), for use with threads.  
+	 * However, it does not use ThreadLocalRandom.nextInt(int origin, int bound)
+	 * method.  Instead, our nextBiasedInt(int origin, int bound) method computes a random int in the target interval
+	 * via a multiplication and a shift, rather than the more common mod.  This method does not
+	 * correct for bias via rejection sampling, and thus some values in the interval [origin, bound)
+	 * may be more likely than others. There is no bias if the width of the interval is a power of 2.
+	 * Otherwise, the smaller the interval, the less bias; and the larger
+	 * the interval, the more bias.  If your interval is relatively small, and if your application
+	 * does not require strict uniformity, then this method is significantly faster than any
+	 * approach that corrects for bias.  We started with  
+	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+	 * But we removed from it the rejection sampling portion.</p>
+	 *
+	 * @param origin Lower bound, inclusive, on range of random integers.
+	 * @param bound Upper bound, exclusive, on range of random integers (must be greater than origin).
+	 * @return a random integer between origin (inclusive) and bound (exclusive).
+	 * @throws IllegalArgumentException if the bound is not greater than the origin
+	 */
+	public static int nextBiasedInt(int origin, int bound) {
+		return origin + nextBiasedInt(bound - origin);
+	}
+	
+	/**
+	 * <p>Generates a random integer in the interval: [origin, bound).</p>
+	 * <p>This method does not use RandomGenerator.nextInt(int origin, int bound)
+	 * method.  Instead, our nextBiasedInt(int origin, int bound) method computes a random int in the target interval
+	 * via a multiplication and a shift, rather than the more common mod.  This method does not
+	 * correct for bias via rejection sampling, and thus some values in the interval [origin, bound)
+	 * may be more likely than others. There is no bias if the width of the interval is a power of 2.
+	 * Otherwise, the smaller the interval, the less bias; and the larger
+	 * the interval, the more bias.  If your interval is relatively small, and if your application
+	 * does not require strict uniformity, then this method is significantly faster than any
+	 * approach that corrects for bias.  We started with  
+	 * the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+	 * But we removed from it the rejection sampling portion.</p>
+	 *
+	 * @param origin Lower bound, inclusive, on range of random integers.
+	 * @param bound Upper bound, exclusive, on range of random integers (must be greater than origin).
+	 * @param gen A source of randomness.
+	 * @return a random integer between origin (inclusive) and bound (exclusive).
+	 * @throws IllegalArgumentException if the bound is not greater than the origin
+	 */
+	public static int nextBiasedInt(int origin, int bound, RandomGenerator gen) {
+		return origin + nextBiasedInt(bound - origin, gen);
 	}
 	
 	/**
