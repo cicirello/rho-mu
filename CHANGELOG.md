@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-05-09
 
 ### Added
-* Streams of binomial distributed integers.
+* Streams of integers from a binomial distribution.
+* Streams of doubles from an exponential distribution.
 * Streams of not strictly uniform random integers.
 * Seeded constructors for the EnhancedSplittableGenerator, EnhancedStreamableGenerator, and
   EnhancedRandomGenerator classes.
