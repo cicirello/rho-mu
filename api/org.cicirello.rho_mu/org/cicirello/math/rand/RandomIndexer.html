@@ -151,6 +151,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Generates a random integer in the interval: [0, bound).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextBiasedInt(int,int)" class="member-name-link">nextBiasedInt</a><wbr>(int&nbsp;origin,
+ int&nbsp;bound)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generates a random integer in the interval: [origin, bound).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextBiasedInt(int,int,java.util.random.RandomGenerator)" class="member-name-link">nextBiasedInt</a><wbr>(int&nbsp;origin,
+ int&nbsp;bound,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;gen)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generates a random integer in the interval: [origin, bound).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextBiasedInt(int,java.util.random.RandomGenerator)" class="member-name-link">nextBiasedInt</a><wbr>(int&nbsp;bound,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;gen)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -160,6 +173,19 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextInt(int)" class="member-name-link">nextInt</a><wbr>(int&nbsp;bound)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Generates a random integer uniformly distributed in the interval: [0, bound).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextInt(int,int)" class="member-name-link">nextInt</a><wbr>(int&nbsp;origin,
+ int&nbsp;bound)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generates a random integer uniformly distributed in the interval: [origin, bound).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextInt(int,int,java.util.random.RandomGenerator)" class="member-name-link">nextInt</a><wbr>(int&nbsp;origin,
+ int&nbsp;bound,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;gen)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generates a random integer uniformly distributed in the interval: [origin, bound).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextInt(int,java.util.random.RandomGenerator)" class="member-name-link">nextInt</a><wbr>(int&nbsp;bound,
@@ -394,6 +420,55 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="nextInt(int,int)">
+<h3>nextInt</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextInt</span><wbr><span class="parameters">(int&nbsp;origin,
+ int&nbsp;bound)</span></div>
+<div class="block"><p>Generates a random integer uniformly distributed in the interval: [origin, bound).</p>
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus
+ safe, and efficient (i.e., non-blocking), for use with threads.  However, 
+ it does not use ThreadLocalRandom.nextInt(int origin, int bound)
+ method.  Instead, our nextInt(int origin, int bound) method is an implementation of 
+ the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p>
+ <p>This method is significantly faster than ThreadLocalRandom.nextInt(int bound).</p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - Lower bound, inclusive, on range of random integers.</dd>
+<dd><code>bound</code> - Upper bound, exclusive, on range of random integers (must be greater than origin).</dd>
+<dt>Returns:</dt>
+<dd>a random integer between origin (inclusive) and bound (exclusive).</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the bound is not greater than origin</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextInt(int,int,java.util.random.RandomGenerator)">
+<h3>nextInt</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextInt</span><wbr><span class="parameters">(int&nbsp;origin,
+ int&nbsp;bound,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;gen)</span></div>
+<div class="block"><p>Generates a random integer uniformly distributed in the interval: [origin, bound).</p>
+ <p>This method uses a RandomGenerator passed as a parameter 
+ as the pseudorandom number generator.  
+ However, it does not use RandomGenerator.nextInt(int origin, int bound)
+ method.  Instead, our nextInt(int origin, int bound) method is an implementation of 
+ the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - Lower bound, inclusive, on range of random integers.</dd>
+<dd><code>bound</code> - Upper bound, exclusive, on range of random integers (must be greater than origin).</dd>
+<dd><code>gen</code> - A source of randomness.</dd>
+<dt>Returns:</dt>
+<dd>a random integer between origin (inclusive) and bound (exclusive).</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the bound is not greater than origin</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="nextInt(int,java.util.random.RandomGenerator)">
 <h3>nextInt</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextInt</span><wbr><span class="parameters">(int&nbsp;bound,
@@ -442,6 +517,68 @@ loadScripts(document, 'script');</script>
 <dd>a random integer between 0 (inclusive) and bound (exclusive).</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the bound is not positive</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextBiasedInt(int,int)">
+<h3>nextBiasedInt</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextBiasedInt</span><wbr><span class="parameters">(int&nbsp;origin,
+ int&nbsp;bound)</span></div>
+<div class="block"><p>Generates a random integer in the interval: [origin, bound).</p>
+ <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus
+ safe, and efficient (i.e., non-blocking), for use with threads.  
+ However, it does not use ThreadLocalRandom.nextInt(int origin, int bound)
+ method.  Instead, our nextBiasedInt(int origin, int bound) method computes a random int in the target interval
+ via a multiplication and a shift, rather than the more common mod.  This method does not
+ correct for bias via rejection sampling, and thus some values in the interval [origin, bound)
+ may be more likely than others. There is no bias if the width of the interval is a power of 2.
+ Otherwise, the smaller the interval, the less bias; and the larger
+ the interval, the more bias.  If your interval is relatively small, and if your application
+ does not require strict uniformity, then this method is significantly faster than any
+ approach that corrects for bias.  We started with  
+ the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+ But we removed from it the rejection sampling portion.</p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - Lower bound, inclusive, on range of random integers.</dd>
+<dd><code>bound</code> - Upper bound, exclusive, on range of random integers (must be greater than origin).</dd>
+<dt>Returns:</dt>
+<dd>a random integer between origin (inclusive) and bound (exclusive).</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the bound is not greater than the origin</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextBiasedInt(int,int,java.util.random.RandomGenerator)">
+<h3>nextBiasedInt</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextBiasedInt</span><wbr><span class="parameters">(int&nbsp;origin,
+ int&nbsp;bound,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;gen)</span></div>
+<div class="block"><p>Generates a random integer in the interval: [origin, bound).</p>
+ <p>This method does not use RandomGenerator.nextInt(int origin, int bound)
+ method.  Instead, our nextBiasedInt(int origin, int bound) method computes a random int in the target interval
+ via a multiplication and a shift, rather than the more common mod.  This method does not
+ correct for bias via rejection sampling, and thus some values in the interval [origin, bound)
+ may be more likely than others. There is no bias if the width of the interval is a power of 2.
+ Otherwise, the smaller the interval, the less bias; and the larger
+ the interval, the more bias.  If your interval is relatively small, and if your application
+ does not require strict uniformity, then this method is significantly faster than any
+ approach that corrects for bias.  We started with  
+ the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+ But we removed from it the rejection sampling portion.</p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - Lower bound, inclusive, on range of random integers.</dd>
+<dd><code>bound</code> - Upper bound, exclusive, on range of random integers (must be greater than origin).</dd>
+<dd><code>gen</code> - A source of randomness.</dd>
+<dt>Returns:</dt>
+<dd>a random integer between origin (inclusive) and bound (exclusive).</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the bound is not greater than the origin</dd>
 </dl>
 </section>
 </li>

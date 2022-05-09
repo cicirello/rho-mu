@@ -148,14 +148,29 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextGaussian(double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;sigma)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation, sigma, of your choosing.</div>
+ mean 0 and standard deviation sigma.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextGaussian(double,double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;mu,
+ double&nbsp;sigma)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generates a random number from a Gaussian distribution with
+ mean mu and standard deviation sigma.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextGaussian(double,double,java.util.random.RandomGenerator)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;mu,
+ double&nbsp;sigma,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Generates a random number from a Gaussian distribution with
+ mean mu and standard deviation sigma.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextGaussian(double,java.util.random.RandomGenerator)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;sigma,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation, sigma, of your choosing.</div>
+ mean 0 and standard deviation sigma.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#nextGaussian(java.util.random.RandomGenerator)" class="member-name-link">nextGaussian</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</code></div>
@@ -277,16 +292,63 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="nextGaussian(double)">
+<section class="detail" id="nextGaussian(double,double)">
 <h3>nextGaussian</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;sigma)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;mu,
+ double&nbsp;sigma)</span></div>
 <div class="block">Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation, sigma, of your choosing. This method uses
+ mean mu and standard deviation sigma. This method uses
  the library's current most-efficient algorithm for Gaussian random number
  generation, which may change in future releases. If you require a 
  guarantee of the algorithm used, then see the API for the classes that
  implement specific Gaussian algorithms.
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the pseudorandom number generator for the 
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the  
+ source of randomness.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>mu</code> - The mean of the Gaussian.</dd>
+<dd><code>sigma</code> - The standard deviation of the Gaussian.</dd>
+<dt>Returns:</dt>
+<dd>A random number from a Gaussian distribution with mean mu and
+ standard deviation sigma.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextGaussian(double,double,java.util.random.RandomGenerator)">
+<h3>nextGaussian</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;mu,
+ double&nbsp;sigma,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
+<div class="block">Generates a random number from a Gaussian distribution with
+ mean mu and standard deviation sigma. This method uses
+ the library's current most-efficient algorithm for Gaussian random number
+ generation, which may change in future releases. If you require a 
+ guarantee of the algorithm used, then see the API for the classes that
+ implement specific Gaussian algorithms.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>mu</code> - The mean of the Gaussian.</dd>
+<dd><code>sigma</code> - The standard deviation of the Gaussian.</dd>
+<dd><code>r</code> - The pseudorandom number generator to use for the 
+ source of randomness.</dd>
+<dt>Returns:</dt>
+<dd>A random number from a Gaussian distribution with mean mu and
+ standard deviation sigma.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextGaussian(double)">
+<h3>nextGaussian</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;sigma)</span></div>
+<div class="block">Generates a random number from a Gaussian distribution with
+ mean 0 and standard deviation sigma. This method uses
+ the library's current most-efficient algorithm for Gaussian random number
+ generation, which may change in future releases. If you require a 
+ guarantee of the algorithm used, then see the API for the classes that
+ implement specific Gaussian algorithms.
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the  
  source of randomness.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -303,7 +365,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;sigma,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
 <div class="block">Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation, sigma, of your choosing. This method uses
+ mean 0 and standard deviation sigma. This method uses
  the library's current most-efficient algorithm for Gaussian random number
  generation, which may change in future releases. If you require a 
  guarantee of the algorithm used, then see the API for the classes that

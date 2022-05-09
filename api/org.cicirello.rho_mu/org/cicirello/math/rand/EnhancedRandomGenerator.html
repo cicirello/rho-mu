@@ -111,11 +111,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <li>Additional distributions available beyond what is supported by
      the Java API's RandomGenerator classes, such as Binomial and Cauchy
      random vaiables.</li>
- <li>An ultrafast, but biased, nextBiasedInt method that sacrifices uniformity
-     for speed by excluding the rejection sampling necessary to ensure uniformity.</li>
+ <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity
+     for speed by excluding the rejection sampling necessary to ensure uniformity,
+     as well as a biasedInts methods for generating streams of such integers.</li>
  <li>Methods for generating random pairs of integers without replacement, and random
     triples of integers without replacement.</li>
- <li>Methods for generating random samples without replacement from a range of integers.</li>
+ <li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
+ <li>Methods to generate streams of numbers from distributions other than uniform, such
+     as streams of random numbers from binomial distributions, Cauchy distributions, 
+     exponential distributions, and Gaussian distributions.</li>
  </ul></div>
 </section>
 <section class="summary">
@@ -143,15 +147,22 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  the default random number generator as obtained via a call to
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</code></div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(long)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(long&nbsp;seed)</code></div>
 <div class="col-last odd-row-color">
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance
+ of a random number generator initialized with a specified seed
+ to enable replicating the same sequence of random numbers during
+ subsequent runs.</div>
+</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</code></div>
+<div class="col-last even-row-color">
 <div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of
  any random number generator supported by your version of Java
  as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a>
  method.</div>
 </div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.random.RandomGenerator)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;generator)</code></div>
-<div class="col-last even-row-color">
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.random.RandomGenerator)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;generator)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Constructs the EnhancedRandomGenerator from the RandomGenerator
  to wrap.</div>
 </div>
@@ -189,6 +200,51 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Generates an "array mask" of a specified length and specified number of true values,
  where an "array mask" is an array of boolean values of the same length as another array.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#biasedInts(int,int)" class="member-name-link">biasedInts</a><wbr>(int&nbsp;randomNumberOrigin,
+ int&nbsp;randomNumberBound)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value
+ random from the interval [randomNumberOrigin, randomNumberBound).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#biasedInts(long,int,int)" class="member-name-link">biasedInts</a><wbr>(long&nbsp;streamSize,
+ int&nbsp;randomNumberOrigin,
+ int&nbsp;randomNumberBound)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a stream of pseudorandom int values, each value
+ random from the interval [randomNumberOrigin, randomNumberBound).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#binomials(int,double)" class="member-name-link">binomials</a><wbr>(int&nbsp;n,
+ double&nbsp;p)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value
+ generated from a binomial distribution.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#binomials(long,int,double)" class="member-name-link">binomials</a><wbr>(long&nbsp;streamSize,
+ int&nbsp;n,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a stream of pseudorandom int values, each value
+ generated from a binomial distribution.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cauchys(double,double)" class="member-name-link">cauchys</a><wbr>(double&nbsp;median,
+ double&nbsp;scale)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an effectively unlimited stream of pseudorandom double 
+ values from a Cauchy distribution.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cauchys(long,double,double)" class="member-name-link">cauchys</a><wbr>(long&nbsp;streamSize,
+ double&nbsp;median,
+ double&nbsp;scale)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a stream of pseudorandom double 
+ values from a Cauchy distribution.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#doubles()" class="member-name-link">doubles</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -215,6 +271,45 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a stream of pseudorandom double values, each value
  uniformly random from the interval [randomNumberOrigin, randomNumberBound).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#exponentials()" class="member-name-link">exponentials</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an effectively unlimited stream of pseudorandom non-negative double 
+ values from an exponential distribution with mean 1.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#exponentials(long)" class="member-name-link">exponentials</a><wbr>(long&nbsp;streamSize)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a stream of pseudorandom non-negative double 
+ values from an exponential distribution with mean 1.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians()" class="member-name-link">gaussians</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an effectively unlimited stream of pseudorandom double 
+ values from a Gaussian distribution with mean 0 and standard deviation 1.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians(double,double)" class="member-name-link">gaussians</a><wbr>(double&nbsp;mean,
+ double&nbsp;stdev)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns an effectively unlimited stream of pseudorandom double 
+ values from a Gaussian distribution with specified mean and standard deviation.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians(long)" class="member-name-link">gaussians</a><wbr>(long&nbsp;streamSize)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a stream of pseudorandom non-negative double 
+ values from a Gaussian distribution with mean 0 and standard deviation 1.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians(long,double,double)" class="member-name-link">gaussians</a><wbr>(long&nbsp;streamSize,
+ double&nbsp;mean,
+ double&nbsp;stdev)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a stream of pseudorandom double 
+ values from a Gaussian distribution with specified mean and standard deviation.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getDefault()" class="member-name-link">getDefault</a>()</code></div>
@@ -279,197 +374,195 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Generates a random integer in the interval: [0, bound).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBinomial(int,double)" class="member-name-link">nextBinomial</a><wbr>(int&nbsp;n,
- double&nbsp;p)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBiasedInt(int,int)" class="member-name-link">nextBiasedInt</a><wbr>(int&nbsp;origin,
+ int&nbsp;bound)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates a random integer in the interval: [origin, bound).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBinomial(int,double)" class="member-name-link">nextBinomial</a><wbr>(int&nbsp;n,
+ double&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom integer from a binomial distribution.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBoolean()" class="member-name-link">nextBoolean</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBoolean()" class="member-name-link">nextBoolean</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom boolean value.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBytes(byte%5B%5D)" class="member-name-link">nextBytes</a><wbr>(byte[]&nbsp;bytes)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBytes(byte%5B%5D)" class="member-name-link">nextBytes</a><wbr>(byte[]&nbsp;bytes)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Fills a user-supplied byte array with byte values generated
  pseudorandomly uniformly distributed in the interval [-128, 127].</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextCauchy(double)" class="member-name-link">nextCauchy</a><wbr>(double&nbsp;scale)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextCauchy(double)" class="member-name-link">nextCauchy</a><wbr>(double&nbsp;scale)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom number from a Cauchy distribution with median 0
  and chosen scale parameter.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextCauchy(double,double)" class="member-name-link">nextCauchy</a><wbr>(double&nbsp;median,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextCauchy(double,double)" class="member-name-link">nextCauchy</a><wbr>(double&nbsp;median,
  double&nbsp;scale)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom number from a Cauchy distribution.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextDouble()" class="member-name-link">nextDouble</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextDouble()" class="member-name-link">nextDouble</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom double value in the interval [0, 1).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextDouble(double)" class="member-name-link">nextDouble</a><wbr>(double&nbsp;bound)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextDouble(double)" class="member-name-link">nextDouble</a><wbr>(double&nbsp;bound)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom double value in the interval [0, bound).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextDouble(double,double)" class="member-name-link">nextDouble</a><wbr>(double&nbsp;origin,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextDouble(double,double)" class="member-name-link">nextDouble</a><wbr>(double&nbsp;origin,
  double&nbsp;bound)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom double value in the interval [origin, bound).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextExponential()" class="member-name-link">nextExponential</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextExponential()" class="member-name-link">nextExponential</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a non-negative pseudorandom number from an exponential distribution
  with mean 1.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final float</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextFloat()" class="member-name-link">nextFloat</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final float</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextFloat()" class="member-name-link">nextFloat</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom float value in the interval [0, 1).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final float</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextFloat(float)" class="member-name-link">nextFloat</a><wbr>(float&nbsp;bound)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final float</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextFloat(float)" class="member-name-link">nextFloat</a><wbr>(float&nbsp;bound)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom float value in the interval [0, bound).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final float</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextFloat(float,float)" class="member-name-link">nextFloat</a><wbr>(float&nbsp;origin,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final float</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextFloat(float,float)" class="member-name-link">nextFloat</a><wbr>(float&nbsp;origin,
  float&nbsp;bound)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom float value in the interval [origin, bound).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian()" class="member-name-link">nextGaussian</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian()" class="member-name-link">nextGaussian</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random number from a Gaussian distribution with
  mean 0 and standard deviation 1.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian(double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;stddev)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian(double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;stddev)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random number from a Gaussian distribution with
  mean 0 and standard deviation, stddev, of your choosing.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian(double,double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;mean,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian(double,double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;mean,
  double&nbsp;stddev)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random number from a Gaussian distribution with
  mean and standard deviation of your choosing.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextInt()" class="member-name-link">nextInt</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextInt()" class="member-name-link">nextInt</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom int value.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextInt(int)" class="member-name-link">nextInt</a><wbr>(int&nbsp;bound)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextInt(int)" class="member-name-link">nextInt</a><wbr>(int&nbsp;bound)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random integer uniformly distributed in the interval: [0, bound).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextInt(int,int)" class="member-name-link">nextInt</a><wbr>(int&nbsp;origin,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextInt(int,int)" class="member-name-link">nextInt</a><wbr>(int&nbsp;origin,
  int&nbsp;bound)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random integer uniformly distributed in the interval: [origin, bound).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntPair(int,int%5B%5D)" class="member-name-link">nextIntPair</a><wbr>(int&nbsp;n,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntPair(int,int%5B%5D)" class="member-name-link">nextIntPair</a><wbr>(int&nbsp;n,
  int[]&nbsp;result)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random sample of 2 integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntTriple(int,int%5B%5D)" class="member-name-link">nextIntTriple</a><wbr>(int&nbsp;n,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntTriple(int,int%5B%5D)" class="member-name-link">nextIntTriple</a><wbr>(int&nbsp;n,
  int[]&nbsp;result)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random sample of 3 integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntTriple(int,int%5B%5D,boolean)" class="member-name-link">nextIntTriple</a><wbr>(int&nbsp;n,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntTriple(int,int%5B%5D,boolean)" class="member-name-link">nextIntTriple</a><wbr>(int&nbsp;n,
  int[]&nbsp;result,
  boolean&nbsp;sort)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random sample of 3 integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextLong()" class="member-name-link">nextLong</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final long</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextLong()" class="member-name-link">nextLong</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom long value.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextLong(long)" class="member-name-link">nextLong</a><wbr>(long&nbsp;bound)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final long</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextLong(long)" class="member-name-link">nextLong</a><wbr>(long&nbsp;bound)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom long value in the interval [0, bound).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final long</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextLong(long,long)" class="member-name-link">nextLong</a><wbr>(long&nbsp;origin,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final long</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextLong(long,long)" class="member-name-link">nextLong</a><wbr>(long&nbsp;origin,
  long&nbsp;bound)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a pseudorandom long value in the interval [origin, bound).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntPair(int,int,int%5B%5D)" class="member-name-link">nextWindowedIntPair</a><wbr>(int&nbsp;n,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntPair(int,int,int%5B%5D)" class="member-name-link">nextWindowedIntPair</a><wbr>(int&nbsp;n,
  int&nbsp;window,
  int[]&nbsp;result)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random sample of 2 integers, i, j, without replacement, from the
  set of integers in the interval [0, n), such that |i-j| &le; window.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntTriple(int,int,int%5B%5D)" class="member-name-link">nextWindowedIntTriple</a><wbr>(int&nbsp;n,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntTriple(int,int,int%5B%5D)" class="member-name-link">nextWindowedIntTriple</a><wbr>(int&nbsp;n,
  int&nbsp;window,
  int[]&nbsp;result)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the
- set of integers in the interval [0, n), such that |i-j| &le; window, and 
- |i-k| &le; window, and |k-j| &le; window.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntTriple(int,int,int%5B%5D,boolean)" class="member-name-link">nextWindowedIntTriple</a><wbr>(int&nbsp;n,
- int&nbsp;window,
- int[]&nbsp;result,
- boolean&nbsp;sort)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the
  set of integers in the interval [0, n), such that |i-j| &le; window, and 
  |i-k| &le; window, and |k-j| &le; window.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(java.lang.String)" class="member-name-link">of</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntTriple(int,int,int%5B%5D,boolean)" class="member-name-link">nextWindowedIntTriple</a><wbr>(int&nbsp;n,
+ int&nbsp;window,
+ int[]&nbsp;result,
+ boolean&nbsp;sort)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the
+ set of integers in the interval [0, n), such that |i-j| &le; window, and 
+ |i-k| &le; window, and |k-j| &le; window.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(java.lang.String)" class="member-name-link">of</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Gets an EnhancedRandomGenerator wrapping an instance of
  any random number generator supported by your version of Java
  as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a>
  method.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sample(int,double)" class="member-name-link">sample</a><wbr>(int&nbsp;n,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sample(int,double)" class="member-name-link">sample</a><wbr>(int&nbsp;n,
  double&nbsp;p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random sample, without replacement, from the
  set of integers in the interval [0, n).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sample(int,int,int%5B%5D)" class="member-name-link">sample</a><wbr>(int&nbsp;n,
- int&nbsp;k,
- int[]&nbsp;result)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sampleInsertion(int,int,int%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(int&nbsp;n,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sample(int,int,int%5B%5D)" class="member-name-link">sample</a><wbr>(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -477,7 +570,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  set of integers in the interval [0, n).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#samplePool(int,int,int%5B%5D)" class="member-name-link">samplePool</a><wbr>(int&nbsp;n,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sampleInsertion(int,int,int%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -485,10 +578,18 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  set of integers in the interval [0, n).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sampleReservoir(int,int,int%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(int&nbsp;n,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#samplePool(int,int,int%5B%5D)" class="member-name-link">samplePool</a><wbr>(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates a random sample of k integers, without replacement, from the
+ set of integers in the interval [0, n).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sampleReservoir(int,int,int%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(int&nbsp;n,
+ int&nbsp;k,
+ int[]&nbsp;result)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </div>
@@ -519,6 +620,20 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of
  the default random number generator as obtained via a call to
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(long)">
+<h3>EnhancedRandomGenerator</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EnhancedRandomGenerator</span><wbr><span class="parameters">(long&nbsp;seed)</span></div>
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance
+ of a random number generator initialized with a specified seed
+ to enable replicating the same sequence of random numbers during
+ subsequent runs.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seed</code> - The seed for the random number generator.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -652,6 +767,238 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 </section>
 </li>
 <li>
+<section class="detail" id="biasedInts(int,int)">
+<h3>biasedInts</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">biasedInts</span><wbr><span class="parameters">(int&nbsp;randomNumberOrigin,
+ int&nbsp;randomNumberBound)</span></div>
+<div class="block"><p>Returns an effectively unlimited stream of pseudorandom int values, each value
+ random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+
+ <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
+ by an implementation of a variation of the algorithm proposed in the 
+ article: Daniel Lemire, "Fast Random Integer 
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+ The difference between this implementation and that algorithm is that we have removed
+ the rejection sampling to create an ultrafast, but not strictly uniform, stream of
+ random integers. If you require strict uniformity, then use the <a href="#ints(int,int)"><code>ints(int, int)</code></a> 
+ method instead.</p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound)</dd>
+<dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
+<dt>Returns:</dt>
+<dd>an effectively unlimited stream of pseudorandom int values,
+ random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
+ than or equal to randomNumberBound</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="biasedInts(long,int,int)">
+<h3>biasedInts</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">biasedInts</span><wbr><span class="parameters">(long&nbsp;streamSize,
+ int&nbsp;randomNumberOrigin,
+ int&nbsp;randomNumberBound)</span></div>
+<div class="block"><p>Returns a stream of pseudorandom int values, each value
+ random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+
+ <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
+ by an implementation of a variation of the algorithm proposed in the 
+ article: Daniel Lemire, "Fast Random Integer 
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+ The difference between this implementation and that algorithm is that we have removed
+ the rejection sampling to create an ultrafast, but not strictly uniform, stream of
+ random integers. If you require strict uniformity, then use the <a href="#ints(long,int,int)"><code>ints(long, int, int)</code></a> 
+ method instead.</p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>streamSize</code> - The number of values in the stream.</dd>
+<dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound).</dd>
+<dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
+<dt>Returns:</dt>
+<dd>a stream of pseudorandom int values,
+ random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
+ than or equal to randomNumberBound, or if streamSize is negative.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="binomials(int,double)">
+<h3>binomials</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">binomials</span><wbr><span class="parameters">(int&nbsp;n,
+ double&nbsp;p)</span></div>
+<div class="block"><p>Returns an effectively unlimited stream of pseudorandom int values, each value
+ generated from a binomial distribution. <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>n</code> - Number of trials for the binomial distribution.</dd>
+<dd><code>p</code> - The probability of a successful trial.</dd>
+<dt>Returns:</dt>
+<dd>an effectively unlimited stream of pseudorandom int values
+ generated from a binomial distribution.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="binomials(long,int,double)">
+<h3>binomials</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">binomials</span><wbr><span class="parameters">(long&nbsp;streamSize,
+ int&nbsp;n,
+ double&nbsp;p)</span></div>
+<div class="block"><p>Returns a stream of pseudorandom int values, each value
+ generated from a binomial distribution. <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>streamSize</code> - The number of values in the stream.</dd>
+<dd><code>n</code> - Number of trials for the binomial distribution.</dd>
+<dd><code>p</code> - The probability of a successful trial.</dd>
+<dt>Returns:</dt>
+<dd>a stream of pseudorandom int values
+ generated from a binomial distribution.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="cauchys(double,double)">
+<h3>cauchys</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">cauchys</span><wbr><span class="parameters">(double&nbsp;median,
+ double&nbsp;scale)</span></div>
+<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double 
+ values from a Cauchy distribution.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>median</code> - The median of the Cauchy distribution.</dd>
+<dd><code>scale</code> - The scale of the Cauchy distribution.</dd>
+<dt>Returns:</dt>
+<dd>an effectively unlimited stream of pseudorandom double values
+ from a Cauchy distribution.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="cauchys(long,double,double)">
+<h3>cauchys</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">cauchys</span><wbr><span class="parameters">(long&nbsp;streamSize,
+ double&nbsp;median,
+ double&nbsp;scale)</span></div>
+<div class="block"><p>Returns a stream of pseudorandom double 
+ values from a Cauchy distribution.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>streamSize</code> - The number of values in the stream.</dd>
+<dd><code>median</code> - The median of the Cauchy distribution.</dd>
+<dd><code>scale</code> - The scale of the Cauchy distribution.</dd>
+<dt>Returns:</dt>
+<dd>a stream of pseudorandom double values
+ from a Cauchy distribution.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="exponentials()">
+<h3>exponentials</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">exponentials</span>()</div>
+<div class="block"><p>Returns an effectively unlimited stream of pseudorandom non-negative double 
+ values from an exponential distribution with mean 1.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an effectively unlimited stream of pseudorandom double values
+ from an exponential distribution with mean 1.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="exponentials(long)">
+<h3>exponentials</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">exponentials</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
+<div class="block"><p>Returns a stream of pseudorandom non-negative double 
+ values from an exponential distribution with mean 1.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>streamSize</code> - The number of values in the stream.</dd>
+<dt>Returns:</dt>
+<dd>a stream of pseudorandom double values
+ from an exponential distribution with mean 1.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="gaussians()">
+<h3>gaussians</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span>()</div>
+<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double 
+ values from a Gaussian distribution with mean 0 and standard deviation 1.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an effectively unlimited stream of pseudorandom double values
+ from a Gaussian distribution with mean 0 and standard deviation 1.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="gaussians(double,double)">
+<h3>gaussians</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span><wbr><span class="parameters">(double&nbsp;mean,
+ double&nbsp;stdev)</span></div>
+<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double 
+ values from a Gaussian distribution with specified mean and standard deviation.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>mean</code> - The mean of the Gaussian.</dd>
+<dd><code>stdev</code> - The standard deviation of the Gaussian.</dd>
+<dt>Returns:</dt>
+<dd>an effectively unlimited stream of pseudorandom double values
+ from a Gaussian distribution with specified mean and standard deviation.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="gaussians(long,double,double)">
+<h3>gaussians</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span><wbr><span class="parameters">(long&nbsp;streamSize,
+ double&nbsp;mean,
+ double&nbsp;stdev)</span></div>
+<div class="block"><p>Returns a stream of pseudorandom double 
+ values from a Gaussian distribution with specified mean and standard deviation.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>streamSize</code> - The number of values in the stream.</dd>
+<dd><code>mean</code> - The mean of the Gaussian.</dd>
+<dd><code>stdev</code> - The standard deviation of the Gaussian.</dd>
+<dt>Returns:</dt>
+<dd>a stream of pseudorandom double values
+ from a Gaussian distribution with specified mean and standard deviation.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="gaussians(long)">
+<h3>gaussians</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
+<div class="block"><p>Returns a stream of pseudorandom non-negative double 
+ values from a Gaussian distribution with mean 0 and standard deviation 1.
+ <b>Enhanced Functionality.</b></p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>streamSize</code> - The number of values in the stream.</dd>
+<dt>Returns:</dt>
+<dd>a stream of pseudorandom double values
+ from a Gaussian distribution with mean 0 and standard deviation 1.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="nextBiasedInt(int)">
 <h3>nextBiasedInt</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextBiasedInt</span><wbr><span class="parameters">(int&nbsp;bound)</span></div>
@@ -675,6 +1022,35 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd>a random integer between 0 (inclusive) and bound (exclusive).</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the bound is not positive</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="nextBiasedInt(int,int)">
+<h3>nextBiasedInt</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextBiasedInt</span><wbr><span class="parameters">(int&nbsp;origin,
+ int&nbsp;bound)</span></div>
+<div class="block"><p>Generates a random integer in the interval: [origin, bound). <b>Enhanced Functionality.</b></p>
+
+ <p>The nextBiasedInt(origin, bound) method computes a random int in the target interval
+ but faster than nextInt(origin, bound). It does not
+ correct for bias via rejection sampling, and thus some values in the interval [origin, bound)
+ may be more likely than others. There is no bias interval width is a power of 2.
+ Otherwise, the smaller the interval, the less bias; and the larger
+ the interval, the more bias. If your interval is relatively low, and if your application
+ does not require strict uniformity, then this method is significantly faster than any
+ approach that corrects for bias. We started with  
+ the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+ But we removed from it the rejection sampling portion.</p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>origin</code> - Lower bound, inclusive, on range of random integers.</dd>
+<dd><code>bound</code> - Upper bound, exclusive, on range of random integers (must be greater than origin).</dd>
+<dt>Returns:</dt>
+<dd>a random integer between origin (inclusive) and bound (exclusive).</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the bound is not greater than origin</dd>
 </dl>
 </section>
 </li>
