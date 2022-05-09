@@ -208,14 +208,14 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	}
 	
 	/**
-	 * <p>Returns an effectively unlimited stream of pseudorandom int values, each value
+	 * <p>Returns a stream of pseudorandom int values, each value
 	 * generated from a binomial distribution. <b>Enhanced Functionality.</b></p> 
 	 *
 	 * @param streamSize The number of values in the stream.
 	 * @param n Number of trials for the binomial distribution.
 	 * @param p The probability of a successful trial.
 	 *
-	 * @return an effectively unlimited stream of pseudorandom int values
+	 * @return a stream of pseudorandom int values
 	 * generated from a binomial distribution.
 	 */
 	public final IntStream binomials(long streamSize, int n, double p) {
