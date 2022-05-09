@@ -676,7 +676,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 */
 	@Override
 	public final double nextGaussian(double mean, double stddev) {
-		return mean + RandomVariates.nextGaussian(stddev, generator);
+		return RandomVariates.nextGaussian(mean, stddev, generator);
 	}
 	
 	/**

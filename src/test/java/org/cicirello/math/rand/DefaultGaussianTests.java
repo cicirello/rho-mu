@@ -108,6 +108,22 @@ public class DefaultGaussianTests {
 	}
 	
 	@Test
+	public void testSplittableRandom10mu5() {
+		SplittableRandom r = new SplittableRandom(42);
+		int[] buckets = new int[20];
+		final int N = buckets.length * EXPECTED_SAMPLES_PER_BUCKET;
+		for (int i = 0; i < N; i++) {
+			int j = whichBucket(RandomVariates.nextGaussian(5, 10, r) - 5.0, 10);
+			buckets[j]++;
+		}
+		double chi = chiSquare(buckets);
+		assertTrue(chi <= 30.144); // 19 degrees of freedom, 95% percentage point of chi square distribution: 30.144
+		if (VERBOSE_OUTPUT) {
+			System.out.printf("SplittableRandom, sigma=10, chi=%5.4f\n", chi);
+		}
+	}
+	
+	@Test
 	public void testNoParamNextGaussian1() {
 		// Since we cannot set the seed for the random number generator
 		// in this case (ThreadLocalRandom does not allow setting seeds),
@@ -165,6 +181,36 @@ public class DefaultGaussianTests {
 			if (positive && negative) break;
 		}
 		assertTrue(positive && negative);
+	}
+	
+	@Test
+	public void testNoParamNextGaussian10mu500() {
+		// Since we cannot set the seed for the random number generator
+		// in this case (ThreadLocalRandom does not allow setting seeds),
+		// we do not do any goodness of fit testing here.  Without the ability 
+		// to set a seed, the chi square test statistic would be different
+		// each test run, and tests at the 95% level could fail on average 1
+		// out of every 20 runs and still be statistically valid.
+		
+		// Also note that ThreadLocalRandom implements the same pseudorandom
+		// number generator algorithm as SplittableRandom, without the split
+		// functionality.  And our implementation of RandomVariates.nextGaussian()
+		// delegates computation to RandomVariates.nextGaussian(Random) by passing
+		// ThreadLocalRandom.current() as the param since ThreadLocalRandom extends
+		// Random.  So if the other test cases pass the goodness of fit tests, we
+		// should be fine here as well.
+		
+		// We simply test instead that RandomVariates.nextGaussian(mu, sigma) 
+		// gives values both above and below mu over a large number of trials.  
+		boolean above = false;
+		boolean below = false;
+		for (int i = 0; i < 1000; i++) {
+			double x = RandomVariates.nextGaussian(500, 10);
+			if (x < 500) below = true;
+			else if (x > 500) above = true;
+			if (above && below) break;
+		}
+		assertTrue(above && below);
 	}
 	
 	
