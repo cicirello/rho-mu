@@ -55,7 +55,7 @@ import java.util.SplittableRandom;
  *    triples of integers without replacement.</li>
  * <li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
  * <li>Methods to generate streams of numbers from distributions other than uniform, such
- * as streams of random numbers of binomial distributions.</li>
+ * as streams of random numbers from binomial distributions, exponential distributions, and Gaussian distributions.</li>
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
@@ -300,6 +300,63 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 */
 	public final DoubleStream exponentials(long streamSize) {
 		return DoubleStream.generate(() -> nextExponential()).sequential().limit(streamSize);
+	}
+	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom double 
+	 * values from a Gaussian distribution with mean 0 and standard deviation 1.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @return an effectively unlimited stream of pseudorandom double values
+	 * from a Gaussian distribution with mean 0 and standard deviation 1.
+	 */
+	public final DoubleStream gaussians() {
+		return DoubleStream.generate(() -> nextGaussian()).sequential();
+	}
+	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom double 
+	 * values from a Gaussian distribution with specified mean and standard deviation.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param mean The mean of the Gaussian.
+	 * @param stdev The standard deviation of the Gaussian.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom double values
+	 * from a Gaussian distribution with specified mean and standard deviation.
+	 */
+	public final DoubleStream gaussians(double mean, double stdev) {
+		return DoubleStream.generate(() -> nextGaussian(mean, stdev)).sequential();
+	}
+	
+	/**
+	 * <p>Returns a stream of pseudorandom double 
+	 * values from a Gaussian distribution with specified mean and standard deviation.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * @param mean The mean of the Gaussian.
+	 * @param stdev The standard deviation of the Gaussian.
+	 *
+	 * @return a stream of pseudorandom double values
+	 * from a Gaussian distribution with specified mean and standard deviation.
+	 */
+	public final DoubleStream gaussians(long streamSize, double mean, double stdev) {
+		return DoubleStream.generate(() -> nextGaussian(mean, stdev)).sequential().limit(streamSize);
+	}
+	
+	/**
+	 * <p>Returns a stream of pseudorandom non-negative double 
+	 * values from a Gaussian distribution with mean 0 and standard deviation 1.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 *
+	 * @return a stream of pseudorandom double values
+	 * from a Gaussian distribution with mean 0 and standard deviation 1.
+	 */
+	public final DoubleStream gaussians(long streamSize) {
+		return DoubleStream.generate(() -> nextGaussian()).sequential().limit(streamSize);
 	}
 	
 	/**
