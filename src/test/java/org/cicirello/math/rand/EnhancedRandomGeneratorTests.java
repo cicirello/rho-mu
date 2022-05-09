@@ -230,6 +230,49 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testExponentials() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.exponentials().limit(10).forEach(
+			x -> {
+				assertTrue(x >= 0);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+			}
+		);
+		assertTrue(w.different);
+	}
+	
+	@Test
+	public void testExponentialsLimited() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+			int count;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.exponentials(5L).forEach(
+			x -> {
+				assertTrue(x >= 0);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+				w.count++;
+			}
+		);
+		assertTrue(w.different);
+		assertEquals(5, w.count);
+	}
+	
+	@Test
 	public void testIntsOriginBound() {
 		class Wrapper {
 			boolean different;

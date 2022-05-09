@@ -277,6 +277,32 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	}
 	
 	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom non-negative double 
+	 * values from an exponential distribution with mean 1.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @return an effectively unlimited stream of pseudorandom double values
+	 * from an exponential distribution with mean 1.
+	 */
+	public final DoubleStream exponentials() {
+		return DoubleStream.generate(() -> nextExponential()).sequential();
+	}
+	
+	/**
+	 * <p>Returns a stream of pseudorandom non-negative double 
+	 * values from an exponential distribution with mean 1.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 *
+	 * @return a stream of pseudorandom double values
+	 * from an exponential distribution with mean 1.
+	 */
+	public final DoubleStream exponentials(long streamSize) {
+		return DoubleStream.generate(() -> nextExponential()).sequential().limit(streamSize);
+	}
+	
+	/**
 	 * <p>Generates a random integer in the interval: [0, bound). <b>Enhanced Functionality.</b></p>
 	 *
 	 * <p>The nextBiasedInt(bound) method computes a random int in the target interval
