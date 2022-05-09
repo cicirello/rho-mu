@@ -108,12 +108,51 @@ public final class RandomVariates {
 	
 	/**
 	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation, sigma, of your choosing. This method uses
+	 * mean mu and standard deviation sigma. This method uses
 	 * the library's current most-efficient algorithm for Gaussian random number
 	 * generation, which may change in future releases. If you require a 
 	 * guarantee of the algorithm used, then see the API for the classes that
 	 * implement specific Gaussian algorithms.
-	 * {@link ThreadLocalRandom} is used as the pseudorandom number generator for the 
+	 * {@link ThreadLocalRandom} is used as the  
+	 * source of randomness.
+	 *
+	 * @param mu The mean of the Gaussian. 
+	 * @param sigma The standard deviation of the Gaussian.
+	 * @return A random number from a Gaussian distribution with mean mu and
+	 * standard deviation sigma.
+	 */
+	public static double nextGaussian(double mu, double sigma) {
+		return mu + ZigguratGaussian.nextGaussian(sigma);
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean mu and standard deviation sigma. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 *
+	 * @param mu The mean of the Gaussian. 
+	 * @param sigma The standard deviation of the Gaussian.
+	 * @param r The pseudorandom number generator to use for the 
+	 * source of randomness.
+	 *
+	 * @return A random number from a Gaussian distribution with mean mu and
+	 * standard deviation sigma.
+	 */
+	public static double nextGaussian(double mu, double sigma, RandomGenerator r) {
+		return mu + ZigguratGaussian.nextGaussian(sigma, r);
+	}
+	
+	/**
+	 * Generates a random number from a Gaussian distribution with
+	 * mean 0 and standard deviation sigma. This method uses
+	 * the library's current most-efficient algorithm for Gaussian random number
+	 * generation, which may change in future releases. If you require a 
+	 * guarantee of the algorithm used, then see the API for the classes that
+	 * implement specific Gaussian algorithms.
+	 * {@link ThreadLocalRandom} is used as the  
 	 * source of randomness.
 	 * @param sigma The standard deviation of the Gaussian.
 	 * @return A random number from a Gaussian distribution with mean 0 and
@@ -125,7 +164,7 @@ public final class RandomVariates {
 	
 	/**
 	 * Generates a random number from a Gaussian distribution with
-	 * mean 0 and standard deviation, sigma, of your choosing. This method uses
+	 * mean 0 and standard deviation sigma. This method uses
 	 * the library's current most-efficient algorithm for Gaussian random number
 	 * generation, which may change in future releases. If you require a 
 	 * guarantee of the algorithm used, then see the API for the classes that

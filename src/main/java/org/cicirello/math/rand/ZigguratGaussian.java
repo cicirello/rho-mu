@@ -371,9 +371,7 @@ public final class ZigguratGaussian {
 			if (j < ktab[i]) break;
 
 			if (i < 127) {
-				double y0 = ytab[i];
-				double y1 = ytab[i+1];
-				y = y1 + (y0 - y1) * r.nextDouble();
+				y = ytab[i+1] + (ytab[i] - ytab[i+1]) * r.nextDouble();
 			} else {
 				// Includes a couple optimizations not done in original C version.
 				// See the comments where PARAM_R_INV and HALF_PARAM_R are declared

@@ -273,6 +273,96 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testGaussians() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.gaussians().limit(10).forEach(
+			x -> {
+				assertTrue(x < 5.0);
+				assertTrue(x > -5.0);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+			}
+		);
+		assertTrue(w.different);
+	}
+	
+	@Test
+	public void testGaussiansMuSigma() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.gaussians(500.0, 0.01).limit(10).forEach(
+			x -> {
+				assertTrue(x < 500.05);
+				assertTrue(x > 499.95);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+			}
+		);
+		assertTrue(w.different);
+	}
+	
+	@Test
+	public void testGaussiansMuSigmaLimited() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+			int count;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.gaussians(5L, 500.0, 0.01).forEach(
+			x -> {
+				assertTrue(x < 500.05);
+				assertTrue(x > 499.95);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+				w.count++;
+			}
+		);
+		assertTrue(w.different);
+		assertEquals(5, w.count);
+	}
+	
+	@Test
+	public void testGaussiansLimited() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+			int count;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.gaussians(5L).forEach(
+			x -> {
+				assertTrue(x < 5.0);
+				assertTrue(x > -5.0);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+				w.count++;
+			}
+		);
+		assertTrue(w.different);
+		assertEquals(5, w.count);
+	}
+	
+	@Test
 	public void testIntsOriginBound() {
 		class Wrapper {
 			boolean different;
