@@ -55,7 +55,8 @@ import java.util.SplittableRandom;
  *    triples of integers without replacement.</li>
  * <li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
  * <li>Methods to generate streams of numbers from distributions other than uniform, such
- * as streams of random numbers from binomial distributions, exponential distributions, and Gaussian distributions.</li>
+ *     as streams of random numbers from binomial distributions, Cauchy distributions, 
+ *     exponential distributions, and Gaussian distributions.</li>
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
@@ -274,6 +275,37 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 */
 	public final IntStream binomials(long streamSize, int n, double p) {
 		return IntStream.generate(() -> nextBinomial(n, p)).sequential().limit(streamSize);
+	}
+	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom double 
+	 * values from a Cauchy distribution.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param median The median of the Cauchy distribution.
+	 * @param scale The scale of the Cauchy distribution.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom double values
+	 * from a Cauchy distribution.
+	 */
+	public final DoubleStream cauchys(double median, double scale) {
+		return DoubleStream.generate(() -> nextCauchy(median, scale)).sequential();
+	}
+	
+	/**
+	 * <p>Returns a stream of pseudorandom double 
+	 * values from a Cauchy distribution.
+	 * <b>Enhanced Functionality.</b></p> 
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * @param median The median of the Cauchy distribution.
+	 * @param scale The scale of the Cauchy distribution.
+	 *
+	 * @return a stream of pseudorandom double values
+	 * from a Cauchy distribution.
+	 */
+	public final DoubleStream cauchys(long streamSize, double median, double scale) {
+		return DoubleStream.generate(() -> nextCauchy(median, scale)).sequential().limit(streamSize);
 	}
 	
 	/**

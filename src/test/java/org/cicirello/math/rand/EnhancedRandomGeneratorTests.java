@@ -273,6 +273,51 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testCauchys() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.cauchys(500.0, 0.01).limit(10).forEach(
+			x -> {
+				assertTrue(x < 501.0);
+				assertTrue(x > 499.0);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+			}
+		);
+		assertTrue(w.different);
+	}
+	
+	@Test
+	public void testCauchysLimited() {
+		class Wrapper {
+			boolean different;
+			double last = Double.NaN;
+			int count;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+		final Wrapper w = new Wrapper();
+		erg.cauchys(5L, 500.0, 0.01).forEach(
+			x -> {
+				assertTrue(x < 501.0);
+				assertTrue(x > 499.0);
+				if (w.last != Double.NaN && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+				w.count++;
+			}
+		);
+		assertTrue(w.different);
+		assertEquals(5, w.count);
+	}
+	
+	@Test
 	public void testGaussians() {
 		class Wrapper {
 			boolean different;
