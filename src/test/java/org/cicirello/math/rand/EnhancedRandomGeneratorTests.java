@@ -275,6 +275,51 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
+	public void testBiasedIntsOriginBound() {
+		class Wrapper {
+			boolean different;
+			int last = -1;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42);
+		final Wrapper w = new Wrapper();
+		erg.biasedInts(100, 200).limit(10).forEach(
+			x -> {
+				assertTrue(x < 200);
+				assertTrue(x >= 100);
+				if (w.last >= 0 && w.last != x) {
+					w.different = true;
+				}
+				w.last = x;
+			}
+		);
+		assertTrue(w.different);
+	}
+	
+	@Test
+	public void testBiasedIntsSizeOriginBound() {
+		class Wrapper {
+			int count;
+			boolean different;
+			int last = -1;
+		}
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42);
+		final Wrapper w = new Wrapper();
+		erg.biasedInts(5, 100, 200).forEach(
+			x -> {
+				assertTrue(x < 200);
+				assertTrue(x >= 100);
+				if (w.last >= 0 && w.last != x) {
+					w.different = true;
+				} 
+				w.last = x;
+				w.count++;
+			}
+		);
+		assertEquals(5, w.count);
+		assertTrue(w.different);
+	}
+	
+	@Test
 	public void testBinomial() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		for (int i = 0; i < 10; i++) {

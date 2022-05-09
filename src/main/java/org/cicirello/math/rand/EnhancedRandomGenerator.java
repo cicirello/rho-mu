@@ -48,11 +48,12 @@ import java.util.SplittableRandom;
  * <li>Additional distributions available beyond what is supported by
  *     the Java API's RandomGenerator classes, such as Binomial and Cauchy
  *     random vaiables.</li>
- * <li>An ultrafast, but biased, nextBiasedInt method that sacrifices uniformity
- *     for speed by excluding the rejection sampling necessary to ensure uniformity.</li>
+ * <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity
+ *     for speed by excluding the rejection sampling necessary to ensure uniformity,
+ *     as well as a biasedInts methods for generating streams of such integers.</li>
  * <li>Methods for generating random pairs of integers without replacement, and random
  *    triples of integers without replacement.</li>
- * <li>Methods for generating random samples without replacement from a range of integers.</li>
+ * <li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
  * <li>Methods to generate streams of numbers from distributions other than uniform, such
  * as streams of random numbers of binomial distributions.</li>
  * </ul>
@@ -191,6 +192,59 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 */
 	public final boolean[] arrayMask(int n, double p) {
 		return RandomIndexer.arrayMask(n, p, generator);
+	}
+	
+	/**
+	 * <p>Returns an effectively unlimited stream of pseudorandom int values, each value
+	 * random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+	 *
+	 * <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
+	 * by an implementation of a variation of the algorithm proposed in the 
+	 * article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+	 * The difference between this implementation and that algorithm is that we have removed
+	 * the rejection sampling to create an ultrafast, but not strictly uniform, stream of
+	 * random integers. If you require strict uniformity, then use the {@link #ints(int, int)} 
+	 * method instead.</p>
+	 *
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound)
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return an effectively unlimited stream of pseudorandom int values,
+	 * random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound
+	 */
+	public final IntStream biasedInts(int randomNumberOrigin, int randomNumberBound) {
+		return IntStream.generate(() -> nextBiasedInt(randomNumberOrigin, randomNumberBound)).sequential();
+	}
+	
+	/**
+	 * <p>Returns a stream of pseudorandom int values, each value
+	 * random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+	 *
+	 * <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
+	 * by an implementation of a variation of the algorithm proposed in the 
+	 * article: Daniel Lemire, "Fast Random Integer 
+	 * Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
+	 * The difference between this implementation and that algorithm is that we have removed
+	 * the rejection sampling to create an ultrafast, but not strictly uniform, stream of
+	 * random integers. If you require strict uniformity, then use the {@link #ints(long, int, int)} 
+	 * method instead.</p>
+	 *
+	 * @param streamSize The number of values in the stream.
+	 * @param randomNumberOrigin The lower bound, inclusive (must be less than bound).
+	 * @param randomNumberBound Upper bound, exclusive, on range of random integers.
+	 *
+	 * @return a stream of pseudorandom int values,
+	 * random from the interval [randomNumberOrigin, randomNumberBound).
+	 *
+	 * @throws IllegalArgumentException if the randomNumberOrigin is greater 
+	 * than or equal to randomNumberBound, or if streamSize is negative.
+	 */
+	public final IntStream biasedInts(long streamSize, int randomNumberOrigin, int randomNumberBound) {
+		return IntStream.generate(() -> nextBiasedInt(randomNumberOrigin, randomNumberBound)).sequential().limit(streamSize);
 	}
 	
 	/**
