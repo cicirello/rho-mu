@@ -637,6 +637,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * {@link #sampleReservoir}, and {@link #sampleInsertion} 
 	 * methods based on the values of n and k.</p>
 	 *
+	 * <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
+	 * was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+	 *
 	 * <p>The runtime is O(min(n, k<sup>2</sup>))
 	 * and it generates O(min(k, n-k)) random numbers.</p>
 	 *
@@ -656,6 +661,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * <p>Generates a random sample of k integers, without replacement, from the
 	 * set of integers in the interval [0, n).  All n choose k combinations are equally
 	 * likely. <b>Enhanced Functionality.</b></p>  
+	 *
+	 * <p>This implements the insertion sampling algorithm described in:</p>
+	 * <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
+	 * Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
+	 * doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
 	 *
 	 * <p>The runtime is O(k<sup>2</sup>)
 	 * and it generates O(k) random numbers.  Thus, it is a better 
