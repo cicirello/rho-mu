@@ -93,6 +93,12 @@ classDiagram
   link EnhancedJumpableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedJumpableGenerator.html"
   link EnhancedLeapableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedLeapableGenerator.html"
   link EnhancedArbitrarilyJumpableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedArbitrarilyJumpableGenerator.html"
+  link RandomGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html"
+  link StreamableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.StreamableGenerator.html"
+  link SplittableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.SplittableGenerator.html"
+  link JumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.JumpableGenerator.html"
+  link LeapableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.LeapableGenerator.html"
+  link ArbitrarilyJumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.ArbitrarilyJumpableGenerator.html"
 ```
 
 ## Java 17+
