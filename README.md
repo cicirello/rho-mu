@@ -37,7 +37,11 @@ have extracted &rho;&mu; from those libraries.
 ## Class Hierarchy
 
 This class diagram summarizes the primary classes of &rho;&mu; in relation to Java 17's
-hierarchy of RandomGenerator interfaces.
+hierarchy of RandomGenerator interfaces. Note that for brevity in the diagram, methods are 
+omitted. Each class and interface in the diagram is a clickable link to the javadoc page 
+that documents it either within the online 
+[documentation of &rho;&mu;](https://rho-mu.cicirello.org/api/) for the classes of the
+&rho;&mu; library or within the Java 17 API documentation for Java's RandomGenerator interfaces.
 
 ```mermaid
 classDiagram
