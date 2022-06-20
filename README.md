@@ -43,6 +43,9 @@ hierarchy of RandomGenerator interfaces.
 classDiagram
   class RandomGenerator
   <<interface>> RandomGenerator
+  class StreamableGenerator
+  <<interface>> StreamableGenerator
+  RandomGenerator <|-- StreamableGenerator
 ```
 
 ## Java 17+
