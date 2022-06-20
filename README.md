@@ -86,6 +86,13 @@ classDiagram
   ArbitrarilyJumpableGenerator <|.. EnhancedArbitrarilyJumpableGenerator
   EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
   link RandomIndexer "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html"
+  link RandomVariates "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html"
+  link EnhancedRandomGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedRandomGenerator.html"
+  link EnhancedStreamableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedStreamableGenerator.html"
+  link EnhancedSplittableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedSplittableGenerator.html"
+  link EnhancedJumpableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedJumpableGenerator.html"
+  link EnhancedLeapableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedLeapableGenerator.html"
+  link EnhancedArbitrarilyJumpableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedArbitrarilyJumpableGenerator.html"
 ```
 
 ## Java 17+
