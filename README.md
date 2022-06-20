@@ -58,8 +58,10 @@ classDiagram
   class ArbitrarilyJumpableGenerator
   <<interface>> ArbitrarilyJumpableGenerator
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
+  class RandomIndexer
   class EnhancedRandomGenerator
   RandomGenerator <|.. EnhancedRandomGenerator
+  RandomIndexer <.. EnhancedRandomGenerator
   EnhancedRandomGenerator : -RandomGenerator generator
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
