@@ -64,9 +64,11 @@ classDiagram
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
+  EnhancedStreamableGenerator : -StreamableGenerator generator
   class EnhancedSplittableGenerator
   EnhancedStreamableGenerator <|-- EnhancedSplittableGenerator
   SplittableGenerator <|.. EnhancedSplittableGenerator
+  EnhancedSplittableGenerator : -SplittableGenerator generator
   class EnhancedJumpableGenerator
   EnhancedStreamableGenerator <|-- EnhancedJumpableGenerator
   JumpableGenerator <|.. EnhancedJumpableGenerator
