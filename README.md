@@ -49,6 +49,9 @@ classDiagram
   class SplittableGenerator
   <<interface>> SplittableGenerator
   StreamableGenerator <|-- SplittableGenerator
+  class JumpableGenerator
+  <<interface>> JumpableGenerator
+  StreamableGenerator <|-- JumpableGenerator
 ```
 
 ## Java 17+
