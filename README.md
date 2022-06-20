@@ -85,6 +85,7 @@ classDiagram
   EnhancedLeapableGenerator <|-- EnhancedArbitrarilyJumpableGenerator
   ArbitrarilyJumpableGenerator <|.. EnhancedArbitrarilyJumpableGenerator
   EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
+  link RandomIndexer "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html"
 ```
 
 ## Java 17+
