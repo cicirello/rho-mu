@@ -40,9 +40,9 @@ This class diagram summarizes the primary classes of &rho;&mu; in relation to Ja
 hierarchy of RandomGenerator interfaces.
 
 ```mermaid
-classDiagram TD;
-  class RandomGenerator;
-  <<interface>> RandomGenerator;
+classDiagram
+  class RandomGenerator
+  <<interface>> RandomGenerator
 ```
 
 ## Java 17+
