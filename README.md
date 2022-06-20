@@ -60,6 +60,7 @@ classDiagram
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
   class EnhancedRandomGenerator
   RandomGenerator <|.. EnhancedRandomGenerator
+  EnhancedRandomGenerator : -RandomGenerator generator
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
