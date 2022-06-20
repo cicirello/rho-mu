@@ -46,6 +46,9 @@ classDiagram
   class StreamableGenerator
   <<interface>> StreamableGenerator
   RandomGenerator <|-- StreamableGenerator
+  class SplittableGenerator
+  <<interface>> SplittableGenerator
+  StreamableGenerator <|-- SplittableGenerator
 ```
 
 ## Java 17+
