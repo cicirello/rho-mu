@@ -69,6 +69,9 @@ classDiagram
   class EnhancedJumpableGenerator
   EnhancedStreamableGenerator <|-- EnhancedJumpableGenerator
   JumpableGenerator <|.. EnhancedJumpableGenerator
+  class EnhancedLeapableGenerator
+  EnhancedJumpableGenerator <|-- EnhancedLeapableGenerator
+  LeapableGenerator <|.. EnhancedLeapableGenerator
 ```
 
 ## Java 17+
