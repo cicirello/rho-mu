@@ -72,12 +72,15 @@ classDiagram
   class EnhancedJumpableGenerator
   EnhancedStreamableGenerator <|-- EnhancedJumpableGenerator
   JumpableGenerator <|.. EnhancedJumpableGenerator
+  EnhancedJumpableGenerator : -JumpableGenerator generator
   class EnhancedLeapableGenerator
   EnhancedJumpableGenerator <|-- EnhancedLeapableGenerator
   LeapableGenerator <|.. EnhancedLeapableGenerator
+  EnhancedLeapableGenerator : -LeapableGenerator generator
   class EnhancedArbitrarilyJumpableGenerator
   EnhancedLeapableGenerator <|-- EnhancedArbitrarilyJumpableGenerator
   ArbitrarilyJumpableGenerator <|.. EnhancedArbitrarilyJumpableGenerator
+  EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
 ```
 
 ## Java 17+
