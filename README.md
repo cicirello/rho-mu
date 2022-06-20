@@ -55,6 +55,9 @@ classDiagram
   class LeapableGenerator
   <<interface>> LeapableGenerator
   JumpableGenerator <|-- LeapableGenerator
+  class ArbitrarilyJumpableGenerator
+  <<interface>> ArbitrarilyJumpableGenerator
+  LeapableGenerator <|-- ArbitrarilyJumpableGenerator
 ```
 
 ## Java 17+
