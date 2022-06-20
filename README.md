@@ -60,6 +60,9 @@ classDiagram
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
   class EnhancedRandomGenerator
   RandomGenerator <|.. EnhancedRandomGenerator
+  class EnhancedStreamableGenerator
+  EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
+  StreamableGenerator <|.. EnhancedStreamableGenerator
 ```
 
 ## Java 17+
