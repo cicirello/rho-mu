@@ -34,6 +34,17 @@ beginning to add one or the other of those libraries as dependencies in some oth
 strictly for the randomization utilities, which is certainly less than ideal. Therefore, we 
 have extracted &rho;&mu; from those libraries.
 
+## Class Hierarchy
+
+This class diagram summarizes the primary classes of &rho;&mu; in relation to Java 17's
+hierarchy of RandomGenerator interfaces.
+
+```mermaid
+classDiagram TD;
+  class RandomGenerator;
+  <<interface>> RandomGenerator;
+```
+
 ## Java 17+
 
 We currently support Java 17+. Our development process utilizes OpenJDK 17, and all
