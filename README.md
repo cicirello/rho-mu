@@ -58,6 +58,8 @@ classDiagram
   class ArbitrarilyJumpableGenerator
   <<interface>> ArbitrarilyJumpableGenerator
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
+  class EnhancedRandomGenerator
+  RandomGenerator <|.. EnhancedRandomGenerator
 ```
 
 ## Java 17+
