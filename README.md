@@ -66,6 +66,9 @@ classDiagram
   class EnhancedSplittableGenerator
   EnhancedStreamableGenerator <|-- EnhancedSplittableGenerator
   SplittableGenerator <|.. EnhancedSplittableGenerator
+  class EnhancedJumpableGenerator
+  EnhancedStreamableGenerator <|-- EnhancedJumpableGenerator
+  JumpableGenerator <|.. EnhancedJumpableGenerator
 ```
 
 ## Java 17+
