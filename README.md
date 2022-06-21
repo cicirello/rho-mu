@@ -75,6 +75,7 @@ classDiagram
   ZigguratGaussian <.. RandomVariates
   class MathFunctions
   MathFunctions <.. BTPE
+  class Statistics
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
@@ -112,6 +113,7 @@ classDiagram
   link ZigguratGaussian "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/ZigguratGaussian.html"
   link BTPE "https://github.com/cicirello/rho-mu/blob/main/src/main/java/org/cicirello/math/rand/BTPE.java"
   link MathFunctions "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/MathFunctions.html"
+  link Statistics "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/stats/Statistics.html"
 ```
 
 ## Java 17+
