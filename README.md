@@ -73,11 +73,11 @@ classDiagram
   BTPE <.. RandomVariates
   class ZigguratGaussian
   ZigguratGaussian <.. RandomVariates
-  class MathFunctions
-  MathFunctions <.. BTPE
   class Statistics
   class MatrixOps
   class JacobiDiagonalization
+  class MathFunctions
+  MathFunctions <.. BTPE
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
