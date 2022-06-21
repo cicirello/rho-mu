@@ -54,6 +54,21 @@ The &rho;&mu; library is a dependency of some of our other projects,
 including [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools)
 and [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa).
 
+### Table of Contents
+
+The rest of this README is organized as follows:
+* [UML Class Diagram](#uml-class-diagram): A UML class diagram of the library
+* [Java Requirements](#java-requirements): Minimum supported Java version information
+* [Versioning Scheme](#versioning-scheme): Explanation of the library's version numbers
+* [Building the Library (with Maven)](#building-the-library-with-maven)
+* [Examples](#examples): Information on example library usage
+* [Java Modules](#java-modules): Information for those whose projects use Java modules
+* [Importing the Library from Maven Central](#importing-the-library-from-maven-central)
+* [Importing the Library from GitHub Packages](#importing-the-library-from-gitHub-packages)
+* [Downloading Jar Files](#downloading-jar-files): Information on where you can download pre-compiled jars
+* [License](#license): Licensing information
+* [Contribute](#contribute): Information for those who wish to contribute
+
 ## UML Class Diagram
 
 This class diagram summarizes the classes of &rho;&mu; in relation to Java 17's
@@ -140,7 +155,7 @@ classDiagram
   link JacobiDiagonalization "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/JacobiDiagonalization.html"
 ```
 
-## Java 17+
+## Java Requirements
 
 We currently support Java 17+. Our development process utilizes OpenJDK 17, and all
 jar files released via Maven Central, GitHub Packages, and GitHub Releases are built
