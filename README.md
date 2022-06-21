@@ -76,6 +76,8 @@ classDiagram
   class MathFunctions
   MathFunctions <.. BTPE
   class Statistics
+  class MatrixOps
+  class JacobiDiagonalization
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
@@ -114,6 +116,8 @@ classDiagram
   link BTPE "https://github.com/cicirello/rho-mu/blob/main/src/main/java/org/cicirello/math/rand/BTPE.java"
   link MathFunctions "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/MathFunctions.html"
   link Statistics "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/stats/Statistics.html"
+  link MatrixOps "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/MatrixOps.html"
+  link JacobiDiagonalization "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/JacobiDiagonalization.html"
 ```
 
 ## Java 17+
