@@ -27,21 +27,41 @@ distributions other than uniform, such as Gaussian, Cauchy, etc. Additionally, i
 includes implementations of other math functions that are either needed by the randomization 
 utilities, or which are needed by some of our other projects.
 
-All of the initial functionality of &rho;&mu; originated in some of our other
-libraries, including [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools)
-and [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa). However, we found ourselves 
-beginning to add one or the other of those libraries as dependencies in some other projects
-strictly for the randomization utilities, which is certainly less than ideal. Therefore, we 
-have extracted &rho;&mu; from those libraries.
+Much of the core randomization enhancements is in a pair of utility classes: `RandomIndexer` and
+`RandomVariates`. Beginning with v2.0.0, the &rho;&mu; library was revised to utilize Java 17's
+hierarchy of random number generator interfaces (i.e., `RandomGenerator` and its subinterfaces).
+Specifically, &rho;&mu; now provides a class `EnhancedRandomGenerator` that wraps an instance
+of `RandomGenerator` while also implementing `RandomGenerator`, enabling adding the enhanced
+randomization features to any of Java 17's many random number generators, while also serving
+as a drop-in replacement. Additionally, &rho;&mu; provides a hierarchy of such wrapper classes,
+corresponding to Java 17's hierarchy of random number generator interfaces.
 
-## Class Hierarchy
+Some of the randomization enhancements include:
+* Faster generation of random int values subject to a bound or bound and origin.
+* Faster generation of random int values within an IntStream subject to a bound and origin.
+* Faster generation of Gaussian distributed random doubles.
+* Additional distributions available beyond what is supported by the Java API's `RandomGenerator` classes, 
+  such as Binomial and Cauchy random vaiables.
+* Ultrafast, but biased, `nextBiasedInt` methods that sacrifices uniformity for speed by excluding the 
+  rejection sampling necessary to ensure uniformity, as well as a `biasedInts` methods for generating streams 
+  of such integers.
+* Methods for generating random pairs of integers without replacement, and random triples of integers without replacement.
+* Methods for generating random samples of k integers without replacement from a range of integers.
+* Methods to generate streams of numbers from distributions other than uniform, such as streams of random numbers 
+  from binomial distributions, Cauchy distributions, exponential distributions, and Gaussian distributions.
 
-This class diagram summarizes the primary classes of &rho;&mu; in relation to Java 17's
-hierarchy of RandomGenerator interfaces. Note that for brevity in the diagram, methods are 
+The &rho;&mu; library is a dependency of some of our other projects, 
+including [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools)
+and [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa).
+
+## UML Class Diagram
+
+This class diagram summarizes the classes of &rho;&mu; in relation to Java 17's
+hierarchy of `RandomGenerator` interfaces. Note that for brevity in the diagram, methods are 
 omitted. Each class and interface in the diagram is a clickable link to the javadoc page 
-that documents it either within the online 
+that documents it either within the  
 [documentation of &rho;&mu;](https://rho-mu.cicirello.org/api/) for the classes of the
-&rho;&mu; library or within the Java 17 API documentation for Java's RandomGenerator interfaces.
+&rho;&mu; library, or within the Java 17 API documentation for Java's `RandomGenerator` interfaces.
 
 ```mermaid
 classDiagram
@@ -124,9 +144,13 @@ classDiagram
 
 We currently support Java 17+. Our development process utilizes OpenJDK 17, and all
 jar files released via Maven Central, GitHub Packages, and GitHub Releases are built
-with a Java 17 target. 
+with a Java 17 target.  See the following table for a mapping between library version
+and minimum supported Java version.
 
-Earlier versions (prior to 2.0.0) require Java 11+.
+| version | Java requirements |
+| --- | --- |
+| 2.x.y | Java 17+ |
+| 1.x.y | Java 11+ |
 
 ## Versioning Scheme
 
@@ -179,7 +203,7 @@ the version number with the version that you want to use.
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>rho-mu</artifactId>
-  <version>2.0.0</version>
+  <version>2.3.0</version>
 </dependency>
 ```
 
