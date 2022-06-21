@@ -40,6 +40,12 @@
  * alt="GNU General Public License Version 3 (GPLv3)" height="20" width="102"></a>
  * </p>
  *
+ * <h3>Support &rho;&mu;</h3>
+ *
+ * <p><a href="https://github.com/sponsors/cicirello"><img src="https://rho-mu.cicirello.org/images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28"></a>
+ * <a href="https://liberapay.com/cicirello"><img src="https://rho-mu.cicirello.org/images/Liberapay.svg" alt="Liberapay" width="119" height="28"></a>
+ * <a href="https://ko-fi.com/cicirello"><img src="https://rho-mu.cicirello.org/images/ko-fi.svg" alt="Ko-Fi" width="82" height="28"></a></p>
+ *
  * <h3>About the &rho;&mu; Library</h3>
  *
  * <p>The &rho;&mu; library is a library of
@@ -54,17 +60,53 @@
  * math functions that are either needed by the randomization 
  * utilities, or needed by some of our other projects.</p>
  *
+ * <p>Much of the core randomization enhancements is in a pair of utility 
+ * classes: {@link org.cicirello.math.rand.RandomIndexer RandomIndexer} 
+ * and {@link org.cicirello.math.rand.RandomVariates RandomVariates}. Beginning 
+ * with v2.0.0, the &rho;&mu; library was revised to utilize Java 17's
+ * hierarchy of random number generator interfaces (i.e., 
+ * {@link java.util.random.RandomGenerator RandomGenerator} and its subinterfaces).
+ * Specifically, &rho;&mu; now provides a class 
+ * {@link org.cicirello.math.rand.EnhancedRandomGenerator EnhancedRandomGenerator} that wraps an instance
+ * of {@link java.util.random.RandomGenerator RandomGenerator} while also 
+ * implementing {@link java.util.random.RandomGenerator RandomGenerator}, enabling adding the enhanced
+ * randomization features to any of Java 17's many random number generators, while also serving
+ * as a drop-in replacement. Additionally, &rho;&mu; provides a hierarchy of such wrapper classes,
+ * corresponding to Java 17's hierarchy of random number generator interfaces.</p>
+ *
+ * <p>The randomization enhancements includes:</p>
+ * <ul>
+ * <li>Faster generation of random int values subject to a bound or bound and origin.</li>
+ * <li>Faster generation of random int values within an IntStream subject to a bound and origin.</li>
+ * <li>Faster generation of Gaussian distributed random doubles.</li>
+ * <li>Additional distributions available beyond what is supported by
+ *     the Java API's RandomGenerator classes, such as Binomial and Cauchy
+ *     random vaiables.</li>
+ * <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity
+ *     for speed by excluding the rejection sampling necessary to ensure uniformity,
+ *     as well as a biasedInts methods for generating streams of such integers.</li>
+ * <li>Methods for generating random pairs of integers without replacement, and random
+ *    triples of integers without replacement.</li>
+ * <li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
+ * <li>Methods to generate streams of numbers from distributions other than uniform, such
+ *     as streams of random numbers from binomial distributions, Cauchy distributions, 
+ *     exponential distributions, and Gaussian distributions.</li>
+ * </ul>
+ *
  * <p>The <a href="https://github.com/cicirello/rho-mu" target=_top>source code repository</a> 
  * is hosted on GitHub.
  * The source code is licensed under the 
  * <a href="https://www.gnu.org/licenses/gpl-3.0.html" target=_top>GNU General Public License Version 3 (GPLv3)</a>.  For more information see the <a href="https://rho-mu.cicirello.org/" target=_top>&rho;&mu; 
  * website</a>.</p>
  *
- * <h3>Support &rho;&mu;</h3>
+ * <h3>UML Class Diagram</h3>
  *
- * <p><a href="https://github.com/sponsors/cicirello"><img src="https://rho-mu.cicirello.org/images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28"></a>
- * <a href="https://liberapay.com/cicirello"><img src="https://rho-mu.cicirello.org/images/Liberapay.svg" alt="Liberapay" width="119" height="28"></a>
- * <a href="https://ko-fi.com/cicirello"><img src="https://rho-mu.cicirello.org/images/ko-fi.svg" alt="Ko-Fi" width="82" height="28"></a></p>
+ * <p>The following UML class diagram shows the structure of the &rho;&mu; library. Classes and interfaces
+ * shown in blue are classes within the &rho;&mu; library. Classes and interfaces shown in gray are in the
+ * Java API. For brevity in the diagram, methods are omitted, and most attributes are omitted, aside from the
+ * attributes corresponding to the wrapped random number generator instances.</p>
+ *
+ * <img src="https://rho-mu.cicirello.org/images/rho-mu-uml.svg" alt="UML diagram" width="872" height="1038">
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
