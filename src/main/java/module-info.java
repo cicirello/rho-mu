@@ -102,12 +102,13 @@
  * <h3>UML Class Diagram</h3>
  *
  * <p>The following UML class diagram shows the structure of the &rho;&mu; library. Classes and interfaces
- * shown in blue are classes within the &rho;&mu; library. Classes and interfaces shown in gray are in the
- * Java API. For brevity in the diagram, methods are omitted, and most attributes are omitted, aside from the
- * attributes corresponding to the wrapped random number generator instances.</p>
+ * shown in blue are classes within the &rho;&mu; library, and are clickable links to the page documenting the
+ * class. Classes and interfaces shown in gray are in the Java API, and are also clickable links to the relevant
+ * page within the Java API documentation. For brevity in the diagram, methods are omitted, and most attributes 
+ * are omitted, aside from the attributes corresponding to the wrapped random number generator instances.</p>
  *
- * <img src="https://rho-mu.cicirello.org/images/rho-mu-uml.svg" alt="UML diagram" width="872" height="1038">
- *
+ * <object type="image/svg+xml" data="https://rho-mu.cicirello.org/images/rho-mu-uml.svg" width="872" height="1038">UML diagram</object>
+ * 
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
