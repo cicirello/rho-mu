@@ -1,6 +1,6 @@
 # &rho;&mu; - Java library of Randomization enHancements and Other Math Utilities
 
-<img src="../gh-pages/images/rho-mu.png" width="640" alt="&rho;&mu; - Java library of Randomization enHancements and Other Math Utilities">
+<img src="https://rho-mu.cicirello.org/images/rho-mu.png" width="640" alt="&rho;&mu; - Java library of Randomization enHancements and Other Math Utilities">
 
 Copyright (C) 2017-2022 [Vincent A. Cicirello](https://www.cicirello.org/).
 
@@ -10,12 +10,13 @@ API documentation: https://rho-mu.cicirello.org/api/
 
 | | |
 | :--- | :--- |
-| __Artifacts and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?label=Maven%20Central&logo=apachemaven)](https://search.maven.org/artifact/org.cicirello/rho-mu) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/rho-mu?logo=GitHub)](https://github.com/cicirello/rho-mu/releases) |
+| __Packages and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?label=Maven%20Central&logo=apachemaven)](https://search.maven.org/artifact/org.cicirello/rho-mu) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/rho-mu?logo=GitHub)](https://github.com/cicirello/rho-mu/releases) |
 | __Build Status__ | [![build](https://github.com/cicirello/rho-mu/workflows/build/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![docs](https://github.com/cicirello/rho-mu/workflows/docs/badge.svg)](https://rho-mu.cicirello.org/api/) [![CodeQL](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml) |
-| __JaCoCo Test Coverage__ | [![coverage](../badges/jacoco.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![branches coverage](../badges/branches.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) |
+| __JaCoCo Test Coverage__ | [![coverage](https://raw.githubusercontent.com/cicirello/rho-mu/badges/jacoco.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![branches coverage](https://github.com/cicirello/rho-mu/blob/badges/branches.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) |
 | __Security__ | [![Snyk security score](https://snyk-widget.herokuapp.com/badge/mvn/org.cicirello/rho-mu/badge.svg)](https://snyk.io/vuln/maven%3Aorg.cicirello%3Arho-mu) [![Snyk Known Vulnerabilities](https://snyk.io/test/github/cicirello/rho-mu/badge.svg)](https://snyk.io/test/github/cicirello/rho-mu) |
 | __DOI__ | [![DOI](https://zenodo.org/badge/408560166.svg)](https://zenodo.org/badge/latestdoi/408560166) | 
 | __License__ | [![GitHub](https://img.shields.io/github/license/cicirello/rho-mu)](https://github.com/cicirello/rho-mu/blob/main/LICENSE) | 
+| __Support__ | [![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/cicirello) [![Liberapay](https://img.shields.io/badge/Liberapay-F6C915?logo=liberapay&logoColor=black)](https://liberapay.com/cicirello) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/cicirello) |
 
 ## Overview
 
@@ -255,4 +256,3 @@ such as bug fixes or implementations of new functionality, then start
 by reading the [contribution guidelines](https://github.com/cicirello/.github/blob/main/CONTRIBUTING.md).
 This project has adopted 
 the [Contributor Covenant Code of Conduct](https://github.com/cicirello/.github/blob/main/CODE_OF_CONDUCT.md).
-
