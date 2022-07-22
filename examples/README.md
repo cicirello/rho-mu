@@ -15,3 +15,6 @@ mvn package
 
 The requirements for building the examples are the same as for building
 the library itself (e.g., Java 17+).
+
+Building the examples will produce a jar file in a target subdirectory of
+this examples directory.
