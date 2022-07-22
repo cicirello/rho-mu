@@ -193,10 +193,14 @@ enable a Maven profile that executes JaCoCo during the test phase.
 
 ## Examples
 
+The [examples](examples) directory contains source code of a few example
+programs demonstrating how to use various features of the library. The source
+code of the examples is commented with explanations where appropriate.
+
 Some of our other projects make extensive use of this library. You may
 consult the source code of [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools)
-and/or [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) for code
-examples. For example Chips-n-Salsa is a library of parallel and adaptive
+and/or [Chips-n-Salsa](https://github.com/cicirello/Chips-n-Salsa) for additional
+real code examples. For example Chips-n-Salsa is a library of parallel and adaptive
 stochastic local search algorithms, and as such requires extensive use of
 random number generation.
 
