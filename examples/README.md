@@ -1,7 +1,10 @@
 # Directory of Example Programs for &rho;&mu; Usage
 
 This directory contains programs demonstrating the usage of some of
-the functionality of the &rho;&mu; library. 
+the functionality of the &rho;&mu; library. A couple of the example
+programs also demonstrate the speed advantage over the Java API's
+builtin methods, with output from my runs available in the [data](data)
+subdirectory.
 
 ## Building the Examples
 
@@ -38,4 +41,26 @@ directory.
 
 ```Shell
 mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.RandomIndexerTimes
+```
+
+The output from my runs is available in [data/output.RandomIndexerTimes.txt](data/output.RandomIndexerTimes.txt).
+Results on your system may differ due to differences in CPU, OS, etc.
+
+### Trading Off Strict Uniformity for Enhanced Speed
+
+In addition to an enhanced `nextInt(bound)` method, &rho;&mu; provides a `nextBiasedInt(bound)`
+method that excludes the rejection sampling necessary to achieve strict uniformity. The purpose is
+to provide an ultrafast method for use-cases where strict uniformity is not required. The example
+program, `TimingNextBiasedIntMethod.java`, demonstrates the very significant speed advantage of 
+&rho;&mu;'s `nextBiasedInt(bound)` over Java's builtin `RandomGenerator.nextInt(bound)`. It computes
+the average CPU time of each for every bound from 1 through 512. For each case it tests the 
+significance of the time difference with a t-Test. Finally it summarizes the results in three
+broad categories: low bounds (less than 256), high bounds (greater than 256), and the special
+case of bounds that are powers of 2. 
+
+To run this example program, execute the following with the examples directory as your working
+directory.
+
+```Shell
+mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimingNextBiasedIntMethod
 ```
