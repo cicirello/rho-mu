@@ -64,3 +64,8 @@ directory.
 ```Shell
 mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimingNextBiasedIntMethod
 ```
+
+The output from my runs is available in [data/output.TimingNextBiasedIntMethod.txt](data/output.TimingNextBiasedIntMethod.txt).
+Results on your system may differ due to differences in CPU, OS, etc. Also note that the times
+are not directly comparable to those of the prior example because this example required timing a
+much larger number of samples to get sufficiently measurable times (due to how much faster `nextBiasedInt(bound)` is).
