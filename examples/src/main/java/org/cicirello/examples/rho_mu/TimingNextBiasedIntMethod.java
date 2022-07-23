@@ -26,17 +26,19 @@ import org.cicirello.math.stats.Statistics;
 import org.cicirello.math.rand.RandomIndexer;
 
 /**
- * Simple program comparing CPU time of RandomIndexer.nextInt vs ThreadLocalRandom.nextInt
- * to check whether there is a time advantage to using it for small bounds, as is commonly
- * encountered as array indexes; and whether there is a time disadvantage for larger bounds.
+ * Simple program comparing CPU time of RandomIndexer.nextBiasedInt vs ThreadLocalRandom.nextInt
+ * to demonstrate the significant time advantage for cases where strict uniformity is not required
+ * (nextBiasedInt excludes the rejection sampling necessary for uniformity).
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, 
  * <a href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public class RandomIndexerTimes {
+public class TimingNextBiasedIntMethod {
 	
 	// number of random numbers to generate for each time point
-	private final static int N = 2000000;
+	// NOTE: This is much higher than runs of basic nextInt timing comparison
+	// to get more easily measurable times for the nextBiasedInt method.
+	private final static int N = 10000000;
 	
 	// number of trials to average for each bound
 	private final static int TRIALS = 100;
@@ -53,9 +55,9 @@ public class RandomIndexerTimes {
 		// Attempt to "warm-up" Java's JIT compiler.
 		for (int bound = 2; bound <= 512; bound*= 2) {
 			for (int j = 0; j < 100000; j++) {
-				RandomIndexer.nextInt(bound-1);
-				RandomIndexer.nextInt(bound);
-				RandomIndexer.nextInt(bound+1);
+				RandomIndexer.nextBiasedInt(bound-1);
+				RandomIndexer.nextBiasedInt(bound);
+				RandomIndexer.nextBiasedInt(bound+1);
 				ThreadLocalRandom.current().nextInt(bound-1);
 				ThreadLocalRandom.current().nextInt(bound);
 				ThreadLocalRandom.current().nextInt(bound+1);
@@ -75,7 +77,7 @@ public class RandomIndexerTimes {
 		msPow2Bound[0] = new ArrayList<double[]>();
 		msPow2Bound[1] = new ArrayList<double[]>();
 		
-		System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s\n", "Bound", "TLR", "RI", "t", "dof");
+		System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s\n", "Bound", "TLR", "BIASED", "t", "dof");
 		for (int bound = 1; bound <= 512; bound++) {
 			double[][] ms = new double[2][TRIALS];
 			for (int j = 0; j < TRIALS; j++) {
@@ -85,7 +87,7 @@ public class RandomIndexerTimes {
 				}
 				long middle = bean.getCurrentThreadCpuTime();
 				for (int i = 0; i < N; i++) {
-					RandomIndexer.nextInt(bound);
+					RandomIndexer.nextBiasedInt(bound);
 				}
 				long end = bean.getCurrentThreadCpuTime();
 				// compute elapsed times in milliseconds
@@ -113,7 +115,7 @@ public class RandomIndexerTimes {
 		
 		System.out.println();
 		System.out.println("SUMMARY RESULTS");
-		System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s\n", "Bound", "TLR", "RI", "t", "dof");
+		System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s\n", "Bound", "TLR", "BIASED", "t", "dof");
 		// Output means, and results of t-test, for the case of low bounds.
 		double[] a0 = toArray(msLowBound[0]);
 		double[] a1 = toArray(msLowBound[1]);
@@ -173,7 +175,7 @@ public class RandomIndexerTimes {
 		System.out.println();
 		System.out.println("Interpreting Above Results:");
 		System.out.println("1) Negative t value implies Java library's nextInt method was faster.");
-		System.out.println("2) Positive t value implies rho-mu's enhanced nextInt method was faster.");
+		System.out.println("2) Positive t value implies rho-mu's nextBiasedInt method was faster.");
 		System.out.println("3) Greater absolute value of t value implies more significant time difference.");
 		System.out.println("4) You can use a table from any statistics book to map t value to p value,");
 		System.out.println("   and the dof column in results provides the degrees of freedom for the test");
@@ -186,27 +188,27 @@ public class RandomIndexerTimes {
 		System.out.println();
 		
 		if (LOW_PCT_DIFF >= 0) {
-			System.out.printf("For Low bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*LOW_PCT_DIFF);
+			System.out.printf("For Low bounds, rho-mu's nextBiasedInt spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*LOW_PCT_DIFF);
 		} else {
-			System.out.printf("For Low bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*LOW_PCT_DIFF);
+			System.out.printf("For Low bounds, rho-mu's nextBiasedInt spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*LOW_PCT_DIFF);
 		}
 		
 		if (HIGH_PCT_DIFF >= 0) {
-			System.out.printf("For high bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*HIGH_PCT_DIFF);
+			System.out.printf("For high bounds, rho-mu's nextBiasedInt spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*HIGH_PCT_DIFF);
 		} else {
-			System.out.printf("For high bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*HIGH_PCT_DIFF);
+			System.out.printf("For high bounds, rho-mu's nextBiasedInt spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*HIGH_PCT_DIFF);
 		}
 		
 		if (POW2_PCT_DIFF >= 0) {
-			System.out.printf("For powers-of-2 bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*POW2_PCT_DIFF);
+			System.out.printf("For powers-of-2 bounds, rho-mu's nextBiasedInt spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*POW2_PCT_DIFF);
 		} else {
-			System.out.printf("For powers-of-2 bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*POW2_PCT_DIFF);
+			System.out.printf("For powers-of-2 bounds, rho-mu's nextBiasedInt spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*POW2_PCT_DIFF);
 		}
 		
 		if (ALL_PCT_DIFF >= 0) {
-			System.out.printf("Overall, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*ALL_PCT_DIFF);
+			System.out.printf("Overall, rho-mu's nextBiasedInt spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*ALL_PCT_DIFF);
 		} else {
-			System.out.printf("Overall, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*ALL_PCT_DIFF);
+			System.out.printf("Overall, rho-mu's nextBiasedInt spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*ALL_PCT_DIFF);
 		}
 	}
 	
