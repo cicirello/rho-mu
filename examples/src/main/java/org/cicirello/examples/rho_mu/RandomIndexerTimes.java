@@ -35,7 +35,10 @@ import org.cicirello.math.rand.RandomIndexer;
  */
 public class RandomIndexerTimes {
 	
-	private final static int N = 1000000;
+	// number of random numbers to generate for each time point
+	private final static int N = 2000000;
+	
+	// number of trials to average for each bound
 	private final static int TRIALS = 100;
 	
 	/**
@@ -85,6 +88,7 @@ public class RandomIndexerTimes {
 					RandomIndexer.nextInt(bound);
 				}
 				long end = bean.getCurrentThreadCpuTime();
+				// compute elapsed times in milliseconds
 				ms[0][j] = (middle-start) / 1000000.0;
 				ms[1][j] = (end-middle) / 1000000.0;
 			}
@@ -146,6 +150,26 @@ public class RandomIndexerTimes {
 		System.out.printf("%6s\t%10.7f\t%10.7f\t%10.4f\t%10d\n", "POW2", apiTime/1000, rhomuTime/1000, t, dof);
 		final double POW2_PCT_DIFF = (apiTime - rhomuTime) / apiTime;
 		
+		// Output means, and results of t-test, for all cases combined.
+		ArrayList<double[]> allOriginal = new ArrayList<double[]>();
+		allOriginal.addAll(msLowBound[0]);
+		allOriginal.addAll(msHighBound[0]);
+		allOriginal.addAll(msPow2Bound[0]);
+		ArrayList<double[]> allRandomIndexer = new ArrayList<double[]>();
+		allRandomIndexer.addAll(msLowBound[1]);
+		allRandomIndexer.addAll(msHighBound[1]);
+		allRandomIndexer.addAll(msPow2Bound[1]);
+		a0 = toArray(allOriginal);
+		a1 = toArray(allRandomIndexer);
+		tTest = Statistics.tTestWelch(a0,a1);
+		t = tTest[0].doubleValue();
+		dof = tTest[1].intValue();
+		apiTime = Statistics.mean(a0);
+		rhomuTime = Statistics.mean(a1);
+		// times are converted to seconds during output
+		System.out.printf("%6s\t%10.7f\t%10.7f\t%10.4f\t%10d\n", "ALL", apiTime/1000, rhomuTime/1000, t, dof);
+		final double ALL_PCT_DIFF = (apiTime - rhomuTime) / apiTime;
+		
 		System.out.println();
 		System.out.println("Interpreting Above Results:");
 		System.out.println("1) Negative t value implies Java library's nextInt method was faster.");
@@ -157,25 +181,32 @@ public class RandomIndexerTimes {
 		System.out.println("5) LOW are the results for bounds that are less than 256 and not powers of 2.");
 		System.out.println("6) HIGH are the results for bounds that are greater than 256 and not powers of 2.");
 		System.out.println("7) POW2 are the results for bounds that are powers of 2.");
+		System.out.println("8) ALL are all of the results for all bounds tested.");
 		
 		System.out.println();
 		
 		if (LOW_PCT_DIFF >= 0) {
-			System.out.printf("For Low bounds, rho-mu is %.2f%% faster than the Java API's built in nextInt.\n", 100*LOW_PCT_DIFF);
+			System.out.printf("For Low bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*LOW_PCT_DIFF);
 		} else {
-			System.out.printf("For Low bounds, rho-mu is %.2f%% slower than the Java API's built in nextInt.\n", -100*LOW_PCT_DIFF);
+			System.out.printf("For Low bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*LOW_PCT_DIFF);
 		}
 		
 		if (HIGH_PCT_DIFF >= 0) {
-			System.out.printf("For high bounds, rho-mu is %.2f%% faster than the Java API's built in nextInt.\n", 100*HIGH_PCT_DIFF);
+			System.out.printf("For high bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*HIGH_PCT_DIFF);
 		} else {
-			System.out.printf("For high bounds, rho-mu is %.2f%% slower than the Java API's built in nextInt.\n", -100*HIGH_PCT_DIFF);
+			System.out.printf("For high bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*HIGH_PCT_DIFF);
 		}
 		
 		if (POW2_PCT_DIFF >= 0) {
-			System.out.printf("For powers-of-2 bounds, rho-mu is %.2f%% faster than the Java API's built in nextInt.\n", 100*POW2_PCT_DIFF);
+			System.out.printf("For powers-of-2 bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*POW2_PCT_DIFF);
 		} else {
-			System.out.printf("For powers-of-2 bounds, rho-mu is %.2f%% slower than the Java API's built in nextInt.\n", -100*POW2_PCT_DIFF);
+			System.out.printf("For powers-of-2 bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*POW2_PCT_DIFF);
+		}
+		
+		if (ALL_PCT_DIFF >= 0) {
+			System.out.printf("Overall, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n", 100*ALL_PCT_DIFF);
+		} else {
+			System.out.printf("Overall, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n", -100*ALL_PCT_DIFF);
 		}
 	}
 	
