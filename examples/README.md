@@ -26,6 +26,33 @@ this examples directory.
 
 In order to run any of the example programs, you need to first build them (see above).
 
+### Examples with the EnhancedRandomGenerator Wrapper Class
+
+The EnhancedRandomGenerator wraps an instance of any class that implements RandomGenerator. This
+wrapper class then: (a) replaces some functionality of the wrapped instance with faster algorithms
+or other enhanced behavior, (b) adds additional functionality not present in Java's built-in random 
+number generators, and (c) delegates to the wrapped instance any remaining methods of RandomGenerator.
+
+The example program, `BasicUsageExamples.java`, demonstrates some of the functionality of 
+EnhancedRandomGenerator, including both enhanced, as well as additional, functionality over that of 
+Java 17's built-in randomization support. It is important that you read through the source code of the
+example, rather than just running it. The output of this example program isn't as useful in isolation,
+as it is when it is considered within the context of the source code examples and comments.
+
+To run this example program, execute the following with the examples directory as your working
+directory.
+
+```Shell
+mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.BasicUsageExamples
+```
+
+If your application requires splittable random generators, or any other fancier form, such as leapable,
+jumpable, etc, then please note that EnhancedRandomGenerator is the base class for a hierarchy of six
+wrapper classes, each wrapping one of Java 17's RandomGenerator interfaces, while also implementing
+the relevant interface. For example, if you want to wrap one of Java 17's splittable random number
+generators, EnhancedSplittableGenerator wraps (as well as implements) RandomGenerator.SplittableGenerator,
+enabling you to use it as a drop-in replacement while gaining the enhancements provided by &rho;&mu;.
+
 ### Demonstrating Speed Advantage Over Java's Builtin `RandomGenerator.nextInt(bound)`
 
 The example program, `RandomIndexerTimes.java`, demonstrates the speed advantage of &rho;&mu; 
