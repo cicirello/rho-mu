@@ -33,9 +33,11 @@ The randomization enhancements provided by $\rho\mu$ include:
 * Ultrafast, but biased, `nextBiasedInt` methods that trade-off uniformity for speed by excluding the rejection sampling necessary to ensure uniformity, based on the approach of @Lemire2019, as well as streams of such biased integers. A sample program demonstrates the substantial speed advantage of the technique.
 * Methods for generating random pairs of integers without replacement, and random triples of integers without replacement.
 * Methods for generating random samples of $k$ integers without replacement from a range of $n$ integers, including three alternative algorithms, reservoir sampling [@Vitter1985], pool sampling [@Ernvall1982], and insertion sampling [@Cicirello2022], as well as a method that chooses among these based on $n$ and $k$.
-* Methods to generate streams of numbers from distributions other than uniform, such as streams of random numbers from binomial, Cauchy, exponential, and Gaussian distributions.
+* Methods to generate streams of random numbers from binomial, Cauchy, exponential, and Gaussian distributions.
 
-Figure \autoref{fig:uml} provides a UML diagram illustrating the architecture of the library. Java 17 introduced a `RandomGenerator` interface, and five nested subinterfaces for special types of random number generator. The $\rho\mu$ library provides a hierarchy of wrapper classes corresponding to Java 17's `RandomGenerator` interface hierarchy. This enables using $\rho\mu$'s `EnhancedRandomGenerator`, and its subclasses, as drop-in replacements in existing applications.
+# Architecture
+
+\autoref{fig:uml} provides a UML diagram illustrating the architecture of the library. Java 17 introduced a `RandomGenerator` interface, and five nested subinterfaces for special types of random number generator. The $\rho\mu$ library provides a hierarchy of wrapper classes corresponding to Java 17's `RandomGenerator` interface hierarchy. This enables using $\rho\mu$'s `EnhancedRandomGenerator`, and its subclasses, as drop-in replacements in existing applications.
 
 ![UML diagram of $\rho\mu$. Java API interfaces in gray, and $\rho\mu$ classes in blue.\label{fig:uml}](uml.png)
 
