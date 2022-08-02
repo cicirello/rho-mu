@@ -26,6 +26,7 @@ The $\rho\mu$ library is a Java library of Randomization enHancements and Other 
 # Functionality
 
 The randomization enhancements provided by $\rho\mu$ include:
+
 * Faster generation of random integers subject to a bound or bound and origin, utilizing an implementation of the algorithm of @Lemire2019, as well as faster generation of streams of such bounded integers. One of our sample programs demonstrates the speed advantage over the equivalent methods from the Java API.
 * Faster generation of Gaussian distributed random doubles, with a Java port of the GNU Scientific Library's C implementation [@Voss2014] of the Ziggurat algorithm [@Marsaglia2000; @Leong2005].
 * Additional distributions available beyond what is supported by the Java API's `RandomGenerator` classes, such as Binomial and Cauchy random variables.
