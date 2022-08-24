@@ -27,13 +27,15 @@ The $\rho\mu$ library is a Java library of Randomization enHancements and Other 
 
 The randomization enhancements provided by $\rho\mu$ include:
 
-* Faster generation of random integers subject to a bound or bound and origin, utilizing an implementation of the algorithm of @Lemire2019, as well as faster generation of streams of such bounded integers. One of our sample programs demonstrates the speed advantage over the equivalent methods from the Java API.
+* Faster generation of random integers subject to a bound or bound and origin, utilizing an implementation of the algorithm of @Lemire2019, as well as faster generation of streams of such bounded integers. One of our sample programs demonstrates the speed advantage over the equivalent methods from the Java API. On average $\rho\mu$'s approach used 53.3% less CPU time than Java's `RandomGenerator.nextInt(bound)` at extremely statistically significant levels.
 * Faster generation of Gaussian distributed random doubles, with a Java port of the GNU Scientific Library's C implementation [@Voss2014] of the Ziggurat algorithm [@Marsaglia2000; @Leong2005].
 * Additional distributions available beyond what is supported by the Java API's `RandomGenerator` classes, such as Binomial and Cauchy random variables.
-* Ultrafast, but biased, `nextBiasedInt` methods that trade-off uniformity for speed by excluding the rejection sampling necessary to ensure uniformity, based on the approach of @Lemire2019, as well as streams of such biased integers. A sample program demonstrates the substantial speed advantage of the technique.
+* Ultrafast, but biased, `nextBiasedInt` methods that trade-off uniformity for speed by excluding the rejection sampling necessary to ensure uniformity, based on the approach of @Lemire2019, as well as streams of such biased integers. A sample program demonstrates the substantial speed advantage of the technique. On average $\rho\mu$'s `nextBiasedInt(bound)` used 99.2% less CPU time than Java's `RandomGenerator.nextInt(bound)` at extremely statistically significant levels. This offers a massive speed boost for applications where strict uniformity is not required.
 * Methods for generating random pairs of integers without replacement, and random triples of integers without replacement.
 * Methods for generating random samples of $k$ integers without replacement from a range of $n$ integers, including three alternative algorithms, reservoir sampling [@Vitter1985], pool sampling [@Ernvall1982], and insertion sampling [@Cicirello2022], as well as a method that chooses among these based on $n$ and $k$.
 * Methods to generate streams of random numbers from binomial, Cauchy, exponential, and Gaussian distributions.
+
+The raw data and t-Test results from my runs of the example programs that demonstrate performance characteristics are included in the GitHub repository.
 
 # Architecture
 
