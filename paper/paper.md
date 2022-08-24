@@ -33,7 +33,7 @@ The randomization enhancements provided by $\rho\mu$ include:
 * Ultrafast, but biased, `nextBiasedInt` methods that exclude rejection sampling to trade-off uniformity for speed, based on @Lemire2019, as well as streams of such biased integers. A sample program shows the substantial speed advantage offered for cases where strict uniformity is not required, where on average $\rho\mu$'s `nextBiasedInt(bound)` used 99.2% less CPU time than Java's `RandomGenerator.nextInt(bound)`.
 * Methods for generating random pairs and triples of integers without replacement.
 * Methods for generating random samples of $k$ integers without replacement from a range of $n$ integers, including three alternative algorithms, reservoir sampling [@Vitter1985], pool sampling [@Ernvall1982], and insertion sampling [@Cicirello2022], as well as a method that chooses among these based on $n$ and $k$.
-* Methods to generate streams of random numbers from binomial, Cauchy, exponential, and Gaussian distributions.
+* Methods to generate streams from binomial, Cauchy, exponential, and Gaussian distributions.
 
 The GitHub repository includes the data and t-Test results from my runs of the example programs demonstrating performance characteristics at extremely statistically significant levels.
 
