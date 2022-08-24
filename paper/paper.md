@@ -35,7 +35,7 @@ The randomization enhancements provided by $\rho\mu$ include:
 * Methods for generating random samples of $k$ integers without replacement from a range of $n$ integers, including three alternative algorithms, reservoir sampling [@Vitter1985], pool sampling [@Ernvall1982], and insertion sampling [@Cicirello2022], as well as a method that chooses among these based on $n$ and $k$.
 * Methods to generate streams of random numbers from binomial, Cauchy, exponential, and Gaussian distributions.
 
-The raw data and t-Test results from my runs of the example programs that demonstrate performance characteristics are included in the GitHub repository.
+The GitHub repository includes the raw data and t-Test results from my runs of the example programs that demonstrate performance characteristics.
 
 # Architecture
 
