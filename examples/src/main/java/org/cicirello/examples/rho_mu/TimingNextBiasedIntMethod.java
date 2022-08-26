@@ -35,6 +35,9 @@ import org.cicirello.math.rand.RandomIndexer;
  */
 public class TimingNextBiasedIntMethod {
 	
+	/* private constructor to prevent instantiation */
+	private TimingNextBiasedIntMethod() {}
+	
 	// number of random numbers to generate for each time point
 	// NOTE: This is much higher than runs of basic nextInt timing comparison
 	// to get more easily measurable times for the nextBiasedInt method.

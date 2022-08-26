@@ -190,6 +190,8 @@
 					</execution>
 				</executions>
 				<configuration>
+					<failOnWarnings>true</failOnWarnings>
+					<failOnError>true</failOnError>
 					<windowtitle>rho mu Example Programs</windowtitle>
 					<doctitle>rho mu Example Programs</doctitle>
 					<author>true</author>

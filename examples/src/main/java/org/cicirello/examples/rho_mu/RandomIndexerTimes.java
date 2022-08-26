@@ -35,6 +35,9 @@ import org.cicirello.math.rand.RandomIndexer;
  */
 public class RandomIndexerTimes {
 	
+	/* private constructor to prevent instantiation */
+	private RandomIndexerTimes() {}
+	
 	// number of random numbers to generate for each time point
 	private final static int N = 2000000;
 	

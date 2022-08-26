@@ -26,6 +26,7 @@ package org.cicirello.examples.rho_mu;
  */
 public class ExamplesShared {
 	
+	/* private constructor to prevent instantiation */
 	private ExamplesShared() {}
 	
 	/**
