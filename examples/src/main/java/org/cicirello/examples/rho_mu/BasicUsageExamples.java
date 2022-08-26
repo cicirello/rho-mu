@@ -33,6 +33,9 @@ import java.util.Arrays;
  */
 public class BasicUsageExamples {
 	
+	/* private constructor to prevent instantiation */
+	private BasicUsageExamples() {}
+	
 	/**
 	 * Runs the example program.
 	 *
