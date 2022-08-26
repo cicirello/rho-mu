@@ -1,0 +1,4 @@
+OS: Windows 10
+CPU: AMD A10-5700, 3.4 GHz
+Memory: 8 GB DDR3
+Java: OpenJDK (Adoptium) 17.0.2

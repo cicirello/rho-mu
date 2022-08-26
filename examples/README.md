@@ -71,7 +71,8 @@ mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.RandomIndexerTim
 ```
 
 The output from my runs is available in [data/output.RandomIndexerTimes.txt](data/output.RandomIndexerTimes.txt).
-Results on your system may differ due to differences in CPU, OS, etc.
+Results on your system may differ due to differences in CPU, OS, etc. The details of my test system are found in
+[data/system-stats.txt](data/system-stats.txt).
 
 ### Trading Off Strict Uniformity for Enhanced Speed
 
@@ -96,3 +97,4 @@ The output from my runs is available in [data/output.TimingNextBiasedIntMethod.t
 Results on your system may differ due to differences in CPU, OS, etc. Also note that the times
 are not directly comparable to those of the prior example because this example required timing a
 much larger number of samples to get sufficiently measurable times (due to how much faster `nextBiasedInt(bound)` is).
+The details of my test system are found in [data/system-stats.txt](data/system-stats.txt).

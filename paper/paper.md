@@ -13,7 +13,7 @@ authors:
     orcid: 0000-0003-1072-8559
     affiliation: 1
 affiliations:
-  - name: Computer Science, School of Business, Stockton University, Galloway, NJ 08205
+  - name: Computer Science, School of Business, Stockton University, Galloway, NJ 08205, USA
     index: 1
 date: 02 August 2022
 bibliography: paper.bib
@@ -35,7 +35,7 @@ The randomization enhancements provided by $\rho\mu$ include:
 * Methods for generating random samples of $k$ integers without replacement from a range of $n$ integers, including three alternative algorithms, reservoir sampling [@Vitter1985], pool sampling [@Ernvall1982], and insertion sampling [@Cicirello2022], as well as a method that chooses among these based on $n$ and $k$.
 * Streams from binomial, Cauchy, exponential, and Gaussian distributions.
 
-The GitHub repository includes the data and t-Test results from my runs of the example programs demonstrating the speed enhancements at extremely statistically significant levels.
+Comparisons used OpenJDK 17 and Windows 10 on an AMD A10-5700 3.4GHz CPU with 8GB DDR3 RAM. The GitHub repository includes the data and t-Test results demonstrating the speed enhancements at extremely statistically significant levels. 
 
 # Architecture
 
