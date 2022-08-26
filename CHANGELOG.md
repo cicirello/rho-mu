@@ -4,15 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-07-27
+## [Unreleased] - 2022-08-26
 
 ### Added
-* Directory of example programs added to the GitHub repository, including:
-  * Examples of the basic usage of the EnhancedRandomGenerator class, including potential use
-    as a drop-in replacement, as well as demonstrations of enhancements to existing methods of
-    Java's RandomGenerators, as well as functionality added by the class.
-  * Demonstration of speed advantage of enhanced nextInt(bound) over Java API's builtin method.
-  * Demonstration of ultrafast nextBiasedInt(bound) for cases where strict uniformity not needed.
 
 ### Changed
 
@@ -25,6 +19,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [2.4.0] - 2022-08-26
+
+### Added
+* Directory of example programs added to the GitHub repository, including:
+  * Examples of the basic usage of the EnhancedRandomGenerator class, including potential use
+    as a drop-in replacement, as well as demonstrations of enhancements to existing methods of
+    Java's RandomGenerators, as well as functionality added by the class.
+  * Demonstration of speed advantage of enhanced nextInt(bound) over Java API's builtin method.
+  * Demonstration of ultrafast nextBiasedInt(bound) for cases where strict uniformity not needed.
 
 
 ## [2.3.2] - 2022-07-15
