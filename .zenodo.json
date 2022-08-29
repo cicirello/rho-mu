@@ -20,5 +20,13 @@
 		"sampling",
 		"math utilities",
 		"Java"
-	]
+	],
+    "related_identifiers": [
+        {
+            "scheme": "doi",
+            "identifier": "10.21105/joss.04663",
+            "relation": "isDocumentedBy",
+            "resource_type": "publication"
+        }
+    ]
 }

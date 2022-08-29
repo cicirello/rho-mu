@@ -1,0 +1,23 @@
+cff-version: "1.1.0"
+message: "If you use this software, please cite it using these metadata."
+authors: 
+- family-names: "Cicirello"
+  given-names: "Vincent A"
+  orcid: "https://orcid.org/0000-0003-1072-8559"
+title: "ρμ: A Java library of randomization enhancements and other math utilities"
+doi: "10.5281/zenodo.5523173"
+license: "GPL-3.0-or-later"
+url: "https://github.com/cicirello/rho-mu"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Cicirello"
+    given-names: "Vincent A"
+    orcid: "https://orcid.org/0000-0003-1072-8559"
+  doi: "10.21105/joss.04663"
+  journal: "Journal of Open Source Software"
+  start: 4663
+  title: "ρμ: A Java library of randomization enhancements and other math utilities"
+  issue: 76
+  volume: 7
+  year: 2022

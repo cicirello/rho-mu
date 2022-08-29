@@ -8,7 +8,7 @@ Website: https://rho-mu.cicirello.org/
 
 API documentation: https://rho-mu.cicirello.org/api/
 
-| | |
+| __Publications About the Library__ | [![DOI](https://joss.theoj.org/papers/10.21105/joss.04663/status.svg)](https://doi.org/10.21105/joss.04663) |
 | :--- | :--- |
 | __Packages and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?label=Maven%20Central&logo=apachemaven)](https://search.maven.org/artifact/org.cicirello/rho-mu) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/rho-mu?logo=GitHub)](https://github.com/cicirello/rho-mu/releases) [![JitPack](https://jitpack.io/v/org.cicirello/rho-mu.svg)](https://jitpack.io/#org.cicirello/rho-mu) |
 | __Build Status__ | [![build](https://github.com/cicirello/rho-mu/workflows/build/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![docs](https://github.com/cicirello/rho-mu/workflows/docs/badge.svg)](https://rho-mu.cicirello.org/api/) [![CodeQL](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml) |
@@ -17,6 +17,12 @@ API documentation: https://rho-mu.cicirello.org/api/
 | __DOI__ | [![DOI](https://zenodo.org/badge/408560166.svg)](https://zenodo.org/badge/latestdoi/408560166) | 
 | __License__ | [![GitHub](https://img.shields.io/github/license/cicirello/rho-mu)](https://github.com/cicirello/rho-mu/blob/main/LICENSE) | 
 | __Support__ | [![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/cicirello) [![Liberapay](https://img.shields.io/badge/Liberapay-F6C915?logo=liberapay&logoColor=black)](https://liberapay.com/cicirello) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/cicirello) |
+
+## How to Cite
+
+If you use this library in your research, please cite the following paper:
+
+> Cicirello, V. A., (2022). ρμ: A Java library of randomization enhancements and other math utilities. *Journal of Open Source Software*, 7(76), 4663, https://doi.org/10.21105/joss.04663.
 
 ## Overview
 
