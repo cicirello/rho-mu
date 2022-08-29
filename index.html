@@ -167,9 +167,10 @@ nav div a:not(.active) { display: block; }
 <h3>Overview</h3>
 <p>&rho;&mu; is a <span itemprop="programmingLanguage">Java</span> library of Randomization enHancements 
 and Other Math Utilities (rho mu). It includes implementations of various algorithms for efficiently 
-randomly sampling combinations of indexes into arrays and other sequential structures. It also includes 
+randomly sampling combinations of indexes into arrays and other sequential structures, randomly sampling 
+pairs and triples of unique indexes, randomly sampling k indexes, etc. It also includes 
 efficient implementations of random number generation from distributions other than uniform, such as 
-Gaussian, Cauchy, etc. Additionally, it includes implementations of other math functions that are either 
+Gaussian, Cauchy, Binomial, etc. Additionally, it includes implementations of other math functions that are either 
 needed by the randomization utilities, or which are needed by some of our other projects.</p>
 <p>All of the initial functionality of &rho;&mu; originated in some of our other libraries, 
 including <a href="https://jpt.cicirello.org/">JavaPermutationTools</a> and 
@@ -177,6 +178,29 @@ including <a href="https://jpt.cicirello.org/">JavaPermutationTools</a> and
 to add one or the other of those libraries as dependencies in some other projects strictly for the 
 randomization utilities, which is certainly less than ideal. Therefore, we have extracted &rho;&mu; from 
 those libraries.</p>
+<p>Much of the core randomization enhancements is in a pair of utility 
+classes: <a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html">RandomIndexer</a> and
+<a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html">RandomVariates</a>. Beginning 
+with v2.0.0, the &rho;&mu; library was revised to utilize Java 17's hierarchy of random number generator 
+interfaces (i.e., 
+<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html">RandomGenerator</a> 
+and its nested subinterfaces). Specifically, &rho;&mu; now provides a class
+<a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedRandomGenerator.html">EnhancedRandomGenerator</a> 
+that wraps an instance RandomGenerator while also implementing RandomGenerator, enabling adding the enhanced
+randomization features to any of Java 17's many random number generators, while also serving
+as a drop-in replacement. Additionally, &rho;&mu; provides a hierarchy of such wrapper classes,
+corresponding to Java 17's hierarchy of random number generator interfaces.</p>
+<p>The randomization enhancements includes:</p>
+<ul>
+<li>Faster generation of random int values subject to a bound or bound and origin.</li>
+<li>Faster generation of random int values within an IntStream subject to a bound and origin.</li>
+<li>Faster generation of Gaussian distributed random doubles.</li>
+<li>Additional distributions available beyond what is supported by the Java API's RandomGenerator classes, such as Binomial and Cauchy random vaiables.</li>
+<li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity for speed by excluding the rejection sampling necessary to ensure uniformity, as well as a biasedInts methods for generating streams of such integers.</li>
+<li>Methods for generating random pairs of integers without replacement, and random triples of integers without replacement.</li>
+<li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
+<li>Methods to generate streams of numbers from distributions other than uniform, such as streams of random numbers from binomial distributions, Cauchy distributions, exponential distributions, and Gaussian distributions.</li>
+</ul>
 <p>The <a href="https://github.com/cicirello/rho-mu" itemprop="codeRepository">&rho;&mu; source 
 code repository</a> is hosted on GitHub; and is licensed under 
 the <a itemprop="license" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU 
@@ -190,6 +214,17 @@ commonly used build tools.</p>
 originated as part of the research 
 of <a itemprop="url mainEntityOfPage" href="https://www.cicirello.org/"><span itemprop="name">Vincent 
 A. Cicirello</span></a>.</p>
+</section>
+<section>
+<h3>How to Cite</h3>
+<div class="badge-height"><a href="https://doi.org/10.21105/joss.04663"><amp-img class="contain" layout="fill" alt="https://doi.org/10.21105/joss.04663" src="https://joss.theoj.org/papers/10.21105/joss.04663/status.svg"></amp-img></a></div>
+<p>If you use the &rho;&mu; library in your research, please cite the following article which introduces the library:</p>
+<ul>
+<li>Vincent A. Cicirello. 
+<a href="https://www.cicirello.org/publications/cicirello2022joss.html">&rho;&mu;: A Java library of randomization enhancements and other math utilities</a>.
+<i>Journal of Open Source Software</i>, 7(76), 4663, August 2022.
+<a href="https://www.cicirello.org/publications/cicirello2022joss.pdf">[PDF]</a> <a href="https://www.cicirello.org/publications/cicirello2022joss.bib">[BIB]</a> <a href="https://doi.org/10.21105/joss.04663">[DOI]</a></li>
+</ul>
 </section>
 <section>
 <h3>Importing from Maven Central</h3>
