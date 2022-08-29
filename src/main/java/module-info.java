@@ -26,7 +26,10 @@
  *
  * <p>Copyright &copy; 2017-2022 <a href="https://www.cicirello.org/" target=_top>Vincent A. Cicirello</a>.</p>
  *
- * <p><a href="https://search.maven.org/artifact/org.cicirello/rho-mu"><img 
+ * <p><a href="https://doi.org/10.21105/joss.04663"><img 
+ * src="https://joss.theoj.org/papers/10.21105/joss.04663/status.svg" 
+ * alt="DOI:10.21105/joss.04663" height="20" width="168"></a>
+ * <a href="https://search.maven.org/artifact/org.cicirello/rho-mu"><img 
  * src="https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?logo=apachemaven" 
  * alt="Maven Central" height="20" width="153"></a>
  * <a href="https://github.com/cicirello/rho-mu/releases"><img 
@@ -40,11 +43,31 @@
  * alt="GNU General Public License Version 3 (GPLv3)" height="20" width="102"></a>
  * </p>
  *
+ * <h3>How to Cite</h3>
+ *
+ * <p>If you use the &rho;&mu; library in your research, please cite the following 
+ * article which introduces the library:</p>
+ * <ul>
+ * <li>Vincent A. Cicirello. 
+ * <a href="https://www.cicirello.org/publications/cicirello2022joss.html">&rho;&mu;: A Java library of randomization 
+ * enhancements and other math utilities</a>.
+ * <i>Journal of Open Source Software</i>, 7(76), 4663, August 2022.
+ * <a href="https://www.cicirello.org/publications/cicirello2022joss.pdf">[PDF]</a> 
+ * <a href="https://www.cicirello.org/publications/cicirello2022joss.bib">[BIB]</a> 
+ * <a href="https://doi.org/10.21105/joss.04663">[DOI]</a></li>
+ * </ul>
+ *
  * <h3>Support &rho;&mu;</h3>
  *
- * <p><a href="https://github.com/sponsors/cicirello"><img src="https://rho-mu.cicirello.org/images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28"></a>
- * <a href="https://liberapay.com/cicirello"><img src="https://rho-mu.cicirello.org/images/Liberapay.svg" alt="Liberapay" width="119" height="28"></a>
- * <a href="https://ko-fi.com/cicirello"><img src="https://rho-mu.cicirello.org/images/ko-fi.svg" alt="Ko-Fi" width="82" height="28"></a></p>
+ * <p><a href="https://github.com/sponsors/cicirello"><img 
+ * src="https://rho-mu.cicirello.org/images/github-sponsors.svg" 
+ * alt="GitHub Sponsors" width="107" height="28"></a>
+ * <a href="https://liberapay.com/cicirello"><img 
+ * src="https://rho-mu.cicirello.org/images/Liberapay.svg" 
+ * alt="Liberapay" width="119" height="28"></a>
+ * <a href="https://ko-fi.com/cicirello"><img 
+ * src="https://rho-mu.cicirello.org/images/ko-fi.svg" 
+ * alt="Ko-Fi" width="82" height="28"></a></p>
  *
  * <h3>About the &rho;&mu; Library</h3>
  *
