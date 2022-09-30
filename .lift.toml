@@ -1,9 +1,5 @@
 jdkVersion = "17"
 
-ignoreFiles = """
-src/test/
-"""
-
 # Ignore warnings not relevant to this specific project:
 #
 # 1) FindSecBugs identifies our use of ThreadLocalRandom as predictable.
@@ -14,5 +10,3 @@ src/test/
 # the SecureRandom class should instead be used.  But this is not the case here.
 
 ignoreRules = ["PREDICTABLE_RANDOM"]
-
-
