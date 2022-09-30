@@ -18,4 +18,4 @@ jobs:
     - name: Request main-SNAPSHOT from JitPack
       run: |
         # timeout in 30 seconds to avoid waiting for build
-        curl -s -m 30 https://jitpack.io/org/cicirello/rho-mu/main-SNAPSHOT/ || true
+        curl -s -m 30 https://jitpack.io/org/cicirello/rho-mu/main-SNAPSHOT/maven-metadata.xml || true
