@@ -88,61 +88,6 @@ public class LinearAlgebraTests {
 	}
 	
 	@Test
-	public void testSumDoubles() {
-		for (int n = 0; n < 5; n++) {
-			for (int m = 0; m < 5; m++) {
-				double[][] a = getMatrixA_D(n,m);
-				double[][] b = getMatrixB_D(n,m);
-				double[][] c = MatrixOps.sum(a,b,null);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals(m, c[0].length, "result cols");
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c[i][j], EPSILON, "sum");
-					}
-				}
-				c = null;
-				c = MatrixOps.sum(a,b);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals( m, c[0].length, "result cols");
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c[i][j], EPSILON, "sum");
-					}
-				}
-				double[][] c2 = new double[n][m];
-				double[][] c3 = MatrixOps.sum(a,b,c2);
-				assertEquals((Object)c2, (Object)c3);
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c2[i][j], EPSILON, "sum");
-					}
-				}
-			}
-		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][2], new double[2][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][2], new double[1][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[2][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[0][0], new double[0][0], new double[1][2])
-		);
-	}
-	
-	@Test
 	public void testDifferenceInts() {
 		for (int n = 0; n < 5; n++) {
 			for (int m = 0; m < 5; m++) {
@@ -200,6 +145,61 @@ public class LinearAlgebraTests {
 		thrown = assertThrows( 
 			IllegalArgumentException.class,
 			() -> MatrixOps.difference(new int[0][0], new int[0][0], new int[1][2])
+		);
+	}
+	
+	@Test
+	public void testSumDoubles() {
+		for (int n = 0; n < 5; n++) {
+			for (int m = 0; m < 5; m++) {
+				double[][] a = getMatrixA_D(n,m);
+				double[][] b = getMatrixB_D(n,m);
+				double[][] c = MatrixOps.sum(a,b,null);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals(m, c[0].length, "result cols");
+				for (int i = 0; i < n; i++) {
+					for (int j = 0; j < m; j++) {
+						assertEquals(n*m+1, c[i][j], EPSILON, "sum");
+					}
+				}
+				c = null;
+				c = MatrixOps.sum(a,b);
+				assertEquals(n, c.length, "result rows");
+				if (n > 0) assertEquals( m, c[0].length, "result cols");
+				for (int i = 0; i < n; i++) {
+					for (int j = 0; j < m; j++) {
+						assertEquals(n*m+1, c[i][j], EPSILON, "sum");
+					}
+				}
+				double[][] c2 = new double[n][m];
+				double[][] c3 = MatrixOps.sum(a,b,c2);
+				assertEquals((Object)c2, (Object)c3);
+				for (int i = 0; i < n; i++) {
+					for (int j = 0; j < m; j++) {
+						assertEquals(n*m+1, c2[i][j], EPSILON, "sum");
+					}
+				}
+			}
+		}
+		IllegalArgumentException thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][2], new double[2][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][2], new double[1][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[1][2])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[2][1])
+		);
+		thrown = assertThrows( 
+			IllegalArgumentException.class,
+			() -> MatrixOps.sum(new double[0][0], new double[0][0], new double[1][2])
 		);
 	}
 	
