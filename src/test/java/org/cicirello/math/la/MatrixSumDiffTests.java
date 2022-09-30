@@ -37,30 +37,14 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				int[][] a = getMatrixAInts(n,m);
 				int[][] b = getMatrixBInts(n,m);
 				int[][] c = MatrixOps.sum(a,b,null);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals(m, c[0].length, "result cols");
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c[i][j], "sum");
-					}
-				}
+				validateSum(n, m, c, false);
 				c = null;
 				c = MatrixOps.sum(a,b);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals(m, c[0].length, "result cols");
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c[i][j], "sum");
-					}
-				}
+				validateSum(n, m, c, false);
 				int[][] c2 = new int[n][m];
 				int[][] c3 = MatrixOps.sum(a,b,c2);
 				assertEquals((Object)c2, (Object)c3);
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c2[i][j], "sum");
-					}
-				}
+				validateSum(n, m, c2, false);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -92,36 +76,14 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				int[][] a = fillMatrix(n,m,n*m+1);
 				int[][] b = getMatrixBInts(n,m);
 				int[][] c = MatrixOps.difference(a,b,null);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals(m, c[0].length, "result cols");
-				int k = 1;
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(k, c[i][j], "diff");
-						k++;
-					}
-				}
+				validateSum(n, m, c, true);
 				c = null;
 				c = MatrixOps.difference(a,b);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals(m, c[0].length, "result cols");
-				k = 1;
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(k, c[i][j], "diff");
-						k++;
-					}
-				}
+				validateSum(n, m, c, true);
 				int[][] c2 = new int[n][m];
 				int[][] c3 = MatrixOps.difference(a,b,c2);
 				assertEquals((Object)c2, (Object)c3);
-				k = 1;
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(k, c2[i][j], "diff");
-						k++;
-					}
-				}
+				validateSum(n, m, c2, true);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -153,30 +115,14 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				double[][] a = getMatrixA_D(n,m);
 				double[][] b = getMatrixB_D(n,m);
 				double[][] c = MatrixOps.sum(a,b,null);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals(m, c[0].length, "result cols");
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c[i][j], "sum");
-					}
-				}
+				validateSum(n, m, c, false);
 				c = null;
 				c = MatrixOps.sum(a,b);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals( m, c[0].length, "result cols");
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c[i][j], "sum");
-					}
-				}
+				validateSum(n, m, c, false);
 				double[][] c2 = new double[n][m];
 				double[][] c3 = MatrixOps.sum(a,b,c2);
 				assertEquals((Object)c2, (Object)c3);
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(n*m+1, c2[i][j], "sum");
-					}
-				}
+				validateSum(n, m, c2, false);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -208,36 +154,14 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				double[][] a = fillMatrix(n,m,n*m+1.0);
 				double[][] b = getMatrixB_D(n,m);
 				double[][] c = MatrixOps.difference(a,b,null);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals( m, c[0].length, "result cols");
-				int k = 1;
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(k, c[i][j], "diff");
-						k++;
-					}
-				}
+				validateSum(n, m, c, true);
 				c = null;
 				c = MatrixOps.difference(a,b);
-				assertEquals(n, c.length, "result rows");
-				if (n > 0) assertEquals( m, c[0].length, "result cols");
-				k = 1;
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(k, c[i][j], "diff");
-						k++;
-					}
-				}
+				validateSum(n, m, c, true);
 				double[][] c2 = new double[n][m];
 				double[][] c3 = MatrixOps.difference(a,b,c2);
 				assertEquals((Object)c2, (Object)c3);
-				k = 1;
-				for (int i = 0; i < n; i++) {
-					for (int j = 0; j < m; j++) {
-						assertEquals(k, c2[i][j], "diff");
-						k++;
-					}
-				}
+				validateSum(n, m, c2, true);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -260,6 +184,32 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 			IllegalArgumentException.class,
 			() -> MatrixOps.difference(new double[0][0], new double[0][0], new double[1][2])
 		);
+	}
+	
+	private void validateSum(int n, int m, double[][] c, boolean isDiff) {
+		assertEquals(n, c.length, "result rows");
+		if (n > 0) assertEquals(m, c[0].length, "result cols");
+		double expected = isDiff ? 1 : n*m+1;
+		double inc = isDiff ? 1 : 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				assertEquals(expected, c[i][j], "sum");
+				expected += inc;
+			}
+		}
+	}
+	
+	private void validateSum(int n, int m, int[][] c, boolean isDiff) {
+		assertEquals(n, c.length, "result rows");
+		if (n > 0) assertEquals(m, c[0].length, "result cols");
+		int expected = isDiff ? 1 : n*m+1;
+		int inc = isDiff ? 1 : 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				assertEquals(expected, c[i][j], "sum");
+				expected += inc;
+			}
+		}
 	}
 	
 	private int[][] fillMatrix(int n, int m, int value) {

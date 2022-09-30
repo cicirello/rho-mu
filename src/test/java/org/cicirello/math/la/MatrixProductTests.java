@@ -49,48 +49,24 @@ public class MatrixProductTests extends SharedTestMatrixOps {
 				C = C2 = null;
 				A = getMatrixAInts(n,m);
 				C = MatrixOps.product(I,A,null);
-				assertEquals(A.length, C.length);
-				assertEquals(A[0].length, C[0].length);
-				for (int i = 0; i < A.length; i++) {
-					assertArrayEquals(A[i], C[i]);
-				}
+				validateEqualMatrices(A,C);
 				C = new int[n][m];
 				C2 = MatrixOps.product(I,A,C);
 				assertEquals((Object)C, (Object)C2);
-				assertEquals(A.length, C2.length);
-				assertEquals(A[0].length, C2[0].length);
-				for (int i = 0; i < A.length; i++) {
-					assertArrayEquals(A[i], C2[i]);
-				}
+				validateEqualMatrices(A,C2);
 				C = null;
 				C = MatrixOps.product(I,A);
-				assertEquals(A.length, C.length);
-				assertEquals(A[0].length, C[0].length);
-				for (int i = 0; i < A.length; i++) {
-					assertArrayEquals(A[i], C[i]);
-				}
+				validateEqualMatrices(A,C);
 				B = getMatrixAInts(m,n);
 				C = MatrixOps.product(B,I,null);
-				assertEquals(B.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				for (int i = 0; i < B.length; i++) {
-					assertArrayEquals(B[i], C[i]);
-				}
+				validateEqualMatrices(B,C);
 				C = new int[m][n];
 				C2 = MatrixOps.product(B,I,C);
 				assertEquals((Object)C, (Object)C2);
-				assertEquals(B.length, C2.length);
-				assertEquals(B[0].length, C2[0].length);
-				for (int i = 0; i < B.length; i++) {
-					assertArrayEquals(B[i], C2[i]);
-				}
+				validateEqualMatrices(B,C2);
 				C = null;
 				C = MatrixOps.product(B,I);
-				assertEquals(B.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				for (int i = 0; i < B.length; i++) {
-					assertArrayEquals(B[i], C[i]);
-				}
+				validateEqualMatrices(B,C);
 			}
 		}
 		
@@ -115,48 +91,24 @@ public class MatrixProductTests extends SharedTestMatrixOps {
 				C = C2 = null;
 				A = getMatrixA_D(n,m);
 				C = MatrixOps.product(I,A,null);
-				assertEquals(A.length, C.length);
-				assertEquals(A[0].length, C[0].length);
-				for (int i = 0; i < A.length; i++) {
-					assertArrayEquals(A[i], C[i]);
-				}
+				validateEqualMatrices(A,C);
 				C = new double[n][m];
 				C2 = MatrixOps.product(I,A,C);
 				assertEquals((Object)C, (Object)C2);
-				assertEquals(A.length, C2.length);
-				assertEquals(A[0].length, C2[0].length);
-				for (int i = 0; i < A.length; i++) {
-					assertArrayEquals(A[i], C2[i]);
-				}
+				validateEqualMatrices(A,C2);
 				C = null;
 				C = MatrixOps.product(I,A);
-				assertEquals(A.length, C.length);
-				assertEquals(A[0].length, C[0].length);
-				for (int i = 0; i < A.length; i++) {
-					assertArrayEquals(A[i], C[i]);
-				}
+				validateEqualMatrices(A,C);
 				B = getMatrixA_D(m,n);
 				C = MatrixOps.product(B,I,null);
-				assertEquals(B.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				for (int i = 0; i < B.length; i++) {
-					assertArrayEquals(B[i], C[i]);
-				}
+				validateEqualMatrices(B,C);
 				C = new double[m][n];
 				C2 = MatrixOps.product(B,I,C);
 				assertEquals((Object)C, (Object)C2);
-				assertEquals(B.length, C2.length);
-				assertEquals(B[0].length, C2[0].length);
-				for (int i = 0; i < B.length; i++) {
-					assertArrayEquals(B[i], C2[i]);
-				}
+				validateEqualMatrices(B,C2);
 				C = null;
 				C = MatrixOps.product(B,I);
-				assertEquals(B.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				for (int i = 0; i < B.length; i++) {
-					assertArrayEquals(B[i], C[i]);
-				}
+				validateEqualMatrices(B,C);
 			}
 		}	
 	}
@@ -168,40 +120,17 @@ public class MatrixProductTests extends SharedTestMatrixOps {
 				int[][] A = getMultA(n,m);
 				int[][] B = getMultB(m,n);
 				int[][] C = MatrixOps.product(A, B);
-				assertEquals(A.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				assertEquals((m)*(m+1)*(2*m+1)/6, C[0][0], "[0][0]");
 				int sum = (m+1)*m/2;
-				for (int i = 1; i < C[0].length; i++) {
-					assertEquals(i*sum, C[0][i], "[0][i]");
-				}
-				for (int i = 1; i < C.length; i++) {
-					assertArrayEquals(C[0], C[i]);
-				}
+				int expectedCorner = (m)*(m+1)*(2*m+1)/6;
+				validateProduct(A, B, C, sum, expectedCorner);
 				C = null;
 				C = MatrixOps.product(A, B, null);
-				assertEquals(A.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				assertEquals((m)*(m+1)*(2*m+1)/6, C[0][0], "[0][0]");
-				for (int i = 1; i < C[0].length; i++) {
-					assertEquals(i*sum, C[0][i], "[0][i]");
-				}
-				for (int i = 1; i < C.length; i++) {
-					assertArrayEquals(C[0], C[i]);
-				}
+				validateProduct(A, B, C, sum, expectedCorner);
 				int[][] C2 = new int[n][n];
 				C = null;
 				C = MatrixOps.product(A, B, C2);
 				assertEquals((Object)C, (Object)C2);
-				assertEquals(A.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				assertEquals((m)*(m+1)*(2*m+1)/6, C[0][0], "[0][0]");
-				for (int i = 1; i < C[0].length; i++) {
-					assertEquals(i*sum, C[0][i], "[0][i]");
-				}
-				for (int i = 1; i < C.length; i++) {
-					assertArrayEquals(C[0], C[i]);
-				}
+				validateProduct(A, B, C2, sum, expectedCorner);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -237,40 +166,17 @@ public class MatrixProductTests extends SharedTestMatrixOps {
 				double[][] A = getMultA_d(n,m);
 				double[][] B = getMultB_d(m,n);
 				double[][] C = MatrixOps.product(A, B);
-				assertEquals(A.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				assertEquals((m)*(m+1)*(2*m+1)/6.0, C[0][0], "[0][0]");
 				double sum = (m+1)*m/2;
-				for (int i = 1; i < C[0].length; i++) {
-					assertEquals(i*sum, C[0][i], "[0][i]");
-				}
-				for (int i = 1; i < C.length; i++) {
-					assertArrayEquals(C[0], C[i]);
-				}
+				double expectedCorner = (m)*(m+1)*(2*m+1)/6.0;
+				validateProduct(A, B, C, sum, expectedCorner);
 				C = null;
 				C = MatrixOps.product(A, B, null);
-				assertEquals(A.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				assertEquals( (m)*(m+1)*(2*m+1)/6.0, C[0][0], "[0][0]");
-				for (int i = 1; i < C[0].length; i++) {
-					assertEquals(i*sum, C[0][i], "[0][i]");
-				}
-				for (int i = 1; i < C.length; i++) {
-					assertArrayEquals(C[0], C[i]);
-				}
+				validateProduct(A, B, C, sum, expectedCorner);
 				double[][] C2 = new double[n][n];
 				C = null;
 				C = MatrixOps.product(A, B, C2);
 				assertEquals((Object)C, (Object)C2);
-				assertEquals(A.length, C.length);
-				assertEquals(B[0].length, C[0].length);
-				assertEquals((m)*(m+1)*(2*m+1)/6.0, C[0][0], "[0][0]");
-				for (int i = 1; i < C[0].length; i++) {
-					assertEquals(i*sum, C[0][i], "[0][i]");
-				}
-				for (int i = 1; i < C.length; i++) {
-					assertArrayEquals(C[0], C[i]);
-				}
+				validateProduct(A, B, C2, sum, expectedCorner);
 			}
 		}
 		IllegalArgumentException thrown = assertThrows( 
@@ -355,5 +261,45 @@ public class MatrixProductTests extends SharedTestMatrixOps {
 			}
 		}
 		return B;
+	}
+	
+	private void validateEqualMatrices(int[][] A, int[][] B) {
+		assertEquals(A.length, B.length);
+		assertEquals(A[0].length, B[0].length);
+		for (int i = 0; i < A.length; i++) {
+			assertArrayEquals(A[i], B[i]);
+		}
+	}
+	
+	private void validateEqualMatrices(double[][] A, double[][] B) {
+		assertEquals(A.length, B.length);
+		assertEquals(A[0].length, B[0].length);
+		for (int i = 0; i < A.length; i++) {
+			assertArrayEquals(A[i], B[i]);
+		}
+	}
+	
+	private void validateProduct(double[][] A, double[][] B, double[][] C, double sum, double expectedCorner) {
+		assertEquals(A.length, C.length);
+		assertEquals(B[0].length, C[0].length);
+		assertEquals(expectedCorner, C[0][0], "[0][0]");
+		for (int i = 1; i < C[0].length; i++) {
+			assertEquals(i*sum, C[0][i], "[0][i]");
+		}
+		for (int i = 1; i < C.length; i++) {
+			assertArrayEquals(C[0], C[i]);
+		}
+	}
+	
+	private void validateProduct(int[][] A, int[][] B, int[][] C, int sum, int expectedCorner) {
+		assertEquals(A.length, C.length);
+		assertEquals(B[0].length, C[0].length);
+		assertEquals(expectedCorner, C[0][0], "[0][0]");
+		for (int i = 1; i < C[0].length; i++) {
+			assertEquals(i*sum, C[0][i], "[0][i]");
+		}
+		for (int i = 1; i < C.length; i++) {
+			assertArrayEquals(C[0], C[i]);
+		}
 	}
 }
