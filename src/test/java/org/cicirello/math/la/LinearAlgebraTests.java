@@ -33,44 +33,6 @@ public class LinearAlgebraTests {
 	private static double EPSILON = 1e-10;
 	
 	@Test
-	public void testTransposeInts() {
-		for (int n = 0; n < 5; n++) {
-			int[][] m = getSquareIntsForTranspose(n);
-			int[][] transpose = getSquareIntsForTranspose(n);
-			int[][] result = MatrixOps.transposeSquareMatrixInline(transpose);
-			assertEquals((Object)transpose, (Object)result, "should return reference to parameter");
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					assertEquals(m[j][i], transpose[i][j], "position [i][j] should be equal to position [j][i] of original");
-				}
-			}
-		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.transposeSquareMatrixInline(new int[1][2])
-		);
-	}
-	
-	@Test
-	public void testTransposeDoubles() {
-		for (int n = 0; n < 5; n++) {
-			double[][] m = getSquareDoublesForTranspose(n);
-			double[][] transpose = getSquareDoublesForTranspose(n);
-			double[][] result = MatrixOps.transposeSquareMatrixInline(transpose);
-			assertEquals((Object)transpose, (Object)result, "should return reference to parameter");
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					assertEquals(m[j][i], transpose[i][j], 0.0, "position [i][j] should be equal to position [j][i] of original");
-				}
-			}
-		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.transposeSquareMatrixInline(new double[1][2])
-		);
-	}
-	
-	@Test
 	public void testSumInts() {
 		for (int n = 0; n < 5; n++) {
 			for (int m = 0; m < 5; m++) {
@@ -703,30 +665,4 @@ public class LinearAlgebraTests {
 		}
 		return M;
 	}
-	
-	
-	private int[][] getSquareIntsForTranspose(int n) {
-		int[][] m = new int[n][n];
-		int k = 0;
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				m[i][j] = k;
-				k++;
-			}
-		}
-		return m;
-	}
-	
-	private double[][] getSquareDoublesForTranspose(int n) {
-		double[][] m = new double[n][n];
-		int k = 0;
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				m[i][j] = k;
-				k++;
-			}
-		}
-		return m;
-	}
-	
 }
