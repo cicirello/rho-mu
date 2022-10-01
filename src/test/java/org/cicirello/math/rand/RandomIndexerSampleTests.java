@@ -25,7 +25,6 @@ package org.cicirello.math.rand;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
 import java.util.Arrays;
 import java.util.SplittableRandom;
 
@@ -33,8 +32,6 @@ import java.util.SplittableRandom;
  * JUnit tests for the methods of the RandomIndexer class.
  */
 public class RandomIndexerSampleTests {
-	
-	private static double EPSILON = 1e-10;
 	
 	// Part of each test case in this class is a chi square goodness of fit test
 	// on a large number of samples to test for uniformity of results.
@@ -49,28 +46,6 @@ public class RandomIndexerSampleTests {
 	// since a "failure" is not necessarily an actual failure (statistically, the chi square
 	// test statistic can be above the cutoff 5% of the time).
 	private static final boolean DISABLE_CHI_SQUARE_TESTS = true;
-	
-	@Test
-	public void testSamplePRandom() {
-		final int TRIALS = 1000;
-		Random r = new Random(42);
-		double[] P = {0.25, 0.5, 0.75};
-		int n = 100;
-		for (double p : P) {
-			int sum = 0;
-			for (int i = 0; i < TRIALS; i++) {
-				int[] result = RandomIndexer.sample(n, p, r);
-				assertTrue( validSample(n, result), "verify correct range and no duplicates");
-				sum += result.length;
-			}
-			double ave = 1.0 * sum / TRIALS;
-			assertTrue( Math.abs(n*p-ave) <= 5, "verify correct sampling frequency");
-		}
-		int[] result = RandomIndexer.sample(4, 0.0, r);
-		assertEquals(0, result.length);
-		result = RandomIndexer.sample(4, 1.0, r);
-		assertEquals(4, result.length);
-	}
 	
 	@Test
 	public void testSamplePSplittable() {
@@ -139,86 +114,6 @@ public class RandomIndexerSampleTests {
 	@Test
 	public void testSampleReservoir_SplittableRandom() {
 		SplittableRandom gen = new SplittableRandom(42);
-		final int REPS_PER_BUCKET = 100;
-		
-		for (int n = 1; n <= 6; n++) {
-			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
-				assertEquals( k, result.length, "Length of result should be " + k);
-				boolean[] inResult = new boolean[n];
-				for (int i = 0; i < k; i++) {
-					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
-					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
-					inResult[result[i]] = true;
-				}
-			}
-		}
-		for (int n = 1; n <= 5; n++) {
-			int m = n < 3 ? n : 3;
-			for (int k = 1; k <= m; k++) {
-				int countH = 0;
-				for (int trial = 0; trial < 100; trial++) {
-					int[] buckets1 = new int[n];
-					int[][] buckets2 = new int[n][n];
-					int[][][] buckets3 = new int[n][n][n];
-					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
-					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
-						Arrays.sort(result);
-						switch (k) {
-							case 1: buckets1[result[0]] += 1; break;
-							case 2: buckets2[result[0]][result[1]] += 1; break;
-							case 3: buckets3[result[0]][result[1]][result[2]] += 1; break;
-						}
-					}
-					switch (k) {
-						case 1: 
-						for (int x = 0; x < n; x++) {
-							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
-						}
-						double chi1 = chiSquare(buckets1, numBuckets);
-						if (chi1 > limit95[numBuckets-1]) countH++;
-						break;
-						case 2: 
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
-							}
-						}
-						double chi2 = chiSquare(buckets2, numBuckets);
-						if (chi2 > limit95[numBuckets-1]) countH++;
-						break;
-						case 3:
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								for (int z = y+1; z < n; z++) {
-									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
-								}
-							}
-						}
-						double chi3 = chiSquare(buckets3, numBuckets);
-						if (chi3 > limit95[numBuckets-1]) countH++;
-						break;
-					}
-				}
-				assertTrue( countH <= 10, "chi square too high too often, countHigh=" + countH);
-			}
-		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> RandomIndexer.sampleReservoir(1, 2, null, gen)
-		);
-		int[] expected = new int[2];
-		int[] actual = RandomIndexer.sampleReservoir(5, 2, expected, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.sampleReservoir(5, 3, expected, gen);
-		assertTrue(expected != actual);
-		assertEquals(3, actual.length);
-	}
-	
-	@Test
-	public void testSampleReservoir_Random() {
-		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 100;
 		
 		for (int n = 1; n <= 6; n++) {
@@ -398,87 +293,6 @@ public class RandomIndexerSampleTests {
 	}
 	
 	@Test
-	public void testSamplePool_Random() {
-		Random gen = new Random(42);
-		final int REPS_PER_BUCKET = 200;
-		final int TRIALS = 100;
-		
-		for (int n = 1; n <= 6; n++) {
-			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.samplePool(n, k, null, gen);
-				assertEquals( k, result.length, "Length of result should be " + k);
-				boolean[] inResult = new boolean[n];
-				for (int i = 0; i < k; i++) {
-					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
-					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
-					inResult[result[i]] = true;
-				}
-			}
-		}
-		for (int n = 1; n <= 5; n++) {
-			int m = n < 3 ? n : 3;
-			for (int k = 1; k <= m; k++) {
-				int countH = 0;
-				for (int trial = 0; trial < TRIALS; trial++) {
-					int[] buckets1 = new int[n];
-					int[][] buckets2 = new int[n][n];
-					int[][][] buckets3 = new int[n][n][n];
-					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
-					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.samplePool(n, k, null, gen);
-						Arrays.sort(result);
-						switch (k) {
-							case 1: buckets1[result[0]] += 1; break;
-							case 2: buckets2[result[0]][result[1]] += 1; break;
-							case 3: buckets3[result[0]][result[1]][result[2]] += 1; break;
-						}
-					}
-					switch (k) {
-						case 1: 
-						for (int x = 0; x < n; x++) {
-							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
-						}
-						double chi1 = chiSquare(buckets1, numBuckets);
-						if (chi1 > limit95[numBuckets-1]) countH++;
-						break;
-						case 2: 
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
-							}
-						}
-						double chi2 = chiSquare(buckets2, numBuckets);
-						if (chi2 > limit95[numBuckets-1]) countH++;
-						break;
-						case 3:
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								for (int z = y+1; z < n; z++) {
-									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
-								}
-							}
-						}
-						double chi3 = chiSquare(buckets3, numBuckets);
-						if (chi3 > limit95[numBuckets-1]) countH++;
-						break;
-					}
-				}
-				assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n+" k="+k);
-			}
-		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> RandomIndexer.samplePool(1, 2, null, gen)
-		);
-		int[] expected = new int[2];
-		int[] actual = RandomIndexer.samplePool(5, 2, expected, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.samplePool(5, 3, expected, gen);
-		assertTrue(expected != actual);
-		assertEquals(3, actual.length);
-	}
-	
-	@Test
 	public void testSample_ThreadLocalRandom() {
 		for (int n = 1; n <= 7; n++) {
 			for (int k = 0; k <= n; k++) {
@@ -498,77 +312,6 @@ public class RandomIndexerSampleTests {
 	@Test
 	public void testSample_SplittableRandom() {
 		SplittableRandom gen = new SplittableRandom(40);
-		final int REPS_PER_BUCKET = 200;
-		final int TRIALS = 100;
-		
-		for (int n = 1; n <= 6; n++) {
-			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sample(n, k, null, gen);
-				assertEquals( k, result.length, "Length of result should be " + k);
-				boolean[] inResult = new boolean[n];
-				for (int i = 0; i < k; i++) {
-					assertTrue( result[i] < n && result[i] >= 0, "Each integer should be at least 0 and less than " + k);
-					assertFalse( inResult[result[i]], "Result shouldn't contain duplicates");
-					inResult[result[i]] = true;
-				}
-			}
-		}
-		for (int n = 1; n <= 5; n++) {
-			int m = n < 3 ? n : 3;
-			for (int k = 1; k <= m; k++) {
-				int countH = 0;
-				for (int trial = 0; trial < TRIALS; trial++) {
-					int[] buckets1 = new int[n];
-					int[][] buckets2 = new int[n][n];
-					int[][][] buckets3 = new int[n][n][n];
-					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
-					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sample(n, k, null, gen);
-						Arrays.sort(result);
-						switch (k) {
-							case 1: buckets1[result[0]] += 1; break;
-							case 2: buckets2[result[0]][result[1]] += 1; break;
-							case 3: buckets3[result[0]][result[1]][result[2]] += 1; break;
-						}
-					}
-					switch (k) {
-						case 1: 
-						for (int x = 0; x < n; x++) {
-							assertTrue( buckets1[x]>0, "failed to generate any samples: "+x);
-						}
-						double chi1 = chiSquare(buckets1, numBuckets);
-						if (chi1 > limit95[numBuckets-1]) countH++;
-						break;
-						case 2: 
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								assertTrue( buckets2[x][y]>0, "failed to generate any samples: ("+x+", "+y+")");
-							}
-						}
-						double chi2 = chiSquare(buckets2, numBuckets);
-						if (chi2 > limit95[numBuckets-1]) countH++;
-						break;
-						case 3:
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								for (int z = y+1; z < n; z++) {
-									assertTrue( buckets3[x][y][z]>0, "failed to generate any samples: ("+x+", "+y+", "+z+")");
-								}
-							}
-						}
-						double chi3 = chiSquare(buckets3, numBuckets);
-						if (chi3 > limit95[numBuckets-1]) countH++;
-						break;
-					}
-				}
-				assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n+" k="+k);
-			}
-		}
-	}
-	
-	@Test
-	public void testSample_Random() {
-		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 200;
 		final int TRIALS = 100;
 		
@@ -844,87 +587,6 @@ public class RandomIndexerSampleTests {
 	}
 	
 	@Test
-	public void testTriple_Random() {
-		Random gen = new Random(42);
-		final int REPS_PER_BUCKET = 100;
-		final int TRIALS = 100;
-		
-		for (int n = 3; n <= 6; n++) {
-			for (int i = 0; i < 10; i++) {
-				int[] result = RandomIndexer.nextIntTriple(n, null, gen);
-				assertEquals(3, result.length);
-				assertNotEquals(result[0], result[1]);
-				assertNotEquals(result[2], result[1]);
-				assertNotEquals(result[0], result[2]);
-				Arrays.sort(result);
-				assertTrue(result[0] >= 0);
-				assertTrue(result[2] < n);
-			}
-		}
-		for (int n = 3; n <= 6; n++) {
-			int countH = 0;
-			for (int trial = 0; trial < TRIALS; trial++) {
-				int[][][] buckets = new int[n][n][n];
-				int numBuckets = n*(n-1)*(n-2);
-				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-					int[] result = RandomIndexer.nextIntTriple(n, null, gen);
-					buckets[result[0]][result[1]][result[2]]++;
-				}
-				double chi = chiSquareAll(buckets, numBuckets);
-				if (chi > limit95[numBuckets-1]) countH++;
-			}
-			assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
-		}
-		
-		int[] expected = new int[3];
-		int[] actual = RandomIndexer.nextIntTriple(5, expected, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.nextIntTriple(5, new int[2], gen);
-		assertEquals(3, actual.length);
-	}
-	
-	@Test
-	public void testTripleSorted_Random() {
-		Random gen = new Random(42);
-		final int REPS_PER_BUCKET = 100;
-		final int TRIALS = 100;
-		
-		for (int n = 3; n <= 6; n++) {
-			for (int i = 0; i < 10; i++) {
-				int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
-				assertEquals(3, result.length);
-				assertNotEquals(result[0], result[1]);
-				assertNotEquals(result[2], result[1]);
-				assertNotEquals(result[0], result[2]);
-				assertTrue(result[0] < result[1]);
-				assertTrue(result[1] < result[2]);
-				assertTrue(result[0] >= 0);
-				assertTrue(result[2] < n);
-			}
-		}
-		for (int n = 3; n <= 6; n++) {
-			int countH = 0;
-			for (int trial = 0; trial < TRIALS; trial++) {
-				int[][][] buckets = new int[n][n][n];
-				int numBuckets = n*(n-1)*(n-2)/6;
-				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-					int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
-					buckets[result[0]][result[1]][result[2]]++;
-				}
-				double chi = chiSquare(buckets, numBuckets);
-				if (chi > limit95[numBuckets-1]) countH++;
-			}
-			assertTrue(countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
-		}
-		
-		int[] expected = new int[3];
-		int[] actual = RandomIndexer.nextIntTriple(5, expected, false, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.nextIntTriple(5, new int[2], false, gen);
-		assertEquals(3, actual.length);
-	}
-	
-	@Test
 	public void testPair_SplittableRandom() {
 		SplittableRandom gen = new SplittableRandom(42);
 		final int REPS_PER_BUCKET = 100;
@@ -954,45 +616,6 @@ public class RandomIndexerSampleTests {
 				if (chi > limit95[numBuckets-1]) countH++;
 			}
 			assertTrue(countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
-		}
-		
-		int[] expected = new int[2];
-		int[] actual = RandomIndexer.nextIntPair(5, expected, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.nextIntPair(5, new int[1], gen);
-		assertEquals(2, actual.length);
-	}
-	
-	@Test
-	public void testPair_Random() {
-		Random gen = new Random(42);
-		final int REPS_PER_BUCKET = 100;
-		final int TRIALS = 100;
-		
-		for (int n = 2; n <= 6; n++) {
-			for (int i = 0; i < 10; i++) {
-				int[] result = RandomIndexer.nextIntPair(n, null, gen);
-				assertEquals(2, result.length);
-				assertNotEquals(result[0], result[1]);
-				assertTrue(result[0] >= 0);
-				assertTrue(result[1] < n);
-				assertTrue(result[1] >= 0);
-				assertTrue(result[0] < n);
-			}
-		}
-		for (int n = 2; n <= 6; n++) {
-			int countH = 0;
-			for (int trial = 0; trial < TRIALS; trial++) {
-				int[][] buckets = new int[n][n];
-				int numBuckets = n*(n-1); //  /2;
-				for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-					int[] result = RandomIndexer.nextIntPair(n, null, gen);
-					buckets[result[0]][result[1]]++;
-				}
-				double chi = chiSquareAll(buckets, numBuckets);
-				if (chi > limit95[numBuckets-1]) countH++;
-			}
-			assertTrue( countH <= TRIALS*0.1, "chi square too high too often, countHigh=" + countH + " n="+n);
 		}
 		
 		int[] expected = new int[2];
@@ -1104,87 +727,6 @@ public class RandomIndexerSampleTests {
 	}
 	
 	@Test
-	public void testSampleInsertion_Random() {
-		Random gen = new Random(42);
-		final int REPS_PER_BUCKET = 200;
-		final int TRIALS = 100;
-		
-		for (int n = 1; n <= 6; n++) {
-			for (int k = 0; k <= n; k++) {
-				int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
-				assertEquals(k, result.length);
-				boolean[] inResult = new boolean[n];
-				for (int i = 0; i < k; i++) {
-					assertTrue(result[i] < n && result[i] >= 0);
-					assertFalse(inResult[result[i]]);
-					inResult[result[i]] = true;
-				}
-			}
-		}
-		for (int n = 1; n <= 5; n++) {
-			int m = n < 3 ? n : 3;
-			for (int k = 1; k <= m; k++) {
-				int countH = 0;
-				for (int trial = 0; trial < TRIALS; trial++) {
-					int[] buckets1 = new int[n];
-					int[][] buckets2 = new int[n][n];
-					int[][][] buckets3 = new int[n][n][n];
-					int numBuckets = k==1 ? n : (k==2 ? n*(n-1)/2 : n*(n-1)*(n-2)/6);
-					for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-						int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
-						Arrays.sort(result);
-						switch (k) {
-							case 1: buckets1[result[0]] += 1; break;
-							case 2: buckets2[result[0]][result[1]] += 1; break;
-							case 3: buckets3[result[0]][result[1]][result[2]] += 1; break;
-						}
-					}
-					switch (k) {
-						case 1: 
-						for (int x = 0; x < n; x++) {
-							assertTrue(buckets1[x]>0);
-						}
-						double chi1 = chiSquare(buckets1, numBuckets);
-						if (chi1 > limit95[numBuckets-1]) countH++;
-						break;
-						case 2: 
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								assertTrue(buckets2[x][y]>0);
-							}
-						}
-						double chi2 = chiSquare(buckets2, numBuckets);
-						if (chi2 > limit95[numBuckets-1]) countH++;
-						break;
-						case 3:
-						for (int x = 0; x < n; x++) {
-							for (int y = x+1; y < n; y++) {
-								for (int z = y+1; z < n; z++) {
-									assertTrue(buckets3[x][y][z]>0);
-								}
-							}
-						}
-						double chi3 = chiSquare(buckets3, numBuckets);
-						if (chi3 > limit95[numBuckets-1]) countH++;
-						break;
-					}
-				}
-				assertTrue(countH <= TRIALS*0.1);
-			}
-		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> RandomIndexer.sampleInsertion(1, 2, null, gen)
-		);
-		int[] expected = new int[2];
-		int[] actual = RandomIndexer.sampleInsertion(5, 2, expected, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.sampleInsertion(5, 3, expected, gen);
-		assertTrue(expected != actual);
-		assertEquals(3, actual.length);
-	}
-	
-	@Test
 	public void testNextWindowedIntPair_TLR() {
 		final int REPS_PER_BUCKET = 600;
 		final int TRIALS = 100;
@@ -1245,63 +787,6 @@ public class RandomIndexerSampleTests {
 	@Test
 	public void testNextWindowedIntPair_SR() {
 		SplittableRandom gen = new SplittableRandom(42);
-		final int REPS_PER_BUCKET = 100;
-		final int TRIALS = 100;
-		
-		for (int n = 2; n <= 10; n++) {
-			for (int w = 1; w < n; w++) {
-				int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
-				assertEquals(2, result.length);
-				assertNotEquals(result[0], result[1]);
-				if (result[0] > result[1]) {
-					int temp = result[0];
-					result[0] = result[1];
-					result[1] = temp;
-				}
-				assertTrue(result[0] >= 0);
-				assertTrue(result[1] < n);
-				assertTrue(result[1]-result[0] <= w);
-			}
-		}
-		for (int n = 2; n <= 7; n++) {
-			for (int w = 1; w < n; w++) {
-				int countH = 0;
-				for (int trial = 0; trial < TRIALS; trial++) {
-					int[][] buckets = new int[n][n];
-					int numBuckets = w*(n-w) + w*(w-1)/2;
-					numBuckets *= 2;
-					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-						int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
-						buckets[result[0]][result[1]]++;
-					}
-					int[] flatBuckets = new int[numBuckets];
-					int k = 0;
-					for (int i = 0; i < n; i++) {
-						for (int j = 0; j < n; j++) {
-							if (j==i) continue;
-							if (j > i && j-i>w) continue;
-							if (i > j && i-j>w) continue;
-							flatBuckets[k] = buckets[i][j];
-							k++;
-						}
-					}
-					double chi = chiSquare(flatBuckets, numBuckets);
-					if (chi > limit95[numBuckets-1]) countH++;
-				}
-				assertTrue(countH <= TRIALS*0.1);
-			}
-		}
-		
-		int[] expected = new int[2];
-		int[] actual = RandomIndexer.nextWindowedIntPair(5, 1, expected, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.nextWindowedIntPair(5, 1, new int[1], gen);
-		assertEquals(2, actual.length);
-	}
-	
-	@Test
-	public void testNextWindowedIntPair_R() {
-		Random gen = new Random(42);
 		final int REPS_PER_BUCKET = 100;
 		final int TRIALS = 100;
 		
@@ -1560,81 +1045,6 @@ public class RandomIndexerSampleTests {
 		assertEquals(3, actual.length);
 	}
 	
-	@Test
-	public void testNextWindowedIntTriple_R() {
-		Random gen = new Random(41);
-		final int REPS_PER_BUCKET = 100;
-		final int TRIALS = 100;
-		
-		for (int n = 3; n <= 10; n++) {
-			for (int w = 2; w < n; w++) {
-				int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
-				assertEquals(3, result.length);
-				assertNotEquals( result[0], result[1]);
-				assertNotEquals( result[0], result[2]);
-				assertNotEquals( result[2], result[1]);
-				Arrays.sort(result);
-				assertTrue( result[0] >= 0);
-				assertTrue( result[2] < n);
-				assertTrue( result[2]-result[0] <= w);
-				result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
-				assertEquals( 3, result.length);
-				assertNotEquals( result[0], result[1]);
-				assertNotEquals(result[0], result[2]);
-				assertNotEquals( result[2], result[1]);
-				String state = "result=(" + result[0] + ", " + result[1] + ", " + result[2] + "), w="+w + " n="+n;
-				assertTrue( result[0] < result[1], "integers should be sorted: " + state);
-				assertTrue( result[1] < result[2], "integers should be sorted: " + state);
-				assertTrue( result[0] >= 0);
-				assertTrue( result[2] < n);
-				assertTrue( result[2]-result[0] <= w);
-			}
-		}
-		for (int n = 3; n <= 6; n++) {
-			for (int w = 2; w < n; w++) {
-				int countH = 0;
-				for (int trial = 0; trial < TRIALS; trial++) {
-					int[][][] buckets = new int[n][n][n];
-					int numBuckets = w*(n-w)*(w-1)/2 + w*(w-1)*(w-2)/6;
-					numBuckets *= 6;
-					for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-						int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
-						buckets[result[0]][result[1]][result[2]]++;
-					}
-					int[] flatBuckets = new int[numBuckets];
-					int k = 0;
-					for (int i = 0; i < n; i++) {
-						for (int j = 0; j < n; j++) {
-							if (j==i) continue;
-							if (Math.abs(j-i) > w) continue;
-							for (int h = 0; h < n; h++) {
-								if (h==i || h==j) continue;
-								if (Math.abs(h-i) > w) continue;
-								if (Math.abs(j-h) > w) continue;
-								flatBuckets[k] = buckets[i][j][h];
-								k++;
-							}
-						}
-					}
-					double chi = chiSquare(flatBuckets, numBuckets);
-					if (chi > limit95[numBuckets-1]) countH++;
-				}
-				assertTrue(countH <= TRIALS*0.1);
-			}
-		}
-		
-		int[] expected = new int[3];
-		int[] actual = RandomIndexer.nextWindowedIntTriple(5, 3, expected, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.nextWindowedIntTriple(5, 3, new int[2], gen);
-		assertEquals(3, actual.length);
-		
-		actual = RandomIndexer.nextWindowedIntTriple(5, 3, expected, false, gen);
-		assertTrue(expected == actual);
-		actual = RandomIndexer.nextWindowedIntTriple(5, 3, new int[2], false, gen);
-		assertEquals(3, actual.length);
-	}
-	
 	private boolean validSample(int n, int[] result) {
 		boolean[] inResult = new boolean[n];
 		for (int i = 0; i < result.length; i++) {
@@ -1644,7 +1054,6 @@ public class RandomIndexerSampleTests {
 		}
 		return true;
 	}
-	
 	
 	private double chiSquare(int[] buckets, int numBuckets) {
 		int x = 0;
@@ -1714,6 +1123,8 @@ public class RandomIndexerSampleTests {
 		}
 		return 1.0*m / (n/numBuckets) - n;
 	}
+	
+	private static double EPSILON = 1e-10;
 	
 	private final static double[] limit95 = {
 		EPSILON, 3.841458821, 5.991464547, 7.814727903,

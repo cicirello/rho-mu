@@ -32,7 +32,7 @@ import java.util.SplittableRandom;
 /**
  * JUnit tests for Binomial random variables.
  */
-public class BinomialTests extends SharedTestRandomVariates {
+public class BinomialTests extends SharedTestRandom {
 	
 	@Test
 	public void testNextBinomialSplittable() {
