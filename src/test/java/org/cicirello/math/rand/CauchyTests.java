@@ -31,7 +31,7 @@ import java.util.SplittableRandom;
 /**
  * JUnit tests for Cauchy random variables.
  */
-public class CauchyTests extends SharedTestRandomVariates {
+public class CauchyTests extends SharedTestRandom {
 	
 	@Test
 	public void testNextCauchyThreadLocalRandom() {

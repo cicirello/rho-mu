@@ -29,28 +29,26 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Code shared by the tests of multiple test classes for the RandomVariates class.
  */
-public class SharedTestRandomVariates {
+public class SharedTestRandom {
 	
 	double chiSquare(int[] buckets) {
+		int x = 0;
 		int n = 0;
-		int v = 0;
-		for (int i = 0; i < buckets.length; i++) {
-			n += buckets[i];
-			v += (buckets[i]*buckets[i]);
+		for (int e : buckets) {
+			x = x + e*e;
+			n += e;
 		}
-		return v * buckets.length * 1.0 / n - n; 
+		return 1.0*x / (n/buckets.length) - n;
 	}
 	
-	double chiSquare(int[] buckets, double[] dist) {
-		double v = 0;
+	double chiSquare(int[] buckets, double[] p) {
+		double x = 0;
 		int n = 0;
 		for (int i = 0; i < buckets.length; i++) {
-			n += buckets[i];
+			int e = buckets[i];
+			x = x + e*e/p[i];
+			n += e;
 		}
-		for (int i = 0; i < buckets.length; i++) {
-			double np = n * dist[i];
-			v += (buckets[i] - np) * (buckets[i] - np) / np;
-		}
-		return v;
+		return x / n - n;
 	}
 }

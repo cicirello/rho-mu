@@ -31,7 +31,7 @@ import java.util.SplittableRandom;
 /**
  * JUnit tests for the methods of the RandomIndexer class.
  */
-public class RandomIndexerTests {
+public class RandomIndexerTests extends SharedTestRandom {
 	
 	private static double EPSILON = 1e-10;
 		
@@ -430,26 +430,5 @@ public class RandomIndexerTests {
 			IllegalArgumentException.class,
 			() -> RandomIndexer.nextBiasedInt(0, new SplittableRandom())
 		);
-	}
-	
-	private double chiSquare(int[] buckets) {
-		int x = 0;
-		int n = 0;
-		for (int e : buckets) {
-			x = x + e*e;
-			n += e;
-		}
-		return 1.0*x / (n/buckets.length) - n;
-	}
-	
-	private double chiSquare(int[] buckets, double[] p) {
-		double x = 0;
-		int n = 0;
-		for (int i = 0; i < buckets.length; i++) {
-			int e = buckets[i];
-			x = x + e*e/p[i];
-			n += e;
-		}
-		return x / n - n;
 	}
 }
