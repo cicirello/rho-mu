@@ -33,8 +33,6 @@ import java.util.SplittableRandom;
  */
 public class RandomIndexerSampleTests {
 	
-	private static double EPSILON = 1e-10;
-	
 	// Part of each test case in this class is a chi square goodness of fit test
 	// on a large number of samples to test for uniformity of results.
 	// Some of these tests are of methods that rely on ThreadLocalRandom, which
@@ -1125,6 +1123,8 @@ public class RandomIndexerSampleTests {
 		}
 		return 1.0*m / (n/numBuckets) - n;
 	}
+	
+	private static double EPSILON = 1e-10;
 	
 	private final static double[] limit95 = {
 		EPSILON, 3.841458821, 5.991464547, 7.814727903,
