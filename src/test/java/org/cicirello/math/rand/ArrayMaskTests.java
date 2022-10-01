@@ -27,6 +27,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.SplittableRandom;
+import java.util.function.IntFunction;
 
 /**
  * JUnit tests for the arrayMask methods of the RandomIndexer class.
@@ -62,33 +63,8 @@ public class ArrayMaskTests extends SharedTestRandom {
 			}
 		}
 		
-		final int TRIALS = 120000;
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets);
-			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
-		}
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n, r1);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets);
-			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
-		}
+		validateDistribution(n -> RandomIndexer.arrayMask(n));
+		validateDistribution(n -> RandomIndexer.arrayMask(n, r1));
 	}
 	
 	@Test
@@ -105,33 +81,8 @@ public class ArrayMaskTests extends SharedTestRandom {
 			}
 		}
 		
-		final int TRIALS = 120000;
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n, p);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets);
-			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
-		}
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n, p, r1);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets);
-			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
-		}
+		validateDistribution(n -> RandomIndexer.arrayMask(n, p));
+		validateDistribution(n -> RandomIndexer.arrayMask(n, p, r1));
 	}
 	
 	@Test
@@ -149,33 +100,8 @@ public class ArrayMaskTests extends SharedTestRandom {
 			}
 		}
 		
-		final int TRIALS = 120000;
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n, p);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets, pa);
-			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
-		}
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n, p, r1);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets, pa);
-			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
-		}
+		validateDistribution(n -> RandomIndexer.arrayMask(n, p), pa);
+		validateDistribution(n -> RandomIndexer.arrayMask(n, p, r1), pa);
 	}
 	
 	@Test
@@ -193,33 +119,8 @@ public class ArrayMaskTests extends SharedTestRandom {
 			}
 		}
 		
-		final int TRIALS = 120000;
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n, p);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets, pa);
-			assertTrue( chi <= 3.841, "Using ThreadLocalRandom, chi square goodness of fit test: " + chi);
-		}
-		for (int n = 1; n <= 5; n++) {
-			final int MAX = TRIALS / n;
-			int[] buckets = {0, 0};
-			for (int t = 0; t < MAX; t++) {
-				boolean[] mask = RandomIndexer.arrayMask(n, p, r1);
-				for (int i = 0; i < n; i++) {
-					if (mask[i]) buckets[1]++;
-					else buckets[0]++;
-				}
-			}
-			double chi = chiSquare(buckets, pa);
-			assertTrue( chi <= 3.841, "Using SplittableRandom, chi square goodness of fit test: " + chi);
-		}
+		validateDistribution(n -> RandomIndexer.arrayMask(n, p), pa);
+		validateDistribution(n -> RandomIndexer.arrayMask(n, p, r1), pa);
 	}
 	
 	@Test
@@ -234,6 +135,40 @@ public class ArrayMaskTests extends SharedTestRandom {
 		assertEquals(10, mask.length);
 		for (int i = 0; i < mask.length; i++) {
 			assertFalse(mask[i]);
+		}
+	}
+	
+	private void validateDistribution(IntFunction<boolean[]> createMask, double[] pa) {
+		final int TRIALS = 120000;
+		for (int n = 1; n <= 5; n++) {
+			final int MAX = TRIALS / n;
+			int[] buckets = {0, 0};
+			for (int t = 0; t < MAX; t++) {
+				boolean[] mask = createMask.apply(n);
+				for (int i = 0; i < n; i++) {
+					if (mask[i]) buckets[1]++;
+					else buckets[0]++;
+				}
+			}
+			double chi = chiSquare(buckets, pa);
+			assertTrue(chi <= 3.841, "Chi square goodness of fit test: " + chi);
+		}
+	}
+	
+	private void validateDistribution(IntFunction<boolean[]> createMask) {
+		final int TRIALS = 120000;
+		for (int n = 1; n <= 5; n++) {
+			final int MAX = TRIALS / n;
+			int[] buckets = {0, 0};
+			for (int t = 0; t < MAX; t++) {
+				boolean[] mask = createMask.apply(n);
+				for (int i = 0; i < n; i++) {
+					if (mask[i]) buckets[1]++;
+					else buckets[0]++;
+				}
+			}
+			double chi = chiSquare(buckets);
+			assertTrue(chi <= 3.841, "Chi square goodness of fit test: " + chi);
 		}
 	}
 }
