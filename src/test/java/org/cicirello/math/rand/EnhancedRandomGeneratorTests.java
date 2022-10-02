@@ -619,10 +619,7 @@ public class EnhancedRandomGeneratorTests {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		boolean[] b = erg.arrayMask(100);
 		assertEquals(100, b.length);
-		int count = 0;
-		for (boolean bool : b) {
-			if (bool) count++;
-		}
+		int count = countTrue(b);
 		assertTrue(count > 0);
 		assertTrue(count < 100);
 	}
@@ -634,10 +631,7 @@ public class EnhancedRandomGeneratorTests {
 		for (int k = 0; k <= N; k++) {
 			boolean[] b = erg.arrayMask(N, k);
 			assertEquals(N, b.length);
-			int count = 0;
-			for (int i = 0; i < N; i++) {
-				if (b[i]) count++;
-			}
+			int count = countTrue(b);
 			assertEquals(k, count);
 		}
 	}
@@ -649,26 +643,17 @@ public class EnhancedRandomGeneratorTests {
 		double p = 0.05;
 		boolean[] b = erg.arrayMask(N, p);
 		assertEquals(N, b.length);
-		int count = 0;
-		for (int i = 0; i < N; i++) {
-			if (b[i]) count++;
-		}
+		int count = countTrue(b);
 		assertTrue(count < N);
 		p = 0.95;
 		b = erg.arrayMask(N, p);
 		assertEquals(N, b.length);
-		count = 0;
-		for (int i = 0; i < N; i++) {
-			if (b[i]) count++;
-		}
+		count = countTrue(b);
 		assertTrue(count > 0);
 		p = 0.5;
 		b = erg.arrayMask(N, p);
 		assertEquals(N, b.length);
-		count = 0;
-		for (int i = 0; i < N; i++) {
-			if (b[i]) count++;
-		}
+		count = countTrue(b);
 		assertTrue(count > 0);
 		assertTrue(count < N);
 	}
@@ -677,200 +662,89 @@ public class EnhancedRandomGeneratorTests {
 	public void testNextIntPair() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int[] result = erg.nextIntPair(6, null);
-		assertEquals(2, result.length);
-		assertNotEquals(result[0], result[1]);
-		assertTrue(result[0] < 6);
-		assertTrue(result[1] < 6);
+		validateCombo(6, 2, result);
 		int[] result2 = erg.nextIntPair(6, result);
 		assertTrue(result == result2);
-		assertEquals(2, result2.length);
-		assertNotEquals(result2[0], result2[1]);
-		assertTrue(result2[0] < 6);
-		assertTrue(result2[1] < 6);
+		validateCombo(6, 2, result);
 	}
+	
 	
 	@Test
 	public void testNextIntTriple() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int[] result = erg.nextIntTriple(8, null);
-		assertEquals(3, result.length);
-		assertNotEquals(result[0], result[1]);
-		assertNotEquals(result[0], result[2]);
-		assertNotEquals(result[2], result[1]);
-		assertTrue(result[0] < 8);
-		assertTrue(result[1] < 8);
-		assertTrue(result[2] < 8);
+		validateCombo(8, 3, result);
 		int[] result2 = erg.nextIntTriple(8, result);
 		assertTrue(result == result2);
-		assertEquals(3, result2.length);
-		assertNotEquals(result2[0], result2[1]);
-		assertNotEquals(result2[0], result2[2]);
-		assertNotEquals(result2[2], result2[1]);
-		assertTrue(result2[0] < 8);
-		assertTrue(result2[1] < 8);
-		assertTrue(result2[2] < 8);
+		validateCombo(8, 3, result);
 	}
 	
 	@Test
 	public void testNextIntTripleSorted() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int[] result = erg.nextIntTriple(8, null, true);
-		assertEquals(3, result.length);
+		validateCombo(8, 3, result);
 		assertTrue(result[0] < result[1]);
 		assertTrue(result[1] < result[2]);
-		assertTrue(result[0] < 8);
-		assertTrue(result[1] < 8);
-		assertTrue(result[2] < 8);
 		int[] result2 = erg.nextIntTriple(8, result, true);
 		assertTrue(result == result2);
-		assertEquals(3, result2.length);
+		validateCombo(8, 3, result);
 		assertTrue(result2[0] < result2[1]);
 		assertTrue(result2[1] < result2[2]);
-		assertTrue(result2[0] < 8);
-		assertTrue(result2[1] < 8);
-		assertTrue(result2[2] < 8);
 	}
 	
 	@Test
 	public void testNextWindowedIntPair() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int[] result = erg.nextWindowedIntPair(100, 5, null);
-		assertEquals(2, result.length);
-		assertNotEquals(result[0], result[1]);
-		assertTrue(result[0] < 100);
-		assertTrue(result[1] < 100);
-		assertTrue(Math.abs(result[0]-result[1]) <= 5);
+		validateWindowed(100, 5, 2, result);
 		int[] result2 = erg.nextWindowedIntPair(100, 5, result);
 		assertTrue(result == result2);
-		assertEquals(2, result2.length);
-		assertNotEquals(result2[0], result2[1]);
-		assertTrue(result2[0] < 100);
-		assertTrue(result2[1] < 100);
-		assertTrue(Math.abs(result[0]-result[1]) <= 5);
+		validateWindowed(100, 5, 2, result);
 	}
 	
 	@Test
 	public void testNextWindowedIntTriple() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int[] result = erg.nextWindowedIntTriple(100, 6, null);
-		assertEquals(3, result.length);
-		assertNotEquals(result[0], result[1]);
-		assertNotEquals(result[0], result[2]);
-		assertNotEquals(result[2], result[1]);
-		assertTrue(result[0] < 100);
-		assertTrue(result[1] < 100);
-		assertTrue(result[2] < 100);
-		assertTrue(Math.abs(result[0]-result[1]) <= 6);
-		assertTrue(Math.abs(result[0]-result[2]) <= 6);
-		assertTrue(Math.abs(result[2]-result[1]) <= 6);
+		validateWindowed(100, 6, 3, result);
 		int[] result2 = erg.nextWindowedIntTriple(8, 6, result);
 		assertTrue(result == result2);
-		assertEquals(3, result2.length);
-		assertNotEquals(result2[0], result2[1]);
-		assertNotEquals(result2[0], result2[2]);
-		assertNotEquals(result2[2], result2[1]);
-		assertTrue(result2[0] < 100);
-		assertTrue(result2[1] < 100);
-		assertTrue(result2[2] < 100);
-		assertTrue(Math.abs(result2[0]-result2[1]) <= 6);
-		assertTrue(Math.abs(result2[0]-result2[2]) <= 6);
-		assertTrue(Math.abs(result2[2]-result2[1]) <= 6);
+		validateWindowed(8, 6, 3, result);
 	}
 	
 	@Test
 	public void testNextWindowedIntTripleSorted() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int[] result = erg.nextWindowedIntTriple(100, 6, null, true);
-		assertEquals(3, result.length);
-		assertNotEquals(result[0], result[1]);
-		assertNotEquals(result[0], result[2]);
-		assertNotEquals(result[2], result[1]);
-		assertTrue(result[0] < 100);
-		assertTrue(result[1] < 100);
-		assertTrue(result[2] < 100);
-		assertTrue(Math.abs(result[0]-result[1]) <= 6);
-		assertTrue(Math.abs(result[0]-result[2]) <= 6);
-		assertTrue(Math.abs(result[2]-result[1]) <= 6);
+		validateWindowed(100, 6, 3, result);
 		assertTrue(result[0] < result[1]);
 		assertTrue(result[1] < result[2]);
 		int[] result2 = erg.nextWindowedIntTriple(100, 6, result, true);
 		assertTrue(result == result2);
-		assertEquals(3, result2.length);
-		assertNotEquals(result2[0], result2[1]);
-		assertNotEquals(result2[0], result2[2]);
-		assertNotEquals(result2[2], result2[1]);
-		assertTrue(result2[0] < 100);
-		assertTrue(result2[1] < 100);
-		assertTrue(result2[2] < 100);
-		assertTrue(Math.abs(result2[0]-result2[1]) <= 6);
-		assertTrue(Math.abs(result2[0]-result2[2]) <= 6);
-		assertTrue(Math.abs(result2[2]-result2[1]) <= 6);
+		validateWindowed(100, 6, 3, result);
 		assertTrue(result2[0] < result2[1]);
 		assertTrue(result2[1] < result2[2]);
 	}
 	
 	@Test
 	public void testSample() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int n = 6;
-		int[] result = null;
-		for (int k = 1; k <= 6; k++) {
-			boolean[] in = new boolean[n];
-			result = erg.sample(n, k, null);
-			assertEquals(k, result.length);
-			for (int e : result) {
-				assertFalse(in[e]);
-				in[e] = true;
-			}
-		}
+		validateSample((erg, n, k) -> erg.sample(n, k, null));
 	}
 	
 	@Test
 	public void testSamplePool() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int n = 6;
-		int[] result = null;
-		for (int k = 1; k <= 6; k++) {
-			boolean[] in = new boolean[n];
-			result = erg.samplePool(n, k, null);
-			assertEquals(k, result.length);
-			for (int e : result) {
-				assertFalse(in[e]);
-				in[e] = true;
-			}
-		}
+		validateSample((erg, n, k) -> erg.samplePool(n, k, null));
 	}
 	
 	@Test
 	public void testSampleReservoir() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int n = 6;
-		int[] result = null;
-		for (int k = 1; k <= 6; k++) {
-			boolean[] in = new boolean[n];
-			result = erg.sampleReservoir(n, k, null);
-			assertEquals(k, result.length);
-			for (int e : result) {
-				assertFalse(in[e]);
-				in[e] = true;
-			}
-		}
+		validateSample((erg, n, k) -> erg.sampleReservoir(n, k, null));
 	}
 	
 	@Test
 	public void testSampleInsertion() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int n = 6;
-		int[] result = null;
-		for (int k = 1; k <= 6; k++) {
-			boolean[] in = new boolean[n];
-			result = erg.sampleInsertion(n, k, null);
-			assertEquals(k, result.length);
-			for (int e : result) {
-				assertFalse(in[e]);
-				in[e] = true;
-			}
-		}
+		validateSample((erg, n, k) -> erg.sampleInsertion(n, k, null));
 	}
 	
 	@Test
@@ -878,28 +752,67 @@ public class EnhancedRandomGeneratorTests {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
 		int n = 100;
 		int[] result = erg.sample(n, 0.05);
+		validateNoRepeats(n, result);
+		assertTrue(result.length < n);
+		
+		result = erg.sample(n, 0.95);
+		validateNoRepeats(n, result);
+		assertTrue(result.length > 0);
+		
+		result = erg.sample(n, 0.5);
+		validateNoRepeats(n, result);
+		assertTrue(result.length > 0);
+		assertTrue(result.length < n);
+	}
+	
+	private int countTrue(boolean[] b) {
+		int count = 0;
+		for (boolean bool : b) {
+			if (bool) count++;
+		}
+		return count;
+	}
+	
+	private void validateCombo(int n, int k, int[] result) {
+		assertEquals(k, result.length);
+		for (int i = 0; i < result.length; i++) {
+			assertTrue(result[i] < n);
+			for (int j = i+1; j < result.length; j++) {
+				assertNotEquals(result[i], result[j]);
+			}
+		}
+	}
+	
+	private void validateWindowed(int n, int window, int k, int[] result) {
+		validateCombo(n, k, result);
+		for (int i = 0; i < result.length; i++) {
+			for (int j = i+1; j < result.length; j++) {
+				assertTrue(Math.abs(result[i]-result[j]) <= window);
+			}
+		}
+	}
+	
+	private void validateNoRepeats(int n, int[] result) {
 		boolean[] in = new boolean[n];
 		for (int e : result) {
 			assertFalse(in[e]);
 			in[e] = true;
 		}
-		assertTrue(result.length < n);
-		
-		result = erg.sample(n, 0.95);
-		in = new boolean[n];
-		for (int e : result) {
-			assertFalse(in[e]);
-			in[e] = true;
+	}
+	
+	private void validateSample(SampleNK sampler) {
+		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+		int n = 6;
+		int[] result = null;
+		for (int k = 1; k <= 6; k++) {
+			result = sampler.apply(erg, n, k);
+			assertEquals(k, result.length);
+			validateNoRepeats(n, result);
 		}
-		assertTrue(result.length > 0);
-		
-		result = erg.sample(n, 0.5);
-		in = new boolean[n];
-		for (int e : result) {
-			assertFalse(in[e]);
-			in[e] = true;
-		}
-		assertTrue(result.length > 0);
-		assertTrue(result.length < n);
+	}
+	
+	@FunctionalInterface
+	private static interface SampleNK {
+		int[] apply(EnhancedRandomGenerator erg, int n, int k);
 	}
 }
