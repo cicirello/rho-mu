@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -50,9 +50,9 @@ public final class Statistics {
 	 * @return the mean of the data.
 	 */
 	public static double mean(double[] data) {
-		double mean = 0;
-		for (double e : data) mean = mean + e;
-		return mean / data.length;
+		double sum = 0;
+		for (double e : data) sum = sum + e;
+		return sum / data.length;
 	}
 	
 	/**
@@ -61,7 +61,6 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double variance(int[] data) {
-		if (data.length < 2) return 0.0;
 		return internalVariance(data, data.length);
 	}
 	
@@ -71,7 +70,6 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double variance(double[] data) {
-		if (data.length < 2) return 0.0;
 		return internalVariance(data, data.length);
 	}
 	
@@ -81,7 +79,6 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double varianceSample(int[] data) {
-		if (data.length < 2) return 0.0;
 		return internalVariance(data, data.length - 1.0);
 	}
 	
@@ -92,7 +89,6 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double varianceSample(double[] data) {
-		if (data.length < 2) return 0.0;
 		return internalVariance(data, data.length - 1.0);
 	}
 	
@@ -123,15 +119,15 @@ public final class Statistics {
 	public static double covariance(int[] X, int[] Y) {
 		if (X.length < 2) return 0.0;
 		if (X.length != Y.length) throw new IllegalArgumentException("Arrays must have same length!");
-		double meanX = mean(X);
-		double meanY = mean(Y);
+		double kX = X[0]; 
+		double kY = Y[0]; 
 		double sumX = 0;
 		double sumY = 0;
 		double sumProduct = 0;
 		for (int i = 0; i < X.length; i++) {
-			sumX = sumX + (X[i] - meanX);
-			sumY = sumY + (Y[i] - meanY);
-			sumProduct = sumProduct + (X[i] - meanX)*(Y[i] - meanY);
+			sumX = sumX + (X[i] - kX);
+			sumY = sumY + (Y[i] - kY);
+			sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
 		}
 		return (sumProduct - sumX*sumY/X.length)/X.length;
 	}
@@ -146,15 +142,15 @@ public final class Statistics {
 	public static double covariance(double[] X, double[] Y) {
 		if (X.length < 2) return 0.0;
 		if (X.length != Y.length) throw new IllegalArgumentException("Arrays must have same length!");
-		double meanX = mean(X);
-		double meanY = mean(Y);
+		double kX = X[0];
+		double kY = Y[0];
 		double sumX = 0;
 		double sumY = 0;
 		double sumProduct = 0;
 		for (int i = 0; i < X.length; i++) {
-			sumX = sumX + (X[i] - meanX);
-			sumY = sumY + (Y[i] - meanY);
-			sumProduct = sumProduct + (X[i] - meanX)*(Y[i] - meanY);
+			sumX = sumX + (X[i] - kX);
+			sumY = sumY + (Y[i] - kY);
+			sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
 		}
 		return (sumProduct - sumX*sumY/X.length)/X.length;
 	}
@@ -302,6 +298,7 @@ public final class Statistics {
 	}
 	
 	private static double internalVariance(int[] data, double divisor) {
+		if (data.length < 2) return 0.0;
 		double mean = mean(data);
 		double sumSquares = 0;
 		double sum = 0;
@@ -313,6 +310,7 @@ public final class Statistics {
 	}
 	
 	private static double internalVariance(double[] data, double divisor) {
+		if (data.length < 2) return 0.0;
 		double mean = mean(data);
 		double sumSquares = 0;
 		double sum = 0;
