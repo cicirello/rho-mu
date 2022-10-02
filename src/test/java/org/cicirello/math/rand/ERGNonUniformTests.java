@@ -22,10 +22,6 @@
  */
 package org.cicirello.math.rand;
 
-import java.util.random.RandomGenerator;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 import java.util.SplittableRandom;
 
 import org.junit.jupiter.api.*;
