@@ -22,8 +22,6 @@
  */
 package org.cicirello.math.rand;
 
-import java.util.SplittableRandom;
-
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -270,91 +268,5 @@ public class EnhancedRandomGeneratorTests {
 		assertTrue(w.different);
 	}
 	
-	@Test
-	public void testNextIntPair() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int[] result = erg.nextIntPair(6, null);
-		validateCombo(6, 2, result);
-		int[] result2 = erg.nextIntPair(6, result);
-		assertTrue(result == result2);
-		validateCombo(6, 2, result);
-	}
 	
-	
-	@Test
-	public void testNextIntTriple() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int[] result = erg.nextIntTriple(8, null);
-		validateCombo(8, 3, result);
-		int[] result2 = erg.nextIntTriple(8, result);
-		assertTrue(result == result2);
-		validateCombo(8, 3, result);
-	}
-	
-	@Test
-	public void testNextIntTripleSorted() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int[] result = erg.nextIntTriple(8, null, true);
-		validateCombo(8, 3, result);
-		assertTrue(result[0] < result[1]);
-		assertTrue(result[1] < result[2]);
-		int[] result2 = erg.nextIntTriple(8, result, true);
-		assertTrue(result == result2);
-		validateCombo(8, 3, result);
-		assertTrue(result2[0] < result2[1]);
-		assertTrue(result2[1] < result2[2]);
-	}
-	
-	@Test
-	public void testNextWindowedIntPair() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int[] result = erg.nextWindowedIntPair(100, 5, null);
-		validateWindowed(100, 5, 2, result);
-		int[] result2 = erg.nextWindowedIntPair(100, 5, result);
-		assertTrue(result == result2);
-		validateWindowed(100, 5, 2, result);
-	}
-	
-	@Test
-	public void testNextWindowedIntTriple() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int[] result = erg.nextWindowedIntTriple(100, 6, null);
-		validateWindowed(100, 6, 3, result);
-		int[] result2 = erg.nextWindowedIntTriple(8, 6, result);
-		assertTrue(result == result2);
-		validateWindowed(8, 6, 3, result);
-	}
-	
-	@Test
-	public void testNextWindowedIntTripleSorted() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int[] result = erg.nextWindowedIntTriple(100, 6, null, true);
-		validateWindowed(100, 6, 3, result);
-		assertTrue(result[0] < result[1]);
-		assertTrue(result[1] < result[2]);
-		int[] result2 = erg.nextWindowedIntTriple(100, 6, result, true);
-		assertTrue(result == result2);
-		validateWindowed(100, 6, 3, result);
-		assertTrue(result2[0] < result2[1]);
-		assertTrue(result2[1] < result2[2]);
-	}
-	
-	private void validateCombo(int n, int k, int[] result) {
-		assertEquals(k, result.length);
-		for (int i = 0; i < result.length; i++) {
-			assertTrue(result[i] < n);
-			for (int j = i+1; j < result.length; j++) {
-				assertNotEquals(result[i], result[j]);
-			}
-		}
-	}
-	
-	private void validateWindowed(int n, int window, int k, int[] result) {
-		validateCombo(n, k, result);
-		for (int i = 0; i < result.length; i++) {
-			for (int j = i+1; j < result.length; j++) {
-				assertTrue(Math.abs(result[i]-result[j]) <= window);
-			}
-		}
-	}
 }
