@@ -271,50 +271,6 @@ public class EnhancedRandomGeneratorTests {
 	}
 	
 	@Test
-	public void testArrayMask() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		boolean[] b = erg.arrayMask(100);
-		assertEquals(100, b.length);
-		int count = countTrue(b);
-		assertTrue(count > 0);
-		assertTrue(count < 100);
-	}
-	
-	@Test
-	public void testArrayMaskNK() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int N = 5;
-		for (int k = 0; k <= N; k++) {
-			boolean[] b = erg.arrayMask(N, k);
-			assertEquals(N, b.length);
-			int count = countTrue(b);
-			assertEquals(k, count);
-		}
-	}
-	
-	@Test
-	public void testArrayMaskNP() {
-		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-		int N = 100;
-		double p = 0.05;
-		boolean[] b = erg.arrayMask(N, p);
-		assertEquals(N, b.length);
-		int count = countTrue(b);
-		assertTrue(count < N);
-		p = 0.95;
-		b = erg.arrayMask(N, p);
-		assertEquals(N, b.length);
-		count = countTrue(b);
-		assertTrue(count > 0);
-		p = 0.5;
-		b = erg.arrayMask(N, p);
-		assertEquals(N, b.length);
-		count = countTrue(b);
-		assertTrue(count > 0);
-		assertTrue(count < N);
-	}
-	
-	@Test
 	public void testNextIntPair() {
 		EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
 		int[] result = erg.nextIntPair(6, null);
@@ -381,14 +337,6 @@ public class EnhancedRandomGeneratorTests {
 		validateWindowed(100, 6, 3, result);
 		assertTrue(result2[0] < result2[1]);
 		assertTrue(result2[1] < result2[2]);
-	}
-	
-	private int countTrue(boolean[] b) {
-		int count = 0;
-		for (boolean bool : b) {
-			if (bool) count++;
-		}
-		return count;
 	}
 	
 	private void validateCombo(int n, int k, int[] result) {
