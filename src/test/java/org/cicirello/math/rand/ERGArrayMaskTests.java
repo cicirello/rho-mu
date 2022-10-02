@@ -22,8 +22,6 @@
  */
 package org.cicirello.math.rand;
 
-import java.util.SplittableRandom;
-
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
