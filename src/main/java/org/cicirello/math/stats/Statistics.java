@@ -52,8 +52,7 @@ public final class Statistics {
 	public static double mean(double[] data) {
 		double mean = 0;
 		for (double e : data) mean = mean + e;
-		mean = mean / data.length;
-		return mean;
+		return mean / data.length;
 	}
 	
 	/**
@@ -63,16 +62,8 @@ public final class Statistics {
 	 */
 	public static double variance(int[] data) {
 		if (data.length < 2) return 0.0;
-		double mean = mean(data);
-		double sumSquares = 0;
-		double sum = 0;
-		for (int e : data) {
-			sumSquares = sumSquares + (e-mean)*(e-mean); 
-			sum = sum + (e-mean);
-		}
-		return (sumSquares - sum*sum/data.length)/data.length;
+		return internalVariance(data, data.length);
 	}
-	
 	
 	/**
 	 * Computes variance of a population.
@@ -81,14 +72,7 @@ public final class Statistics {
 	 */
 	public static double variance(double[] data) {
 		if (data.length < 2) return 0.0;
-		double mean = mean(data);
-		double sumSquares = 0;
-		double sum = 0;
-		for (double e : data) {
-			sumSquares = sumSquares + (e-mean)*(e-mean); 
-			sum = sum + (e-mean);
-		}
-		return (sumSquares - sum*sum/data.length)/data.length;
+		return internalVariance(data, data.length);
 	}
 	
 	/**
@@ -98,14 +82,7 @@ public final class Statistics {
 	 */
 	public static double varianceSample(int[] data) {
 		if (data.length < 2) return 0.0;
-		double mean = mean(data);
-		double sumSquares = 0;
-		double sum = 0;
-		for (int e : data) {
-			sumSquares = sumSquares + (e-mean)*(e-mean); 
-			sum = sum + (e-mean);
-		}
-		return (sumSquares - sum*sum/data.length)/(data.length-1.0);
+		return internalVariance(data, data.length - 1.0);
 	}
 	
 	
@@ -116,14 +93,7 @@ public final class Statistics {
 	 */
 	public static double varianceSample(double[] data) {
 		if (data.length < 2) return 0.0;
-		double mean = mean(data);
-		double sumSquares = 0;
-		double sum = 0;
-		for (double e : data) {
-			sumSquares = sumSquares + (e-mean)*(e-mean); 
-			sum = sum + (e-mean);
-		}
-		return (sumSquares - sum*sum/data.length)/(data.length-1.0);
+		return internalVariance(data, data.length - 1.0);
 	}
 	
 	/**
@@ -203,20 +173,9 @@ public final class Statistics {
 		double covar = covariance(X,Y);
 		if (covar == 0.0) return 0.0;
 		
-		boolean negate = false;
-		if (covar < 0.0) {
-			negate = true;
-			covar = -covar;
-		}
-		double logCovar = Math.log(covar);
-		double logVarX = Math.log(varX);
-		double logVarY = Math.log(varY);
-		double corr = Math.exp(logCovar - 0.5 * logVarX - 0.5 * logVarY);
-		if (negate) corr = -corr;
-		return corr;
+		return internalCorrelation(varX, varY, covar);
 	}
 	
-		
 	/**
 	 * Computes correlation coefficient for a pair of random variables.
 	 * @param X Array of samples of first variable.
@@ -231,17 +190,7 @@ public final class Statistics {
 		double covar = covariance(X,Y);
 		if (covar == 0.0) return 0.0;
 		
-		boolean negate = false;
-		if (covar < 0.0) {
-			negate = true;
-			covar = -covar;
-		}
-		double logCovar = Math.log(covar);
-		double logVarX = Math.log(varX);
-		double logVarY = Math.log(varY);
-		double corr = Math.exp(logCovar - 0.5 * logVarX - 0.5 * logVarY);
-		if (negate) corr = -corr;
-		return corr;
+		return internalCorrelation(varX, varY, covar);
 	}
 	
 	/**
@@ -351,5 +300,40 @@ public final class Statistics {
 		result[1] = i;
 		return result;
 	}
+	
+	private static double internalVariance(int[] data, double divisor) {
+		double mean = mean(data);
+		double sumSquares = 0;
+		double sum = 0;
+		for (int e : data) {
+			sumSquares = sumSquares + (e-mean)*(e-mean); 
+			sum = sum + (e-mean);
+		}
+		return (sumSquares - sum*sum/data.length)/divisor;
+	}
+	
+	private static double internalVariance(double[] data, double divisor) {
+		double mean = mean(data);
+		double sumSquares = 0;
+		double sum = 0;
+		for (double e : data) {
+			sumSquares = sumSquares + (e-mean)*(e-mean); 
+			sum = sum + (e-mean);
+		}
+		return (sumSquares - sum*sum/data.length)/divisor;
+	}
+	
+	private static double internalCorrelation(double varX, double varY, double covar) {
+		boolean negate = false;
+		if (covar < 0.0) {
+			negate = true;
+			covar = -covar;
+		}
+		double logCovar = Math.log(covar);
+		double logVarX = Math.log(varX);
+		double logVarY = Math.log(varY);
+		double corr = Math.exp(logCovar - 0.5 * logVarX - 0.5 * logVarY);
+		if (negate) corr = -corr;
+		return corr;
+	}
 }
-
