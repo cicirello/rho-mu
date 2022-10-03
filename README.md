@@ -88,6 +88,10 @@ for the classes of the &rho;&mu; library, or within the Java 17 API documentatio
 
 ```mermaid
 classDiagram
+  class Statistics
+  class MatrixOps
+  class JacobiDiagonalization
+  class MathFunctions
   class RandomGenerator
   <<interface>> RandomGenerator
   class StreamableGenerator
@@ -114,10 +118,6 @@ classDiagram
   EnhancedRandomGenerator : -RandomGenerator generator
   class ZigguratGaussian
   ZigguratGaussian <.. RandomVariates
-  class Statistics
-  class MatrixOps
-  class JacobiDiagonalization
-  class MathFunctions
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
