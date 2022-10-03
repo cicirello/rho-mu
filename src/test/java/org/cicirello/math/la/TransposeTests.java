@@ -43,10 +43,6 @@ public class TransposeTests {
 				}
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.transposeSquareMatrixInline(new int[1][2])
-		);
 	}
 	
 	@Test
@@ -62,10 +58,6 @@ public class TransposeTests {
 				}
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.transposeSquareMatrixInline(new double[1][2])
-		);
 	}
 	
 	private int[][] getSquareIntsForTranspose(int n) {

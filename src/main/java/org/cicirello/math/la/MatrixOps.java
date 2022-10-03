@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -40,11 +40,13 @@ public final class MatrixOps {
 	 * @return The matrix is returned for convenience for passing to other 
 	 * methods requiring a matrix as parameter.  It is the same
 	 *         object reference that was passed as a parameter.
+	 *
+	 * @throws NullPointerException if matrix is null.
+	 * @throws ArrayIndexOutOfBoundsException if matrix is not square.
 	 */
 	public static int[][] transposeSquareMatrixInline(int[][] matrix) {
-		if (matrix.length > 0 && matrix.length != matrix[0].length) throw new IllegalArgumentException("Matrix must be square.");
 		for (int i = 0; i < matrix.length; i++) {
-			for (int j = i+1; j < matrix.length; j++) {
+			for (int j = i+1; j < matrix[i].length; j++) {
 				int temp = matrix[i][j];
 				matrix[i][j] = matrix[j][i];
 				matrix[j][i] = temp;
@@ -58,11 +60,13 @@ public final class MatrixOps {
 	 * @param matrix the matrix to transpose, with result replacing contents of matrix.
 	 * @return The matrix is returned for convenience for passing to other methods requiring a matrix as parameter.  It is the same
 	 *         object reference that was passed as a parameter.
+	 *
+	 * @throws NullPointerException if matrix is null.
+	 * @throws ArrayIndexOutOfBoundsException if matrix is not square.
 	 */
 	public static double[][] transposeSquareMatrixInline(double[][] matrix) {
-		if (matrix.length > 0 && matrix.length != matrix[0].length) throw new IllegalArgumentException("Matrix must be square.");
 		for (int i = 0; i < matrix.length; i++) {
-			for (int j = i+1; j < matrix.length; j++) {
+			for (int j = i+1; j < matrix[i].length; j++) {
 				double temp = matrix[i][j];
 				matrix[i][j] = matrix[j][i];
 				matrix[j][i] = temp;
@@ -77,20 +81,14 @@ public final class MatrixOps {
 	 * @param B matrix
 	 * @param C if C is null then a new matrix is constructed for result, otherwise C is used for result.
 	 * @return A reference to the C matrix.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
+	 * @throws ArrayIndexOutOfBoundsException if C is non-null, but different dimensions than A and B.
 	 */
 	public static int[][] sum(int[][] A, int[][] B, int[][] C) {
-		if (A.length != B.length) throw new IllegalArgumentException("Number of rows of A and B must be equal.");
-		if (A.length == 0) {
-			if (C==null) return new int[0][0];
-			else if (C.length==0) return C;
-			else throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-		}
-		if (A[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A and B must be equal.");
-		if (C == null) {
-			C = new int[A.length][A[0].length];
-		} else {
-			if (C.length != B.length) throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-			if (C[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A, B, and C must be equal.");
+		if (C==null) {
+			C = A.length > 0 ? new int[A.length][A[0].length] : new int[0][0];
 		}
 		for (int i = 0; i < C.length; i++) {
 			for (int j = 0; j < C[i].length; j++) {
@@ -106,20 +104,14 @@ public final class MatrixOps {
 	 * @param B matrix
 	 * @param C if C is null then a new matrix is constructed for result, otherwise C is used for result.
 	 * @return A reference to the C matrix.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
+	 * @throws ArrayIndexOutOfBoundsException if C is non-null, but different dimensions than A and B.
 	 */
 	public static double[][] sum(double[][] A, double[][] B, double[][] C) {
-		if (A.length != B.length) throw new IllegalArgumentException("Number of rows of A and B must be equal.");
-		if (A.length == 0) {
-			if (C==null) return new double[0][0];
-			else if (C.length==0) return C;
-			else throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-		}
-		if (A[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A and B must be equal.");
-		if (C == null) {
-			C = new double[A.length][A[0].length];
-		} else {
-			if (C.length != B.length) throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-			if (C[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A, B, and C must be equal.");
+		if (C==null) {
+			C = A.length > 0 ? new double[A.length][A[0].length] : new double[0][0];
 		}
 		for (int i = 0; i < C.length; i++) {
 			for (int j = 0; j < C[i].length; j++) {
@@ -134,6 +126,9 @@ public final class MatrixOps {
 	 * @param A matrix
 	 * @param B matrix
 	 * @return A reference to a new matrix C containing the sum.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
 	 */
 	public static int[][] sum(int[][] A, int[][] B) {
 		return sum(A, B, null);
@@ -144,6 +139,9 @@ public final class MatrixOps {
 	 * @param A matrix
 	 * @param B matrix
 	 * @return A reference to a new matrix C containing the sum.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
 	 */
 	public static double[][] sum(double[][] A, double[][] B) {
 		return sum(A, B, null);
@@ -155,20 +153,14 @@ public final class MatrixOps {
 	 * @param B matrix
 	 * @param C if C is null then a new matrix is constructed for result, otherwise C is used for result.
 	 * @return A reference to the C matrix.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
+	 * @throws ArrayIndexOutOfBoundsException if C is non-null, but different dimensions than A and B.
 	 */
 	public static int[][] difference(int[][] A, int[][] B, int[][] C) {
-		if (A.length != B.length) throw new IllegalArgumentException("Number of rows of A and B must be equal.");
-		if (A.length == 0) {
-			if (C==null) return new int[0][0];
-			else if (C.length==0) return C;
-			else throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-		}
-		if (A[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A and B must be equal.");
-		if (C == null) {
-			C = new int[A.length][A[0].length];
-		} else {
-			if (C.length != B.length) throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-			if (C[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A, B, and C must be equal.");
+		if (C==null) {
+			C = A.length > 0 ? new int[A.length][A[0].length] : new int[0][0];
 		}
 		for (int i = 0; i < C.length; i++) {
 			for (int j = 0; j < C[i].length; j++) {
@@ -184,20 +176,14 @@ public final class MatrixOps {
 	 * @param B matrix
 	 * @param C if C is null then a new matrix is constructed for result, otherwise C is used for result.
 	 * @return A reference to the C matrix.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
+	 * @throws ArrayIndexOutOfBoundsException if C is non-null, but different dimensions than A and B.
 	 */
 	public static double[][] difference(double[][] A, double[][] B, double[][] C) {
-		if (A.length != B.length) throw new IllegalArgumentException("Number of rows of A and B must be equal.");
-		if (A.length == 0) {
-			if (C==null) return new double[0][0];
-			else if (C.length==0) return C;
-			else throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-		}
-		if (A[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A and B must be equal.");
-		if (C == null) {
-			C = new double[A.length][A[0].length];
-		} else {
-			if (C.length != B.length) throw new IllegalArgumentException("Number of rows of A, B, and C must be equal.");
-			if (C[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of A, B, and C must be equal.");
+		if (C==null) {
+			C = A.length > 0 ? new double[A.length][A[0].length] : new double[0][0];
 		}
 		for (int i = 0; i < C.length; i++) {
 			for (int j = 0; j < C[i].length; j++) {
@@ -212,6 +198,9 @@ public final class MatrixOps {
 	 * @param A matrix
 	 * @param B matrix
 	 * @return A reference to a new matrix C containing the difference.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
 	 */
 	public static int[][] difference(int[][] A, int[][] B) {
 		return difference(A, B, null);
@@ -222,6 +211,9 @@ public final class MatrixOps {
 	 * @param A matrix
 	 * @param B matrix
 	 * @return A reference to a new matrix C containing the difference.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if A and B are of differing dimensions.
 	 */
 	public static double[][] difference(double[][] A, double[][] B) {
 		return difference(A, B, null);
@@ -233,20 +225,15 @@ public final class MatrixOps {
 	 * @param B matrix
 	 * @param C if C is null then a new matrix is constructed for result, otherwise C is used for result.
 	 * @return A reference to the C matrix.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if number of columns of A is not equal to number of rows of B.
+	 * @throws ArrayIndexOutOfBoundsException if C is non-null, but dimensions inconsistent with A and B (must have
+	 * same number of rows of A and same number of columns of B).
 	 */
 	public static int[][] product(int[][] A, int[][] B, int[][] C) {
-		if ((A.length == 0 && B.length > 0) || (A.length > 0 && B.length == 0)) {
-			throw new IllegalArgumentException("If either matrix has 0 rows, both must.");
-		} else if (A.length == 0) {
-			if (C==null) return new int[0][0];
-			else if (C.length==0) return C;
-			else throw new IllegalArgumentException("C's dimensions are inconsistent with A and B.");
-		}
-		if (A[0].length != B.length) throw new IllegalArgumentException("Number of columns of A must equal number of rows of B.");
-		if (C == null) C = new int[A.length][B[0].length];
-		else {
-			if (C.length != A.length) throw new IllegalArgumentException("Number of rows of A and C must be equal.");
-			if (C[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of B and C must be equal.");
+		if (C==null) {
+			C = B.length > 0 ? new int[A.length][B[0].length] : new int[0][0];
 		}
 		for (int i = 0; i < A.length; i++) {
 			for (int j = 0; j < B[0].length; j++) {
@@ -265,20 +252,15 @@ public final class MatrixOps {
 	 * @param B matrix
 	 * @param C if C is null then a new matrix is constructed for result, otherwise C is used for result.
 	 * @return A reference to the C matrix.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if number of columns of A is not equal to number of rows of B.
+	 * @throws ArrayIndexOutOfBoundsException if C is non-null, but dimensions inconsistent with A and B (must have
+	 * same number of rows of A and same number of columns of B).
 	 */
 	public static double[][] product(double[][] A, double[][] B, double[][] C) {
-		if ((A.length == 0 && B.length > 0) || (A.length > 0 && B.length == 0)) {
-			throw new IllegalArgumentException("If either matrix has 0 rows, both must.");
-		} else if (A.length == 0) {
-			if (C==null) return new double[0][0];
-			else if (C.length==0) return C;
-			else throw new IllegalArgumentException("C's dimensions are inconsistent with A and B.");
-		}
-		if (A[0].length != B.length) throw new IllegalArgumentException("Number of columns of A must equal number of rows of B.");
-		if (C == null) C = new double[A.length][B[0].length];
-		else {
-			if (C.length != A.length) throw new IllegalArgumentException("Number of rows of A and C must be equal.");
-			if (C[0].length != B[0].length) throw new IllegalArgumentException("Number of columns of B and C must be equal.");
+		if (C==null) {
+			C = B.length > 0 ? new double[A.length][B[0].length] : new double[0][0];
 		}
 		for (int i = 0; i < A.length; i++) {
 			for (int j = 0; j < B[0].length; j++) {
@@ -296,6 +278,9 @@ public final class MatrixOps {
 	 * @param A matrix
 	 * @param B matrix
 	 * @return A reference to a new matrix C containing the product.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if number of columns of A is not equal to number of rows of B.
 	 */
 	public static int[][] product(int[][] A, int[][] B) {
 		return product(A,B,null);
@@ -306,6 +291,9 @@ public final class MatrixOps {
 	 * @param A matrix
 	 * @param B matrix
 	 * @return A reference to a new matrix C containing the product.
+	 *
+	 * @throws NullPointerException if either A or B is null.
+	 * @throws ArrayIndexOutOfBoundsException if number of columns of A is not equal to number of rows of B.
 	 */
 	public static double[][] product(double[][] A, double[][] B) {
 		return product(A,B,null);

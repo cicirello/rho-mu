@@ -47,26 +47,6 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				validateSum(n, m, c2, false);
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new int[1][2], new int[2][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new int[1][2], new int[1][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new int[1][1], new int[1][1], new int[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new int[1][1], new int[1][1], new int[2][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new int[0][0], new int[0][0], new int[1][2])
-		);
 	}
 	
 	@Test
@@ -86,26 +66,6 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				validateSum(n, m, c2, true);
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new int[1][2], new int[2][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new int[1][2], new int[1][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new int[1][1], new int[1][1], new int[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new int[1][1], new int[1][1], new int[2][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new int[0][0], new int[0][0], new int[1][2])
-		);
 	}
 	
 	@Test
@@ -125,26 +85,6 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				validateSum(n, m, c2, false);
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][2], new double[2][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][2], new double[1][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[1][1], new double[1][1], new double[2][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.sum(new double[0][0], new double[0][0], new double[1][2])
-		);
 	}
 	
 	@Test
@@ -164,26 +104,6 @@ public class MatrixSumDiffTests extends SharedTestMatrixOps {
 				validateSum(n, m, c2, true);
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new double[1][2], new double[2][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new double[1][2], new double[1][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new double[1][1], new double[1][1], new double[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new double[1][1], new double[1][1], new double[2][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.difference(new double[0][0], new double[0][0], new double[1][2])
-		);
 	}
 	
 	private void validateSum(int n, int m, double[][] c, boolean isDiff) {
