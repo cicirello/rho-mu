@@ -80,7 +80,7 @@ The rest of this README is organized as follows:
 
 ## UML Class Diagram
 
-This class diagram summarizes the classes of &rho;&mu; in relation to Java 17's
+This class diagram summarizes the public classes of &rho;&mu; in relation to Java 17's
 hierarchy of `RandomGenerator` interfaces. Note that for brevity in the diagram, methods are 
 omitted. Each class and interface in the diagram is a clickable link to the javadoc page 
 that documents it either within the [documentation of &rho;&mu;](https://rho-mu.cicirello.org/api/) 
