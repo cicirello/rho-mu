@@ -80,7 +80,7 @@ The rest of this README is organized as follows:
 
 ## UML Class Diagram
 
-This class diagram summarizes the classes of &rho;&mu; in relation to Java 17's
+This class diagram summarizes the public classes of &rho;&mu; in relation to Java 17's
 hierarchy of `RandomGenerator` interfaces. Note that for brevity in the diagram, methods are 
 omitted. Each class and interface in the diagram is a clickable link to the javadoc page 
 that documents it either within the [documentation of &rho;&mu;](https://rho-mu.cicirello.org/api/) 
@@ -88,6 +88,10 @@ for the classes of the &rho;&mu; library, or within the Java 17 API documentatio
 
 ```mermaid
 classDiagram
+  class Statistics
+  class MatrixOps
+  class JacobiDiagonalization
+  class MathFunctions
   class RandomGenerator
   <<interface>> RandomGenerator
   class StreamableGenerator
@@ -112,15 +116,8 @@ classDiagram
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
   EnhancedRandomGenerator : -RandomGenerator generator
-  class BTPE
-  BTPE <.. RandomVariates
   class ZigguratGaussian
   ZigguratGaussian <.. RandomVariates
-  class Statistics
-  class MatrixOps
-  class JacobiDiagonalization
-  class MathFunctions
-  MathFunctions <.. BTPE
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
@@ -156,7 +153,6 @@ classDiagram
   link LeapableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.LeapableGenerator.html"
   link ArbitrarilyJumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.ArbitrarilyJumpableGenerator.html"
   link ZigguratGaussian "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/ZigguratGaussian.html"
-  link BTPE "https://github.com/cicirello/rho-mu/blob/main/src/main/java/org/cicirello/math/rand/BTPE.java"
   link MathFunctions "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/MathFunctions.html"
   link Statistics "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/stats/Statistics.html"
   link MatrixOps "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/MatrixOps.html"
