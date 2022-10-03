@@ -118,18 +118,21 @@ public final class Statistics {
 	 */
 	public static double covariance(int[] X, int[] Y) {
 		if (X.length < 2) return 0.0;
-		if (X.length != Y.length) throw new IllegalArgumentException("Arrays must have same length!");
-		double kX = X[0]; 
-		double kY = Y[0]; 
-		double sumX = 0;
-		double sumY = 0;
-		double sumProduct = 0;
-		for (int i = 0; i < X.length; i++) {
-			sumX = sumX + (X[i] - kX);
-			sumY = sumY + (Y[i] - kY);
-			sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
+		if (X.length == Y.length) { 
+			double kX = X[0]; 
+			double kY = Y[0]; 
+			double sumX = 0;
+			double sumY = 0;
+			double sumProduct = 0;
+			for (int i = 0; i < X.length; i++) {
+				sumX = sumX + (X[i] - kX);
+				sumY = sumY + (Y[i] - kY);
+				sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
+			}
+			return (sumProduct - sumX*sumY/X.length)/X.length;
+		} else {
+			throw new IllegalArgumentException("Arrays must have same length!");
 		}
-		return (sumProduct - sumX*sumY/X.length)/X.length;
 	}
 	
 		
@@ -141,18 +144,21 @@ public final class Statistics {
 	 */
 	public static double covariance(double[] X, double[] Y) {
 		if (X.length < 2) return 0.0;
-		if (X.length != Y.length) throw new IllegalArgumentException("Arrays must have same length!");
-		double kX = X[0];
-		double kY = Y[0];
-		double sumX = 0;
-		double sumY = 0;
-		double sumProduct = 0;
-		for (int i = 0; i < X.length; i++) {
-			sumX = sumX + (X[i] - kX);
-			sumY = sumY + (Y[i] - kY);
-			sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
+		if (X.length == Y.length) {
+			double kX = X[0];
+			double kY = Y[0];
+			double sumX = 0;
+			double sumY = 0;
+			double sumProduct = 0;
+			for (int i = 0; i < X.length; i++) {
+				sumX = sumX + (X[i] - kX);
+				sumY = sumY + (Y[i] - kY);
+				sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
+			}
+			return (sumProduct - sumX*sumY/X.length)/X.length;
+		} else {
+			throw new IllegalArgumentException("Arrays must have same length!");
 		}
-		return (sumProduct - sumX*sumY/X.length)/X.length;
 	}
 	
 	/**
