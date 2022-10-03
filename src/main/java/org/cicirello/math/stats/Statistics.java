@@ -61,7 +61,7 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double variance(int[] data) {
-		return internalVariance(data, data.length);
+		return InternalStatistics.variance(data, data.length);
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double variance(double[] data) {
-		return internalVariance(data, data.length);
+		return InternalStatistics.variance(data, data.length);
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double varianceSample(int[] data) {
-		return internalVariance(data, data.length - 1.0);
+		return InternalStatistics.variance(data, data.length - 1.0);
 	}
 	
 	
@@ -89,7 +89,7 @@ public final class Statistics {
 	 * @return the variance of the data.
 	 */
 	public static double varianceSample(double[] data) {
-		return internalVariance(data, data.length - 1.0);
+		return InternalStatistics.variance(data, data.length - 1.0);
 	}
 	
 	/**
@@ -118,21 +118,20 @@ public final class Statistics {
 	 */
 	public static double covariance(int[] X, int[] Y) {
 		if (X.length < 2) return 0.0;
-		if (X.length == Y.length) { 
-			double kX = X[0]; 
-			double kY = Y[0]; 
-			double sumX = 0;
-			double sumY = 0;
-			double sumProduct = 0;
-			for (int i = 0; i < X.length; i++) {
-				sumX = sumX + (X[i] - kX);
-				sumY = sumY + (Y[i] - kY);
-				sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
-			}
-			return (sumProduct - sumX*sumY/X.length)/X.length;
-		} else {
+		if (X.length != Y.length) { 
 			throw new IllegalArgumentException("Arrays must have same length!");
 		}
+		double kX = X[0]; 
+		double kY = Y[0]; 
+		double sumX = 0;
+		double sumY = 0;
+		double sumProduct = 0;
+		for (int i = 0; i < X.length; i++) {
+			sumX = sumX + (X[i] - kX);
+			sumY = sumY + (Y[i] - kY);
+			sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
+		}
+		return (sumProduct - sumX*sumY/X.length)/X.length;
 	}
 	
 		
@@ -144,21 +143,20 @@ public final class Statistics {
 	 */
 	public static double covariance(double[] X, double[] Y) {
 		if (X.length < 2) return 0.0;
-		if (X.length == Y.length) {
-			double kX = X[0];
-			double kY = Y[0];
-			double sumX = 0;
-			double sumY = 0;
-			double sumProduct = 0;
-			for (int i = 0; i < X.length; i++) {
-				sumX = sumX + (X[i] - kX);
-				sumY = sumY + (Y[i] - kY);
-				sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
-			}
-			return (sumProduct - sumX*sumY/X.length)/X.length;
-		} else {
+		if (X.length != Y.length) { 
 			throw new IllegalArgumentException("Arrays must have same length!");
 		}
+		double kX = X[0];
+		double kY = Y[0];
+		double sumX = 0;
+		double sumY = 0;
+		double sumProduct = 0;
+		for (int i = 0; i < X.length; i++) {
+			sumX = sumX + (X[i] - kX);
+			sumY = sumY + (Y[i] - kY);
+			sumProduct = sumProduct + (X[i] - kX)*(Y[i] - kY);
+		}
+		return (sumProduct - sumX*sumY/X.length)/X.length;
 	}
 	
 	/**
@@ -175,7 +173,7 @@ public final class Statistics {
 		double covar = covariance(X,Y);
 		if (covar == 0.0) return 0.0;
 		
-		return internalCorrelation(varX, varY, covar);
+		return InternalStatistics.correlation(varX, varY, covar);
 	}
 	
 	/**
@@ -192,7 +190,7 @@ public final class Statistics {
 		double covar = covariance(X,Y);
 		if (covar == 0.0) return 0.0;
 		
-		return internalCorrelation(varX, varY, covar);
+		return InternalStatistics.correlation(varX, varY, covar);
 	}
 	
 	/**
@@ -301,37 +299,5 @@ public final class Statistics {
 		Integer i = (int)v;
 		result[1] = i;
 		return result;
-	}
-	
-	private static double internalVariance(int[] data, double divisor) {
-		if (data.length < 2) return 0.0;
-		double mean = mean(data);
-		double sumSquares = 0;
-		double sum = 0;
-		for (int e : data) {
-			sumSquares = sumSquares + (e-mean)*(e-mean); 
-			sum = sum + (e-mean);
-		}
-		return (sumSquares - sum*sum/data.length)/divisor;
-	}
-	
-	private static double internalVariance(double[] data, double divisor) {
-		if (data.length < 2) return 0.0;
-		double mean = mean(data);
-		double sumSquares = 0;
-		double sum = 0;
-		for (double e : data) {
-			sumSquares = sumSquares + (e-mean)*(e-mean); 
-			sum = sum + (e-mean);
-		}
-		return (sumSquares - sum*sum/data.length)/divisor;
-	}
-	
-	private static double internalCorrelation(double varX, double varY, double covar) {
-		if (covar < 0.0) {
-			return -Math.exp(Math.log(-covar) - 0.5 * Math.log(varX) - 0.5 * Math.log(varY));
-		} else {
-			return Math.exp(Math.log(covar) - 0.5 * Math.log(varX) - 0.5 * Math.log(varY));
-		}
 	}
 }
