@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Refactored Statistics class, extracting an internal helper class InternalStatistics (motivated by 
   Sonatype Lift's technical debt scan).
+* Refactored MatrixOps class (motivated by Sonatype Lift's technical debt scan).
 * Refactored test cases based on suggestion from Sonatype Lift's technical debt scan.
 
 ### Deprecated
