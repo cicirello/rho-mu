@@ -322,16 +322,10 @@ public final class Statistics {
 	}
 	
 	private static double internalCorrelation(double varX, double varY, double covar) {
-		boolean negate = false;
 		if (covar < 0.0) {
-			negate = true;
-			covar = -covar;
+			return -Math.exp(Math.log(-covar) - 0.5 * Math.log(varX) - 0.5 * Math.log(varY));
+		} else {
+			return Math.exp(Math.log(covar) - 0.5 * Math.log(varX) - 0.5 * Math.log(varY));
 		}
-		double logCovar = Math.log(covar);
-		double logVarX = Math.log(varX);
-		double logVarY = Math.log(varY);
-		double corr = Math.exp(logCovar - 0.5 * logVarX - 0.5 * logVarY);
-		if (negate) corr = -corr;
-		return corr;
 	}
 }
