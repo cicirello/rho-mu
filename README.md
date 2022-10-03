@@ -112,15 +112,12 @@ classDiagram
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
   EnhancedRandomGenerator : -RandomGenerator generator
-  class BTPE
-  BTPE <.. RandomVariates
   class ZigguratGaussian
   ZigguratGaussian <.. RandomVariates
   class Statistics
   class MatrixOps
   class JacobiDiagonalization
   class MathFunctions
-  MathFunctions <.. BTPE
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
@@ -156,7 +153,6 @@ classDiagram
   link LeapableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.LeapableGenerator.html"
   link ArbitrarilyJumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.ArbitrarilyJumpableGenerator.html"
   link ZigguratGaussian "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/ZigguratGaussian.html"
-  link BTPE "https://github.com/cicirello/rho-mu/blob/main/src/main/java/org/cicirello/math/rand/BTPE.java"
   link MathFunctions "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/MathFunctions.html"
   link Statistics "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/stats/Statistics.html"
   link MatrixOps "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/MatrixOps.html"
