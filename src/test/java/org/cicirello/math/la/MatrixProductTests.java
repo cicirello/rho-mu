@@ -133,30 +133,6 @@ public class MatrixProductTests extends SharedTestMatrixOps {
 				validateProduct(A, B, C2, sum, expectedCorner);
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new int[1][2], new int[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new int[0][1], new int[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new int[1][1], new int[0][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new int[1][1], new int[1][1], new int[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new int[1][1], new int[1][1], new int[2][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new int[0][0], new int[0][0], new int[1][2])
-		);
 	}
 	
 	@Test
@@ -179,30 +155,6 @@ public class MatrixProductTests extends SharedTestMatrixOps {
 				validateProduct(A, B, C2, sum, expectedCorner);
 			}
 		}
-		IllegalArgumentException thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new double[1][2], new double[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new double[0][1], new double[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new double[1][1], new double[0][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new double[1][1], new double[1][1], new double[1][2])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new double[1][1], new double[1][1], new double[2][1])
-		);
-		thrown = assertThrows( 
-			IllegalArgumentException.class,
-			() -> MatrixOps.product(new double[0][0], new double[0][0], new double[1][2])
-		);
 	}
 	
 	private int[][] getI(int n) {
