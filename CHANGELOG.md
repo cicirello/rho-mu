@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Refactored RandomIndexer class to improve maintainability and reduce redundancy.
+* Refactored RandomIndexer class to decrease cyclomatic complexity, improve maintainability and reduce redundancy.
 * Refactored Statistics class, extracting an internal helper class InternalStatistics (motivated by 
   Sonatype Lift's technical debt scan).
 * Refactored MatrixOps class (motivated by Sonatype Lift's technical debt scan).
