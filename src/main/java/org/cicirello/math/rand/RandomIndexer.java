@@ -262,6 +262,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sampleReservoir(int n, int k, int[] result) {
 		return RandomSampler.sampleReservoir(n, k, result);
 	}
@@ -291,6 +292,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sampleReservoir(int n, int k, int[] result, RandomGenerator gen) {
 		return RandomSampler.sampleReservoir(n, k, result, gen);
 	}
@@ -323,6 +325,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] samplePool(int n, int k, int[] result) {
 		return RandomSampler.samplePool(n, k, result);
 	}
@@ -353,6 +356,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] samplePool(int n, int k, int[] result, RandomGenerator gen) {
 		return RandomSampler.samplePool(n, k, result, gen);
 	}
@@ -388,6 +392,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sampleInsertion(int n, int k, int[] result) {
 		return RandomSampler.sampleInsertion(n, k, result);
 	}
@@ -421,6 +426,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sampleInsertion(int n, int k, int[] result, RandomGenerator gen) {
 		return RandomSampler.sampleInsertion(n, k, result, gen);
 	}
@@ -441,6 +447,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sample(int n, double p) {
 		return RandomSampler.sample(n, p);
 	}
@@ -459,6 +466,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sample(int n, double p, RandomGenerator r) {
 		return RandomSampler.sample(n, p, r);
 	}
@@ -494,6 +502,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sample(int n, int k, int[] result) {
 		return RandomSampler.sample(n, k, result);
 	}
@@ -527,6 +536,7 @@ public final class RandomIndexer {
 	 * and will be removed in the next major release.
 	 */
 	@Deprecated 
+	@SuppressWarnings("InlineMeSuggester")
 	public static int[] sample(int n, int k, int[] result, RandomGenerator gen) {
 		return RandomSampler.sample(n, k, result, gen);
 	}
