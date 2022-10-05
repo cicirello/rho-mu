@@ -113,8 +113,11 @@ classDiagram
   RandomGenerator <|.. EnhancedRandomGenerator
   class RandomIndexer
   RandomIndexer <.. EnhancedRandomGenerator
+  class RandomSampler
+  RandomSampler <.. EnhancedRandomGenerator
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
+  RandomVariates <.. RandomSampler
   EnhancedRandomGenerator : -RandomGenerator generator
   class ZigguratGaussian
   ZigguratGaussian <.. RandomVariates

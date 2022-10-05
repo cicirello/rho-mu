@@ -31,14 +31,15 @@ import java.util.SplittableRandom;
 /**
  * <p>An EnhancedRandomGenerator is used to wrap an object of any
  * class that implements {@link RandomGenerator} for the purpose
- * of adding all of the functionality of the {@link RandomIndexer}
- * and {@link RandomVariates}. In this way, the EnhancedRandomGenerator
+ * of adding all of the functionality of the {@link RandomIndexer},
+ * {@link RandomSampler}, and {@link RandomVariates}. In this way, 
+ * the EnhancedRandomGenerator
  * can be used as a drop-in replacement for any of Java's 
  * random number generators, while substituting more efficient algorithms
  * in some cases, or adding functionality in others. Methods of the 
- * {@link RandomGenerator} without equivalent replacements in one or the other
- * of {@link RandomIndexer} or {@link RandomVariates} are simply delegated
- * to the wrapped {@link RandomGenerator}.</p>
+ * {@link RandomGenerator} without equivalent replacements in one
+ * of {@link RandomIndexer}, {@link RandomSampler}, or {@link RandomVariates} 
+ * are simply delegated to the wrapped {@link RandomGenerator}.</p>
  *
  * <p>Enhanced Functionality provided by this class includes:</p>
  * <ul>
@@ -625,7 +626,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * @return An array containing the sample.
 	 */
 	public final int[] sample(int n, double p) {
-		return RandomIndexer.sample(n, p, generator);
+		return RandomSampler.sample(n, p, generator);
 	}
 	
 	/**
@@ -654,7 +655,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public final int[] sample(int n, int k, int[] result) {
-		return RandomIndexer.sample(n, k, result, generator);
+		return RandomSampler.sample(n, k, result, generator);
 	}
 	
 	/**
@@ -682,7 +683,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public final int[] sampleInsertion(int n, int k, int[] result) {
-		return RandomIndexer.sampleInsertion(n, k, result, generator);
+		return RandomSampler.sampleInsertion(n, k, result, generator);
 	}
 	
 	/**
@@ -709,7 +710,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public final int[] samplePool(int n, int k, int[] result) {
-		return RandomIndexer.samplePool(n, k, result, generator);
+		return RandomSampler.samplePool(n, k, result, generator);
 	}
 	
 	/**
@@ -734,7 +735,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 	 * @throws NegativeArraySizeException if k &lt; 0.
 	 */
 	public final int[] sampleReservoir(int n, int k, int[] result) {
-		return RandomIndexer.sampleReservoir(n, k, result, generator);
+		return RandomSampler.sampleReservoir(n, k, result, generator);
 	}
 	
 	
