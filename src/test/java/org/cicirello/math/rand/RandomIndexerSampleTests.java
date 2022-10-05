@@ -31,6 +31,7 @@ import java.util.SplittableRandom;
 /**
  * JUnit tests for the methods of the RandomIndexer class.
  */
+@SuppressWarnings("deprecation")
 public class RandomIndexerSampleTests {
 	
 	// Part of each test case in this class is a chi square goodness of fit test

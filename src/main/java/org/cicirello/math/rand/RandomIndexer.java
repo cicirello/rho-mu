@@ -257,9 +257,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sampleReservoir(int, int, int[])}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sampleReservoir(int n, int k, int[] result) {
-		return sampleReservoir(n, k, result, ThreadLocalRandom.current());
+		return RandomSampler.sampleReservoir(n, k, result);
 	}
 	
 	/**
@@ -282,18 +286,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sampleReservoir(int, int, int[], RandomGenerator)}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sampleReservoir(int n, int k, int[] result, RandomGenerator gen) {
-		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		result = resultBoundedBufferCheck(result, k);
-		fillIncremental(result, k);
-		for (int i = k; i < n; i++) {
-			int j = nextInt(i+1, gen);
-			if (j < k) {
-				result[j] = i;
-			}
-		}
-		return result;
+		return RandomSampler.sampleReservoir(n, k, result, gen);
 	}
 	
 	/**
@@ -319,9 +318,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#samplePool(int, int, int[])}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] samplePool(int n, int k, int[] result) {
-		return samplePool(n, k, result, ThreadLocalRandom.current());
+		return RandomSampler.samplePool(n, k, result);
 	}
 	
 	/**
@@ -345,20 +348,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#samplePool(int, int, int[], RandomGenerator)}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] samplePool(int n, int k, int[] result, RandomGenerator gen) {
-		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		result = resultBoundedBufferCheck(result, k);
-		int[] pool = new int[n];
-		fillIncremental(pool, n);
-		int remaining = n;
-		for (int i = 0; i < k; i++) {
-			int temp = nextInt(remaining, gen);
-			result[i] = pool[temp];
-			remaining--;
-			pool[temp] = pool[remaining];
-		}
-		return result;
+		return RandomSampler.samplePool(n, k, result, gen);
 	}
 	
 	/**
@@ -387,9 +383,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sampleInsertion(int, int, int[])}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sampleInsertion(int n, int k, int[] result) {
-		return sampleInsertion(n, k, result, ThreadLocalRandom.current());
+		return RandomSampler.sampleInsertion(n, k, result);
 	}
 	
 	/**
@@ -416,22 +416,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sampleInsertion(int, int, int[], RandomGenerator)}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sampleInsertion(int n, int k, int[] result, RandomGenerator gen) {
-		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		result = resultBoundedBufferCheck(result, k);
-		for (int i = 0; i < k; i++) {
-			int temp = nextInt(n-i, gen);
-			int j = k-i; 
-			for ( ; j < k; j++) {
-				if (temp >= result[j]) {
-					temp++;
-					result[j-1] = result[j];
-				} else break;
-			}
-			result[j-1] = temp;
-		}
-		return result;
+		return RandomSampler.sampleInsertion(n, k, result, gen);
 	}
 	
 	/**
@@ -445,9 +436,13 @@ public final class RandomIndexer {
 	 * @param n The number of integers to choose from.
 	 * @param p The probability that each of the n integers is included in the sample.
 	 * @return An array containing the sample.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sample(int, double)}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sample(int n, double p) {
-		return sample(n, p, ThreadLocalRandom.current());
+		return RandomSampler.sample(n, p);
 	}
 	
 	/**
@@ -459,17 +454,13 @@ public final class RandomIndexer {
 	 * @param p The probability that each of the n integers is included in the sample.
 	 * @param r The source of randomness.
 	 * @return An array containing the sample.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sample(int, double, RandomGenerator)}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sample(int n, double p, RandomGenerator r) {
-		if (p <= 0) {
-			return new int[0];
-		} else if (p >= 1) {
-			int[] result = new int[n];
-			fillIncremental(result, n);
-			return result;
-		} else {
-			return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
-		}
+		return RandomSampler.sample(n, p, r);
 	}
 	
 	/**
@@ -498,12 +489,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sample(int, int, int[])}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sample(int n, int k, int[] result) {
-		if (k + k < n) {
-			if (k * k < n) return sampleInsertion(n, k, result, ThreadLocalRandom.current());
-			else return samplePool(n, k, result, ThreadLocalRandom.current());
-		} else return sampleReservoir(n, k, result, ThreadLocalRandom.current());
+		return RandomSampler.sample(n, k, result);
 	}
 	
 	/**
@@ -530,12 +522,13 @@ public final class RandomIndexer {
 	 * @return An array containing the sample of k randomly chosen integers from the interval [0, n).
 	 * @throws IllegalArgumentException if k &gt; n.
 	 * @throws NegativeArraySizeException if k &lt; 0.
+	 *
+	 * @deprecated This method has been replace by {@link RandomSampler#sample(int, int, int[], RandomGenerator)}
+	 * and will be removed in the next major release.
 	 */
+	@Deprecated 
 	public static int[] sample(int n, int k, int[] result, RandomGenerator gen) {
-		if (k + k < n) {
-			if (k * k < n) return sampleInsertion(n, k, result, gen);
-			else return samplePool(n, k, result, gen);
-		} else return sampleReservoir(n, k, result, gen);
+		return RandomSampler.sample(n, k, result, gen);
 	}
 	
 	/**
@@ -573,7 +566,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, RandomGenerator gen) {
-		result = resultBoundedBufferCheck(result, 2);
+		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 2);
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		if (result[1] >= result[0]) {
@@ -639,7 +632,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, boolean sort, RandomGenerator gen) {
-		result = resultBoundedBufferCheck(result, 3);
+		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		result[2] = nextInt(n-2, gen);
@@ -663,7 +656,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, RandomGenerator gen) {
-		result = resultBoundedBufferCheck(result, 3);
+		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		result[2] = nextInt(n-2, gen);
@@ -822,7 +815,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, RandomGenerator gen) {
 		if (window >= n - 1) return nextIntPair(n, result, gen);
-		result = resultBoundedBufferCheck(result, 2);
+		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 2);
 		final int z1 = n - window;
 		final int z2 = z1 + z1;
 		int i = nextInt(z2 + window - 1, gen);
@@ -900,7 +893,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, RandomGenerator gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, gen);
-		result = resultBoundedBufferCheck(result, 3);
+		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
 		final int z1 = n - window;
 		final int z3 = 3*z1;
 		int i = nextInt(z3 + window - 2, gen);
@@ -931,7 +924,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort, RandomGenerator gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, sort, gen);
-		result = resultBoundedBufferCheck(result, 3);
+		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
 		final int z1 = n - window;
 		final int z3 = 3*z1;
 		int i = nextInt(z3 + window - 2, gen);
@@ -1062,20 +1055,6 @@ public final class RandomIndexer {
 				result[1] = j;
 				result[2] = k;
 			}			
-		}
-	}
-	
-	private static int[] resultBoundedBufferCheck(int[] result, int k) {
-		if (result == null || result.length < k) {
-			return new int[k];
-		} else {
-			return result;
-		}
-	}
-	
-	private static void fillIncremental(int[] array, int upTo) {
-		for (int i = 0; i < upTo; i++) {
-			array[i] = i;
 		}
 	}
 }
