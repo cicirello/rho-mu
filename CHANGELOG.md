@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-10-05
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### CI/CD
+
+### Other
+
+
+## [2.5.0] - 2022-10-05
+
+### Added
 * RandomSampler: sampling without replacement from set of integers. This class has been
   extracted from the RandomIndexer class.
 
@@ -20,14 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 * The sample, samplePool, sampleReservoir, and sampleInsertion methods of the RandomIndexer class. The equivalents
   of all of these are available in the new RandomSampler class.
-
-### Removed
-
-### Fixed
-
-### CI/CD
-
-### Other
 
 
 ## [2.4.2] - 2022-09-02
