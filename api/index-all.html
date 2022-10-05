@@ -38,6 +38,7 @@ loadScripts(document, 'script');</script>
 <li>Class</li>
 <li>Use</li>
 <li><a href="overview-tree.html">Tree</a></li>
+<li><a href="deprecated-list.html">Deprecated</a></li>
 <li class="nav-bar-cell1-rev">Index</li>
 <li><a href="help-doc.html#index">Help</a></li>
 </ul>
@@ -360,8 +361,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">An EnhancedRandomGenerator is used to wrap an object of any
  class that implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator</code></a> for the purpose
- of adding all of the functionality of the <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a>
- and <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a>.</div>
+ of adding all of the functionality of the <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a>,
+ <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand"><code>RandomSampler</code></a>, and <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a>.</div>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedRandomGenerator.html#%3Cinit%3E()" class="member-name-link">EnhancedRandomGenerator()</a> - Constructor for class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></dt>
 <dd>
@@ -1107,6 +1108,11 @@ loadScripts(document, 'script');</script>
 <div class="block">RandomIndexer is a class of utility methods related to 
  efficiently generating random indexes, and combination of indexes, into arrays.</div>
 </dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" class="type-name-link" title="class in org.cicirello.math.rand">RandomSampler</a> - Class in <a href="org.cicirello.rho_mu/org/cicirello/math/rand/package-summary.html">org.cicirello.math.rand</a></dt>
+<dd>
+<div class="block">RandomSampler is a class of utility methods related to efficiently sampling integers without
+ replacement.</div>
+</dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html" class="type-name-link" title="class in org.cicirello.math.rand">RandomVariates</a> - Class in <a href="org.cicirello.rho_mu/org/cicirello/math/rand/package-summary.html">org.cicirello.math.rand</a></dt>
 <dd>
 <div class="block">This utility class provides methods for generating random variates from
@@ -1134,10 +1140,24 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sample(int,double)" class="member-name-link">sample(int, double)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
 <dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,double)"><code>RandomSampler.sample(int, double)</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,double)" class="member-name-link">sample(int, double)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
+<dd>
 <div class="block">Generates a random sample, without replacement, from the
  set of integers in the interval [0, n).</div>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sample(int,double,java.util.random.RandomGenerator)" class="member-name-link">sample(int, double, RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
+<dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,double,java.util.random.RandomGenerator)"><code>RandomSampler.sample(int, double, RandomGenerator)</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,double,java.util.random.RandomGenerator)" class="member-name-link">sample(int, double, RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
 <dd>
 <div class="block">Generates a random sample, without replacement, from the
  set of integers in the interval [0, n).</div>
@@ -1149,10 +1169,24 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sample(int,int,int%5B%5D)" class="member-name-link">sample(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
 <dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,int,int%5B%5D)"><code>RandomSampler.sample(int, int, int[])</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,int,int%5B%5D)" class="member-name-link">sample(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
+<dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sample(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
+<dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,int,int%5B%5D,java.util.random.RandomGenerator)"><code>RandomSampler.sample(int, int, int[], RandomGenerator)</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sample(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sample(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
 <dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
@@ -1164,10 +1198,24 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sampleInsertion(int,int,int%5B%5D)" class="member-name-link">sampleInsertion(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
 <dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleInsertion(int,int,int%5B%5D)"><code>RandomSampler.sampleInsertion(int, int, int[])</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleInsertion(int,int,int%5B%5D)" class="member-name-link">sampleInsertion(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
+<dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sampleInsertion(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sampleInsertion(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
+<dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleInsertion(int,int,int%5B%5D,java.util.random.RandomGenerator)"><code>RandomSampler.sampleInsertion(int, int, int[], RandomGenerator)</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleInsertion(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sampleInsertion(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
 <dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
@@ -1179,10 +1227,24 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#samplePool(int,int,int%5B%5D)" class="member-name-link">samplePool(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
 <dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#samplePool(int,int,int%5B%5D)"><code>RandomSampler.samplePool(int, int, int[])</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#samplePool(int,int,int%5B%5D)" class="member-name-link">samplePool(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
+<dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#samplePool(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">samplePool(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
+<dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#samplePool(int,int,int%5B%5D,java.util.random.RandomGenerator)"><code>RandomSampler.samplePool(int, int, int[], RandomGenerator)</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#samplePool(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">samplePool(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
 <dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
@@ -1194,10 +1256,24 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sampleReservoir(int,int,int%5B%5D)" class="member-name-link">sampleReservoir(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
 <dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleReservoir(int,int,int%5B%5D)"><code>RandomSampler.sampleReservoir(int, int, int[])</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleReservoir(int,int,int%5B%5D)" class="member-name-link">sampleReservoir(int, int, int[])</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
+<dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
 </dd>
 <dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html#sampleReservoir(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sampleReservoir(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html" title="class in org.cicirello.math.rand">RandomIndexer</a></dt>
+<dd>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">This method has been replace by <a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleReservoir(int,int,int%5B%5D,java.util.random.RandomGenerator)"><code>RandomSampler.sampleReservoir(int, int, int[], RandomGenerator)</code></a>
+ and will be removed in the next major release.</div>
+</div>
+</dd>
+<dt><a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html#sampleReservoir(int,int,int%5B%5D,java.util.random.RandomGenerator)" class="member-name-link">sampleReservoir(int, int, int[], RandomGenerator)</a> - Static method in class org.cicirello.math.rand.<a href="org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html" title="class in org.cicirello.math.rand">RandomSampler</a></dt>
 <dd>
 <div class="block">Generates a random sample of k integers, without replacement, from the
  set of integers in the interval [0, n).</div>
