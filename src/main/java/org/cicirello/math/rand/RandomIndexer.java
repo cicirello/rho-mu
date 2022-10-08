@@ -26,6 +26,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 import java.util.Arrays;
 
+import org.cicirello.util.ArrayMinimumLengthEnforcer;
+
 /**
  * RandomIndexer is a class of utility methods related to 
  * efficiently generating random indexes, and combination of indexes, into arrays.
@@ -576,7 +578,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 2.
 	 */
 	public static int[] nextIntPair(int n, int[] result, RandomGenerator gen) {
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 2);
+		result = ArrayMinimumLengthEnforcer.enforce(result, 2);
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		if (result[1] >= result[0]) {
@@ -642,7 +644,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, boolean sort, RandomGenerator gen) {
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
+		result = ArrayMinimumLengthEnforcer.enforce(result, 3);
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		result[2] = nextInt(n-2, gen);
@@ -666,7 +668,7 @@ public final class RandomIndexer {
 	 * @throws IllegalArgumentException if n &lt; 3.
 	 */
 	public static int[] nextIntTriple(int n, int[] result, RandomGenerator gen) {
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
+		result = ArrayMinimumLengthEnforcer.enforce(result, 3);
 		result[0] = nextInt(n, gen);
 		result[1] = nextInt(n-1, gen);
 		result[2] = nextInt(n-2, gen);
@@ -825,7 +827,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextWindowedIntPair(int n, int window, int[] result, RandomGenerator gen) {
 		if (window >= n - 1) return nextIntPair(n, result, gen);
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 2);
+		result = ArrayMinimumLengthEnforcer.enforce(result, 2);
 		final int z1 = n - window;
 		final int z2 = z1 + z1;
 		int i = nextInt(z2 + window - 1, gen);
@@ -903,7 +905,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, RandomGenerator gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, gen);
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
+		result = ArrayMinimumLengthEnforcer.enforce(result, 3);
 		final int z1 = n - window;
 		final int z3 = 3*z1;
 		int i = nextInt(z3 + window - 2, gen);
@@ -934,7 +936,7 @@ public final class RandomIndexer {
 	 */
 	public static int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort, RandomGenerator gen) {
 		if (window >= n - 1) return nextIntTriple(n, result, sort, gen);
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, 3);
+		result = ArrayMinimumLengthEnforcer.enforce(result, 3);
 		final int z1 = n - window;
 		final int z3 = 3*z1;
 		int i = nextInt(z3 + window - 2, gen);
