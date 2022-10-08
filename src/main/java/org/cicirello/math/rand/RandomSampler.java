@@ -25,6 +25,9 @@ package org.cicirello.math.rand;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
+import org.cicirello.util.ArrayFiller;
+import org.cicirello.util.ArrayMinimumLengthEnforcer;
+
 /**
  * RandomSampler is a class of utility methods related to efficiently sampling integers without
  * replacement. 
@@ -89,8 +92,8 @@ public final class RandomSampler {
 	 */
 	public static int[] sampleReservoir(int n, int k, int[] result, RandomGenerator gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, k);
-		fillIncremental(result, k);
+		result = ArrayMinimumLengthEnforcer.enforce(result, k);
+		ArrayFiller.fillPartial(result, k);
 		for (int i = k; i < n; i++) {
 			int j = RandomIndexer.nextInt(i+1, gen);
 			if (j < k) {
@@ -152,9 +155,8 @@ public final class RandomSampler {
 	 */
 	public static int[] samplePool(int n, int k, int[] result, RandomGenerator gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, k);
-		int[] pool = new int[n];
-		fillIncremental(pool, n);
+		result = ArrayMinimumLengthEnforcer.enforce(result, k);
+		int[] pool = ArrayFiller.create(n);
 		int remaining = n;
 		for (int i = 0; i < k; i++) {
 			int temp = RandomIndexer.nextInt(remaining, gen);
@@ -223,7 +225,7 @@ public final class RandomSampler {
 	 */
 	public static int[] sampleInsertion(int n, int k, int[] result, RandomGenerator gen) {
 		if (k > n) throw new IllegalArgumentException("k must be no greater than n");
-		result = InternalRandomizationHelpers.resultBoundedBufferCheck(result, k);
+		result = ArrayMinimumLengthEnforcer.enforce(result, k);
 		for (int i = 0; i < k; i++) {
 			int temp = RandomIndexer.nextInt(n-i, gen);
 			int j = k-i; 
@@ -268,9 +270,7 @@ public final class RandomSampler {
 		if (p <= 0) {
 			return new int[0];
 		} else if (p >= 1) {
-			int[] result = new int[n];
-			fillIncremental(result, n);
-			return result;
+			return ArrayFiller.create(n);
 		} else {
 			return sample(n, RandomVariates.nextBinomial(n, p, r), null, r);
 		}
@@ -340,11 +340,5 @@ public final class RandomSampler {
 			if (k * k < n) return sampleInsertion(n, k, result, gen);
 			else return samplePool(n, k, result, gen);
 		} else return sampleReservoir(n, k, result, gen);
-	}
-	
-	private static void fillIncremental(int[] array, int upTo) {
-		for (int i = 0; i < upTo; i++) {
-			array[i] = i;
-		}
 	}
 }
