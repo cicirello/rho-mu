@@ -29,7 +29,6 @@ import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
 /** JUnit tests for the methods of the RandomIndexer class. */
-@SuppressWarnings("deprecation")
 public class RandomIndexerSampleTests {
 
   // Part of each test case in this class is a chi square goodness of fit test
@@ -55,16 +54,16 @@ public class RandomIndexerSampleTests {
     for (double p : P) {
       int sum = 0;
       for (int i = 0; i < TRIALS; i++) {
-        int[] result = RandomIndexer.sample(n, p, r);
+        int[] result = RandomSampler.sample(n, p, r);
         assertTrue(validSample(n, result), "verify correct range and no duplicates");
         sum += result.length;
       }
       double ave = 1.0 * sum / TRIALS;
       assertTrue(Math.abs(n * p - ave) <= 5, "verify correct sampling frequency");
     }
-    int[] result = RandomIndexer.sample(4, 0.0, r);
+    int[] result = RandomSampler.sample(4, 0.0, r);
     assertEquals(0, result.length);
-    result = RandomIndexer.sample(4, 1.0, r);
+    result = RandomSampler.sample(4, 1.0, r);
     assertEquals(4, result.length);
   }
 
@@ -76,7 +75,7 @@ public class RandomIndexerSampleTests {
     for (double p : P) {
       int sum = 0;
       for (int i = 0; i < TRIALS; i++) {
-        int[] result = RandomIndexer.sample(n, p);
+        int[] result = RandomSampler.sample(n, p);
         assertTrue(validSample(n, result), "verify correct range and no duplicates");
         sum += result.length;
       }
@@ -84,9 +83,9 @@ public class RandomIndexerSampleTests {
       // double ave = 1.0 * sum / TRIALS;
       // assertTrue("verify correct sampling frequency", Math.abs(n*p-ave) <= 5);
     }
-    int[] result = RandomIndexer.sample(4, 0.0);
+    int[] result = RandomSampler.sample(4, 0.0);
     assertEquals(0, result.length);
-    result = RandomIndexer.sample(4, 1.0);
+    result = RandomSampler.sample(4, 1.0);
     assertEquals(4, result.length);
   }
 
@@ -94,7 +93,7 @@ public class RandomIndexerSampleTests {
   public void testSampleReservoir_ThreadLocalRandom() {
     for (int n = 1; n <= 6; n++) {
       for (int k = 0; k <= n; k++) {
-        int[] result = RandomIndexer.sampleReservoir(n, k, null);
+        int[] result = RandomSampler.sampleReservoir(n, k, null);
         assertEquals(k, result.length, "Length of result should be " + k);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -108,7 +107,7 @@ public class RandomIndexerSampleTests {
     }
     IllegalArgumentException thrown =
         assertThrows(
-            IllegalArgumentException.class, () -> RandomIndexer.sampleReservoir(1, 2, null));
+            IllegalArgumentException.class, () -> RandomSampler.sampleReservoir(1, 2, null));
   }
 
   @Test
@@ -118,7 +117,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 1; n <= 6; n++) {
       for (int k = 0; k <= n; k++) {
-        int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
+        int[] result = RandomSampler.sampleReservoir(n, k, null, gen);
         assertEquals(k, result.length, "Length of result should be " + k);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -140,7 +139,7 @@ public class RandomIndexerSampleTests {
           int[][][] buckets3 = new int[n][n][n];
           int numBuckets = k == 1 ? n : (k == 2 ? n * (n - 1) / 2 : n * (n - 1) * (n - 2) / 6);
           for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-            int[] result = RandomIndexer.sampleReservoir(n, k, null, gen);
+            int[] result = RandomSampler.sampleReservoir(n, k, null, gen);
             Arrays.sort(result);
             switch (k) {
               case 1:
@@ -192,11 +191,11 @@ public class RandomIndexerSampleTests {
     }
     IllegalArgumentException thrown =
         assertThrows(
-            IllegalArgumentException.class, () -> RandomIndexer.sampleReservoir(1, 2, null, gen));
+            IllegalArgumentException.class, () -> RandomSampler.sampleReservoir(1, 2, null, gen));
     int[] expected = new int[2];
-    int[] actual = RandomIndexer.sampleReservoir(5, 2, expected, gen);
+    int[] actual = RandomSampler.sampleReservoir(5, 2, expected, gen);
     assertTrue(expected == actual);
-    actual = RandomIndexer.sampleReservoir(5, 3, expected, gen);
+    actual = RandomSampler.sampleReservoir(5, 3, expected, gen);
     assertTrue(expected != actual);
     assertEquals(3, actual.length);
   }
@@ -205,7 +204,7 @@ public class RandomIndexerSampleTests {
   public void testSamplePool_ThreadLocalRandom() {
     for (int n = 1; n <= 6; n++) {
       for (int k = 0; k <= n; k++) {
-        int[] result = RandomIndexer.samplePool(n, k, null);
+        int[] result = RandomSampler.samplePool(n, k, null);
         assertEquals(k, result.length, "Length of result should be " + k);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -218,7 +217,7 @@ public class RandomIndexerSampleTests {
       }
     }
     IllegalArgumentException thrown =
-        assertThrows(IllegalArgumentException.class, () -> RandomIndexer.samplePool(1, 2, null));
+        assertThrows(IllegalArgumentException.class, () -> RandomSampler.samplePool(1, 2, null));
   }
 
   @Test
@@ -229,7 +228,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 1; n <= 6; n++) {
       for (int k = 0; k <= n; k++) {
-        int[] result = RandomIndexer.samplePool(n, k, null, gen);
+        int[] result = RandomSampler.samplePool(n, k, null, gen);
         assertEquals(k, result.length, "Length of result should be " + k);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -251,7 +250,7 @@ public class RandomIndexerSampleTests {
           int[][][] buckets3 = new int[n][n][n];
           int numBuckets = k == 1 ? n : (k == 2 ? n * (n - 1) / 2 : n * (n - 1) * (n - 2) / 6);
           for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-            int[] result = RandomIndexer.samplePool(n, k, null, gen);
+            int[] result = RandomSampler.samplePool(n, k, null, gen);
             Arrays.sort(result);
             switch (k) {
               case 1:
@@ -305,11 +304,11 @@ public class RandomIndexerSampleTests {
     }
     IllegalArgumentException thrown =
         assertThrows(
-            IllegalArgumentException.class, () -> RandomIndexer.samplePool(1, 2, null, gen));
+            IllegalArgumentException.class, () -> RandomSampler.samplePool(1, 2, null, gen));
     int[] expected = new int[2];
-    int[] actual = RandomIndexer.samplePool(5, 2, expected, gen);
+    int[] actual = RandomSampler.samplePool(5, 2, expected, gen);
     assertTrue(expected == actual);
-    actual = RandomIndexer.samplePool(5, 3, expected, gen);
+    actual = RandomSampler.samplePool(5, 3, expected, gen);
     assertTrue(expected != actual);
     assertEquals(3, actual.length);
   }
@@ -319,7 +318,7 @@ public class RandomIndexerSampleTests {
     for (int n = 1; n <= 7; n++) {
       for (int k = 0; k <= n; k++) {
         int[] result = null;
-        result = RandomIndexer.sample(n, k, result);
+        result = RandomSampler.sample(n, k, result);
         assertEquals(k, result.length, "Length of result should be " + k);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -341,7 +340,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 1; n <= 6; n++) {
       for (int k = 0; k <= n; k++) {
-        int[] result = RandomIndexer.sample(n, k, null, gen);
+        int[] result = RandomSampler.sample(n, k, null, gen);
         assertEquals(k, result.length, "Length of result should be " + k);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -363,7 +362,7 @@ public class RandomIndexerSampleTests {
           int[][][] buckets3 = new int[n][n][n];
           int numBuckets = k == 1 ? n : (k == 2 ? n * (n - 1) / 2 : n * (n - 1) * (n - 2) / 6);
           for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-            int[] result = RandomIndexer.sample(n, k, null, gen);
+            int[] result = RandomSampler.sample(n, k, null, gen);
             Arrays.sort(result);
             switch (k) {
               case 1:
@@ -671,7 +670,7 @@ public class RandomIndexerSampleTests {
   public void testSampleInsertion_ThreadLocalRandom() {
     for (int n = 1; n <= 6; n++) {
       for (int k = 0; k <= n; k++) {
-        int[] result = RandomIndexer.sampleInsertion(n, k, null);
+        int[] result = RandomSampler.sampleInsertion(n, k, null);
         assertEquals(k, result.length);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -683,7 +682,7 @@ public class RandomIndexerSampleTests {
     }
     IllegalArgumentException thrown =
         assertThrows(
-            IllegalArgumentException.class, () -> RandomIndexer.sampleInsertion(1, 2, null));
+            IllegalArgumentException.class, () -> RandomSampler.sampleInsertion(1, 2, null));
   }
 
   @Test
@@ -694,7 +693,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 1; n <= 6; n++) {
       for (int k = 0; k <= n; k++) {
-        int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
+        int[] result = RandomSampler.sampleInsertion(n, k, null, gen);
         assertEquals(k, result.length);
         boolean[] inResult = new boolean[n];
         for (int i = 0; i < k; i++) {
@@ -714,7 +713,7 @@ public class RandomIndexerSampleTests {
           int[][][] buckets3 = new int[n][n][n];
           int numBuckets = k == 1 ? n : (k == 2 ? n * (n - 1) / 2 : n * (n - 1) * (n - 2) / 6);
           for (int j = 0; j < REPS_PER_BUCKET * numBuckets; j++) {
-            int[] result = RandomIndexer.sampleInsertion(n, k, null, gen);
+            int[] result = RandomSampler.sampleInsertion(n, k, null, gen);
             Arrays.sort(result);
             switch (k) {
               case 1:
@@ -763,11 +762,11 @@ public class RandomIndexerSampleTests {
     }
     IllegalArgumentException thrown =
         assertThrows(
-            IllegalArgumentException.class, () -> RandomIndexer.sampleInsertion(1, 2, null, gen));
+            IllegalArgumentException.class, () -> RandomSampler.sampleInsertion(1, 2, null, gen));
     int[] expected = new int[2];
-    int[] actual = RandomIndexer.sampleInsertion(5, 2, expected, gen);
+    int[] actual = RandomSampler.sampleInsertion(5, 2, expected, gen);
     assertTrue(expected == actual);
-    actual = RandomIndexer.sampleInsertion(5, 3, expected, gen);
+    actual = RandomSampler.sampleInsertion(5, 3, expected, gen);
     assertTrue(expected != actual);
     assertEquals(3, actual.length);
   }
