@@ -9,21 +9,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Refactored RandomIndexer and RandomSampler to use new dependency org.cicirello.core.
-* Reformatted all source code to Google Java style.
 
 ### Deprecated
+
+### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [3.0.0] - 2022-11-16
+
+### Changed
+* Refactored RandomIndexer and RandomSampler to use new dependency org.cicirello.core.
+* Reformatted all source code to Google Java style.
 
 ### Removed
 * The sample, samplePool, sampleReservoir, and sampleInsertion methods of the RandomIndexer class, which were all deprecated in 2.5.0. Instead,
   use the methods with the same names in the RandomSampler class introduced in 2.5.0. **BREAKING CHANGE**
 
-### Fixed
-
 ### Dependencies
 * Added dependency org.cicirello.core 2.4.3.
-
-### CI/CD
 
 ### Other
 * Configured [refactor-first-maven-plugin](https://github.com/jimbethancourt/RefactorFirst) in a profile within the pom.xml.
