@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 * Refactored RandomIndexer and RandomSampler to use new dependency org.cicirello.core.
+* Reformatted all source code to Google Java style.
 
 ### Deprecated
 
@@ -21,9 +22,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Added dependency org.cicirello.core 2.4.3.
 
 ### CI/CD
-* Configured [refactor-first-maven-plugin](https://github.com/jimbethancourt/RefactorFirst) in a profile within the pom.xml.
 
 ### Other
+* Configured [refactor-first-maven-plugin](https://github.com/jimbethancourt/RefactorFirst) in a profile within the pom.xml.
+* Adopted [Google Java style](https://google.github.io/styleguide/javaguide.html).
+* Configured [Spotify's fmt-maven-plugin](https://github.com/spotify/fmt-maven-plugin) in pom.xml to reformat to Google style during builds.
 
 
 ## [2.5.0] - 2022-10-05
