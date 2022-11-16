@@ -144,6 +144,7 @@ classDiagram
   EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
   link RandomIndexer "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html"
   link RandomVariates "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html"
+  link RandomSampler "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html"
   link EnhancedRandomGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedRandomGenerator.html"
   link EnhancedStreamableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedStreamableGenerator.html"
   link EnhancedSplittableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedSplittableGenerator.html"
