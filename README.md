@@ -111,10 +111,11 @@ classDiagram
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
   class EnhancedRandomGenerator
   RandomGenerator <|.. EnhancedRandomGenerator
-  class RandomIndexer
-  RandomIndexer <.. EnhancedRandomGenerator
   class RandomSampler
   RandomSampler <.. EnhancedRandomGenerator
+  class RandomIndexer
+  RandomIndexer <.. EnhancedRandomGenerator
+  RandomIndexer <.. RandomSampler
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
   RandomVariates <.. RandomSampler
