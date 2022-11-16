@@ -111,10 +111,11 @@ classDiagram
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
   class EnhancedRandomGenerator
   RandomGenerator <|.. EnhancedRandomGenerator
-  class RandomIndexer
-  RandomIndexer <.. EnhancedRandomGenerator
   class RandomSampler
   RandomSampler <.. EnhancedRandomGenerator
+  class RandomIndexer
+  RandomIndexer <.. EnhancedRandomGenerator
+  RandomIndexer <.. RandomSampler
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
   RandomVariates <.. RandomSampler
@@ -143,6 +144,7 @@ classDiagram
   EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
   link RandomIndexer "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html"
   link RandomVariates "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html"
+  link RandomSampler "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html"
   link EnhancedRandomGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedRandomGenerator.html"
   link EnhancedStreamableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedStreamableGenerator.html"
   link EnhancedSplittableGenerator "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedSplittableGenerator.html"
