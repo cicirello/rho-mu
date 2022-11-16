@@ -173,7 +173,7 @@ and minimum supported Java version.
 
 | version | Java requirements |
 | --- | --- |
-| 2.x.y | Java 17+ |
+| 2.w.x to 3.y.z | Java 17+ |
 | 1.x.y | Java 11+ |
 
 ## Versioning Scheme
@@ -239,7 +239,7 @@ the version number with the version that you want to use.
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>rho-mu</artifactId>
-  <version>2.3.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
