@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 
 ### Removed
+* The sample, samplePool, sampleReservoir, and sampleInsertion methods of the RandomIndexer class, which were all deprecated in 2.5.0. Instead,
+  use the methods with the same names in the RandomSampler class introduced in 2.5.0. **BREAKING CHANGE**
 
 ### Fixed
 
