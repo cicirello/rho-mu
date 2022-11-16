@@ -42,7 +42,6 @@ loadScripts(document, 'script');</script>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="class-use/EnhancedRandomGenerator.html">Use</a></li>
 <li><a href="package-tree.html">Tree</a></li>
-<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -95,35 +94,29 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">EnhancedRandomGenerator</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></span></div>
-<div class="block"><p>An EnhancedRandomGenerator is used to wrap an object of any
- class that implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator</code></a> for the purpose
- of adding all of the functionality of the <a href="RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a>,
- <a href="RandomSampler.html" title="class in org.cicirello.math.rand"><code>RandomSampler</code></a>, and <a href="RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a>. In this way, 
- the EnhancedRandomGenerator
- can be used as a drop-in replacement for any of Java's 
- random number generators, while substituting more efficient algorithms
- in some cases, or adding functionality in others. Methods of the 
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator</code></a> without equivalent replacements in one
- of <a href="RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a>, <a href="RandomSampler.html" title="class in org.cicirello.math.rand"><code>RandomSampler</code></a>, or <a href="RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a> 
- are simply delegated to the wrapped <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator</code></a>.</p>
+<div class="block">An EnhancedRandomGenerator is used to wrap an object of any class that implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator</code></a> for the purpose of adding all of the functionality of the <a href="RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a>,
+ <a href="RandomSampler.html" title="class in org.cicirello.math.rand"><code>RandomSampler</code></a>, and <a href="RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a>. In this way, the EnhancedRandomGenerator can
+ be used as a drop-in replacement for any of Java's random number generators, while substituting
+ more efficient algorithms in some cases, or adding functionality in others. Methods of the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator</code></a> without equivalent replacements in one of <a href="RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a>, <a href="RandomSampler.html" title="class in org.cicirello.math.rand"><code>RandomSampler</code></a>, or <a href="RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a> are simply delegated to the wrapped <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator</code></a>.
 
- <p>Enhanced Functionality provided by this class includes:</p>
+ <p>Enhanced Functionality provided by this class includes:
+
  <ul>
- <li>Faster generation of random int values subject to a bound or bound and origin.</li>
- <li>Faster generation of random int values within an IntStream subject to a bound and origin.</li>
- <li>Faster generation of Gaussian distributed random doubles.</li>
- <li>Additional distributions available beyond what is supported by
-     the Java API's RandomGenerator classes, such as Binomial and Cauchy
-     random vaiables.</li>
- <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity
-     for speed by excluding the rejection sampling necessary to ensure uniformity,
-     as well as a biasedInts methods for generating streams of such integers.</li>
- <li>Methods for generating random pairs of integers without replacement, and random
-    triples of integers without replacement.</li>
- <li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
- <li>Methods to generate streams of numbers from distributions other than uniform, such
-     as streams of random numbers from binomial distributions, Cauchy distributions, 
-     exponential distributions, and Gaussian distributions.</li>
+   <li>Faster generation of random int values subject to a bound or bound and origin.
+   <li>Faster generation of random int values within an IntStream subject to a bound and origin.
+   <li>Faster generation of Gaussian distributed random doubles.
+   <li>Additional distributions available beyond what is supported by the Java API's
+       RandomGenerator classes, such as Binomial and Cauchy random vaiables.
+   <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity for speed by
+       excluding the rejection sampling necessary to ensure uniformity, as well as a biasedInts
+       methods for generating streams of such integers.
+   <li>Methods for generating random pairs of integers without replacement, and random triples of
+       integers without replacement.
+   <li>Methods for generating random samples of k integers without replacement from a range of
+       integers.
+   <li>Methods to generate streams of numbers from distributions other than uniform, such as
+       streams of random numbers from binomial distributions, Cauchy distributions, exponential
+       distributions, and Gaussian distributions.
  </ul></div>
 </section>
 <section class="summary">
@@ -147,28 +140,23 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">EnhancedRandomGenerator</a>()</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of
- the default random number generator as obtained via a call to
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of the default random number
+ generator as obtained via a call to <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
 </div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(long)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(long&nbsp;seed)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance
- of a random number generator initialized with a specified seed
- to enable replicating the same sequence of random numbers during
- subsequent runs.</div>
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of a random number generator
+ initialized with a specified seed to enable replicating the same sequence of random numbers
+ during subsequent runs.</div>
 </div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of
- any random number generator supported by your version of Java
- as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a>
- method.</div>
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of any random number generator
+ supported by your version of Java as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</div>
 </div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.random.RandomGenerator)" class="member-name-link">EnhancedRandomGenerator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;generator)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Constructs the EnhancedRandomGenerator from the RandomGenerator
- to wrap.</div>
+<div class="block">Constructs the EnhancedRandomGenerator from the RandomGenerator to wrap.</div>
 </div>
 </div>
 </section>
@@ -187,140 +175,137 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#arrayMask(int)" class="member-name-link">arrayMask</a><wbr>(int&nbsp;n)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates an "array mask" of a specified length,
- where an "array mask" is an array of boolean values of the same length as another array.</div>
+<div class="block">Generates an "array mask" of a specified length, where an "array mask" is an array of boolean
+ values of the same length as another array.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#arrayMask(int,double)" class="member-name-link">arrayMask</a><wbr>(int&nbsp;n,
  double&nbsp;p)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates an "array mask" of a specified length,
- where an "array mask" is an array of boolean values of the same length as another array.</div>
+<div class="block">Generates an "array mask" of a specified length, where an "array mask" is an array of boolean
+ values of the same length as another array.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#arrayMask(int,int)" class="member-name-link">arrayMask</a><wbr>(int&nbsp;n,
  int&nbsp;k)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates an "array mask" of a specified length and specified number of true values,
- where an "array mask" is an array of boolean values of the same length as another array.</div>
+<div class="block">Generates an "array mask" of a specified length and specified number of true values, where an
+ "array mask" is an array of boolean values of the same length as another array.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#biasedInts(int,int)" class="member-name-link">biasedInts</a><wbr>(int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value
- random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value random from the
+ interval [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#biasedInts(long,int,int)" class="member-name-link">biasedInts</a><wbr>(long&nbsp;streamSize,
  int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom int values, each value
- random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns a stream of pseudorandom int values, each value random from the interval
+ [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#binomials(int,double)" class="member-name-link">binomials</a><wbr>(int&nbsp;n,
  double&nbsp;p)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value
- generated from a binomial distribution.</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value generated from a
+ binomial distribution.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#binomials(long,int,double)" class="member-name-link">binomials</a><wbr>(long&nbsp;streamSize,
  int&nbsp;n,
  double&nbsp;p)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom int values, each value
- generated from a binomial distribution.</div>
+<div class="block">Returns a stream of pseudorandom int values, each value generated from a binomial distribution.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cauchys(double,double)" class="member-name-link">cauchys</a><wbr>(double&nbsp;median,
  double&nbsp;scale)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom double 
- values from a Cauchy distribution.</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values from a Cauchy
+ distribution.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cauchys(long,double,double)" class="member-name-link">cauchys</a><wbr>(long&nbsp;streamSize,
  double&nbsp;median,
  double&nbsp;scale)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom double 
- values from a Cauchy distribution.</div>
+<div class="block">Returns a stream of pseudorandom double values from a Cauchy distribution.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#doubles()" class="member-name-link">doubles</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom double values, each value
- uniformly random from the interval [0.0, 1.0).</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values, each value uniformly
+ random from the interval [0.0, 1.0).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#doubles(double,double)" class="member-name-link">doubles</a><wbr>(double&nbsp;randomNumberOrigin,
  double&nbsp;randomNumberBound)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom double values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values, each value uniformly
+ random from the interval [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#doubles(long)" class="member-name-link">doubles</a><wbr>(long&nbsp;streamSize)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom double values, each value
- uniformly random from the interval [0.0, 1.0).</div>
+<div class="block">Returns a stream of pseudorandom double values, each value uniformly random from the interval
+ [0.0, 1.0).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#doubles(long,double,double)" class="member-name-link">doubles</a><wbr>(long&nbsp;streamSize,
  double&nbsp;randomNumberOrigin,
  double&nbsp;randomNumberBound)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom double values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns a stream of pseudorandom double values, each value uniformly random from the interval
+ [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#exponentials()" class="member-name-link">exponentials</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom non-negative double 
- values from an exponential distribution with mean 1.</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom non-negative double values from an
+ exponential distribution with mean 1.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#exponentials(long)" class="member-name-link">exponentials</a><wbr>(long&nbsp;streamSize)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom non-negative double 
- values from an exponential distribution with mean 1.</div>
+<div class="block">Returns a stream of pseudorandom non-negative double values from an exponential distribution
+ with mean 1.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians()" class="member-name-link">gaussians</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom double 
- values from a Gaussian distribution with mean 0 and standard deviation 1.</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values from a Gaussian
+ distribution with mean 0 and standard deviation 1.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians(double,double)" class="member-name-link">gaussians</a><wbr>(double&nbsp;mean,
  double&nbsp;stdev)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom double 
- values from a Gaussian distribution with specified mean and standard deviation.</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values from a Gaussian
+ distribution with specified mean and standard deviation.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians(long)" class="member-name-link">gaussians</a><wbr>(long&nbsp;streamSize)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom non-negative double 
- values from a Gaussian distribution with mean 0 and standard deviation 1.</div>
+<div class="block">Returns a stream of pseudorandom non-negative double values from a Gaussian distribution with
+ mean 0 and standard deviation 1.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gaussians(long,double,double)" class="member-name-link">gaussians</a><wbr>(long&nbsp;streamSize,
  double&nbsp;mean,
  double&nbsp;stdev)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom double 
- values from a Gaussian distribution with specified mean and standard deviation.</div>
+<div class="block">Returns a stream of pseudorandom double values from a Gaussian distribution with specified mean
+ and standard deviation.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getDefault()" class="member-name-link">getDefault</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of
- the default random number generator as obtained via a call to
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
+<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of the default random number generator as
+ obtained via a call to <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#ints()" class="member-name-link">ints</a>()</code></div>
@@ -331,8 +316,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#ints(int,int)" class="member-name-link">ints</a><wbr>(int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value uniformly random
+ from the interval [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#ints(long)" class="member-name-link">ints</a><wbr>(long&nbsp;streamSize)</code></div>
@@ -344,8 +329,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom int values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns a stream of pseudorandom int values, each value uniformly random from the interval
+ [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/LongStream.html" title="class or interface in java.util.stream" class="external-link">LongStream</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#longs()" class="member-name-link">longs</a>()</code></div>
@@ -361,16 +346,16 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#longs(long,long)" class="member-name-link">longs</a><wbr>(long&nbsp;randomNumberOrigin,
  long&nbsp;randomNumberBound)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns an effectively unlimited stream of pseudorandom long values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom long values, each value uniformly
+ random from the interval [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/LongStream.html" title="class or interface in java.util.stream" class="external-link">LongStream</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#longs(long,long,long)" class="member-name-link">longs</a><wbr>(long&nbsp;streamSize,
  long&nbsp;randomNumberOrigin,
  long&nbsp;randomNumberBound)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a stream of pseudorandom long values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</div>
+<div class="block">Returns a stream of pseudorandom long values, each value uniformly random from the interval
+ [randomNumberOrigin, randomNumberBound).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBiasedInt(int)" class="member-name-link">nextBiasedInt</a><wbr>(int&nbsp;bound)</code></div>
@@ -397,14 +382,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextBytes(byte%5B%5D)" class="member-name-link">nextBytes</a><wbr>(byte[]&nbsp;bytes)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Fills a user-supplied byte array with byte values generated
- pseudorandomly uniformly distributed in the interval [-128, 127].</div>
+<div class="block">Fills a user-supplied byte array with byte values generated pseudorandomly uniformly
+ distributed in the interval [-128, 127].</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextCauchy(double)" class="member-name-link">nextCauchy</a><wbr>(double&nbsp;scale)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a pseudorandom number from a Cauchy distribution with median 0
- and chosen scale parameter.</div>
+<div class="block">Generates a pseudorandom number from a Cauchy distribution with median 0 and chosen scale
+ parameter.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextCauchy(double,double)" class="member-name-link">nextCauchy</a><wbr>(double&nbsp;median,
@@ -431,8 +416,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextExponential()" class="member-name-link">nextExponential</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a non-negative pseudorandom number from an exponential distribution
- with mean 1.</div>
+<div class="block">Generates a non-negative pseudorandom number from an exponential distribution with mean 1.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final float</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextFloat()" class="member-name-link">nextFloat</a>()</code></div>
@@ -453,21 +437,20 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian()" class="member-name-link">nextGaussian</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation 1.</div>
+<div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian(double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;stddev)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation, stddev, of your choosing.</div>
+<div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation,
+ stddev, of your choosing.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextGaussian(double,double)" class="member-name-link">nextGaussian</a><wbr>(double&nbsp;mean,
  double&nbsp;stddev)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random number from a Gaussian distribution with
- mean and standard deviation of your choosing.</div>
+<div class="block">Generates a random number from a Gaussian distribution with mean and standard deviation of your
+ choosing.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextInt()" class="member-name-link">nextInt</a>()</code></div>
@@ -489,23 +472,23 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntPair(int,int%5B%5D)" class="member-name-link">nextIntPair</a><wbr>(int&nbsp;n,
  int[]&nbsp;result)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of 2 integers, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample of 2 integers, without replacement, from the set of integers in the
+ interval [0, n).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntTriple(int,int%5B%5D)" class="member-name-link">nextIntTriple</a><wbr>(int&nbsp;n,
  int[]&nbsp;result)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of 3 integers, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample of 3 integers, without replacement, from the set of integers in the
+ interval [0, n).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextIntTriple(int,int%5B%5D,boolean)" class="member-name-link">nextIntTriple</a><wbr>(int&nbsp;n,
  int[]&nbsp;result,
  boolean&nbsp;sort)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of 3 integers, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample of 3 integers, without replacement, from the set of integers in the
+ interval [0, n).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final long</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextLong()" class="member-name-link">nextLong</a>()</code></div>
@@ -528,17 +511,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  int&nbsp;window,
  int[]&nbsp;result)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of 2 integers, i, j, without replacement, from the
- set of integers in the interval [0, n), such that |i-j| &le; window.</div>
+<div class="block">Generates a random sample of 2 integers, i, j, without replacement, from the set of integers in
+ the interval [0, n), such that |i-j| &le; window.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntTriple(int,int,int%5B%5D)" class="member-name-link">nextWindowedIntTriple</a><wbr>(int&nbsp;n,
  int&nbsp;window,
  int[]&nbsp;result)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the
- set of integers in the interval [0, n), such that |i-j| &le; window, and 
- |i-k| &le; window, and |k-j| &le; window.</div>
+<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+ in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+ window.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextWindowedIntTriple(int,int,int%5B%5D,boolean)" class="member-name-link">nextWindowedIntTriple</a><wbr>(int&nbsp;n,
@@ -546,56 +529,54 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  int[]&nbsp;result,
  boolean&nbsp;sort)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the
- set of integers in the interval [0, n), such that |i-j| &le; window, and 
- |i-k| &le; window, and |k-j| &le; window.</div>
+<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+ in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+ window.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#of(java.lang.String)" class="member-name-link">of</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of
- any random number generator supported by your version of Java
- as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a>
- method.</div>
+<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of any random number generator supported
+ by your version of Java as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sample(int,double)" class="member-name-link">sample</a><wbr>(int&nbsp;n,
  double&nbsp;p)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample, without replacement, from the set of integers in the interval [0,
+ n).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sample(int,int,int%5B%5D)" class="member-name-link">sample</a><wbr>(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sampleInsertion(int,int,int%5B%5D)" class="member-name-link">sampleInsertion</a><wbr>(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#samplePool(int,int,int%5B%5D)" class="member-name-link">samplePool</a><wbr>(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sampleReservoir(int,int,int%5B%5D)" class="member-name-link">sampleReservoir</a><wbr>(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).</div>
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n).</div>
 </div>
 </div>
 </div>
@@ -621,19 +602,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="&lt;init&gt;()">
 <h3>EnhancedRandomGenerator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EnhancedRandomGenerator</span>()</div>
-<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of
- the default random number generator as obtained via a call to
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of the default random number
+ generator as obtained via a call to <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(long)">
 <h3>EnhancedRandomGenerator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EnhancedRandomGenerator</span><wbr><span class="parameters">(long&nbsp;seed)</span></div>
-<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance
- of a random number generator initialized with a specified seed
- to enable replicating the same sequence of random numbers during
- subsequent runs.</div>
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of a random number generator
+ initialized with a specified seed to enable replicating the same sequence of random numbers
+ during subsequent runs.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>seed</code> - The seed for the random number generator.</dd>
@@ -644,12 +623,10 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="&lt;init&gt;(java.util.random.RandomGenerator)">
 <h3>EnhancedRandomGenerator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EnhancedRandomGenerator</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;generator)</span></div>
-<div class="block">Constructs the EnhancedRandomGenerator from the RandomGenerator
- to wrap.</div>
+<div class="block">Constructs the EnhancedRandomGenerator from the RandomGenerator to wrap.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>generator</code> - The RandomGenerator to wrap, which serves as the source
- of randomness.</dd>
+<dd><code>generator</code> - The RandomGenerator to wrap, which serves as the source of randomness.</dd>
 </dl>
 </section>
 </li>
@@ -657,14 +634,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>EnhancedRandomGenerator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">EnhancedRandomGenerator</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</span></div>
-<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of
- any random number generator supported by your version of Java
- as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a>
- method.</div>
+<div class="block">Constructs the EnhancedRandomGenerator to wrap an instance of any random number generator
+ supported by your version of Java as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>algorithmName</code> - The name of the random number generator as documented
- by the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</dd>
+<dd><code>algorithmName</code> - The name of the random number generator as documented by the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - if algorithmName is null.</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if algorithmName is not found.</dd>
@@ -683,13 +657,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="getDefault()">
 <h3>getDefault</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></span>&nbsp;<span class="element-name">getDefault</span>()</div>
-<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of
- the default random number generator as obtained via a call to
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
+<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of the default random number generator as
+ obtained via a call to <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#getDefault()" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.getDefault()</code></a>.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>an EnhancedRandomGenerator wrapping an instance of
- the default random number generator</dd>
+<dd>an EnhancedRandomGenerator wrapping an instance of the default random number generator</dd>
 </dl>
 </section>
 </li>
@@ -697,17 +669,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="of(java.lang.String)">
 <h3>of</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a></span>&nbsp;<span class="element-name">of</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;algorithmName)</span></div>
-<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of
- any random number generator supported by your version of Java
- as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a>
- method.</div>
+<div class="block">Gets an EnhancedRandomGenerator wrapping an instance of any random number generator supported
+ by your version of Java as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>algorithmName</code> - The name of the random number generator as documented
- by the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</dd>
+<dd><code>algorithmName</code> - The name of the random number generator as documented by the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.of(java.lang.String)</code></a> method.</dd>
 <dt>Returns:</dt>
-<dd>an EnhancedRandomGenerator wrapping an instance of your chosen
- random number generator.</dd>
+<dd>an EnhancedRandomGenerator wrapping an instance of your chosen random number generator.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - if algorithmName is null.</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if algorithmName is not found.</dd>
@@ -718,12 +686,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="arrayMask(int)">
 <h3>arrayMask</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">boolean[]</span>&nbsp;<span class="element-name">arrayMask</span><wbr><span class="parameters">(int&nbsp;n)</span></div>
-<div class="block"><p>Generates an "array mask" of a specified length,
- where an "array mask" is an array of boolean values of the same length as another array.
- Each position in the result is equally likely true or false.
- <b>Enhanced Functionality.</b></p>
+<div class="block">Generates an "array mask" of a specified length, where an "array mask" is an array of boolean
+ values of the same length as another array. Each position in the result is equally likely true
+ or false. <b>Enhanced Functionality.</b>
 
- <p>Runtime: O(n).</p></div>
+ <p>Runtime: O(n).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The length of the array mask.</dd>
@@ -737,11 +704,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>arrayMask</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">boolean[]</span>&nbsp;<span class="element-name">arrayMask</span><wbr><span class="parameters">(int&nbsp;n,
  int&nbsp;k)</span></div>
-<div class="block"><p>Generates an "array mask" of a specified length and specified number of true values,
- where an "array mask" is an array of boolean values of the same length as another array.
- <b>Enhanced Functionality.</b></p>
+<div class="block">Generates an "array mask" of a specified length and specified number of true values, where an
+ "array mask" is an array of boolean values of the same length as another array. <b>Enhanced
+ Functionality.</b>
 
- <p>Runtime: O(min(n, k<sup>2</sup>)), and it uses O(min(k, n-k)) random numbers.</p></div>
+ <p>Runtime: O(min(n, k<sup>2</sup>)), and it uses O(min(k, n-k)) random numbers.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The length of the array mask.</dd>
@@ -756,11 +723,10 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>arrayMask</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">boolean[]</span>&nbsp;<span class="element-name">arrayMask</span><wbr><span class="parameters">(int&nbsp;n,
  double&nbsp;p)</span></div>
-<div class="block"><p>Generates an "array mask" of a specified length,
- where an "array mask" is an array of boolean values of the same length as another array.
- <b>Enhanced Functionality.</b></p>
+<div class="block">Generates an "array mask" of a specified length, where an "array mask" is an array of boolean
+ values of the same length as another array. <b>Enhanced Functionality.</b>
 
- <p>Runtime: O(n), and it uses O(n) random doubles.</p></div>
+ <p>Runtime: O(n), and it uses O(n) random doubles.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The length of the array mask.</dd>
@@ -775,27 +741,26 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>biasedInts</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">biasedInts</span><wbr><span class="parameters">(int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom int values, each value
- random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value random from the
+ interval [randomNumberOrigin, randomNumberBound).
 
- <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
- by an implementation of a variation of the algorithm proposed in the 
- article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
- The difference between this implementation and that algorithm is that we have removed
- the rejection sampling to create an ultrafast, but not strictly uniform, stream of
- random integers. If you require strict uniformity, then use the <a href="#ints(int,int)"><code>ints(int, int)</code></a> 
- method instead.</p></div>
+ <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated by an
+ implementation of a variation of the algorithm proposed in the article: Daniel Lemire, "Fast
+ Random Integer Generation in an Interval," ACM Transactions on Modeling and Computer
+ Simulation, 29(1), 2019. The difference between this implementation and that algorithm is that
+ we have removed the rejection sampling to create an ultrafast, but not strictly uniform, stream
+ of random integers. If you require strict uniformity, then use the <a href="#ints(int,int)"><code>ints(int, int)</code></a>
+ method instead.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound)</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom int values,
- random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>an effectively unlimited stream of pseudorandom int values, random from the interval
+     [randomNumberOrigin, randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound</dd>
 </dl>
 </section>
 </li>
@@ -805,28 +770,26 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">biasedInts</span><wbr><span class="parameters">(long&nbsp;streamSize,
  int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom int values, each value
- random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+<div class="block">Returns a stream of pseudorandom int values, each value random from the interval
+ [randomNumberOrigin, randomNumberBound).
 
- <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
- by an implementation of a variation of the algorithm proposed in the 
- article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
- The difference between this implementation and that algorithm is that we have removed
- the rejection sampling to create an ultrafast, but not strictly uniform, stream of
- random integers. If you require strict uniformity, then use the <a href="#ints(long,int,int)"><code>ints(long, int, int)</code></a> 
- method instead.</p></div>
+ <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated by an
+ implementation of a variation of the algorithm proposed in the article: Daniel Lemire, "Fast
+ Random Integer Generation in an Interval," ACM Transactions on Modeling and Computer
+ Simulation, 29(1), 2019. The difference between this implementation and that algorithm is that
+ we have removed the rejection sampling to create an ultrafast, but not strictly uniform, stream
+ of random integers. If you require strict uniformity, then use the <a href="#ints(long,int,int)"><code>ints(long, int, int)</code></a> method instead.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>streamSize</code> - The number of values in the stream.</dd>
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound).</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom int values,
- random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>a stream of pseudorandom int values, random from the interval [randomNumberOrigin,
+     randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound, or if streamSize is negative.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound, or if streamSize is negative.</dd>
 </dl>
 </section>
 </li>
@@ -835,15 +798,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>binomials</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">binomials</span><wbr><span class="parameters">(int&nbsp;n,
  double&nbsp;p)</span></div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom int values, each value
- generated from a binomial distribution. <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value generated from a
+ binomial distribution. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - Number of trials for the binomial distribution.</dd>
 <dd><code>p</code> - The probability of a successful trial.</dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom int values
- generated from a binomial distribution.</dd>
+<dd>an effectively unlimited stream of pseudorandom int values generated from a binomial
+     distribution.</dd>
 </dl>
 </section>
 </li>
@@ -853,16 +816,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">binomials</span><wbr><span class="parameters">(long&nbsp;streamSize,
  int&nbsp;n,
  double&nbsp;p)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom int values, each value
- generated from a binomial distribution. <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns a stream of pseudorandom int values, each value generated from a binomial distribution.
+ <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>streamSize</code> - The number of values in the stream.</dd>
 <dd><code>n</code> - Number of trials for the binomial distribution.</dd>
 <dd><code>p</code> - The probability of a successful trial.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom int values
- generated from a binomial distribution.</dd>
+<dd>a stream of pseudorandom int values generated from a binomial distribution.</dd>
 </dl>
 </section>
 </li>
@@ -871,16 +833,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>cauchys</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">cauchys</span><wbr><span class="parameters">(double&nbsp;median,
  double&nbsp;scale)</span></div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double 
- values from a Cauchy distribution.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values from a Cauchy
+ distribution. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>median</code> - The median of the Cauchy distribution.</dd>
 <dd><code>scale</code> - The scale of the Cauchy distribution.</dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom double values
- from a Cauchy distribution.</dd>
+<dd>an effectively unlimited stream of pseudorandom double values from a Cauchy
+     distribution.</dd>
 </dl>
 </section>
 </li>
@@ -890,17 +851,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">cauchys</span><wbr><span class="parameters">(long&nbsp;streamSize,
  double&nbsp;median,
  double&nbsp;scale)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom double 
- values from a Cauchy distribution.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns a stream of pseudorandom double values from a Cauchy distribution. <b>Enhanced
+ Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>streamSize</code> - The number of values in the stream.</dd>
 <dd><code>median</code> - The median of the Cauchy distribution.</dd>
 <dd><code>scale</code> - The scale of the Cauchy distribution.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom double values
- from a Cauchy distribution.</dd>
+<dd>a stream of pseudorandom double values from a Cauchy distribution.</dd>
 </dl>
 </section>
 </li>
@@ -908,13 +867,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="exponentials()">
 <h3>exponentials</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">exponentials</span>()</div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom non-negative double 
- values from an exponential distribution with mean 1.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom non-negative double values from an
+ exponential distribution with mean 1. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom double values
- from an exponential distribution with mean 1.</dd>
+<dd>an effectively unlimited stream of pseudorandom double values from an exponential
+     distribution with mean 1.</dd>
 </dl>
 </section>
 </li>
@@ -922,15 +880,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="exponentials(long)">
 <h3>exponentials</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">exponentials</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom non-negative double 
- values from an exponential distribution with mean 1.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns a stream of pseudorandom non-negative double values from an exponential distribution
+ with mean 1. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>streamSize</code> - The number of values in the stream.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom double values
- from an exponential distribution with mean 1.</dd>
+<dd>a stream of pseudorandom double values from an exponential distribution with mean 1.</dd>
 </dl>
 </section>
 </li>
@@ -938,13 +894,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="gaussians()">
 <h3>gaussians</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span>()</div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double 
- values from a Gaussian distribution with mean 0 and standard deviation 1.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values from a Gaussian
+ distribution with mean 0 and standard deviation 1. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom double values
- from a Gaussian distribution with mean 0 and standard deviation 1.</dd>
+<dd>an effectively unlimited stream of pseudorandom double values from a Gaussian
+     distribution with mean 0 and standard deviation 1.</dd>
 </dl>
 </section>
 </li>
@@ -953,16 +908,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>gaussians</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span><wbr><span class="parameters">(double&nbsp;mean,
  double&nbsp;stdev)</span></div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double 
- values from a Gaussian distribution with specified mean and standard deviation.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values from a Gaussian
+ distribution with specified mean and standard deviation. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>mean</code> - The mean of the Gaussian.</dd>
 <dd><code>stdev</code> - The standard deviation of the Gaussian.</dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom double values
- from a Gaussian distribution with specified mean and standard deviation.</dd>
+<dd>an effectively unlimited stream of pseudorandom double values from a Gaussian
+     distribution with specified mean and standard deviation.</dd>
 </dl>
 </section>
 </li>
@@ -972,17 +926,16 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span><wbr><span class="parameters">(long&nbsp;streamSize,
  double&nbsp;mean,
  double&nbsp;stdev)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom double 
- values from a Gaussian distribution with specified mean and standard deviation.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns a stream of pseudorandom double values from a Gaussian distribution with specified mean
+ and standard deviation. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>streamSize</code> - The number of values in the stream.</dd>
 <dd><code>mean</code> - The mean of the Gaussian.</dd>
 <dd><code>stdev</code> - The standard deviation of the Gaussian.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom double values
- from a Gaussian distribution with specified mean and standard deviation.</dd>
+<dd>a stream of pseudorandom double values from a Gaussian distribution with specified mean
+     and standard deviation.</dd>
 </dl>
 </section>
 </li>
@@ -990,15 +943,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="gaussians(long)">
 <h3>gaussians</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">gaussians</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom non-negative double 
- values from a Gaussian distribution with mean 0 and standard deviation 1.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Returns a stream of pseudorandom non-negative double values from a Gaussian distribution with
+ mean 0 and standard deviation 1. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>streamSize</code> - The number of values in the stream.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom double values
- from a Gaussian distribution with mean 0 and standard deviation 1.</dd>
+<dd>a stream of pseudorandom double values from a Gaussian distribution with mean 0 and
+     standard deviation 1.</dd>
 </dl>
 </section>
 </li>
@@ -1006,19 +958,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextBiasedInt(int)">
 <h3>nextBiasedInt</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextBiasedInt</span><wbr><span class="parameters">(int&nbsp;bound)</span></div>
-<div class="block"><p>Generates a random integer in the interval: [0, bound). <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random integer in the interval: [0, bound). <b>Enhanced Functionality.</b>
 
- <p>The nextBiasedInt(bound) method computes a random int in the target interval
- but faster than nextInt(bound). It does not
- correct for bias via rejection sampling, and thus some values in the interval [0, bound)
- may be more likely than others. There is no bias for bound values that are powers of 2.
- Otherwise, the lower the value of bound, the less bias; and the higher
- the value of bound, the more bias. If your bound is relatively low, and if your application
- does not require strict uniformity, then this method is significantly faster than any
- approach that corrects for bias. We started with  
- the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
- But we removed from it the rejection sampling portion.</p></div>
+ <p>The nextBiasedInt(bound) method computes a random int in the target interval but faster than
+ nextInt(bound). It does not correct for bias via rejection sampling, and thus some values in
+ the interval [0, bound) may be more likely than others. There is no bias for bound values that
+ are powers of 2. Otherwise, the lower the value of bound, the less bias; and the higher the
+ value of bound, the more bias. If your bound is relatively low, and if your application does
+ not require strict uniformity, then this method is significantly faster than any approach that
+ corrects for bias. We started with the algorithm proposed in the article: Daniel Lemire, "Fast
+ Random Integer Generation in an Interval," ACM Transactions on Modeling and Computer
+ Simulation, 29(1), 2019. But we removed from it the rejection sampling portion.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>bound</code> - Upper bound, exclusive, on range of random integers (must be positive).</dd>
@@ -1034,19 +984,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextBiasedInt</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextBiasedInt</span><wbr><span class="parameters">(int&nbsp;origin,
  int&nbsp;bound)</span></div>
-<div class="block"><p>Generates a random integer in the interval: [origin, bound). <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random integer in the interval: [origin, bound). <b>Enhanced Functionality.</b>
 
- <p>The nextBiasedInt(origin, bound) method computes a random int in the target interval
- but faster than nextInt(origin, bound). It does not
- correct for bias via rejection sampling, and thus some values in the interval [origin, bound)
- may be more likely than others. There is no bias interval width is a power of 2.
- Otherwise, the smaller the interval, the less bias; and the larger
- the interval, the more bias. If your interval is relatively low, and if your application
- does not require strict uniformity, then this method is significantly faster than any
- approach that corrects for bias. We started with  
- the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.
- But we removed from it the rejection sampling portion.</p></div>
+ <p>The nextBiasedInt(origin, bound) method computes a random int in the target interval but
+ faster than nextInt(origin, bound). It does not correct for bias via rejection sampling, and
+ thus some values in the interval [origin, bound) may be more likely than others. There is no
+ bias interval width is a power of 2. Otherwise, the smaller the interval, the less bias; and
+ the larger the interval, the more bias. If your interval is relatively low, and if your
+ application does not require strict uniformity, then this method is significantly faster than
+ any approach that corrects for bias. We started with the algorithm proposed in the article:
+ Daniel Lemire, "Fast Random Integer Generation in an Interval," ACM Transactions on Modeling
+ and Computer Simulation, 29(1), 2019. But we removed from it the rejection sampling portion.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>origin</code> - Lower bound, inclusive, on range of random integers.</dd>
@@ -1063,8 +1011,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextBinomial</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextBinomial</span><wbr><span class="parameters">(int&nbsp;n,
  double&nbsp;p)</span></div>
-<div class="block">Generates a pseudorandom integer from a binomial distribution.
- <b>Enhanced Functionality.</b></div>
+<div class="block">Generates a pseudorandom integer from a binomial distribution. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - Number of trials for the binomial distribution.</dd>
@@ -1078,8 +1025,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextCauchy(double)">
 <h3>nextCauchy</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextCauchy</span><wbr><span class="parameters">(double&nbsp;scale)</span></div>
-<div class="block">Generates a pseudorandom number from a Cauchy distribution with median 0
- and chosen scale parameter. <b>Enhanced Functionality.</b></div>
+<div class="block">Generates a pseudorandom number from a Cauchy distribution with median 0 and chosen scale
+ parameter. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>scale</code> - The scale parameter of the Cauchy.</dd>
@@ -1093,8 +1040,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextCauchy</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextCauchy</span><wbr><span class="parameters">(double&nbsp;median,
  double&nbsp;scale)</span></div>
-<div class="block">Generates a pseudorandom number from a Cauchy distribution.
- <b>Enhanced Functionality.</b></div>
+<div class="block">Generates a pseudorandom number from a Cauchy distribution. <b>Enhanced Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>median</code> - The median of the Cauchy.</dd>
@@ -1108,20 +1054,18 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextGaussian(double)">
 <h3>nextGaussian</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;stddev)</span></div>
-<div class="block"><p>Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation, stddev, of your choosing.</p> 
+<div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation,
+ stddev, of your choosing.
 
- <p><b>Enhanced Functionality:</b> This method uses
- the library's current most-efficient algorithm for Gaussian random number
- generation, which may change in future releases. If you require a 
- guarantee of the algorithm used, then see the API for the classes that
- implement specific Gaussian algorithms.</p></div>
+ <p><b>Enhanced Functionality:</b> This method uses the library's current most-efficient
+ algorithm for Gaussian random number generation, which may change in future releases. If you
+ require a guarantee of the algorithm used, then see the API for the classes that implement
+ specific Gaussian algorithms.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>stddev</code> - The standard deviation of the Gaussian.</dd>
 <dt>Returns:</dt>
-<dd>A random number from a Gaussian distribution with mean 0 and
- standard deviation stddev.</dd>
+<dd>A random number from a Gaussian distribution with mean 0 and standard deviation stddev.</dd>
 </dl>
 </section>
 </li>
@@ -1130,19 +1074,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextIntPair</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">nextIntPair</span><wbr><span class="parameters">(int&nbsp;n,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of 2 integers, without replacement, from the
- set of integers in the interval [0, n). All n choose 2 combinations are equally
- likely. <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random sample of 2 integers, without replacement, from the set of integers in the
+ interval [0, n). All n choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
 
- <p>The runtime is O(1).</p></div>
+ <p>The runtime is O(1).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
-<dd><code>result</code> - An array to hold the pair that is generated.  If result is null
- or if result.length is less than 2, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the pair that is generated. If result is null or if
+     result.length is less than 2, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
-<dd>An array containing the pair of 
- randomly chosen integers from the interval [0, n).</dd>
+<dd>An array containing the pair of randomly chosen integers from the interval [0, n).</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if n &lt; 2.</dd>
 </dl>
@@ -1153,19 +1095,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextIntTriple</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">nextIntTriple</span><wbr><span class="parameters">(int&nbsp;n,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of 3 integers, without replacement, from the
- set of integers in the interval [0, n). All n choose 3 combinations are equally
- likely. <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random sample of 3 integers, without replacement, from the set of integers in the
+ interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
 
- <p>The runtime is O(1).</p></div>
+ <p>The runtime is O(1).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
-<dd><code>result</code> - An array to hold the pair that is generated.  If result is null
- or if result.length is less than 3, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the pair that is generated. If result is null or if
+     result.length is less than 3, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
-<dd>An array containing the pair of 
- randomly chosen integers from the interval [0, n).</dd>
+<dd>An array containing the pair of randomly chosen integers from the interval [0, n).</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if n &lt; 3.</dd>
 </dl>
@@ -1177,20 +1117,19 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">nextIntTriple</span><wbr><span class="parameters">(int&nbsp;n,
  int[]&nbsp;result,
  boolean&nbsp;sort)</span></div>
-<div class="block"><p>Generates a random sample of 3 integers, without replacement, from the
- set of integers in the interval [0, n).  All n choose 3 combinations are equally
- likely. <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random sample of 3 integers, without replacement, from the set of integers in the
+ interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
 
- <p>The runtime is O(1).</p></div>
+ <p>The runtime is O(1).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
-<dd><code>result</code> - An array to hold the pair that is generated.  If result is null
- or if result.length is less than 3, then this method will construct an array for the result.</dd>
-<dd><code>sort</code> - If true, the result is sorted in increasing order; otherwise it is in arbitrary order.</dd>
+<dd><code>result</code> - An array to hold the pair that is generated. If result is null or if
+     result.length is less than 3, then this method will construct an array for the result.</dd>
+<dd><code>sort</code> - If true, the result is sorted in increasing order; otherwise it is in arbitrary
+     order.</dd>
 <dt>Returns:</dt>
-<dd>An array containing the pair of 
- randomly chosen integers from the interval [0, n).</dd>
+<dd>An array containing the pair of randomly chosen integers from the interval [0, n).</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if n &lt; 3.</dd>
 </dl>
@@ -1202,22 +1141,20 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">nextWindowedIntPair</span><wbr><span class="parameters">(int&nbsp;n,
  int&nbsp;window,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of 2 integers, i, j, without replacement, from the
- set of integers in the interval [0, n), such that |i-j| &le; window.  
- All pairs that satisfy the window constraint are equally likely.
- <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random sample of 2 integers, i, j, without replacement, from the set of integers in
+ the interval [0, n), such that |i-j| &le; window. All pairs that satisfy the window constraint
+ are equally likely. <b>Enhanced Functionality.</b>
 
- <p>The runtime is O(1).</p></div>
+ <p>The runtime is O(1).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
 <dd><code>window</code> - The maximum difference between the integers of the pair.</dd>
-<dd><code>result</code> - An array to hold the pair that is generated.  If result is null
- or if result.length is less than 2, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the pair that is generated. If result is null or if
+     result.length is less than 2, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
-<dd>An array containing the pair of 
- randomly chosen integers, i, j, 
- from the interval [0, n), such that |i-j| &le; window.</dd>
+<dd>An array containing the pair of randomly chosen integers, i, j, from the interval [0,
+     n), such that |i-j| &le; window.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if window &lt; 1 or n &lt; 2.</dd>
 </dl>
@@ -1229,24 +1166,21 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">nextWindowedIntTriple</span><wbr><span class="parameters">(int&nbsp;n,
  int&nbsp;window,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of 3 integers, i, j, k without replacement, from the
- set of integers in the interval [0, n), such that |i-j| &le; window, and 
- |i-k| &le; window, and |k-j| &le; window.  
- All triples that satisfy the window constraint are equally likely.
- <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+ in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+ window. All triples that satisfy the window constraint are equally likely. <b>Enhanced
+ Functionality.</b>
 
- <p>The runtime is O(1).</p></div>
+ <p>The runtime is O(1).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
 <dd><code>window</code> - The maximum difference between the integers of the triple.</dd>
-<dd><code>result</code> - An array to hold the pair that is generated.  If result is null
- or if result.length is less than 3, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the pair that is generated. If result is null or if
+     result.length is less than 3, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
-<dd>An array containing the triple of 
- randomly chosen integers, i, j, k 
- from the interval [0, n), such that |i-j| &le; window, and 
- |i-k| &le; window, and |k-j| &le; window.</dd>
+<dd>An array containing the triple of randomly chosen integers, i, j, k from the interval
+     [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if window &lt; 2 or n &lt; 3.</dd>
 </dl>
@@ -1259,25 +1193,22 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  int&nbsp;window,
  int[]&nbsp;result,
  boolean&nbsp;sort)</span></div>
-<div class="block"><p>Generates a random sample of 3 integers, i, j, k without replacement, from the
- set of integers in the interval [0, n), such that |i-j| &le; window, and 
- |i-k| &le; window, and |k-j| &le; window.  
- All triples that satisfy the window constraint are equally likely.
- <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+ in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+ window. All triples that satisfy the window constraint are equally likely. <b>Enhanced
+ Functionality.</b>
 
- <p>The runtime is O(1).</p></div>
+ <p>The runtime is O(1).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
 <dd><code>window</code> - The maximum difference between the integers of the triple.</dd>
-<dd><code>result</code> - An array to hold the pair that is generated.  If result is null
- or if result.length is less than 3, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the pair that is generated. If result is null or if
+     result.length is less than 3, then this method will construct an array for the result.</dd>
 <dd><code>sort</code> - If true, the result is sorted in increasing order, otherwise it is in random order.</dd>
 <dt>Returns:</dt>
-<dd>An array containing the triple of 
- randomly chosen integers, i, j, k 
- from the interval [0, n), such that |i-j| &le; window, and 
- |i-k| &le; window, and |k-j| &le; window.</dd>
+<dd>An array containing the triple of randomly chosen integers, i, j, k from the interval
+     [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if window &lt; 2 or n &lt; 3.</dd>
 </dl>
@@ -1288,10 +1219,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>sample</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(int&nbsp;n,
  double&nbsp;p)</span></div>
-<div class="block"><p>Generates a random sample, without replacement, from the
- set of integers in the interval [0, n).  Each of the n integers 
- has a probability p of inclusion in the sample.
- <b>Enhanced Functionality.</b></p></div>
+<div class="block">Generates a random sample, without replacement, from the set of integers in the interval [0,
+ n). Each of the n integers has a probability p of inclusion in the sample. <b>Enhanced
+ Functionality.</b></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
@@ -1307,27 +1237,23 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sample</span><wbr><span class="parameters">(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).  All n choose k combinations are equally
- likely. <b>Enhanced Functionality.</b></p>
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n). All n choose k combinations are equally likely. <b>Enhanced Functionality.</b>
 
- <p>This method chooses among the <a href="#samplePool(int,int,int%5B%5D)"><code>samplePool(int, int, int[])</code></a>, 
- <a href="#sampleReservoir(int,int,int%5B%5D)"><code>sampleReservoir(int, int, int[])</code></a>, and <a href="#sampleInsertion(int,int,int%5B%5D)"><code>sampleInsertion(int, int, int[])</code></a> 
- methods based on the values of n and k.</p>
+ <p>This method chooses among the <a href="#samplePool(int,int,int%5B%5D)"><code>samplePool(int, int, int[])</code></a>, <a href="#sampleReservoir(int,int,int%5B%5D)"><code>sampleReservoir(int, int, int[])</code></a>, and <a href="#sampleInsertion(int,int,int%5B%5D)"><code>sampleInsertion(int, int, int[])</code></a> methods based on the values of n and k.
 
- <p>This approach combining reservoir sampling, pool sampling, and insertion sampling
- was described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
- Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
- doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+ <p>This approach combining reservoir sampling, pool sampling, and insertion sampling was
+ described in: Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
 
- <p>The runtime is O(min(n, k<sup>2</sup>))
- and it generates O(min(k, n-k)) random numbers.</p></div>
+ <p>The runtime is O(min(n, k<sup>2</sup>)) and it generates O(min(k, n-k)) random numbers.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
 <dd><code>k</code> - The size of the desired sample.</dd>
-<dd><code>result</code> - An array to hold the sample that is generated.  If result is null
- or if result.length is less than k, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the sample that is generated. If result is null or if
+     result.length is less than k, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the sample of k randomly chosen integers from the interval [0, n).</dd>
 <dt>Throws:</dt>
@@ -1342,26 +1268,25 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sampleInsertion</span><wbr><span class="parameters">(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).  All n choose k combinations are equally
- likely. <b>Enhanced Functionality.</b></p>  
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n). All n choose k combinations are equally likely. <b>Enhanced Functionality.</b>
 
- <p>This implements the insertion sampling algorithm described in:</p>
- <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle 
- Mutation: Evolving Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June 2022). 
- doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a></p>
+ <p>This implements the insertion sampling algorithm described in:
 
- <p>The runtime is O(k<sup>2</sup>)
- and it generates O(k) random numbers.  Thus, it is a better 
- choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n.
- Just like sampleReservoir, the sampleInsertion method only requires O(1) extra space,
- while samplePool requires O(n) extra space.</p></div>
+ <p>Vincent A. Cicirello. 2022. <a href="https://www.cicirello.org/publications/applsci-12-05506.pdf">Cycle Mutation: Evolving
+ Permutations via Cycle Induction</a>, <i>Applied Sciences</i>, 12(11), Article 5506 (June
+ 2022). doi:<a href="https://doi.org/10.3390/app12115506">10.3390/app12115506</a>
+
+ <p>The runtime is O(k<sup>2</sup>) and it generates O(k) random numbers. Thus, it is a better
+ choice than both sampleReservoir and samplePool when k<sup>2</sup> &lt; n. Just like
+ sampleReservoir, the sampleInsertion method only requires O(1) extra space, while samplePool
+ requires O(n) extra space.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
 <dd><code>k</code> - The size of the desired sample.</dd>
-<dd><code>result</code> - An array to hold the sample that is generated.  If result is null
- or if result.length is less than k, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the sample that is generated. If result is null or if
+     result.length is less than k, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the sample of k randomly chosen integers from the interval [0, n).</dd>
 <dt>Throws:</dt>
@@ -1376,25 +1301,22 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">samplePool</span><wbr><span class="parameters">(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).  All n choose k combinations are equally
- likely. <b>Enhanced Functionality.</b></p> 
- 
- <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in:
- J Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The 
- Computer Journal, 25(1):45-47, 1982.</p>
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n). All n choose k combinations are equally likely. <b>Enhanced Functionality.</b>
 
- <p>The runtime is O(n)
- and it generates O(k) random numbers.  Thus, it is a better 
- choice than sampleReservoir when k &lt; n-k.
- However, this uses O(n) extra space, whereas the reservoir algorithm
- uses no extra space.</p></div>
+ <p>This implements the algorithm SELECT of S. Goodman and S. Hedetniemi, as described in: J
+ Ernvall, O Nevalainen, "An Algorithm for Unbiased Random Sampling," The Computer Journal,
+ 25(1):45-47, 1982.
+
+ <p>The runtime is O(n) and it generates O(k) random numbers. Thus, it is a better choice than
+ sampleReservoir when k &lt; n-k. However, this uses O(n) extra space, whereas the reservoir
+ algorithm uses no extra space.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
 <dd><code>k</code> - The size of the desired sample.</dd>
-<dd><code>result</code> - An array to hold the sample that is generated.  If result is null
- or if result.length is less than k, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the sample that is generated. If result is null or if
+     result.length is less than k, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the sample of k randomly chosen integers from the interval [0, n).</dd>
 <dt>Throws:</dt>
@@ -1409,23 +1331,20 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name">sampleReservoir</span><wbr><span class="parameters">(int&nbsp;n,
  int&nbsp;k,
  int[]&nbsp;result)</span></div>
-<div class="block"><p>Generates a random sample of k integers, without replacement, from the
- set of integers in the interval [0, n).  All n choose k combinations are equally
- likely. <b>Enhanced Functionality.</b></p>  
+<div class="block">Generates a random sample of k integers, without replacement, from the set of integers in the
+ interval [0, n). All n choose k combinations are equally likely. <b>Enhanced Functionality.</b>
 
- <p>Uses the reservoir sampling algorithm (Algorithm R) 
- from J. Vitter's 1985 article "Random Sampling
- with a Reservoir" from ACM Transactions on Mathematical Software.</p> 
- <p>The runtime is O(n)
- and it generates O(n-k) random numbers.  Thus, it is an 
- especially good choice as k
- approaches n.  Only constant extra space required.</p></div>
+ <p>Uses the reservoir sampling algorithm (Algorithm R) from J. Vitter's 1985 article "Random
+ Sampling with a Reservoir" from ACM Transactions on Mathematical Software.
+
+ <p>The runtime is O(n) and it generates O(n-k) random numbers. Thus, it is an especially good
+ choice as k approaches n. Only constant extra space required.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>n</code> - The number of integers to choose from.</dd>
 <dd><code>k</code> - The size of the desired sample.</dd>
-<dd><code>result</code> - An array to hold the sample that is generated.  If result is null
- or if result.length is less than k, then this method will construct an array for the result.</dd>
+<dd><code>result</code> - An array to hold the sample that is generated. If result is null or if
+     result.length is less than k, then this method will construct an array for the result.</dd>
 <dt>Returns:</dt>
 <dd>An array containing the sample of k randomly chosen integers from the interval [0, n).</dd>
 <dt>Throws:</dt>
@@ -1438,19 +1357,17 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextGaussian()">
 <h3>nextGaussian</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span>()</div>
-<div class="block"><p>Generates a random number from a Gaussian distribution with
- mean 0 and standard deviation 1.</p> 
- <p><b>Enhanced Functionality:</b> This method uses
- the library's current most-efficient algorithm for Gaussian random number
- generation, which may change in future releases. If you require a 
- guarantee of the algorithm used, then see the API for the classes that
- implement specific Gaussian algorithms.</p></div>
+<div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
+
+ <p><b>Enhanced Functionality:</b> This method uses the library's current most-efficient
+ algorithm for Gaussian random number generation, which may change in future releases. If you
+ require a guarantee of the algorithm used, then see the API for the classes that implement
+ specific Gaussian algorithms.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextGaussian()" title="class or interface in java.util.random" class="external-link">nextGaussian</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
 <dt>Returns:</dt>
-<dd>A random number from a Gaussian distribution with mean 0 and
- standard deviation 1.</dd>
+<dd>A random number from a Gaussian distribution with mean 0 and standard deviation 1.</dd>
 </dl>
 </section>
 </li>
@@ -1459,13 +1376,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextGaussian</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;mean,
  double&nbsp;stddev)</span></div>
-<div class="block"><p>Generates a random number from a Gaussian distribution with
- mean and standard deviation of your choosing.</p> 
- <p><b>Enhanced Functionality:</b> This method uses
- the library's current most-efficient algorithm for Gaussian random number
- generation, which may change in future releases. If you require a 
- guarantee of the algorithm used, then see the API for the classes that
- implement specific Gaussian algorithms.</p></div>
+<div class="block">Generates a random number from a Gaussian distribution with mean and standard deviation of your
+ choosing.
+
+ <p><b>Enhanced Functionality:</b> This method uses the library's current most-efficient
+ algorithm for Gaussian random number generation, which may change in future releases. If you
+ require a guarantee of the algorithm used, then see the API for the classes that implement
+ specific Gaussian algorithms.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextGaussian(double,double)" title="class or interface in java.util.random" class="external-link">nextGaussian</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1473,8 +1390,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>mean</code> - The mean of the Gaussian.</dd>
 <dd><code>stddev</code> - The standard deviation of the Gaussian.</dd>
 <dt>Returns:</dt>
-<dd>A random number from a Gaussian distribution with mean 0 and
- standard deviation stddev.</dd>
+<dd>A random number from a Gaussian distribution with mean 0 and standard deviation stddev.</dd>
 </dl>
 </section>
 </li>
@@ -1482,10 +1398,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextInt(int)">
 <h3>nextInt</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextInt</span><wbr><span class="parameters">(int&nbsp;bound)</span></div>
-<div class="block"><p>Generates a random integer uniformly distributed in the interval: [0, bound).</p>
- <p><b>Enhanced Functionality:</b> This method is an implementation of 
- the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p></div>
+<div class="block">Generates a random integer uniformly distributed in the interval: [0, bound).
+
+ <p><b>Enhanced Functionality:</b> This method is an implementation of the algorithm proposed in
+ the article: Daniel Lemire, "Fast Random Integer Generation in an Interval," ACM Transactions
+ on Modeling and Computer Simulation, 29(1), 2019.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextInt(int)" title="class or interface in java.util.random" class="external-link">nextInt</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1503,10 +1420,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextInt</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextInt</span><wbr><span class="parameters">(int&nbsp;origin,
  int&nbsp;bound)</span></div>
-<div class="block"><p>Generates a random integer uniformly distributed in the interval: [origin, bound).</p>
- <p><b>Enhanced Functionality:</b> This method is an implementation of 
- the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p></div>
+<div class="block">Generates a random integer uniformly distributed in the interval: [origin, bound).
+
+ <p><b>Enhanced Functionality:</b> This method is an implementation of the algorithm proposed in
+ the article: Daniel Lemire, "Fast Random Integer Generation in an Interval," ACM Transactions
+ on Modeling and Computer Simulation, 29(1), 2019.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextInt(int,int)" title="class or interface in java.util.random" class="external-link">nextInt</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1525,12 +1443,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>ints</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">ints</span><wbr><span class="parameters">(int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom int values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values, each value uniformly random
+ from the interval [randomNumberOrigin, randomNumberBound).
 
- <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
- by an implementation of the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p></div>
+ <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated by an
+ implementation of the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#ints(int,int)" title="class or interface in java.util.random" class="external-link">ints</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1538,11 +1456,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound)</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom int values,
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>an effectively unlimited stream of pseudorandom int values, uniformly random from the
+     interval [randomNumberOrigin, randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound</dd>
 </dl>
 </section>
 </li>
@@ -1552,12 +1470,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">ints</span><wbr><span class="parameters">(long&nbsp;streamSize,
  int&nbsp;randomNumberOrigin,
  int&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom int values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</p> 
+<div class="block">Returns a stream of pseudorandom int values, each value uniformly random from the interval
+ [randomNumberOrigin, randomNumberBound).
 
- <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated
- by an implementation of the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer 
- Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</p></div>
+ <p><b>Enhanced Functionality:</b> Each int produced by the stream is generated by an
+ implementation of the algorithm proposed in the article: Daniel Lemire, "Fast Random Integer
+ Generation in an Interval," ACM Transactions on Modeling and Computer Simulation, 29(1), 2019.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#ints(long,int,int)" title="class or interface in java.util.random" class="external-link">ints</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1566,11 +1484,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound).</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom int values,
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>a stream of pseudorandom int values, uniformly random from the interval
+     [randomNumberOrigin, randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound, or if streamSize is negative.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound, or if streamSize is negative.</dd>
 </dl>
 </section>
 </li>
@@ -1578,15 +1496,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="doubles()">
 <h3>doubles</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">doubles</span>()</div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double values, each value
- uniformly random from the interval [0.0, 1.0).
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values, each value uniformly
+ random from the interval [0.0, 1.0). <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#doubles()" title="class or interface in java.util.random" class="external-link">doubles</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom double values,
- uniformly random from the interval [0.0, 1.0).</dd>
+<dd>an effectively unlimited stream of pseudorandom double values, uniformly random from
+     the interval [0.0, 1.0).</dd>
 </dl>
 </section>
 </li>
@@ -1595,9 +1512,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>doubles</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">doubles</span><wbr><span class="parameters">(double&nbsp;randomNumberOrigin,
  double&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom double values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom double values, each value uniformly
+ random from the interval [randomNumberOrigin, randomNumberBound). <b>Delegates implementation
+ to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#doubles(double,double)" title="class or interface in java.util.random" class="external-link">doubles</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1605,12 +1522,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound)</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom double values,
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>an effectively unlimited stream of pseudorandom double values, uniformly random from
+     the interval [randomNumberOrigin, randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound, or if randomNumberOrigin is not finite.
- or if randomNumberBound is not finite.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound, or if randomNumberOrigin is not finite. or if randomNumberBound is not
+     finite.</dd>
 </dl>
 </section>
 </li>
@@ -1618,17 +1535,15 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="doubles(long)">
 <h3>doubles</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">doubles</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom double values, each value
- uniformly random from the interval [0.0, 1.0).
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns a stream of pseudorandom double values, each value uniformly random from the interval
+ [0.0, 1.0). <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#doubles(long)" title="class or interface in java.util.random" class="external-link">doubles</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>streamSize</code> - The number of values in the stream.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom double values,
- uniformly random from the interval [0.0, 1.0).</dd>
+<dd>a stream of pseudorandom double values, uniformly random from the interval [0.0, 1.0).</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if streamSize is negative.</dd>
 </dl>
@@ -1640,9 +1555,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/DoubleStream.html" title="class or interface in java.util.stream" class="external-link">DoubleStream</a></span>&nbsp;<span class="element-name">doubles</span><wbr><span class="parameters">(long&nbsp;streamSize,
  double&nbsp;randomNumberOrigin,
  double&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom double values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns a stream of pseudorandom double values, each value uniformly random from the interval
+ [randomNumberOrigin, randomNumberBound). <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#doubles(long,double,double)" title="class or interface in java.util.random" class="external-link">doubles</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1651,11 +1565,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound).</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom double values,
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>a stream of pseudorandom double values, uniformly random from the interval
+     [randomNumberOrigin, randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound, or if streamSize is negative.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound, or if streamSize is negative.</dd>
 </dl>
 </section>
 </li>
@@ -1663,8 +1577,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="ints()">
 <h3>ints</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">ints</span>()</div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom int values.
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom int values. <b>Delegates implementation
+ to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#ints()" title="class or interface in java.util.random" class="external-link">ints</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1677,8 +1591,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="ints(long)">
 <h3>ints</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/IntStream.html" title="class or interface in java.util.stream" class="external-link">IntStream</a></span>&nbsp;<span class="element-name">ints</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom int values.
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns a stream of pseudorandom int values. <b>Delegates implementation to the wrapped
+ object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#ints(long)" title="class or interface in java.util.random" class="external-link">ints</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1695,8 +1609,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="longs()">
 <h3>longs</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/LongStream.html" title="class or interface in java.util.stream" class="external-link">LongStream</a></span>&nbsp;<span class="element-name">longs</span>()</div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom long values.
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom long values. <b>Delegates
+ implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#longs()" title="class or interface in java.util.random" class="external-link">longs</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1710,9 +1624,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>longs</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/LongStream.html" title="class or interface in java.util.stream" class="external-link">LongStream</a></span>&nbsp;<span class="element-name">longs</span><wbr><span class="parameters">(long&nbsp;randomNumberOrigin,
  long&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns an effectively unlimited stream of pseudorandom long values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns an effectively unlimited stream of pseudorandom long values, each value uniformly
+ random from the interval [randomNumberOrigin, randomNumberBound). <b>Delegates implementation
+ to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#longs(long,long)" title="class or interface in java.util.random" class="external-link">longs</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1720,11 +1634,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound)</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>an effectively unlimited stream of pseudorandom long values,
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>an effectively unlimited stream of pseudorandom long values, uniformly random from the
+     interval [randomNumberOrigin, randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound</dd>
 </dl>
 </section>
 </li>
@@ -1732,8 +1646,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="longs(long)">
 <h3>longs</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/LongStream.html" title="class or interface in java.util.stream" class="external-link">LongStream</a></span>&nbsp;<span class="element-name">longs</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom long values.
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns a stream of pseudorandom long values. <b>Delegates implementation to the wrapped
+ object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#longs(long)" title="class or interface in java.util.random" class="external-link">longs</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1752,9 +1666,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/LongStream.html" title="class or interface in java.util.stream" class="external-link">LongStream</a></span>&nbsp;<span class="element-name">longs</span><wbr><span class="parameters">(long&nbsp;streamSize,
  long&nbsp;randomNumberOrigin,
  long&nbsp;randomNumberBound)</span></div>
-<div class="block"><p>Returns a stream of pseudorandom long values, each value
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).
- <b>Delegates implementation to the wrapped object.</b></p></div>
+<div class="block">Returns a stream of pseudorandom long values, each value uniformly random from the interval
+ [randomNumberOrigin, randomNumberBound). <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#longs(long,long,long)" title="class or interface in java.util.random" class="external-link">longs</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1763,11 +1676,11 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code>randomNumberOrigin</code> - The lower bound, inclusive (must be less than bound).</dd>
 <dd><code>randomNumberBound</code> - Upper bound, exclusive, on range of random integers.</dd>
 <dt>Returns:</dt>
-<dd>a stream of pseudorandom long values,
- uniformly random from the interval [randomNumberOrigin, randomNumberBound).</dd>
+<dd>a stream of pseudorandom long values, uniformly random from the interval
+     [randomNumberOrigin, randomNumberBound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater 
- than or equal to randomNumberBound, or if streamSize is negative.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the randomNumberOrigin is greater than or equal to
+     randomNumberBound, or if streamSize is negative.</dd>
 </dl>
 </section>
 </li>
@@ -1775,8 +1688,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextBoolean()">
 <h3>nextBoolean</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">nextBoolean</span>()</div>
-<div class="block">Generates a pseudorandom boolean value.
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom boolean value. <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextBoolean()" title="class or interface in java.util.random" class="external-link">nextBoolean</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1789,9 +1701,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextBytes(byte[])">
 <h3>nextBytes</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">nextBytes</span><wbr><span class="parameters">(byte[]&nbsp;bytes)</span></div>
-<div class="block">Fills a user-supplied byte array with byte values generated
- pseudorandomly uniformly distributed in the interval [-128, 127].
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Fills a user-supplied byte array with byte values generated pseudorandomly uniformly
+ distributed in the interval [-128, 127]. <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextBytes(byte%5B%5D)" title="class or interface in java.util.random" class="external-link">nextBytes</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1806,8 +1717,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextDouble()">
 <h3>nextDouble</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextDouble</span>()</div>
-<div class="block">Generates a pseudorandom double value in the interval [0, 1).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom double value in the interval [0, 1). <b>Delegates implementation to
+ the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextDouble()" title="class or interface in java.util.random" class="external-link">nextDouble</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1820,8 +1731,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextDouble(double)">
 <h3>nextDouble</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextDouble</span><wbr><span class="parameters">(double&nbsp;bound)</span></div>
-<div class="block">Generates a pseudorandom double value in the interval [0, bound).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom double value in the interval [0, bound). <b>Delegates implementation
+ to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextDouble(double)" title="class or interface in java.util.random" class="external-link">nextDouble</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1839,8 +1750,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextDouble</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextDouble</span><wbr><span class="parameters">(double&nbsp;origin,
  double&nbsp;bound)</span></div>
-<div class="block">Generates a pseudorandom double value in the interval [origin, bound).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom double value in the interval [origin, bound). <b>Delegates
+ implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextDouble(double,double)" title="class or interface in java.util.random" class="external-link">nextDouble</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1850,8 +1761,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dt>Returns:</dt>
 <dd>a pseudorandom double in [origin, bound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if origin is greater than or equal to bound,
- or if origin is not finite or if bound is not finite.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if origin is greater than or equal to bound, or if origin is
+     not finite or if bound is not finite.</dd>
 </dl>
 </section>
 </li>
@@ -1859,8 +1770,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextExponential()">
 <h3>nextExponential</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextExponential</span>()</div>
-<div class="block">Generates a non-negative pseudorandom number from an exponential distribution
- with mean 1. <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a non-negative pseudorandom number from an exponential distribution with mean 1.
+ <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextExponential()" title="class or interface in java.util.random" class="external-link">nextExponential</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1873,8 +1784,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextFloat()">
 <h3>nextFloat</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">nextFloat</span>()</div>
-<div class="block">Generates a pseudorandom float value in the interval [0, 1).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom float value in the interval [0, 1). <b>Delegates implementation to the
+ wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextFloat()" title="class or interface in java.util.random" class="external-link">nextFloat</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1887,8 +1798,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextFloat(float)">
 <h3>nextFloat</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">nextFloat</span><wbr><span class="parameters">(float&nbsp;bound)</span></div>
-<div class="block">Generates a pseudorandom float value in the interval [0, bound).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom float value in the interval [0, bound). <b>Delegates implementation to
+ the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextFloat(float)" title="class or interface in java.util.random" class="external-link">nextFloat</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1906,8 +1817,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextFloat</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">nextFloat</span><wbr><span class="parameters">(float&nbsp;origin,
  float&nbsp;bound)</span></div>
-<div class="block">Generates a pseudorandom float value in the interval [origin, bound).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom float value in the interval [origin, bound). <b>Delegates
+ implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextFloat(float,float)" title="class or interface in java.util.random" class="external-link">nextFloat</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1917,8 +1828,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dt>Returns:</dt>
 <dd>a pseudorandom float in [origin, bound).</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if origin is greater than or equal to bound,
- or if origin is not finite or if bound is not finite.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if origin is greater than or equal to bound, or if origin is
+     not finite or if bound is not finite.</dd>
 </dl>
 </section>
 </li>
@@ -1926,8 +1837,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextInt()">
 <h3>nextInt</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">nextInt</span>()</div>
-<div class="block">Generates a pseudorandom int value.
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom int value. <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextInt()" title="class or interface in java.util.random" class="external-link">nextInt</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1940,8 +1850,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextLong()">
 <h3>nextLong</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">nextLong</span>()</div>
-<div class="block">Generates a pseudorandom long value.
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom long value. <b>Delegates implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextLong()" title="class or interface in java.util.random" class="external-link">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1954,8 +1863,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <section class="detail" id="nextLong(long)">
 <h3>nextLong</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">nextLong</span><wbr><span class="parameters">(long&nbsp;bound)</span></div>
-<div class="block">Generates a pseudorandom long value in the interval [0, bound).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom long value in the interval [0, bound). <b>Delegates implementation to
+ the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextLong(long)" title="class or interface in java.util.random" class="external-link">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>
@@ -1973,8 +1882,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <h3>nextLong</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">nextLong</span><wbr><span class="parameters">(long&nbsp;origin,
  long&nbsp;bound)</span></div>
-<div class="block">Generates a pseudorandom long value in the interval [origin, bound).
- <b>Delegates implementation to the wrapped object.</b></div>
+<div class="block">Generates a pseudorandom long value in the interval [origin, bound). <b>Delegates
+ implementation to the wrapped object.</b></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html#nextLong(long,long)" title="class or interface in java.util.random" class="external-link">nextLong</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a></code></dd>

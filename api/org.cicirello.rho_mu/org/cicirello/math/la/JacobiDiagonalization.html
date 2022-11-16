@@ -42,7 +42,6 @@ loadScripts(document, 'script');</script>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="class-use/JacobiDiagonalization.html">Use</a></li>
 <li><a href="package-tree.html">Tree</a></li>
-<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -86,8 +85,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">JacobiDiagonalization</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">This class uses Jacobi iteration to compute the eigenvalues and eigenvectors 
- of a symmetric matrix, provided as a 2-D Java array.</div>
+<div class="block">This class uses Jacobi iteration to compute the eigenvalues and eigenvectors of a symmetric
+ matrix, provided as a 2-D Java array.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -266,7 +265,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the computed eigenvectors.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The eigenvectors are the columns of the returned matrix.  Returns null if not yet computed.</dd>
+<dd>The eigenvectors are the columns of the returned matrix. Returns null if not yet
+     computed.</dd>
 </dl>
 </section>
 </li>
@@ -277,7 +277,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the computed eigenvalues.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The eigenvalues.  Returns null if not yet computed.</dd>
+<dd>The eigenvalues. Returns null if not yet computed.</dd>
 </dl>
 </section>
 </li>
@@ -285,12 +285,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="compute()">
 <h3>compute</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">compute</span>()</div>
-<div class="block">Computes the eigenvalues and eigenvectors using Jacobi Iteration.  Uses the default precision level JacobiDiagonalization.EPSILON
- where off-diagonal elements less than JacobiDiagonalization.EPSILON in absolute value are set to 0.
- Uses the default max number of iterations JacobiDiagonalization.MAX_ITERATIONS.</div>
+<div class="block">Computes the eigenvalues and eigenvectors using Jacobi Iteration. Uses the default precision
+ level JacobiDiagonalization.EPSILON where off-diagonal elements less than
+ JacobiDiagonalization.EPSILON in absolute value are set to 0. Uses the default max number of
+ iterations JacobiDiagonalization.MAX_ITERATIONS.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if Jacobi method converged, and false if terminated due to maximum number of iterations</dd>
+<dd>true if Jacobi method converged, and false if terminated due to maximum number of
+     iterations</dd>
 </dl>
 </section>
 </li>
@@ -298,12 +300,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="compute(double)">
 <h3>compute</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">compute</span><wbr><span class="parameters">(double&nbsp;epsilon)</span></div>
-<div class="block">Computes the eigenvalues and eigenvectors using Jacobi Iteration.  Uses the default max number of iterations JacobiDiagonalization.MAX_ITERATIONS.</div>
+<div class="block">Computes the eigenvalues and eigenvectors using Jacobi Iteration. Uses the default max number
+ of iterations JacobiDiagonalization.MAX_ITERATIONS.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>epsilon</code> - Precision level, where off-diagonal elements less than epsilon in absolute value are set to 0.</dd>
+<dd><code>epsilon</code> - Precision level, where off-diagonal elements less than epsilon in absolute value
+     are set to 0.</dd>
 <dt>Returns:</dt>
-<dd>true if Jacobi method converged, and false if terminated due to maximum number of iterations</dd>
+<dd>true if Jacobi method converged, and false if terminated due to maximum number of
+     iterations</dd>
 </dl>
 </section>
 </li>
@@ -311,13 +316,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="compute(int)">
 <h3>compute</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">compute</span><wbr><span class="parameters">(int&nbsp;maxIters)</span></div>
-<div class="block">Computes the eigenvalues and eigenvectors using Jacobi Iteration.  Uses the default precision level JacobiDiagonalization.EPSILON
- where off-diagonal elements less than JacobiDiagonalization.EPSILON in absolute value are set to 0.</div>
+<div class="block">Computes the eigenvalues and eigenvectors using Jacobi Iteration. Uses the default precision
+ level JacobiDiagonalization.EPSILON where off-diagonal elements less than
+ JacobiDiagonalization.EPSILON in absolute value are set to 0.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>maxIters</code> - Maximum number of iterations.</dd>
 <dt>Returns:</dt>
-<dd>true if Jacobi method converged, and false if terminated due to maximum number of iterations</dd>
+<dd>true if Jacobi method converged, and false if terminated due to maximum number of
+     iterations</dd>
 </dl>
 </section>
 </li>
@@ -329,10 +336,12 @@ loadScripts(document, 'script');</script>
 <div class="block">Computes the eigenvalues and eigenvectors using Jacobi Iteration.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>epsilon</code> - Precision level, where off-diagonal elements less than epsilon in absolute value are set to 0.</dd>
+<dd><code>epsilon</code> - Precision level, where off-diagonal elements less than epsilon in absolute value
+     are set to 0.</dd>
 <dd><code>maxIters</code> - Maximum number of iterations.</dd>
 <dt>Returns:</dt>
-<dd>true if Jacobi method converged, and false if terminated due to maximum number of iterations</dd>
+<dd>true if Jacobi method converged, and false if terminated due to maximum number of
+     iterations</dd>
 </dl>
 </section>
 </li>
