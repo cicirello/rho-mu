@@ -125,7 +125,7 @@
  * corresponding to the wrapped random number generator instances.
  *
  * <p><object type="image/svg+xml" data="https://rho-mu.cicirello.org/images/rho-mu-uml.svg"
- * width="882" height="1038">UML diagram</object>
+ * width="914" height="1151">UML diagram</object>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
