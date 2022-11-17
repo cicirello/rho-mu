@@ -116,6 +116,7 @@ classDiagram
   class RandomIndexer
   RandomIndexer <.. EnhancedRandomGenerator
   RandomIndexer <.. RandomSampler
+  RandomSampler <.. RandomIndexer
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
   RandomVariates <.. RandomSampler
