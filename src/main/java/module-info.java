@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2022 Vincent A. Cicirello
+ * Copyright 2017-2023 Vincent A. Cicirello
  *
  * This file is part of the rho mu library (https://rho-mu.cicirello.org/).
  *
@@ -26,7 +26,7 @@
  *
  * <h2>&rho;&mu; - A Java library of randomization enhancements and other math utilities.</h2>
  *
- * <p>Copyright &copy; 2017-2022 <a href="https://www.cicirello.org/" target=_top>Vincent A.
+ * <p>Copyright &copy; 2017-2023 <a href="https://www.cicirello.org/" target=_top>Vincent A.
  * Cicirello</a>.
  *
  * <p><a href="https://doi.org/10.21105/joss.04663"><img

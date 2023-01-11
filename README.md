@@ -2,7 +2,7 @@
 
 <img src="https://rho-mu.cicirello.org/images/rho-mu.png" width="640" alt="&rho;&mu; - Java library of Randomization enHancements and Other Math Utilities">
 
-Copyright (C) 2017-2022 [Vincent A. Cicirello](https://www.cicirello.org/).
+Copyright (C) 2017-2023 [Vincent A. Cicirello](https://www.cicirello.org/).
 
 Website: https://rho-mu.cicirello.org/
 

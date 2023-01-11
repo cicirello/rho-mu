@@ -33,7 +33,7 @@
 		<distribution>repo</distribution>
 		<comments>
 		rho mu.
-		Copyright (C) 2017-2022  Vincent A. Cicirello.
+		Copyright (C) 2017-2023 Vincent A. Cicirello.
  
 		This program is free software: you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
@@ -253,7 +253,7 @@
 					<version>false</version>
 					<nosince>true</nosince>
 					<notimestamp>true</notimestamp>
-					<bottom><![CDATA[Copyright &copy; 2017-2022 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
+					<bottom><![CDATA[Copyright &copy; 2017-2023 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 					<doclint>all,-html</doclint>
 				</configuration>
 			</plugin>
