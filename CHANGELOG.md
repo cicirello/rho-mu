@@ -17,11 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump core from 2.4.3 to 2.4.4
 
 ### CI/CD
 
 ### Other
+
+
+## [3.0.2] - 2023-01-11
+
+### Dependencies
+* Bump core from 2.4.3 to 2.4.4
 
 
 ## [3.0.1] - 2022-11-17
