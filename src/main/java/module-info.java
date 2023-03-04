@@ -32,7 +32,7 @@
  * <p><a href="https://doi.org/10.21105/joss.04663"><img
  * src="https://joss.theoj.org/papers/10.21105/joss.04663/status.svg" alt="DOI:10.21105/joss.04663"
  * height="20" width="168"></a> <a
- * href="https://search.maven.org/artifact/org.cicirello/rho-mu"><img
+ * href="https://central.sonatype.com/search?namespace=org.cicirello&q=rho-mu"><img
  * src="https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?logo=apachemaven" alt="Maven
  * Central" height="20" width="153"></a> <a href="https://github.com/cicirello/rho-mu/releases"><img
  * src="https://img.shields.io/github/v/release/cicirello/rho-mu?logo=GitHub" alt="GitHub release
