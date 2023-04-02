@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Minor optimization to RandomIndexer.nextIntPair
 
 ### Deprecated
 
@@ -22,6 +21,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [3.0.4] - 2023-04-02
+
+### Changed
+* Minor optimization to RandomIndexer.nextIntPair
 
 
 ## [3.0.3] - 2023-03-02
