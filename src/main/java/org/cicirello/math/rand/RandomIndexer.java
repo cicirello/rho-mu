@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -272,8 +272,8 @@ public final class RandomIndexer {
     result = ArrayMinimumLengthEnforcer.enforce(result, 2);
     result[0] = nextInt(n, gen);
     result[1] = nextInt(n - 1, gen);
-    if (result[1] >= result[0]) {
-      result[1]++;
+    if (result[1] == result[0]) {
+      result[1] = n - 1;
     }
     return result;
   }
