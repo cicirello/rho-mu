@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 * MathFunctions.betai: incomplete beta function
+* Statistics.p: calculates p value from a t statistic and degrees of freedom
 
 ### Changed
 
