@@ -324,7 +324,7 @@ public final class Statistics {
    * @throws ArithmeticException if the calculation of the incomplete beta function, required to
    *     compute p, fails to converge. The most likely cause if this occurs is excessively high
    *     degrees of freedom. However, this is highly unlikely to occur. Our testing has so far
-   *     failed to cause this exception to occur.
+   *     failed to cause this exception to occur even with dof as high as 10,000,000.
    */
   public static double p(double t, int dof) {
     return MathFunctions.betai(0.5 * dof, 0.5, dof / (dof + t * t));
