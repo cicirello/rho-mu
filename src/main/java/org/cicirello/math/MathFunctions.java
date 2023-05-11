@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -35,6 +35,36 @@ public final class MathFunctions {
    * instantiation.
    */
   private MathFunctions() {}
+
+  /**
+   * Computes the incomplete beta function: I<sub>X</sub>(a, b).
+   *
+   * @param a the parameter, a, of the incomplete beta function
+   * @param b the parameter, b, of the incomplete beta function
+   * @param x the parameter, x, of the incomplete beta function
+   * @return I<sub>X</sub>(a, b)
+   * @throws IllegalArgumentException if x is negative or greater than 1
+   * @throws ArithmeticException if the continued fraction evaluation fails to converge, such as if
+   *     either a or b are too large, or if the continued fraction evaluation is using too few
+   *     iterations
+   */
+  public static double betai(double a, double b, double x) {
+    if (x < 0 || x > 1) throw new IllegalArgumentException("x must be in [0.0, 1.0]");
+    final double bt =
+        (x == 0.0 || x == 1.0)
+            ? 0.0
+            : Math.exp(
+                logGamma(a + b)
+                    - logGamma(a)
+                    - logGamma(b)
+                    + a * Math.log(x)
+                    + b * Math.log(1 - x));
+    if (x < (a + 1) / (a + b + 2)) {
+      return bt * betacf(a, b, x) / a;
+    } else {
+      return 1 - bt * betacf(b, a, 1 - x) / b;
+    }
+  }
 
   /**
    * Computes a<sup>b</sup>, where the exponent b is an integer. This is more efficient than using
@@ -127,6 +157,44 @@ public final class MathFunctions {
       }
       return q;
     }
+  }
+
+  // HELPERS FOR betai BEGIN HERE
+
+  /*
+   * Used by betai. Evaluates continued fraction for incomplete beta function.
+   * Based on the C code from Numerical Recipes in C (2nd edition), page 227.
+   */
+  private static double betacf(final double a, final double b, final double x) {
+    final int MAXIT = 100;
+    final double EPSILON = 3e-7;
+    final double qab = a + b;
+    final double qap = a + 1;
+    final double qam = a - 1;
+    double c = 1;
+    double d = 1.0 / adjustIfTooSmall(1 - qab * x / qap);
+    double h = d;
+    int m;
+    for (m = 1; m <= MAXIT; m++) {
+      int m2 = m << 1;
+      double aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1.0 / adjustIfTooSmall(1 + aa * d);
+      c = adjustIfTooSmall(1 + aa / c);
+      h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1.0 / adjustIfTooSmall(1 + aa * d);
+      c = adjustIfTooSmall(1 + aa / c);
+      double del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < EPSILON) break;
+    }
+    if (m > MAXIT) throw new ArithmeticException("Failed to converge.");
+    return h;
+  }
+
+  private static double adjustIfTooSmall(final double x) {
+    final double FPMIN = 1e-30;
+    return Math.abs(x) < FPMIN ? FPMIN : x;
   }
 
   // HELPERS FOR logGamma BEGIN HERE
