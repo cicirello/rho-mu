@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -21,6 +21,8 @@
  */
 
 package org.cicirello.math.stats;
+
+import org.cicirello.math.MathFunctions;
 
 /**
  * Utility class of basic statistics.
@@ -311,5 +313,20 @@ public final class Statistics {
     Integer i = (int) v;
     result[1] = i;
     return result;
+  }
+
+  /**
+   * Calculates a p-value from the t statistic and degrees of freedom from a t-test.
+   *
+   * @param t the t statistic
+   * @param dof the degrees of freedom
+   * @return p
+   * @throws ArithmeticException if the calculation of the incomplete beta function, required to
+   *     compute p, fails to converge. The most likely cause if this occurs is excessively high
+   *     degrees of freedom. However, this is highly unlikely to occur. Our testing has so far
+   *     failed to cause this exception to occur.
+   */
+  public static double p(double t, int dof) {
+    return MathFunctions.betai(0.5 * dof, 0.5, dof / (dof + t * t));
   }
 }

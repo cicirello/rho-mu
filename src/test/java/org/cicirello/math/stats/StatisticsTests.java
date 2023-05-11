@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -446,5 +446,26 @@ public class StatisticsTests {
     result = Statistics.tTestWelch(b2, b1);
     assertEquals(1.5369, (Double) result[0], 0.0001);
     assertEquals(27, ((Integer) result[1]).intValue());
+  }
+
+  @Test
+  public void testP() {
+    assertEquals(0.2, Statistics.p(3.078, 1), 1e-4);
+    assertEquals(0.1, Statistics.p(6.314, 1), 1e-4);
+    assertEquals(0.05, Statistics.p(12.706, 1), 1e-4);
+
+    assertEquals(0.2, Statistics.p(1.372, 10), 1e-4);
+    assertEquals(0.1, Statistics.p(1.812, 10), 1e-4);
+    assertEquals(0.05, Statistics.p(2.228, 10), 1e-4);
+
+    // Attempt to cause ArithmeticException.
+    for (double t = 0.01; t <= 10000001; t *= 10) {
+      Statistics.p(t, 100);
+      Statistics.p(t, 1000);
+      Statistics.p(t, 10000);
+      Statistics.p(t, 100000);
+      Statistics.p(t, 1000000);
+      Statistics.p(t, 10000000);
+    }
   }
 }
