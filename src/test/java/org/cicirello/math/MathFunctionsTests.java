@@ -34,6 +34,36 @@ public class MathFunctionsTests {
   private static final double EPSILON = 1e-10;
 
   @Test
+  public void testBetai() {
+    assertEquals(0.0, MathFunctions.betai(0.5, 0.5, 0.0));
+    assertEquals(1.0, MathFunctions.betai(0.5, 0.5, 1.0));
+    assertEquals(0.50000002, MathFunctions.betai(0.5, 0.5, 0.5), 1e-7);
+    assertEquals(0.33333333, MathFunctions.betai(0.5, 0.5, 0.25), 1e-7);
+    assertEquals(0.66666667, MathFunctions.betai(0.5, 0.5, 0.75), 1e-7);
+
+    assertEquals(0.0, MathFunctions.betai(0.5, 5.0, 0.0));
+    assertEquals(1.0, MathFunctions.betai(0.5, 5.0, 1.0));
+    assertEquals(0.98988044, MathFunctions.betai(0.5, 5.0, 0.5), 1e-7);
+    assertEquals(0.90214539, MathFunctions.betai(0.5, 5.0, 0.25), 1e-7);
+    assertEquals(0.99972970, MathFunctions.betai(0.5, 5.0, 0.75), 1e-7);
+
+    assertEquals(0.0, MathFunctions.betai(5.0, 0.5, 0.0));
+    assertEquals(1.0, MathFunctions.betai(5.0, 0.5, 1.0));
+    assertEquals(0.01011956, MathFunctions.betai(5.0, 0.5, 0.5), 1e-7);
+    assertEquals(0.00027030, MathFunctions.betai(5.0, 0.5, 0.25), 1e-7);
+    assertEquals(0.09785461, MathFunctions.betai(5.0, 0.5, 0.75), 1e-7);
+
+    double a = 1;
+    double b = 1e30;
+    assertEquals(1.0, MathFunctions.betai(a, b, (a + 1) / (a + b)), 1e-7);
+
+    assertThrows(IllegalArgumentException.class, () -> MathFunctions.betai(0.5, 0.5, -1e-10));
+    assertThrows(IllegalArgumentException.class, () -> MathFunctions.betai(0.5, 0.5, 1 + 1e-10));
+
+    assertThrows(ArithmeticException.class, () -> MathFunctions.betai(100000, 100000, 0.5));
+  }
+
+  @Test
   public void testPow() {
     for (int i = 0; i <= 16; i++) {
       assertEquals(Math.pow(5.0, i), MathFunctions.pow(5.0, i), EPSILON);
