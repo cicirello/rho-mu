@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="../../../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../../../script.js"></script>
-<script type="text/javascript" src="../../../../script-dir/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../../../script-dir/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -101,14 +101,21 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#logGamma(double)" class="member-name-link">logGamma</a><wbr>(double&nbsp;n)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#betai(double,double,double)" class="member-name-link">betai</a><wbr>(double&nbsp;a,
+ double&nbsp;b,
+ double&nbsp;x)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Implementation of the natural log of the absolute value of the gamma function.</div>
+<div class="block">Computes the incomplete beta function: I<sub>X</sub>(a, b).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#pow(double,int)" class="member-name-link">pow</a><wbr>(double&nbsp;a,
- int&nbsp;b)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#logGamma(double)" class="member-name-link">logGamma</a><wbr>(double&nbsp;n)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Implementation of the natural log of the absolute value of the gamma function.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#pow(double,int)" class="member-name-link">pow</a><wbr>(double&nbsp;a,
+ int&nbsp;b)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Computes a<sup>b</sup>, where the exponent b is an integer.</div>
 </div>
 </div>
@@ -128,6 +135,28 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="betai(double,double,double)">
+<h3>betai</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">betai</span><wbr><span class="parameters">(double&nbsp;a,
+ double&nbsp;b,
+ double&nbsp;x)</span></div>
+<div class="block">Computes the incomplete beta function: I<sub>X</sub>(a, b).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>a</code> - the parameter, a, of the incomplete beta function</dd>
+<dd><code>b</code> - the parameter, b, of the incomplete beta function</dd>
+<dd><code>x</code> - the parameter, x, of the incomplete beta function</dd>
+<dt>Returns:</dt>
+<dd>I<sub>X</sub>(a, b)</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if x is negative or greater than 1</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ArithmeticException.html" title="class or interface in java.lang" class="external-link">ArithmeticException</a></code> - if the continued fraction evaluation fails to converge, such as if
+     either a or b are too large, or if the continued fraction evaluation is using too few
+     iterations</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="pow(double,int)">
 <h3>pow</h3>

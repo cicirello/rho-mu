@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../../../../script.js"></script>
-<script type="text/javascript" src="../../../../../script-dir/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../../../../script-dir/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
@@ -145,57 +145,63 @@ loadScripts(document, 'script');</script>
 <div class="block">Computes mean of a dataset.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#stdev(double%5B%5D)" class="member-name-link">stdev</a><wbr>(double[]&nbsp;data)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#p(double,int)" class="member-name-link">p</a><wbr>(double&nbsp;t,
+ int&nbsp;dof)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Computes the sample standard deviation.</div>
+<div class="block">Calculates a p-value from the t statistic and degrees of freedom from a t-test.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#stdev(int%5B%5D)" class="member-name-link">stdev</a><wbr>(int[]&nbsp;data)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#stdev(double%5B%5D)" class="member-name-link">stdev</a><wbr>(double[]&nbsp;data)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Computes the sample standard deviation.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestUnequalVariances(double%5B%5D,double%5B%5D)" class="member-name-link">tTestUnequalVariances</a><wbr>(double[]&nbsp;data1,
- double[]&nbsp;data2)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#stdev(int%5B%5D)" class="member-name-link">stdev</a><wbr>(int[]&nbsp;data)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Welch's t-test, also known as t-test with unequal variances.</div>
+<div class="block">Computes the sample standard deviation.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestUnequalVariances(int%5B%5D,int%5B%5D)" class="member-name-link">tTestUnequalVariances</a><wbr>(int[]&nbsp;data1,
- int[]&nbsp;data2)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestUnequalVariances(double%5B%5D,double%5B%5D)" class="member-name-link">tTestUnequalVariances</a><wbr>(double[]&nbsp;data1,
+ double[]&nbsp;data2)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Welch's t-test, also known as t-test with unequal variances.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestWelch(double%5B%5D,double%5B%5D)" class="member-name-link">tTestWelch</a><wbr>(double[]&nbsp;data1,
- double[]&nbsp;data2)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestUnequalVariances(int%5B%5D,int%5B%5D)" class="member-name-link">tTestUnequalVariances</a><wbr>(int[]&nbsp;data1,
+ int[]&nbsp;data2)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Welch's t-test, also known as t-test with unequal variances.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestWelch(int%5B%5D,int%5B%5D)" class="member-name-link">tTestWelch</a><wbr>(int[]&nbsp;data1,
- int[]&nbsp;data2)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestWelch(double%5B%5D,double%5B%5D)" class="member-name-link">tTestWelch</a><wbr>(double[]&nbsp;data1,
+ double[]&nbsp;data2)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Welch's t-test, also known as t-test with unequal variances.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#variance(double%5B%5D)" class="member-name-link">variance</a><wbr>(double[]&nbsp;data)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tTestWelch(int%5B%5D,int%5B%5D)" class="member-name-link">tTestWelch</a><wbr>(int[]&nbsp;data1,
+ int[]&nbsp;data2)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Computes variance of a population.</div>
+<div class="block">Welch's t-test, also known as t-test with unequal variances.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#variance(int%5B%5D)" class="member-name-link">variance</a><wbr>(int[]&nbsp;data)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#variance(double%5B%5D)" class="member-name-link">variance</a><wbr>(double[]&nbsp;data)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Computes variance of a population.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#varianceSample(double%5B%5D)" class="member-name-link">varianceSample</a><wbr>(double[]&nbsp;data)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#variance(int%5B%5D)" class="member-name-link">variance</a><wbr>(int[]&nbsp;data)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Computes variance of a population.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#varianceSample(double%5B%5D)" class="member-name-link">varianceSample</a><wbr>(double[]&nbsp;data)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Computes variance of a sample.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#varianceSample(int%5B%5D)" class="member-name-link">varianceSample</a><wbr>(int[]&nbsp;data)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#varianceSample(int%5B%5D)" class="member-name-link">varianceSample</a><wbr>(int[]&nbsp;data)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Computes variance of a sample.</div>
 </div>
 </div>
@@ -472,6 +478,26 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>An array, a, of length 2 such that a[0] is the t statistic (as a Double object), and
      a[1] is the degrees of freedom (as an Integer object).</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="p(double,int)">
+<h3>p</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">p</span><wbr><span class="parameters">(double&nbsp;t,
+ int&nbsp;dof)</span></div>
+<div class="block">Calculates a p-value from the t statistic and degrees of freedom from a t-test.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>t</code> - the t statistic</dd>
+<dd><code>dof</code> - the degrees of freedom</dd>
+<dt>Returns:</dt>
+<dd>p</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ArithmeticException.html" title="class or interface in java.lang" class="external-link">ArithmeticException</a></code> - if the calculation of the incomplete beta function, required to
+     compute p, fails to converge. The most likely cause if this occurs is excessively high
+     degrees of freedom. However, this is highly unlikely to occur. Our testing has so far
+     failed to cause this exception to occur even with dof as high as 10,000,000.</dd>
 </dl>
 </section>
 </li>
