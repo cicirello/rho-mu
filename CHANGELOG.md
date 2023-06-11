@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-* Refactored binomial random variate generation for improved algorithm constant caching
 
 ### Deprecated
 
@@ -22,6 +21,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [3.1.1] - 2023-06-11
+
+### Changed
+* Refactored binomial random variate generation for improved algorithm constant caching
 
 
 ## [3.1.0] - 2023-05-12
