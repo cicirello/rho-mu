@@ -46,7 +46,10 @@ import org.cicirello.math.MathFunctions;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-final class Binomial {
+abstract class Binomial {
+
+  // BTPE is not valid if n*min(p,1-p) < 10
+  private static final int BTPE_CUTOFF = 10;
 
   /**
    * Generates a pseudorandom integer from a binomial distribution.
@@ -60,6 +63,34 @@ final class Binomial {
     return threadLocalInstance(n, p).next(generator);
   }
 
+  /**
+   * Create an instance of either BTPE or InverseTransform depending upon n and p.
+   *
+   * @param n the value of n
+   * @param p the value of p return an instance of NTPE if n*min(p,1-p) is greater than BTPE_CUTOFF,
+   *     otherwise an instance of InverseTransform
+   */
+  static Binomial createInstance(int n, double p) {
+    return n * Math.min(p, 1 - p) < BTPE_CUTOFF ? new InverseTransform(n, p) : new BTPE(n, p);
+  }
+
+  /**
+   * Generates the next random number from this Binomial.
+   *
+   * @param generator the source of randomness
+   * @return the next random number from this Binomial
+   */
+  abstract int next(RandomGenerator generator);
+
+  /**
+   * Checks if this Binomial is configured for specific n and p.
+   *
+   * @param n the value of n
+   * @param p the value of p
+   * @return true if and only if configured for n and p
+   */
+  abstract boolean consistentWith(int n, double p);
+
   // We cache constants until n or p changes.  We use ThreadLocal for
   // cache so that we are thread safe.  Each thread has its own cache.
   private static final ThreadLocal<Binomial> tl = new ThreadLocal<Binomial>();
@@ -69,92 +100,45 @@ final class Binomial {
    * initializing if necessary, and generating if it doesn't already exist.
    */
   private static Binomial threadLocalInstance(int n, double p) {
-    Binomial btpe = tl.get();
-    if (btpe == null || btpe.n != n || btpe.p != p) {
-      btpe = new Binomial(n, p);
-      tl.set(btpe);
+    Binomial bin = tl.get();
+    if (bin == null || !bin.consistentWith(n, p)) {
+      bin = createInstance(n, p);
+      tl.set(bin);
     }
-    return btpe;
+    return bin;
   }
 
-  // Variables for caching constants that only change when n or p changes.
-  // Constant cache for BTPE and simple inverse based approach
-  private int n;
-  private double p;
-  private double r;
-  private double q;
-  private double s;
+  private static class InverseTransform extends Binomial {
+    private final int n;
+    private final double p;
+    private final double s;
+    private final double a;
+    private final double pow0;
 
-  // Constant cache for BTPE
-  private int m;
-  private double nr;
-  private double nrq;
-  private double p1;
-  private double x_m;
-  private double x_l;
-  private double x_r;
-  private double c;
-  private double lambda_l;
-  private double lambda_r;
-  private double p2;
-  private double p3;
-  private double p4;
-  private double nrqInv;
-
-  // Constant cache for simple inverse based approach
-  private double a;
-  private double pow0;
-
-  // BTPE is not valid if n*min(p,1-p) < 10
-  private static final int BTPE_CUTOFF = 10;
-
-  // Private constructor
-  private Binomial(int n, double p) {
-    init(n, p);
-  }
-
-  // call this if n or p changes
-  private void init(int n, double p) {
-    // Step 0: Set-up constants, etc.
-    this.n = n;
-    this.p = p;
-    if (p <= 0.5) {
-      r = p;
-      q = 1 - p;
-    } else {
-      q = p;
-      r = 1 - p;
-    }
-    nr = n * r;
-    s = r / q;
-    if (nr < BTPE_CUTOFF) {
+    private InverseTransform(int n, double p) {
+      this.n = n;
+      this.p = p;
+      double r;
+      double q;
+      if (p <= 0.5) {
+        r = p;
+        q = 1 - p;
+      } else {
+        q = p;
+        r = 1 - p;
+      }
+      s = r / q;
       a = (n + 1) * s;
       pow0 = MathFunctions.pow(q, n);
-    } else {
-      final double f_m = nr + r;
-      m = (int) f_m;
-      nrq = nr * q;
-      p1 = Math.floor(2.195 * Math.sqrt(nrq) - 4.6 * q) + 0.5;
-      x_m = m + 0.5;
-      x_l = x_m - p1;
-      x_r = x_m + p1;
-      c = 0.134 + 20.5 / (15.3 + m);
-      a = (f_m - x_l) / (f_m - x_l * r);
-      lambda_l = a * (1 + 0.5 * a);
-      a = (x_r - f_m) / (x_r * q);
-      lambda_r = a * (1 + 0.5 * a);
-      p2 = p1 * (1 + c + c);
-      p3 = p2 + c / lambda_l;
-      p4 = p3 + c / lambda_r;
-      nrqInv = 1.0 / nrq;
     }
-  }
 
-  private int next(RandomGenerator generator) {
+    @Override
+    final boolean consistentWith(int n, double p) {
+      return this.n == n && this.p == p;
+    }
 
-    if (nr < BTPE_CUTOFF) {
-      // Use simple algorithm based on inverse transform since BTPE is only valid
-      // when n*min(p, 1-p) >= 10.
+    @Override
+    final int next(RandomGenerator generator) {
       double u = generator.nextDouble();
       int y = 0;
       double pow = pow0;
@@ -165,91 +149,156 @@ final class Binomial {
       }
       return p > 0.5 ? n - y : y;
     }
-
-    int y;
-    while (true) {
-
-      // Step 1.
-      double u = generator.nextDouble(p4);
-      double v = generator.nextDouble();
-      if (u <= p1) {
-        y = (int) (x_m - p1 * v + u);
-        break;
-      }
-
-      // Step 2: parallelograms
-      if (u <= p2) {
-        double x = x_l + (u - p1) / c;
-        v = v * c + 1 - Math.abs(m - x + 0.5) / p1;
-        if (v > 1) continue;
-        y = (int) x;
-      } else {
-        // Step 3: left exponential tail
-        if (u <= p3) {
-          y = (int) Math.floor(x_l + Math.log(v) / lambda_l);
-          if (y < 0) continue;
-          v = v * (u - p2) * lambda_l;
-        } else {
-          // Step 4: right exponential tail
-          y = (int) Math.floor(x_r - Math.log(v) / lambda_r);
-          if (y > n) continue;
-          v = v * (u - p3) * lambda_r;
-        }
-      }
-
-      // Step 5: Acceptance/rejection comparisons.
-
-      // Step 5.0
-      int k = m > y ? m - y : y - m;
-      if (k <= 20 || k >= nrq * 0.5 - 1) {
-        // Step 5.1
-        a = s * (n + 1);
-        double f = 1.0;
-        if (m < y) {
-          for (int i = m + 1; i <= y; i++) {
-            f = f * (a / i - s);
-          }
-        } else if (m > y) {
-          for (int i = y + 1; i <= m; i++) {
-            f = f / (a / i - s);
-          }
-        }
-        if (v > f) continue;
-        break;
-      } else {
-        // Step 5.2: Squeezing
-        double rho =
-            (k * nrqInv)
-                * ((k * (k * 0.3333333333333333 + 0.625) + 0.16666666666666666) * nrqInv + 0.5);
-        double t = -k * k * (0.5 * nrqInv);
-        a = Math.log(v);
-        if (a < t - rho) {
-          break;
-        }
-        if (a > t + rho) continue;
-      }
-
-      // Step 5.3: Final acceptance/rejection test
-      int x1 = y + 1;
-      int f1 = m + 1;
-      int z = n + 1 - m;
-      int w = n - y + 1;
-      if (a
-          > x_m * Math.log(((double) f1) / x1)
-              + (n - m + 0.5) * Math.log(((double) z) / w)
-              + (y - m) * Math.log(w * r / (x1 * q))
-              + stirlingApproximation(f1)
-              + stirlingApproximation(z)
-              + stirlingApproximation(x1)
-              + stirlingApproximation(w)) continue;
-      break;
-    }
-
-    return p > 0.5 ? n - y : y;
   }
 
-  private double stirlingApproximation(int x) {
-    int x2 = x * x;
-    return (13860.0 - (462.0 - (132.0 - (99.0 - 140.0 / x2) / x2) / x2) / x2) / x / 166320.0;
+  private static class BTPE extends Binomial {
+
+    private final int n;
+    private final double p;
+    private final double r;
+    private final double q;
+    private final double s;
+    private final int m;
+    private final double nrq;
+    private final double p1;
+    private final double x_m;
+    private final double x_l;
+    private final double x_r;
+    private final double c;
+    private final double lambda_l;
+    private final double lambda_r;
+    private final double p2;
+    private final double p3;
+    private final double p4;
+    private final double nrqInv;
+
+    // Private constructor
+    private BTPE(int n, double p) {
+      // Step 0: Set-up constants, etc.
+      this.n = n;
+      this.p = p;
+      if (p <= 0.5) {
+        r = p;
+        q = 1 - p;
+      } else {
+        q = p;
+        r = 1 - p;
+      }
+      final double nr = n * r;
+      s = r / q;
+
+      final double f_m = nr + r;
+      m = (int) f_m;
+      nrq = nr * q;
+      p1 = Math.floor(2.195 * Math.sqrt(nrq) - 4.6 * q) + 0.5;
+      x_m = m + 0.5;
+      x_l = x_m - p1;
+      x_r = x_m + p1;
+      c = 0.134 + 20.5 / (15.3 + m);
+      double a = (f_m - x_l) / (f_m - x_l * r);
+      lambda_l = a * (1 + 0.5 * a);
+      a = (x_r - f_m) / (x_r * q);
+      lambda_r = a * (1 + 0.5 * a);
+      p2 = p1 * (1 + c + c);
+      p3 = p2 + c / lambda_l;
+      p4 = p3 + c / lambda_r;
+      nrqInv = 1.0 / nrq;
+    }
+
+    @Override
+    final boolean consistentWith(int n, double p) {
+      return this.n == n && this.p == p;
+    }
+
+    @Override
+    final int next(RandomGenerator generator) {
+
+      int y;
+      while (true) {
+
+        // Step 1.
+        double u = generator.nextDouble(p4);
+        double v = generator.nextDouble();
+        if (u <= p1) {
+          y = (int) (x_m - p1 * v + u);
+          break;
+        }
+
+        // Step 2: parallelograms
+        if (u <= p2) {
+          double x = x_l + (u - p1) / c;
+          v = v * c + 1 - Math.abs(m - x + 0.5) / p1;
+          if (v > 1) continue;
+          y = (int) x;
+        } else {
+          // Step 3: left exponential tail
+          if (u <= p3) {
+            y = (int) Math.floor(x_l + Math.log(v) / lambda_l);
+            if (y < 0) continue;
+            v = v * (u - p2) * lambda_l;
+          } else {
+            // Step 4: right exponential tail
+            y = (int) Math.floor(x_r - Math.log(v) / lambda_r);
+            if (y > n) continue;
+            v = v * (u - p3) * lambda_r;
+          }
+        }
+
+        // Step 5: Acceptance/rejection comparisons.
+
+        // Step 5.0
+        int k = m > y ? m - y : y - m;
+        double a;
+        if (k <= 20 || k >= nrq * 0.5 - 1) {
+          // Step 5.1
+          a = s * (n + 1);
+          double f = 1.0;
+          if (m < y) {
+            for (int i = m + 1; i <= y; i++) {
+              f = f * (a / i - s);
+            }
+          } else if (m > y) {
+            for (int i = y + 1; i <= m; i++) {
+              f = f / (a / i - s);
+            }
+          }
+          if (v > f) continue;
+          break;
+        } else {
+          // Step 5.2: Squeezing
+          double rho =
+              (k * nrqInv)
+                  * ((k * (k * 0.3333333333333333 + 0.625) + 0.16666666666666666) * nrqInv + 0.5);
+          double t = -k * k * (0.5 * nrqInv);
+          a = Math.log(v);
+          if (a < t - rho) {
+            break;
+          }
+          if (a > t + rho) continue;
+        }
+
+        // Step 5.3: Final acceptance/rejection test
+        int x1 = y + 1;
+        int f1 = m + 1;
+        int z = n + 1 - m;
+        int w = n - y + 1;
+        if (a
+            > x_m * Math.log(((double) f1) / x1)
+                + (n - m + 0.5) * Math.log(((double) z) / w)
+                + (y - m) * Math.log(w * r / (x1 * q))
+                + stirlingApproximation(f1)
+                + stirlingApproximation(z)
+                + stirlingApproximation(x1)
+                + stirlingApproximation(w)) continue;
+        break;
+      }
+
+      return p > 0.5 ? n - y : y;
+    }
+
+    private double stirlingApproximation(int x) {
+      int x2 = x * x;
+      return (13860.0 - (462.0 - (132.0 - (99.0 - 140.0 / x2) / x2) / x2) / x2) / x / 166320.0;
+    }
   }
 }
