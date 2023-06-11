@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -50,7 +50,7 @@ public final class RandomVariates {
    * @return A pseudorandom integer from a binomial distribution.
    */
   public static int nextBinomial(int n, double p) {
-    return BTPE.nextBinomial(n, p, ThreadLocalRandom.current());
+    return Binomial.nextBinomial(n, p, ThreadLocalRandom.current());
   }
 
   /**
@@ -62,7 +62,7 @@ public final class RandomVariates {
    * @return A pseudorandom integer from a binomial distribution.
    */
   public static int nextBinomial(int n, double p, RandomGenerator r) {
-    return BTPE.nextBinomial(n, p, r);
+    return Binomial.nextBinomial(n, p, r);
   }
 
   /**

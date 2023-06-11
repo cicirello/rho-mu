@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -40,13 +40,13 @@ import org.cicirello.math.MathFunctions;
  *
  * <p>We cache the various constants that depend only on n and p. We only recompute these if a
  * different n or p is given as a parameter. To enable a thread safe approach, we maintain one
- * constant cache for each thread using ThreadLocal. Specifically, we maintain one instance of BTPE
- * per thread using ThreadLocal.
+ * constant cache for each thread using ThreadLocal. Specifically, we maintain one instance per
+ * thread using ThreadLocal.
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-final class BTPE {
+final class Binomial {
 
   /**
    * Generates a pseudorandom integer from a binomial distribution.
@@ -62,19 +62,17 @@ final class BTPE {
 
   // We cache constants until n or p changes.  We use ThreadLocal for
   // cache so that we are thread safe.  Each thread has its own cache.
-  private static final ThreadLocal<BTPE> tl = new ThreadLocal<BTPE>();
+  private static final ThreadLocal<Binomial> tl = new ThreadLocal<Binomial>();
 
   /*
-   * Private helper to handle getting the thread local instance of BTPE,
+   * Private helper to handle getting the thread local instance,
    * initializing if necessary, and generating if it doesn't already exist.
    */
-  private static BTPE threadLocalInstance(int n, double p) {
-    BTPE btpe = tl.get();
-    if (btpe == null) {
-      btpe = new BTPE(n, p);
+  private static Binomial threadLocalInstance(int n, double p) {
+    Binomial btpe = tl.get();
+    if (btpe == null || btpe.n != n || btpe.p != p) {
+      btpe = new Binomial(n, p);
       tl.set(btpe);
-    } else if (btpe.n != n || btpe.p != p) {
-      btpe.init(n, p);
     }
     return btpe;
   }
@@ -85,9 +83,9 @@ final class BTPE {
   private double p;
   private double r;
   private double q;
+  private double s;
 
   // Constant cache for BTPE
-  private double f_m;
   private int m;
   private double nr;
   private double nrq;
@@ -104,7 +102,6 @@ final class BTPE {
   private double nrqInv;
 
   // Constant cache for simple inverse based approach
-  private double s;
   private double a;
   private double pow0;
 
@@ -112,7 +109,7 @@ final class BTPE {
   private static final int BTPE_CUTOFF = 10;
 
   // Private constructor
-  private BTPE(int n, double p) {
+  private Binomial(int n, double p) {
     init(n, p);
   }
 
@@ -134,7 +131,7 @@ final class BTPE {
       a = (n + 1) * s;
       pow0 = MathFunctions.pow(q, n);
     } else {
-      f_m = nr + r;
+      final double f_m = nr + r;
       m = (int) f_m;
       nrq = nr * q;
       p1 = Math.floor(2.195 * Math.sqrt(nrq) - 4.6 * q) + 0.5;
@@ -173,7 +170,7 @@ final class BTPE {
     while (true) {
 
       // Step 1.
-      double u = p4 * generator.nextDouble();
+      double u = generator.nextDouble(p4);
       double v = generator.nextDouble();
       if (u <= p1) {
         y = (int) (x_m - p1 * v + u);
