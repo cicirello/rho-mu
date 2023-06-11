@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -64,6 +64,8 @@ import java.util.stream.LongStream;
 public class EnhancedRandomGenerator implements RandomGenerator {
 
   private final RandomGenerator generator;
+
+  private Binomial binomial;
 
   /**
    * Constructs the EnhancedRandomGenerator to wrap an instance of the default random number
@@ -174,7 +176,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * @return An array of n boolean values, such that each element is true with probability p.
    */
   public final boolean[] arrayMask(int n, double p) {
-    return RandomIndexer.arrayMask(n, p, generator);
+    return RandomIndexer.arrayMask(n, nextBinomial(n, p), generator);
   }
 
   /**
@@ -403,7 +405,10 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * @return A pseudorandom integer from a binomial distribution.
    */
   public final int nextBinomial(int n, double p) {
-    return RandomVariates.nextBinomial(n, p, generator);
+    if (binomial == null || !binomial.consistentWith(n, p)) {
+      binomial = Binomial.createInstance(n, p);
+    }
+    return binomial.next(generator);
   }
 
   /**
@@ -564,7 +569,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * @return An array containing the sample.
    */
   public final int[] sample(int n, double p) {
-    return RandomSampler.sample(n, p, generator);
+    return RandomSampler.sample(n, nextBinomial(n, p), null, generator);
   }
 
   /**
