@@ -2,7 +2,7 @@
  * PolarGaussian: Java implementation of the Polar Method
  * for generating Gaussian distributed random numbers.
  *
- * Copyright (C) 2015-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2015-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * PolarGaussian is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -24,6 +24,7 @@ package org.cicirello.math.rand;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
+import org.cicirello.math.internal.SuppressFBWarnings;
 
 /**
  * This class provides methods for generating pseudorandom numbers from a Gaussian distribution
@@ -106,6 +107,9 @@ public final class PolarGaussian {
    * @param r The pseudorandom number generator to use for the source of randomness.
    * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
    */
+  @SuppressFBWarnings(
+      value = "FL_FLOATS_AS_LOOP_COUNTERS",
+      justification = "implementation of a numerical algorithm")
   public static double nextGaussian(RandomGenerator r) {
     Double next = nextG.get();
     if (next != null) {
