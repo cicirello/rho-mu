@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2021 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -83,7 +83,14 @@ public class JacobiDiagonalization {
    *     computed.
    */
   public double[][] eigenvectors() {
-    return eigenvectors;
+    if (eigenvectors == null) {
+      return null;
+    }
+    double[][] result = new double[eigenvectors.length][];
+    for (int i = 0; i < eigenvectors.length; i++) {
+      result[i] = eigenvectors[i].clone();
+    }
+    return result;
   }
 
   /**
@@ -92,7 +99,7 @@ public class JacobiDiagonalization {
    * @return The eigenvalues. Returns null if not yet computed.
    */
   public double[] eigenvalues() {
-    return eigenvalues;
+    return eigenvalues != null ? eigenvalues.clone() : null;
   }
 
   /**
