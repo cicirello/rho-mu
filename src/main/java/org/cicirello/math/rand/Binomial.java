@@ -24,7 +24,6 @@ package org.cicirello.math.rand;
 
 import java.util.random.RandomGenerator;
 import org.cicirello.math.MathFunctions;
-import org.cicirello.math.internal.SuppressFBWarnings;
 
 /**
  * This class enables generating random variates from a binomial distribution. This is a mostly
@@ -138,9 +137,6 @@ abstract class Binomial {
       return this.n == n && this.p == p;
     }
 
-    @SuppressFBWarnings(
-        value = "FL_FLOATS_AS_LOOP_COUNTERS",
-        justification = "implementation of a numerical algorithm")
     @Override
     final int next(RandomGenerator generator) {
       double u = generator.nextDouble();
