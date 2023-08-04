@@ -1,0 +1,27 @@
+<FindBugsFilter>
+  <!-- Random number generation is not a security application in this library -->
+  <Match>
+    <Bug pattern="PREDICTABLE_RANDOM" />
+  </Match>
+  
+  <!-- implementation of a numerical algorithm (false positive) -->
+  <Match>
+    <Bug pattern="FL_FLOATS_AS_LOOP_COUNTERS" />
+	<Class name="org.cicirello.math.rand.PolarGaussian" />
+	<Method name="nextGaussian" />
+  </Match>
+  
+  <!-- implementation of a numerical algorithm (false positive) -->
+  <Match>
+    <Bug pattern="FL_FLOATS_AS_LOOP_COUNTERS" />
+	<Class name="org.cicirello.math.MathFunctions" />
+	<Method name="logGamma" />
+  </Match>
+  
+  <!-- SpotBugs is hallucinating as the supposed dead local store is literally used the next line -->
+  <Match>
+    <Bug pattern="DLS_DEAD_LOCAL_STORE" />
+	<Class name="org.cicirello.math.MathFunctions" />
+	<Method name="logGamma" />
+  </Match>
+</FindBugsFilter>

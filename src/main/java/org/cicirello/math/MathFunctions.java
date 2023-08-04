@@ -22,8 +22,6 @@
 
 package org.cicirello.math;
 
-import org.cicirello.math.internal.SuppressFBWarnings;
-
 /**
  * MathFunctions is a class of utility methods that implement various mathematical functions.
  *
@@ -96,9 +94,6 @@ public final class MathFunctions {
    * @param n input parameter to the function
    * @return ln(abs(gamma(n)))
    */
-  @SuppressFBWarnings(
-      value = {"FL_FLOATS_AS_LOOP_COUNTERS", "DLS_DEAD_LOCAL_STORE"},
-      justification = "implementation of a numerical algorithm")
   public static double logGamma(double n) {
     if (!Double.isFinite(n)) return n;
     if (n >= 2.556348e305) {
