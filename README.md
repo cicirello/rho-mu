@@ -10,7 +10,7 @@ API documentation: https://rho-mu.cicirello.org/api/
 
 | __Publications About the Library__ | [![DOI](https://joss.theoj.org/papers/10.21105/joss.04663/status.svg)](https://doi.org/10.21105/joss.04663) |
 | :--- | :--- |
-| __Packages and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?label=Maven%20Central&logo=apachemaven)](https://central.sonatype.com/artifact/org.cicirello/rho-mu/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/rho-mu?logo=GitHub)](https://github.com/cicirello/rho-mu/releases) [![JitPack](https://jitpack.io/v/org.cicirello/rho-mu.svg)](https://jitpack.io/#org.cicirello/rho-mu) |
+| __Packages and Releases__ | [![Maven Central](https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?label=Maven%20Central&logo=apachemaven)](https://central.sonatype.com/artifact/org.cicirello/rho-mu/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/rho-mu?logo=GitHub)](https://github.com/cicirello/rho-mu/releases) |
 | __Build Status__ | [![build](https://github.com/cicirello/rho-mu/workflows/build/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![docs](https://github.com/cicirello/rho-mu/workflows/docs/badge.svg)](https://rho-mu.cicirello.org/api/) [![CodeQL](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/rho-mu/actions/workflows/codeql-analysis.yml) |
 | __JaCoCo Test Coverage__ | [![coverage](https://raw.githubusercontent.com/cicirello/rho-mu/badges/jacoco.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![branches coverage](https://github.com/cicirello/rho-mu/blob/badges/branches.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) |
 | __Security__ | [![Snyk security score](https://snyk-widget.herokuapp.com/badge/mvn/org.cicirello/rho-mu/badge.svg)](https://snyk.io/vuln/maven%3Aorg.cicirello%3Arho-mu) [![Snyk Known Vulnerabilities](https://snyk.io/test/github/cicirello/rho-mu/badge.svg)](https://snyk.io/test/github/cicirello/rho-mu) |
@@ -73,7 +73,6 @@ The rest of this README is organized as follows:
 * [Importing from Package Repositories](#importing-from-package-repositories)
   * [Importing the Library from Maven Central](#importing-the-library-from-maven-central)
   * [Importing the Library from GitHub Packages](#importing-the-library-from-gitHub-packages)
-  * [Importing the Library from JitPack](#importing-the-library-from-jitpack)
 * [Downloading Jar Files](#downloading-jar-files): Information on where you can download pre-compiled jars
 * [License](#license): Licensing information
 * [Contribute](#contribute): Information for those who wish to contribute
@@ -234,11 +233,9 @@ module your.module.name.here {
 
 ## Importing from Package Repositories
 
-Prebuilt artifacts are regularly published to Maven Central, GitHub Packages, and JitPack. In most
-cases, you'll want to use Maven Central. JitPack may be useful if you want to build your project against
-the latest unreleased version, essentially against the default branch of the repository, or a specific commit.
-Releases are published to JitPack and GitHub Packages mainly as a fall-back in the unlikely scenario that
-Maven Central is unavailable.
+Prebuilt artifacts are regularly published to Maven Central and GitHub Packages. In 
+most cases, you'll want to use Maven Central. Releases are published to GitHub Packages 
+mainly as a fall-back in the unlikely scenario that Maven Central is unavailable.
 
 ### Importing the Library from Maven Central
 
@@ -269,44 +266,6 @@ the following to the repositories section of your pom.xml:
 
 Note that GitHub Packages requires authenticating to GitHub. Thus, it is likely less convenient
 than importing from Maven Central. We mainly provide this option as a backup source of artifacts.
-
-### Importing the Library from JitPack
-
-You can also import from JitPack. As above, you need to first add JitPack to
-the repositories section of your pom.xml, such as:
-
-```XML
-<repository>
-  <id>jitpack.io</id>
-  <url>https://jitpack.io</url>
-</repository>
-```
-
-JitPack works a bit differently than Maven Central. Specifically, JitPack builds
-artifacts on-demand from the GitHub repository the first time a version is requested. We have
-configured our domain on JitPack for the groupId, so you can still specify the dependency 
-as (just replace `x.y.z` with the version that you want):
-
-```XML
-<dependency>
-  <groupId>org.cicirello</groupId>
-  <artifactId>rho-mu</artifactId>
-  <version>x.y.z</version>
-</dependency>
-```
-
-We have primarily configured JitPack as a source of SNAPSHOT builds. If you want to build
-your project against the latest commit, specify the dependency as:
-
-```XML
-<dependency>
-  <groupId>org.cicirello</groupId>
-  <artifactId>rho-mu</artifactId>
-  <version>main-SNAPSHOT</version>
-</dependency>
-```
-
-You can also build against a specific commit using the commit hash as the version.
 
 ## Downloading Jar Files
 
