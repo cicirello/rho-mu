@@ -1,0 +1,15 @@
+<FindBugsFilter>
+  <!-- Random number generation is not a security application in the examples -->
+  <Match>
+    <Bug pattern="PREDICTABLE_RANDOM" />
+  </Match>
+  
+  <!-- The dead local stores are examples of how to initialize EnhancedRandomGenerator -->
+  <!-- wrapper instances. Any real usage would use the instance for something, but in -->
+  <!-- this case, these are purely example of how to initialize the instances. -->
+  <Match>
+    <Bug pattern="DLS_DEAD_LOCAL_STORE" />
+	<Class name="org.cicirello.examples.rho_mu.BasicUsageExamples" />
+	<Method name="main" />
+  </Match>
+</FindBugsFilter>

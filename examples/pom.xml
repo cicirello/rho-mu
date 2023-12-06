@@ -34,7 +34,7 @@
 		<distribution>repo</distribution>
 		<comments>
 		Example programs for the rho mu library.
-		Copyright (C) 2017-2022  Vincent A. Cicirello.
+		Copyright (C) 2017-2023 Vincent A. Cicirello.
  
 		This program is free software: you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
@@ -128,6 +128,37 @@
 				</repository>
 			</distributionManagement>
 		</profile>
+		<profile>
+			<id>analysis</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
+						<version>4.8.2.0</version>
+						<configuration>
+							<htmlOutput>true</htmlOutput>
+							<excludeFilterFile>${session.executionRootDirectory}/spotbugs-exclude.xml</excludeFilterFile>
+							<plugins>
+								<plugin>
+									<groupId>com.h3xstream.findsecbugs</groupId>
+									<artifactId>findsecbugs-plugin</artifactId>
+									<version>1.12.0</version>
+								</plugin>
+							</plugins>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>spotbugs</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<issueManagement>
@@ -198,8 +229,20 @@
 					<version>false</version>
 					<nosince>true</nosince>
 					<notimestamp>true</notimestamp>
-					<bottom><![CDATA[Copyright &copy; 2017-2022 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
+					<bottom><![CDATA[Copyright &copy; 2017-2023 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify.fmt</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
+				<version>2.21.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
