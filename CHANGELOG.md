@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2023-10-01
+## [Unreleased] - 2023-12-06
 
 ### Added
 
@@ -15,7 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Exposed private array references in JacobiDiagonalization class
+* Fixed exposed private array references in JacobiDiagonalization class.
+* Reformatted source code of example programs to Google Java Style for consistency with the library itself.
 
 ### Dependencies
 
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Integrated SpotBugs static analysis into build process.
 * Integrated Find Security Bugs static analysis into build process.
 * Removed support for importing from JitPack, iuncluding all JitPack configuration, workflows, workflow steps, and webhook.
+* Configured Spotify's fmt-maven-plugin to reformat the source code of the example programs to Google style during builds (the equivalent was already in place for the library's source code).
 
 ### Other
 
