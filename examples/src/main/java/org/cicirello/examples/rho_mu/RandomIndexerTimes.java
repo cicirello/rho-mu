@@ -79,7 +79,7 @@ public class RandomIndexerTimes {
     msPow2Bound[0] = new ArrayList<double[]>();
     msPow2Bound[1] = new ArrayList<double[]>();
 
-    System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s\n", "Bound", "TLR", "RI", "t", "dof");
+    System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s%n", "Bound", "TLR", "RI", "t", "dof");
     for (int bound = 1; bound <= 512; bound++) {
       double[][] ms = new double[2][TRIALS];
       for (int j = 0; j < TRIALS; j++) {
@@ -113,13 +113,13 @@ public class RandomIndexerTimes {
       int dof = tTest[1].intValue();
       // times are converted to seconds during output
       System.out.printf(
-          "%6d\t%10.7f\t%10.7f\t%10.4f\t%10d\n",
+          "%6d\t%10.7f\t%10.7f\t%10.4f\t%10d%n",
           bound, Statistics.mean(ms[0]) / 1000, Statistics.mean(ms[1]) / 1000, t, dof);
     }
 
     System.out.println();
     System.out.println("SUMMARY RESULTS");
-    System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s\n", "Bound", "TLR", "RI", "t", "dof");
+    System.out.printf("%6s\t%10s\t%10s\t%10s\t%10s%n", "Bound", "TLR", "RI", "t", "dof");
     // Output means, and results of t-test, for the case of low bounds.
     double[] a0 = toArray(msLowBound[0]);
     double[] a1 = toArray(msLowBound[1]);
@@ -130,7 +130,7 @@ public class RandomIndexerTimes {
     double rhomuTime = Statistics.mean(a1);
     // times are converted to seconds during output
     System.out.printf(
-        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d\n", "LOW", apiTime / 1000, rhomuTime / 1000, t, dof);
+        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d%n", "LOW", apiTime / 1000, rhomuTime / 1000, t, dof);
     final double LOW_PCT_DIFF = (apiTime - rhomuTime) / apiTime;
 
     // Output means, and results of t-test, for the case of high bounds.
@@ -143,7 +143,7 @@ public class RandomIndexerTimes {
     rhomuTime = Statistics.mean(a1);
     // times are converted to seconds during output
     System.out.printf(
-        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d\n", "HIGH", apiTime / 1000, rhomuTime / 1000, t, dof);
+        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d%n", "HIGH", apiTime / 1000, rhomuTime / 1000, t, dof);
     final double HIGH_PCT_DIFF = (apiTime - rhomuTime) / apiTime;
 
     // Output means, and results of t-test, for the case of bounds that are powers of 2.
@@ -156,7 +156,7 @@ public class RandomIndexerTimes {
     rhomuTime = Statistics.mean(a1);
     // times are converted to seconds during output
     System.out.printf(
-        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d\n", "POW2", apiTime / 1000, rhomuTime / 1000, t, dof);
+        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d%n", "POW2", apiTime / 1000, rhomuTime / 1000, t, dof);
     final double POW2_PCT_DIFF = (apiTime - rhomuTime) / apiTime;
 
     // Output means, and results of t-test, for all cases combined.
@@ -177,7 +177,7 @@ public class RandomIndexerTimes {
     rhomuTime = Statistics.mean(a1);
     // times are converted to seconds during output
     System.out.printf(
-        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d\n", "ALL", apiTime / 1000, rhomuTime / 1000, t, dof);
+        "%6s\t%10.7f\t%10.7f\t%10.4f\t%10d%n", "ALL", apiTime / 1000, rhomuTime / 1000, t, dof);
     final double ALL_PCT_DIFF = (apiTime - rhomuTime) / apiTime;
 
     System.out.println();
@@ -202,41 +202,41 @@ public class RandomIndexerTimes {
 
     if (LOW_PCT_DIFF >= 0) {
       System.out.printf(
-          "For Low bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n",
+          "For Low bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.%n",
           100 * LOW_PCT_DIFF);
     } else {
       System.out.printf(
-          "For Low bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n",
+          "For Low bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.%n",
           -100 * LOW_PCT_DIFF);
     }
 
     if (HIGH_PCT_DIFF >= 0) {
       System.out.printf(
-          "For high bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n",
+          "For high bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.%n",
           100 * HIGH_PCT_DIFF);
     } else {
       System.out.printf(
-          "For high bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n",
+          "For high bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.%n",
           -100 * HIGH_PCT_DIFF);
     }
 
     if (POW2_PCT_DIFF >= 0) {
       System.out.printf(
-          "For powers-of-2 bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n",
+          "For powers-of-2 bounds, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.%n",
           100 * POW2_PCT_DIFF);
     } else {
       System.out.printf(
-          "For powers-of-2 bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n",
+          "For powers-of-2 bounds, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.%n",
           -100 * POW2_PCT_DIFF);
     }
 
     if (ALL_PCT_DIFF >= 0) {
       System.out.printf(
-          "Overall, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.\n",
+          "Overall, rho-mu spends %.2f%% LESS TIME THAN the Java API's built in nextInt.%n",
           100 * ALL_PCT_DIFF);
     } else {
       System.out.printf(
-          "Overall, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.\n",
+          "Overall, rho-mu spends %.2f%% MORE TIME THAN the Java API's built in nextInt.%n",
           -100 * ALL_PCT_DIFF);
     }
   }
