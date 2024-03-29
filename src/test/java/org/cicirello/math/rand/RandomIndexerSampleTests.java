@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -423,7 +423,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 2; n <= 6; n++) {
       for (int i = 0; i < 10; i++) {
-        int[] result = RandomIndexer.nextIntPair(n, null);
+        int[] result = RandomIndexer.nextIntPair(n, (int[]) null);
         assertEquals(2, result.length, "Length of result should be 2");
         assertNotEquals(result[0], result[1], "integers should be different");
         assertTrue(result[0] >= 0, "integers should be at least 0");
@@ -446,8 +446,42 @@ public class RandomIndexerSampleTests {
         int[][] buckets = new int[n][n];
         int numBuckets = n * (n - 1); // /2;
         for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-          int[] result = RandomIndexer.nextIntPair(n, null);
+          int[] result = RandomIndexer.nextIntPair(n, (int[]) null);
           buckets[result[0]][result[1]]++;
+        }
+        double chi = chiSquareAll(buckets, numBuckets);
+        if (chi > limit95[numBuckets - 1]) countH++;
+      }
+      assertTrue(
+          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
+    }
+  }
+
+  @Test
+  public void testPair_IndexPair_ThreadLocalRandom() {
+    final int REPS_PER_BUCKET = 200;
+    final int TRIALS = 200;
+
+    for (int n = 2; n <= 6; n++) {
+      for (int i = 0; i < 10; i++) {
+        IndexPair result = RandomIndexer.nextIntPair(n);
+        assertNotEquals(result.i(), result.j(), "integers should be different");
+        assertTrue(result.i() >= 0, "integers should be at least 0");
+        assertTrue(result.j() < n, "integers should be less than " + n);
+        assertTrue(result.j() >= 0, "integers should be at least 0");
+        assertTrue(result.i() < n, "integers should be less than " + n);
+      }
+    }
+
+    if (DISABLE_CHI_SQUARE_TESTS) return;
+    for (int n = 2; n <= 6; n++) {
+      int countH = 0;
+      for (int trial = 0; trial < TRIALS; trial++) {
+        int[][] buckets = new int[n][n];
+        int numBuckets = n * (n - 1); // /2;
+        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+          IndexPair result = RandomIndexer.nextIntPair(n);
+          buckets[result.i()][result.j()]++;
         }
         double chi = chiSquareAll(buckets, numBuckets);
         if (chi > limit95[numBuckets - 1]) countH++;
@@ -664,6 +698,39 @@ public class RandomIndexerSampleTests {
     assertTrue(expected == actual);
     actual = RandomIndexer.nextIntPair(5, new int[1], gen);
     assertEquals(2, actual.length);
+  }
+
+  @Test
+  public void testPair_IndexPair_SplittableRandom() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 100;
+    final int TRIALS = 100;
+
+    for (int n = 2; n <= 6; n++) {
+      for (int i = 0; i < 10; i++) {
+        IndexPair result = RandomIndexer.nextIntPair(n, gen);
+        assertNotEquals(result.i(), result.j());
+        assertTrue(result.i() >= 0);
+        assertTrue(result.j() < n);
+        assertTrue(result.j() >= 0);
+        assertTrue(result.i() < n);
+      }
+    }
+    for (int n = 2; n <= 6; n++) {
+      int countH = 0;
+      for (int trial = 0; trial < TRIALS; trial++) {
+        int[][] buckets = new int[n][n];
+        int numBuckets = n * (n - 1); // /2;
+        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+          IndexPair result = RandomIndexer.nextIntPair(n, gen);
+          buckets[result.i()][result.j()]++;
+        }
+        double chi = chiSquareAll(buckets, numBuckets);
+        if (chi > limit95[numBuckets - 1]) countH++;
+      }
+      assertTrue(
+          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
+    }
   }
 
   @Test

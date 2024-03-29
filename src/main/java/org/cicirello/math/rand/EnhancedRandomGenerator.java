@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -463,6 +463,20 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final int[] nextIntPair(int n, int[] result) {
     return RandomIndexer.nextIntPair(n, result, generator);
+  }
+
+  /**
+   * Generates a random sample of 2 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @return A pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public final IndexPair nextIntPair(int n) {
+    return RandomIndexer.nextIntPair(n, generator);
   }
 
   /**

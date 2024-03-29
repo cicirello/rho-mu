@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **BREAKING CHANGES: See Removed and Changed sections for details.**
 
 ### Added
+* IndexPair record class for use in methods generating pairs of random indexes.
+* Versions of nextIntPair method that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
 
 ### Changed
 * Changed ZigguratGaussian to a package-access class (BREAKING CHANGE)
