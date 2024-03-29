@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -40,6 +40,15 @@ public class ERGPairsTriplesTests {
     int[] result2 = erg.nextIntPair(6, result);
     assertTrue(result == result2);
     validateCombo(6, 2, result);
+  }
+
+  @Test
+  public void testNextIntPair_IndexPair() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+    IndexPair result = erg.nextIntPair(6);
+    assertTrue(result.i() < 6);
+    assertTrue(result.j() < 6);
+    assertNotEquals(result.i(), result.j());
   }
 
   @Test

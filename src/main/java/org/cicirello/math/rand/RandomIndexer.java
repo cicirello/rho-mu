@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -276,6 +276,40 @@ public final class RandomIndexer {
       result[1] = n - 1;
     }
     return result;
+  }
+
+  /**
+   * Generates a random sample of 2 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 2 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @return A pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public static IndexPair nextIntPair(int n) {
+    return nextIntPair(n, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 2 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 2 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param gen Source of randomness.
+   * @return A pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public static IndexPair nextIntPair(int n, RandomGenerator gen) {
+    int i = nextInt(n, gen);
+    int j = nextInt(n - 1, gen);
+    return new IndexPair(i, i == j ? n - 1 : j);
   }
 
   /**
