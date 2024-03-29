@@ -2,7 +2,7 @@
  * PolarGaussian: Java implementation of the Polar Method
  * for generating Gaussian distributed random numbers.
  *
- * Copyright (C) 2015-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2015-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * PolarGaussian is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -48,9 +48,14 @@ import java.util.random.RandomGenerator;
  *       Society Conference, pages 2-7. AAAI Press, May 2018.
  * </ul>
  *
+ * @deprecated This class is deprecated. It's original purpose was to compare speed of
+ *     ZigguratGaussian, which is faster and preferred over PolarGaussian to begin with. You should
+ *     either use the corresponding static methods of {@link RandomVariates} or the instance methods
+ *     of {@link EnhancedRandomGenerator}.
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
+@Deprecated
 public final class PolarGaussian {
 
   /*
