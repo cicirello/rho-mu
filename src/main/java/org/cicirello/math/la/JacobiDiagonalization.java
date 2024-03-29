@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2023 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -29,7 +29,7 @@ package org.cicirello.math.la;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public class JacobiDiagonalization {
+public final class JacobiDiagonalization {
 
   /** Default precision level for convergence check. */
   public static final double EPSILON = 1e-5;
@@ -48,8 +48,9 @@ public class JacobiDiagonalization {
    * @param matrix a square matrix
    */
   public JacobiDiagonalization(int[][] matrix) {
-    if (matrix.length != matrix[0].length)
+    if (matrix.length != matrix[0].length) {
       throw new IllegalArgumentException("Must be a square matrix.");
+    }
     N = matrix.length;
     a = new double[N][N];
     for (int i = 0; i < N; i++) {
@@ -65,8 +66,9 @@ public class JacobiDiagonalization {
    * @param matrix a square matrix
    */
   public JacobiDiagonalization(double[][] matrix) {
-    if (matrix.length != matrix[0].length)
+    if (matrix.length != matrix[0].length) {
       throw new IllegalArgumentException("Must be a square matrix.");
+    }
     N = matrix.length;
     a = new double[N][N];
     for (int i = 0; i < N; i++) {
