@@ -1,7 +1,7 @@
 /*
  * JUnit test cases for ZigguratGaussian.
  *
- * Copyright 2019-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2019-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * The JUnit test cases for ZigguratGaussian is free software: you can
  * redistribute it and/or modify it under the terms of the GNU
@@ -29,6 +29,7 @@ import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
 /** JUnit test cases for the methods of the ZigguratGaussian class. */
+@SuppressWarnings("deprecated")
 public class ZigguratGaussianTests {
 
   // Test cases use chi square goodness of fit.  This constant
