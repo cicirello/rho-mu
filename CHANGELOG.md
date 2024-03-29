@@ -6,11 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2024-03-29
 
-**BREAKING CHANGES: See Removed section for details.**
+**BREAKING CHANGES: See Removed and Changed sections for details.**
 
 ### Added
 
 ### Changed
+* Changed ZigguratGaussian to a package-access class (BREAKING CHANGE)
 
 ### Deprecated
 

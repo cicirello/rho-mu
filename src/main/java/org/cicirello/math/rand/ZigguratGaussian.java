@@ -95,14 +95,10 @@ import java.util.random.RandomGenerator;
  *       Generating Gaussian Random Numbers</a>. GSL: GNU Scientific Library. 2005.
  * </ul>
  *
- * @deprecated This class will become an internal package-access class. You should begin using the
- *     corresponding static methods of the {@link RandomVariates} class, or the instance methods of
- *     the {@link EnhancedRandomGenerator} class.
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-@Deprecated
-public final class ZigguratGaussian {
+final class ZigguratGaussian {
 
   /*
    * A Few Java Implementation Notes:

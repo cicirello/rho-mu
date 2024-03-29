@@ -29,7 +29,6 @@ import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
 /** JUnit test cases for the methods of the ZigguratGaussian class. */
-@SuppressWarnings("deprecated")
 public class ZigguratGaussianTests {
 
   // Test cases use chi square goodness of fit.  This constant
