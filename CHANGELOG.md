@@ -11,24 +11,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 ### Deprecated
-* Deprecated PolarGaussian, in preparation for future removal.
-* Deprecated ZigguratGaussian, in preparation for making it an internal package access class.
 
 ### Removed
 
 ### Fixed
-* Fixed exposed private array references in JacobiDiagonalization class.
-* Reformatted source code of example programs to Google Java Style for consistency with the library itself.
 
 ### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [3.2.0] - 2024-03-29
+
+### Deprecated
+* Deprecated PolarGaussian, in preparation for future removal.
+* Deprecated ZigguratGaussian, in preparation for making it an internal package access class.
+
+### Fixed
+* Fixed exposed private array references in JacobiDiagonalization class.
+* Reformatted source code of example programs to Google Java Style for consistency with the library itself.
 
 ### CI/CD
 * Integrated SpotBugs static analysis into build process.
 * Integrated Find Security Bugs static analysis into build process.
 * Removed support for importing from JitPack, iuncluding all JitPack configuration, workflows, workflow steps, and webhook.
 * Configured Spotify's fmt-maven-plugin to reformat the source code of the example programs to Google style during builds (the equivalent was already in place for the library's source code).
-
-### Other
 
 
 ## [3.1.1] - 2023-06-11
