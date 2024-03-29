@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deprecated
 * Deprecated PolarGaussian, in preparation for future removal.
+* Deprecated ZigguratGaussian, in preparation for making it an internal package access class.
 
 ### Removed
 
