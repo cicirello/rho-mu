@@ -29,6 +29,7 @@ import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
 /** JUnit test cases for the methods of the PolarGaussian class. */
+@SuppressWarnings("deprecated")
 public class PolarGaussianTests {
 
   // Test cases use chi square goodness of fit.  This constant
