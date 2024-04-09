@@ -27,6 +27,7 @@ import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 /**
  * An EnhancedRandomGenerator is used to wrap an object of any class that implements {@link
@@ -56,6 +57,7 @@ import java.util.stream.LongStream;
  *   <li>Methods to generate streams of numbers from distributions other than uniform, such as
  *       streams of random numbers from binomial distributions, Cauchy distributions, exponential
  *       distributions, and Gaussian distributions.
+ *   <li>Methods to generate streams of pairs of distinct integers.
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
@@ -601,6 +603,31 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort) {
     return RandomIndexer.nextWindowedIntTriple(n, window, result, sort, generator);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom pairs of int values, without
+   * replacement, from the interval [0, n). <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @return an effectively unlimited stream of pseudorandom pairs of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexPair> pairs(int n) {
+    return Stream.generate(() -> nextIntPair(n)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom pairs of int values, without replacement, from the interval
+   * [0, n). <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @return a stream of pseudorandom pairs of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexPair> pairs(long streamSize, int n) {
+    return Stream.generate(() -> nextIntPair(n)).sequential().limit(streamSize);
   }
 
   /**
