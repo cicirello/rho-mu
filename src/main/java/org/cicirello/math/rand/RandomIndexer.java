@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 import org.cicirello.util.ArrayMinimumLengthEnforcer;
+import org.cicirello.util.SortingNetwork;
 
 /**
  * RandomIndexer is a class of utility methods related to efficiently generating random indexes, and
@@ -368,12 +369,10 @@ public final class RandomIndexer {
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public static int[] nextIntTriple(int n, int[] result, boolean sort, RandomGenerator gen) {
-    result = ArrayMinimumLengthEnforcer.enforce(result, 3);
-    result[0] = nextInt(n, gen);
-    result[1] = nextInt(n - 1, gen);
-    result[2] = nextInt(n - 2, gen);
-    if (sort) adjustSortTriple(result);
-    else adjustTriple(result);
+    result = nextIntTriple(n, result, gen);
+    if (sort) {
+      SortingNetwork.sort(result, 0, 1, 2);
+    }
     return result;
   }
 
@@ -395,7 +394,19 @@ public final class RandomIndexer {
     result[0] = nextInt(n, gen);
     result[1] = nextInt(n - 1, gen);
     result[2] = nextInt(n - 2, gen);
-    adjustTriple(result);
+    if (result[1] == result[0]) {
+      result[1] = n - 1;
+      if (result[2] == result[0]) {
+        result[2] = n - 2;
+      }
+    } else {
+      if (result[2] == result[1]) {
+        result[2] = n - 2;
+      }
+      if (result[2] == result[0]) {
+        result[2] = n - 1;
+      }
+    }
     return result;
   }
 
@@ -658,54 +669,11 @@ public final class RandomIndexer {
    */
   public static int[] nextWindowedIntTriple(
       int n, int window, int[] result, boolean sort, RandomGenerator gen) {
-    if (window >= n - 1) return nextIntTriple(n, result, sort, gen);
-    result = ArrayMinimumLengthEnforcer.enforce(result, 3);
-    final int z1 = n - window;
-    final int z3 = 3 * z1;
-    int i = nextInt(z3 + window - 2, gen);
-    int j = nextInt(window, gen);
-    int k = nextInt(window - 1, gen);
-    if (sort) sortSetAndAdjustWindowedTriple(result, i, j, k, z1, z3);
-    else setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+    result = nextWindowedIntTriple(n, window, result, gen);
+    if (sort) {
+      SortingNetwork.sort(result, 0, 1, 2);
+    }
     return result;
-  }
-
-  private static boolean adjustIfNecessary(int[] result, int upper, int lower) {
-    if (result[upper] >= result[lower]) {
-      result[upper]++;
-      return true;
-    }
-    return false;
-  }
-
-  private static void adjustTriple(int[] result) {
-    if (adjustIfNecessary(result, 1, 0)) {
-      adjustIfNecessary(result, 2, 0);
-      adjustIfNecessary(result, 2, 1);
-    } else {
-      adjustIfNecessary(result, 2, 1);
-      adjustIfNecessary(result, 2, 0);
-    }
-  }
-
-  private static void adjustSortTriple(int[] result) {
-    if (!adjustIfNecessary(result, 1, 0)) {
-      int temp = result[0];
-      result[0] = result[1];
-      result[1] = temp;
-    }
-    if (adjustIfNecessary(result, 2, 0)) {
-      if (!adjustIfNecessary(result, 2, 1)) {
-        int temp = result[1];
-        result[1] = result[2];
-        result[2] = temp;
-      }
-    } else {
-      int temp = result[2];
-      result[2] = result[1];
-      result[1] = result[0];
-      result[0] = temp;
-    }
   }
 
   private static void setAndAdjustWindowedPair(
@@ -756,43 +724,6 @@ public final class RandomIndexer {
       result[0] = i;
       result[1] = j;
       result[2] = k;
-    }
-  }
-
-  private static void sortSetAndAdjustWindowedTriple(
-      int[] result, int i, int j, int k, final int z1, final int z3) {
-    if (k >= j) {
-      k++;
-    } else {
-      int t = j;
-      j = k;
-      k = t;
-    }
-    if (i < z3) {
-      int q = i / 3;
-      result[0] = q;
-      result[1] = q + 1 + j;
-      result[2] = q + 1 + k;
-    } else {
-      i = i - z3 + z1;
-      j += z1;
-      k += z1;
-      if (i >= j) {
-        i++;
-        result[0] = j;
-        if (i >= k) {
-          i++;
-          result[1] = k;
-          result[2] = i;
-        } else {
-          result[1] = i;
-          result[2] = k;
-        }
-      } else {
-        result[0] = i;
-        result[1] = j;
-        result[2] = k;
-      }
     }
   }
 }
