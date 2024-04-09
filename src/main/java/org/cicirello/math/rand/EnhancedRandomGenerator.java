@@ -57,7 +57,8 @@ import java.util.stream.Stream;
  *   <li>Methods to generate streams of numbers from distributions other than uniform, such as
  *       streams of random numbers from binomial distributions, Cauchy distributions, exponential
  *       distributions, and Gaussian distributions.
- *   <li>Methods to generate streams of pairs of distinct integers.
+ *   <li>Methods to generate streams of pairs of distinct integers, and streams of triples of
+ *       distinct integers.
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
@@ -742,6 +743,60 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final int[] sampleReservoir(int n, int k, int[] result) {
     return RandomSampler.sampleReservoir(n, k, result, generator);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom triples of int values, without
+   * replacement, from the interval [0, n). <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @return an effectively unlimited stream of pseudorandom triples of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexTriple> triples(int n) {
+    return Stream.generate(() -> nextIntTriple(n)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom triples of int values, without replacement, from the interval
+   * [0, n). <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @return a stream of pseudorandom triples of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexTriple> triples(long streamSize, int n) {
+    return Stream.generate(() -> nextIntTriple(n)).sequential().limit(streamSize);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom triples of int values, without
+   * replacement, from the interval [0, n). <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
+   *     order.
+   * @return an effectively unlimited stream of pseudorandom triples of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexTriple> triples(int n, boolean sort) {
+    return Stream.generate(() -> nextIntTriple(n, sort)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom triples of int values, without replacement, from the interval
+   * [0, n). <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
+   *     order.
+   * @return a stream of pseudorandom triples of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexTriple> triples(long streamSize, int n, boolean sort) {
+    return Stream.generate(() -> nextIntTriple(n, sort)).sequential().limit(streamSize);
   }
 
   // METHODS THAT CHANGE FUNCTIONALITY:

@@ -43,6 +43,7 @@ public class StreamsIndexCombinationsTests {
               assertTrue(x.i() >= 0);
               assertTrue(x.j() < 10);
               assertTrue(x.j() >= 0);
+              assertNotEquals(x.j(), x.i());
             });
   }
 
@@ -57,6 +58,117 @@ public class StreamsIndexCombinationsTests {
               assertTrue(x.i() >= 0);
               assertTrue(x.j() < 6);
               assertTrue(x.j() >= 0);
+              assertNotEquals(x.j(), x.i());
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
+  public void testTriples() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.triples(10)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 10);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 10);
+              assertTrue(x.j() >= 0);
+              assertTrue(x.k() < 10);
+              assertTrue(x.k() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertNotEquals(x.k(), x.i());
+              assertNotEquals(x.j(), x.k());
+            });
+  }
+
+  @Test
+  public void testTriplesLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.triples(10, 6)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 6);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 6);
+              assertTrue(x.j() >= 0);
+              assertTrue(x.k() < 6);
+              assertTrue(x.k() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertNotEquals(x.k(), x.i());
+              assertNotEquals(x.j(), x.k());
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
+  public void testTriplesSortIsFalse() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.triples(10, false)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 10);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 10);
+              assertTrue(x.j() >= 0);
+              assertTrue(x.k() < 10);
+              assertTrue(x.k() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertNotEquals(x.k(), x.i());
+              assertNotEquals(x.j(), x.k());
+            });
+  }
+
+  @Test
+  public void testTriplesSortIsFalseLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.triples(10, 6, false)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 6);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 6);
+              assertTrue(x.j() >= 0);
+              assertTrue(x.k() < 6);
+              assertTrue(x.k() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertNotEquals(x.k(), x.i());
+              assertNotEquals(x.j(), x.k());
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
+  public void testTriplesSorted() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.triples(10, true)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.i() < x.j());
+              assertTrue(x.j() < x.k());
+              assertTrue(x.k() < 10);
+            });
+  }
+
+  @Test
+  public void testTriplesSortedLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.triples(10, 6, true)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.i() < x.j());
+              assertTrue(x.j() < x.k());
+              assertTrue(x.k() < 6);
               w.count++;
             });
     assertEquals(10, w.count);
