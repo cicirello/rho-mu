@@ -325,7 +325,7 @@ public final class RandomIndexer {
    * @param n The number of integers to choose from.
    * @param result An array to hold the pair that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
-   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public static int[] nextIntTriple(int n, int[] result) {
@@ -346,7 +346,7 @@ public final class RandomIndexer {
    *     result.length is less than 3, then this method will construct an array for the result.
    * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
    *     order.
-   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public static int[] nextIntTriple(int n, int[] result, boolean sort) {
@@ -365,7 +365,7 @@ public final class RandomIndexer {
    * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
    *     order.
    * @param gen The source of randomness.
-   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public static int[] nextIntTriple(int n, int[] result, boolean sort, RandomGenerator gen) {
@@ -386,7 +386,7 @@ public final class RandomIndexer {
    * @param result An array to hold the pair that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
    * @param gen Source of randomness.
-   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public static int[] nextIntTriple(int n, int[] result, RandomGenerator gen) {
@@ -408,6 +408,95 @@ public final class RandomIndexer {
       }
     }
     return result;
+  }
+
+  /**
+   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 3 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @return A triple of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 3.
+   */
+  public static IndexTriple nextIntTriple(int n) {
+    return nextIntTriple(n, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 3 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param gen Source of randomness.
+   * @return A triple of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 3.
+   */
+  public static IndexTriple nextIntTriple(int n, RandomGenerator gen) {
+    int i = nextInt(n, gen);
+    int j = nextInt(n - 1, gen);
+    int k = nextInt(n - 2, gen);
+    if (j == i) {
+      return new IndexTriple(i, n - 1, k == i ? n - 2 : k);
+    }
+    if (k == j) {
+      k = n - 2;
+    }
+    return new IndexTriple(i, j, k == i ? n - 1 : k);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 3 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
+   *     order.
+   * @return A triple of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 3.
+   */
+  public static IndexTriple nextIntTriple(int n, boolean sort) {
+    return nextIntTriple(n, sort, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 3 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
+   *     order.
+   * @param gen The source of randomness.
+   * @return A triple of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 3.
+   */
+  public static IndexTriple nextIntTriple(int n, boolean sort, RandomGenerator gen) {
+    if (sort) {
+      int i = nextInt(n, gen);
+      int j = nextInt(n - 1, gen);
+      int k = nextInt(n - 2, gen);
+      if (j == i) {
+        return IndexTriple.sorted(i, k == i ? n - 2 : k, n - 1);
+      }
+      if (k == j) {
+        k = n - 2;
+      }
+      return IndexTriple.sorted(i, j, k == i ? n - 1 : k);
+    }
+    return nextIntTriple(n, gen);
   }
 
   /**

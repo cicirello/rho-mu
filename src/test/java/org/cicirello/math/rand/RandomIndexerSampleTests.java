@@ -498,7 +498,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 3; n <= 6; n++) {
       for (int i = 0; i < 10; i++) {
-        int[] result = RandomIndexer.nextIntTriple(n, null);
+        int[] result = RandomIndexer.nextIntTriple(n, (int[]) null);
         assertEquals(3, result.length);
         assertNotEquals(result[0], result[1]);
         assertNotEquals(result[2], result[1]);
@@ -523,7 +523,7 @@ public class RandomIndexerSampleTests {
         int[] sortBuckets = new int[6];
         int numBuckets = n * (n - 1) * (n - 2);
         for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-          int[] result = RandomIndexer.nextIntTriple(n, null);
+          int[] result = RandomIndexer.nextIntTriple(n, (int[]) null);
           buckets[result[0]][result[1]][result[2]]++;
         }
         double chi = chiSquareAll(buckets, numBuckets);
@@ -726,6 +726,190 @@ public class RandomIndexerSampleTests {
           buckets[result.i()][result.j()]++;
         }
         double chi = chiSquareAll(buckets, numBuckets);
+        if (chi > limit95[numBuckets - 1]) countH++;
+      }
+      assertTrue(
+          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
+    }
+  }
+
+  @Test
+  public void testTriple_IndexTriple_ThreadLocalRandom() {
+    final int REPS_PER_BUCKET = 200;
+    final int TRIALS = 200;
+
+    for (int n = 3; n <= 6; n++) {
+      for (int i = 0; i < 10; i++) {
+        IndexTriple result = RandomIndexer.nextIntTriple(n);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.k(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertTrue(result.i() >= 0);
+        assertTrue(result.i() < n);
+        assertTrue(result.j() >= 0);
+        assertTrue(result.j() < n);
+        assertTrue(result.k() >= 0);
+        assertTrue(result.k() < n);
+      }
+    }
+
+    if (DISABLE_CHI_SQUARE_TESTS) return;
+    for (int n = 3; n <= 6; n++) {
+      int countH = 0;
+      for (int trial = 0; trial < TRIALS; trial++) {
+        int[][][] buckets = new int[n][n][n];
+        int[] sortBuckets = new int[6];
+        int numBuckets = n * (n - 1) * (n - 2);
+        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+          IndexTriple result = RandomIndexer.nextIntTriple(n);
+          buckets[result.i()][result.j()][result.k()]++;
+        }
+        double chi = chiSquareAll(buckets, numBuckets);
+        if (chi > limit95[numBuckets - 1]) countH++;
+      }
+      assertTrue(
+          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
+    }
+  }
+
+  @Test
+  public void testTripleSorted_IndexTriple_ThreadLocalRandom() {
+    final int REPS_PER_BUCKET = 200;
+    final int TRIALS = 200;
+
+    for (int n = 3; n <= 6; n++) {
+      for (int i = 0; i < 10; i++) {
+        IndexTriple result = RandomIndexer.nextIntTriple(n, true);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.k(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+        assertTrue(result.i() >= 0);
+        assertTrue(result.k() < n);
+      }
+    }
+
+    if (DISABLE_CHI_SQUARE_TESTS) return;
+    for (int n = 3; n <= 6; n++) {
+      int countH = 0;
+      for (int trial = 0; trial < TRIALS; trial++) {
+        int[][][] buckets = new int[n][n][n];
+        int numBuckets = n * (n - 1) * (n - 2) / 6;
+        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+          IndexTriple result = RandomIndexer.nextIntTriple(n, true);
+          buckets[result.i()][result.j()][result.k()]++;
+        }
+        double chi = chiSquare(buckets, numBuckets);
+        if (chi > limit95[numBuckets - 1]) countH++;
+      }
+      assertTrue(
+          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
+    }
+  }
+
+  @Test
+  public void testTriple_IndexTriple_SplittableRandom() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 100;
+    final int TRIALS = 100;
+
+    for (int n = 3; n <= 6; n++) {
+      for (int i = 0; i < 10; i++) {
+        IndexTriple result = RandomIndexer.nextIntTriple(n, gen);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.k(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertTrue(result.i() >= 0);
+        assertTrue(result.i() < n);
+        assertTrue(result.j() >= 0);
+        assertTrue(result.j() < n);
+        assertTrue(result.k() >= 0);
+        assertTrue(result.k() < n);
+      }
+    }
+    for (int n = 3; n <= 6; n++) {
+      int countH = 0;
+      for (int trial = 0; trial < TRIALS; trial++) {
+        int[][][] buckets = new int[n][n][n];
+        int numBuckets = n * (n - 1) * (n - 2);
+        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+          IndexTriple result = RandomIndexer.nextIntTriple(n, gen);
+          buckets[result.i()][result.j()][result.k()]++;
+        }
+        double chi = chiSquareAll(buckets, numBuckets);
+        if (chi > limit95[numBuckets - 1]) countH++;
+      }
+      assertTrue(
+          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
+    }
+  }
+
+  @Test
+  public void testTriple_IndexTriple_SortIsFalse_SplittableRandom() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 100;
+    final int TRIALS = 100;
+
+    for (int n = 3; n <= 6; n++) {
+      for (int i = 0; i < 10; i++) {
+        IndexTriple result = RandomIndexer.nextIntTriple(n, false, gen);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.k(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertTrue(result.i() >= 0);
+        assertTrue(result.i() < n);
+        assertTrue(result.j() >= 0);
+        assertTrue(result.j() < n);
+        assertTrue(result.k() >= 0);
+        assertTrue(result.k() < n);
+      }
+    }
+    for (int n = 3; n <= 6; n++) {
+      int countH = 0;
+      for (int trial = 0; trial < TRIALS; trial++) {
+        int[][][] buckets = new int[n][n][n];
+        int numBuckets = n * (n - 1) * (n - 2);
+        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+          IndexTriple result = RandomIndexer.nextIntTriple(n, false, gen);
+          buckets[result.i()][result.j()][result.k()]++;
+        }
+        double chi = chiSquareAll(buckets, numBuckets);
+        if (chi > limit95[numBuckets - 1]) countH++;
+      }
+      assertTrue(
+          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
+    }
+  }
+
+  @Test
+  public void testTripleSorted_IndexTriple_SplittableRandom() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 100;
+    final int TRIALS = 100;
+
+    for (int n = 3; n <= 6; n++) {
+      for (int i = 0; i < 10; i++) {
+        IndexTriple result = RandomIndexer.nextIntTriple(n, true, gen);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.k(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+        assertTrue(result.i() >= 0);
+        assertTrue(result.k() < n);
+      }
+    }
+    for (int n = 3; n <= 6; n++) {
+      int countH = 0;
+      for (int trial = 0; trial < TRIALS; trial++) {
+        int[][][] buckets = new int[n][n][n];
+        int numBuckets = n * (n - 1) * (n - 2) / 6;
+        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+          IndexTriple result = RandomIndexer.nextIntTriple(n, true, gen);
+          buckets[result.i()][result.j()][result.k()]++;
+        }
+        double chi = chiSquare(buckets, numBuckets);
         if (chi > limit95[numBuckets - 1]) countH++;
       }
       assertTrue(
