@@ -486,9 +486,9 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * <p>The runtime is O(1).
    *
    * @param n The number of integers to choose from.
-   * @param result An array to hold the pair that is generated. If result is null or if
+   * @param result An array to hold the triple that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
-   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public final int[] nextIntTriple(int n, int[] result) {
@@ -502,15 +502,45 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * <p>The runtime is O(1).
    *
    * @param n The number of integers to choose from.
-   * @param result An array to hold the pair that is generated. If result is null or if
+   * @param result An array to hold the triple that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
    * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
    *     order.
-   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public final int[] nextIntTriple(int n, int[] result, boolean sort) {
     return RandomIndexer.nextIntTriple(n, result, sort, generator);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @return A triple of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 3.
+   */
+  public final IndexTriple nextIntTriple(int n) {
+    return RandomIndexer.nextIntTriple(n, generator);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
+   *     order.
+   * @return A triple of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 3.
+   */
+  public final IndexTriple nextIntTriple(int n, boolean sort) {
+    return RandomIndexer.nextIntTriple(n, sort, generator);
   }
 
   /**
@@ -542,7 +572,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * @param n The number of integers to choose from.
    * @param window The maximum difference between the integers of the triple.
-   * @param result An array to hold the pair that is generated. If result is null or if
+   * @param result An array to hold the triple that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
    * @return An array containing the triple of randomly chosen integers, i, j, k from the interval
    *     [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.
@@ -562,7 +592,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * @param n The number of integers to choose from.
    * @param window The maximum difference between the integers of the triple.
-   * @param result An array to hold the pair that is generated. If result is null or if
+   * @param result An array to hold the triple that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
    * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
    * @return An array containing the triple of randomly chosen integers, i, j, k from the interval
