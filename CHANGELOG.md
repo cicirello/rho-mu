@@ -13,12 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Versions of nextIntPair method that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
 
 ### Changed
-* Changed ZigguratGaussian to a package-access class (BREAKING CHANGE)
+* Refactored and optimized RandomIndexer.nextIntTriple methods.
+* Changed ZigguratGaussian to a package-access class (BREAKING CHANGE).
 
 ### Deprecated
 
 ### Removed
-* Removed PolarGaussian (BREAKING CHANGE)
+* Removed PolarGaussian (BREAKING CHANGE).
 
 ### Fixed
 * Fixed potential finalizer vulnerability in class JacobiDiagonalization, identified by SpotBugs.
