@@ -659,7 +659,7 @@ public final class RandomIndexer {
     if (window >= n - 1) return nextIntPair(n, result, gen);
     result = ArrayMinimumLengthEnforcer.enforce(result, 2);
     final int z1 = n - window;
-    final int z2 = z1 + z1;
+    final int z2 = z1 << 1;
     int i = nextInt(z2 + window - 1, gen);
     int j = nextInt(window, gen);
     setAndAdjustWindowedPair(result, i, j, z1, z2);
@@ -731,7 +731,7 @@ public final class RandomIndexer {
     if (window >= n - 1) return nextIntTriple(n, result, gen);
     result = ArrayMinimumLengthEnforcer.enforce(result, 3);
     final int z1 = n - window;
-    final int z3 = 3 * z1;
+    final int z3 = (z1 << 1) + z1;
     int i = nextInt(z3 + window - 2, gen);
     int j = nextInt(window, gen);
     int k = nextInt(window - 1, gen);
