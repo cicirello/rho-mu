@@ -662,7 +662,16 @@ public final class RandomIndexer {
     final int z2 = z1 << 1;
     int i = nextInt(z2 + window - 1, gen);
     int j = nextInt(window, gen);
-    setAndAdjustWindowedPair(result, i, j, z1, z2);
+    if (i < z2) {
+      int x = i & 1;
+      result[x] = i >> 1;
+      result[x ^ 1] = result[x] + 1 + j;
+    } else {
+      i -= z1;
+      j += z1;
+      result[0] = i == j ? n - 1 : i;
+      result[1] = j;
+    }
     return result;
   }
 
@@ -731,7 +740,7 @@ public final class RandomIndexer {
     if (window >= n - 1) return nextIntTriple(n, result, gen);
     result = ArrayMinimumLengthEnforcer.enforce(result, 3);
     final int z1 = n - window;
-    final int z3 = (z1 << 1) + z1;
+    final int z3 = 3 * z1;
     int i = nextInt(z3 + window - 2, gen);
     int j = nextInt(window, gen);
     int k = nextInt(window - 1, gen);
@@ -763,20 +772,6 @@ public final class RandomIndexer {
       SortingNetwork.sort(result, 0, 1, 2);
     }
     return result;
-  }
-
-  private static void setAndAdjustWindowedPair(
-      int[] result, int i, int j, final int z1, final int z2) {
-    if (i < z2) {
-      int x = i & 1;
-      result[x] = i >> 1;
-      result[x ^ 1] = result[x] + 1 + j;
-    } else {
-      i -= z1;
-      j += z1;
-      result[0] = i >= j ? i + 1 : i;
-      result[1] = j;
-    }
   }
 
   private static int iAdjustmentWindowedTriple(int i, int lower, int higher) {
