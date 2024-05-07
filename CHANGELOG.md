@@ -11,8 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * IndexPair record class for use in methods generating pairs of random indexes.
 * IndexTriple record class for use in methods generating triples of random indexes.
-* Versions of nextIntPair method that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
-* Versions of nextIntTriple method that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
+* Versions of nextIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
+* Versions of nextIntTriple methods that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
+* Versions of nextWindowedIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
 * Streams of IndexPair objects, i.e., streams of random pairs of distinct integers.
 * Streams of IndexTriple objects, i.e., streams of random triples of distinct integers.
 

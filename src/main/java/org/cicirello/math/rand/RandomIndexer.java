@@ -676,6 +676,57 @@ public final class RandomIndexer {
   }
 
   /**
+   * Generates a random sample of 2 integers, i, j, without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window. All pairs that satisfy the window constraint
+   * are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @return A pair of randomly chosen integers, i, j, from the interval [0, n), such that |i-j|
+   *     &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public static IndexPair nextWindowedIntPair(int n, int window) {
+    return nextWindowedIntPair(n, window, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 2 integers, i, j, without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window. All pairs that satisfy the window constraint
+   * are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @param gen Source of randomness.
+   * @return A pair of randomly chosen integers, i, j, from the interval [0, n), such that |i-j|
+   *     &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public static IndexPair nextWindowedIntPair(int n, int window, RandomGenerator gen) {
+    if (window >= n - 1) return nextIntPair(n, gen);
+    final int z1 = n - window;
+    final int z2 = z1 << 1;
+    int i = nextInt(z2 + window - 1, gen);
+    int j = nextInt(window, gen);
+    if (i < z2) {
+      final int rightBit = i & 1;
+      i >>= 1;
+      return rightBit == 0 ? new IndexPair(i, i + 1 + j) : new IndexPair(i + 1 + j, i);
+    } else {
+      i -= z1;
+      j += z1;
+      return new IndexPair(i == j ? n - 1 : i, j);
+    }
+  }
+
+  /**
    * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
    * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
    * window. All triples that satisfy the window constraint are equally likely.
