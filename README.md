@@ -109,6 +109,7 @@ classDiagram
   <<interface>> ArbitrarilyJumpableGenerator
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
   class EnhancedRandomGenerator
+  EnhancedRandomGenerator : -RandomGenerator generator
   RandomGenerator <|.. EnhancedRandomGenerator
   class RandomSampler
   RandomSampler <.. EnhancedRandomGenerator
@@ -119,29 +120,32 @@ classDiagram
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
   RandomVariates <.. RandomSampler
-  EnhancedRandomGenerator : -RandomGenerator generator
-  class ZigguratGaussian
-  ZigguratGaussian <.. RandomVariates
+  class IndexPair
+  class IndexTriple
+  IndexPair <.. RandomIndexer
+  IndexTriple <.. RandomIndexer
+  IndexPair <.. EnhancedRandomGenerator
+  IndexTriple <.. EnhancedRandomGenerator
   class EnhancedStreamableGenerator
+  EnhancedStreamableGenerator : -StreamableGenerator generator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
-  EnhancedStreamableGenerator : -StreamableGenerator generator
   class EnhancedSplittableGenerator
+  EnhancedSplittableGenerator : -SplittableGenerator generator
   EnhancedStreamableGenerator <|-- EnhancedSplittableGenerator
   SplittableGenerator <|.. EnhancedSplittableGenerator
-  EnhancedSplittableGenerator : -SplittableGenerator generator
   class EnhancedJumpableGenerator
+  EnhancedJumpableGenerator : -JumpableGenerator generator
   EnhancedStreamableGenerator <|-- EnhancedJumpableGenerator
   JumpableGenerator <|.. EnhancedJumpableGenerator
-  EnhancedJumpableGenerator : -JumpableGenerator generator
   class EnhancedLeapableGenerator
+  EnhancedLeapableGenerator : -LeapableGenerator generator
   EnhancedJumpableGenerator <|-- EnhancedLeapableGenerator
   LeapableGenerator <|.. EnhancedLeapableGenerator
-  EnhancedLeapableGenerator : -LeapableGenerator generator
   class EnhancedArbitrarilyJumpableGenerator
+  EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
   EnhancedLeapableGenerator <|-- EnhancedArbitrarilyJumpableGenerator
   ArbitrarilyJumpableGenerator <|.. EnhancedArbitrarilyJumpableGenerator
-  EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
   link RandomIndexer "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html"
   link RandomVariates "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html"
   link RandomSampler "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html"
@@ -157,7 +161,6 @@ classDiagram
   link JumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.JumpableGenerator.html"
   link LeapableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.LeapableGenerator.html"
   link ArbitrarilyJumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.ArbitrarilyJumpableGenerator.html"
-  link ZigguratGaussian "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/ZigguratGaussian.html"
   link MathFunctions "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/MathFunctions.html"
   link Statistics "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/stats/Statistics.html"
   link MatrixOps "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/MatrixOps.html"
