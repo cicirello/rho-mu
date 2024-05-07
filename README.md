@@ -120,8 +120,6 @@ classDiagram
   RandomVariates <.. EnhancedRandomGenerator
   RandomVariates <.. RandomSampler
   EnhancedRandomGenerator : -RandomGenerator generator
-  class ZigguratGaussian
-  ZigguratGaussian <.. RandomVariates
   class EnhancedStreamableGenerator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
