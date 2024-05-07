@@ -112,10 +112,14 @@ classDiagram
   RandomGenerator <|.. EnhancedRandomGenerator
   class RandomSampler
   RandomSampler <.. EnhancedRandomGenerator
+  class IndexPair
+  class IndexTriple
   class RandomIndexer
   RandomIndexer <.. EnhancedRandomGenerator
   RandomIndexer <.. RandomSampler
   RandomSampler <.. RandomIndexer
+  IndexPair <.. RandomIndexer
+  IndexTriple <.. RandomIndexer
   class RandomVariates
   RandomVariates <.. EnhancedRandomGenerator
   RandomVariates <.. RandomSampler
