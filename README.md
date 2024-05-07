@@ -155,7 +155,6 @@ classDiagram
   link JumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.JumpableGenerator.html"
   link LeapableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.LeapableGenerator.html"
   link ArbitrarilyJumpableGenerator "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.ArbitrarilyJumpableGenerator.html"
-  link ZigguratGaussian "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/ZigguratGaussian.html"
   link MathFunctions "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/MathFunctions.html"
   link Statistics "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/stats/Statistics.html"
   link MatrixOps "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/MatrixOps.html"
