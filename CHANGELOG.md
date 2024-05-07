@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-04-09
+## [Unreleased] - 2024-05-07
 
 **BREAKING CHANGES: See Removed and Changed sections for details.**
 
@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
+* Refactored and optimized RandomIndexer.nextWindowedIntPair methods.
 * Changed ZigguratGaussian to a package-access class (BREAKING CHANGE).
 
 ### Deprecated
