@@ -1029,7 +1029,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 2; n <= 10; n++) {
       for (int w = 1; w < n; w++) {
-        int[] result = RandomIndexer.nextWindowedIntPair(n, w, null);
+        int[] result = RandomIndexer.nextWindowedIntPair(n, w, (int[]) null);
         assertEquals(2, result.length);
         assertNotEquals(result[0], result[1]);
         if (result[0] > result[1]) {
@@ -1058,7 +1058,7 @@ public class RandomIndexerSampleTests {
           int numBuckets = w * (n - w) + w * (w - 1) / 2;
           numBuckets *= 2;
           for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-            int[] result = RandomIndexer.nextWindowedIntPair(n, w, null);
+            int[] result = RandomIndexer.nextWindowedIntPair(n, w, (int[]) null);
             buckets[result[0]][result[1]]++;
           }
           int[] flatBuckets = new int[numBuckets];
@@ -1088,7 +1088,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 2; n <= 10; n++) {
       for (int w = 1; w < n; w++) {
-        int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
+        int[] result = RandomIndexer.nextWindowedIntPair(n, w, (int[]) null, gen);
         assertEquals(2, result.length);
         assertNotEquals(result[0], result[1]);
         if (result[0] > result[1]) {
@@ -1109,7 +1109,7 @@ public class RandomIndexerSampleTests {
           int numBuckets = w * (n - w) + w * (w - 1) / 2;
           numBuckets *= 2;
           for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-            int[] result = RandomIndexer.nextWindowedIntPair(n, w, null, gen);
+            int[] result = RandomIndexer.nextWindowedIntPair(n, w, (int[]) null, gen);
             buckets[result[0]][result[1]]++;
           }
           int[] flatBuckets = new int[numBuckets];
@@ -1135,6 +1135,101 @@ public class RandomIndexerSampleTests {
     assertTrue(expected == actual);
     actual = RandomIndexer.nextWindowedIntPair(5, 1, new int[1], gen);
     assertEquals(2, actual.length);
+  }
+
+  @Test
+  public void testNextWindowedIntPair_IndexPair_TLR() {
+    final int REPS_PER_BUCKET = 600;
+    final int TRIALS = 100;
+
+    for (int n = 2; n <= 10; n++) {
+      for (int w = 1; w < n; w++) {
+        IndexPair result = RandomIndexer.nextWindowedIntPair(n, w);
+        assertNotEquals(result.i(), result.j());
+        int min = Math.min(result.i(), result.j());
+        int max = Math.max(result.i(), result.j());
+        assertTrue(min >= 0);
+        assertTrue(max < n);
+        assertTrue(max - min <= w);
+      }
+    }
+
+    if (DISABLE_CHI_SQUARE_TESTS) return;
+    for (int n = 2; n <= 7; n++) {
+      for (int w = 1; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][] buckets = new int[n][n];
+          int numBuckets = w * (n - w) + w * (w - 1) / 2;
+          numBuckets *= 2;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            IndexPair result = RandomIndexer.nextWindowedIntPair(n, w);
+            buckets[result.i()][result.j()]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+              if (j == i) continue;
+              if (j > i && j - i > w) continue;
+              if (i > j && i - j > w) continue;
+              flatBuckets[k] = buckets[i][j];
+              k++;
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) countH++;
+        }
+        assertTrue(countH <= TRIALS * 0.1);
+      }
+    }
+  }
+
+  @Test
+  public void testNextWindowedIntPair_IndexPair_SR() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 100;
+    final int TRIALS = 100;
+
+    for (int n = 2; n <= 10; n++) {
+      for (int w = 1; w < n; w++) {
+        IndexPair result = RandomIndexer.nextWindowedIntPair(n, w, gen);
+        assertNotEquals(result.i(), result.j());
+        int min = Math.min(result.i(), result.j());
+        int max = Math.max(result.i(), result.j());
+        assertTrue(min >= 0);
+        assertTrue(max < n);
+        assertTrue(max - min <= w);
+      }
+    }
+    for (int n = 2; n <= 7; n++) {
+      for (int w = 1; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][] buckets = new int[n][n];
+          int numBuckets = w * (n - w) + w * (w - 1) / 2;
+          numBuckets *= 2;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            IndexPair result = RandomIndexer.nextWindowedIntPair(n, w, gen);
+            buckets[result.i()][result.j()]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+              if (j == i) continue;
+              if (j > i && j - i > w) continue;
+              if (i > j && i - j > w) continue;
+              flatBuckets[k] = buckets[i][j];
+              k++;
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) countH++;
+        }
+        assertTrue(countH <= TRIALS * 0.1);
+      }
+    }
   }
 
   @Test

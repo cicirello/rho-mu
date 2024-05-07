@@ -4,20 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-04-09
+## [Unreleased] - 2024-05-07
 
 **BREAKING CHANGES: See Removed and Changed sections for details.**
 
 ### Added
 * IndexPair record class for use in methods generating pairs of random indexes.
 * IndexTriple record class for use in methods generating triples of random indexes.
-* Versions of nextIntPair method that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
-* Versions of nextIntTriple method that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
+* Versions of nextIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
+* Versions of nextIntTriple methods that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
+* Versions of nextWindowedIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
 * Streams of IndexPair objects, i.e., streams of random pairs of distinct integers.
 * Streams of IndexTriple objects, i.e., streams of random triples of distinct integers.
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
+* Refactored and optimized RandomIndexer.nextWindowedIntPair methods.
 * Changed ZigguratGaussian to a package-access class (BREAKING CHANGE).
 
 ### Deprecated
