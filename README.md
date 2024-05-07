@@ -271,7 +271,9 @@ than importing from Maven Central. We mainly provide this option as a backup sou
 
 If you don't use a dependency manager that supports importing from Maven Central,
 or if you simply prefer to download manually, prebuilt jars are also attached to 
-each [GitHub Release](https://github.com/cicirello/rho-mu/releases).
+each [GitHub Release](https://github.com/cicirello/rho-mu/releases). However, be
+sure to also download required versions of dependencies. You should really be using
+a dependency manager to ensure that you get this right.
 
 ## License
 

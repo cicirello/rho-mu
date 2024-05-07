@@ -31,7 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fixed potential finalizer vulnerability in class JacobiDiagonalization, identified by SpotBugs.
 
 ### Dependencies
-* Bump org.cicirello:core from 2.5.0 to 2.6.0
+* Bump org.cicirello:core from 2.5.0 to 2.6.0.
+* Retired publishing of a `jar-with-dependencies` (BREAKING CHANGE if you were using the `jar-with-dependencies`).
 
 ### CI/CD
 
