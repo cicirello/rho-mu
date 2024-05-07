@@ -109,6 +109,7 @@ classDiagram
   <<interface>> ArbitrarilyJumpableGenerator
   LeapableGenerator <|-- ArbitrarilyJumpableGenerator
   class EnhancedRandomGenerator
+  EnhancedRandomGenerator : -RandomGenerator generator
   RandomGenerator <|.. EnhancedRandomGenerator
   class RandomSampler
   RandomSampler <.. EnhancedRandomGenerator
@@ -125,27 +126,26 @@ classDiagram
   IndexTriple <.. RandomIndexer
   IndexPair <.. EnhancedRandomGenerator
   IndexTriple <.. EnhancedRandomGenerator
-  EnhancedRandomGenerator : -RandomGenerator generator
   class EnhancedStreamableGenerator
+  EnhancedStreamableGenerator : -StreamableGenerator generator
   EnhancedRandomGenerator <|-- EnhancedStreamableGenerator
   StreamableGenerator <|.. EnhancedStreamableGenerator
-  EnhancedStreamableGenerator : -StreamableGenerator generator
   class EnhancedSplittableGenerator
+  EnhancedSplittableGenerator : -SplittableGenerator generator
   EnhancedStreamableGenerator <|-- EnhancedSplittableGenerator
   SplittableGenerator <|.. EnhancedSplittableGenerator
-  EnhancedSplittableGenerator : -SplittableGenerator generator
   class EnhancedJumpableGenerator
+  EnhancedJumpableGenerator : -JumpableGenerator generator
   EnhancedStreamableGenerator <|-- EnhancedJumpableGenerator
   JumpableGenerator <|.. EnhancedJumpableGenerator
-  EnhancedJumpableGenerator : -JumpableGenerator generator
   class EnhancedLeapableGenerator
+  EnhancedLeapableGenerator : -LeapableGenerator generator
   EnhancedJumpableGenerator <|-- EnhancedLeapableGenerator
   LeapableGenerator <|.. EnhancedLeapableGenerator
-  EnhancedLeapableGenerator : -LeapableGenerator generator
   class EnhancedArbitrarilyJumpableGenerator
+  EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
   EnhancedLeapableGenerator <|-- EnhancedArbitrarilyJumpableGenerator
   ArbitrarilyJumpableGenerator <|.. EnhancedArbitrarilyJumpableGenerator
-  EnhancedArbitrarilyJumpableGenerator : -ArbitrarilyJumpableGenerator generator
   link RandomIndexer "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html"
   link RandomVariates "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html"
   link RandomSampler "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html"
