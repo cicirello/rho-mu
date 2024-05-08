@@ -1419,9 +1419,20 @@ public class RandomIndexerSampleTests {
             }
           }
           double chi = chiSquare(flatBuckets, numBuckets);
-          if (chi > limit95[numBuckets - 1]) countH++;
+          if (chi > limit95[numBuckets - 1]) {
+            countH++;
+            /*System.out.println(
+            "chi="
+                + chi
+                + " n,w="
+                + n
+                + ","
+                + w
+                + "  Buckets: "
+                + Arrays.toString(flatBuckets));*/
+          }
         }
-        assertTrue(countH <= TRIALS * 0.1);
+        assertTrue(countH <= TRIALS * 0.1, "chi too high: " + countH + " n,w=" + n + "," + w);
       }
     }
 

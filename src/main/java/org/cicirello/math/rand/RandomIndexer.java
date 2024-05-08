@@ -308,8 +308,8 @@ public final class RandomIndexer {
    * @throws IllegalArgumentException if n &lt; 2.
    */
   public static IndexPair nextIntPair(int n, RandomGenerator gen) {
-    int i = nextInt(n, gen);
-    int j = nextInt(n - 1, gen);
+    final int i = nextInt(n, gen);
+    final int j = nextInt(n - 1, gen);
     return new IndexPair(i, i == j ? n - 1 : j);
   }
 
@@ -439,8 +439,8 @@ public final class RandomIndexer {
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public static IndexTriple nextIntTriple(int n, RandomGenerator gen) {
-    int i = nextInt(n, gen);
-    int j = nextInt(n - 1, gen);
+    final int i = nextInt(n, gen);
+    final int j = nextInt(n - 1, gen);
     int k = nextInt(n - 2, gen);
     if (j == i) {
       return new IndexTriple(i, n - 1, k == i ? n - 2 : k);
@@ -485,8 +485,8 @@ public final class RandomIndexer {
    */
   public static IndexTriple nextIntTriple(int n, boolean sort, RandomGenerator gen) {
     if (sort) {
-      int i = nextInt(n, gen);
-      int j = nextInt(n - 1, gen);
+      final int i = nextInt(n, gen);
+      final int j = nextInt(n - 1, gen);
       int k = nextInt(n - 2, gen);
       if (j == i) {
         return IndexTriple.sorted(i, k == i ? n - 2 : k, n - 1);
@@ -663,9 +663,9 @@ public final class RandomIndexer {
     int i = nextInt(z2 + window - 1, gen);
     int j = nextInt(window, gen);
     if (i < z2) {
-      int x = i & 1;
-      result[x] = i >> 1;
-      result[x ^ 1] = result[x] + 1 + j;
+      final int rightBit = i & 1;
+      result[rightBit] = i >> 1;
+      result[rightBit ^ 1] = result[rightBit] + 1 + j;
     } else {
       i -= z1;
       j += z1;
@@ -792,10 +792,37 @@ public final class RandomIndexer {
     result = ArrayMinimumLengthEnforcer.enforce(result, 3);
     final int z1 = n - window;
     final int z3 = 3 * z1;
-    int i = nextInt(z3 + window - 2, gen);
-    int j = nextInt(window, gen);
-    int k = nextInt(window - 1, gen);
-    setAndAdjustWindowedTriple(result, i, j, k, z1, z3);
+    final int i = nextInt(z3 + window - 2, gen);
+    int j = nextInt(window - 1, gen);
+    final int k = nextInt(window, gen);
+    if (j == k) {
+      j = window - 1;
+    }
+    if (i < z3) {
+      final int q = i / 3;
+      final int r = i % 3;
+      result[r] = q;
+      if (r != 2) {
+        result[r ^ 1] = q + 1 + j;
+        result[2] = q + 1 + k;
+      } else {
+        result[0] = q + 1 + j;
+        result[1] = q + 1 + k;
+      }
+    } else {
+      result[0] = i - z3 + z1;
+      result[1] = j + z1;
+      result[2] = k + z1;
+      if (result[0] == result[1]) {
+        result[0] = n - 2;
+      }
+      if (result[0] == result[2]) {
+        result[0] = n - 1;
+      }
+      if (result[0] == result[1]) {
+        result[0] = n - 2;
+      }
+    }
     return result;
   }
 
@@ -823,42 +850,5 @@ public final class RandomIndexer {
       SortingNetwork.sort(result, 0, 1, 2);
     }
     return result;
-  }
-
-  private static int iAdjustmentWindowedTriple(int i, int lower, int higher) {
-    if (i >= lower) {
-      i++;
-      if (i >= higher) {
-        i++;
-      }
-    }
-    return i;
-  }
-
-  private static void setAndAdjustWindowedTriple(
-      int[] result, int i, int j, int k, final int z1, final int z3) {
-    if (k >= j) {
-      k++;
-    }
-    if (i < z3) {
-      int q = i / 3;
-      int r = i % 3;
-      result[r] = q;
-      if (r < 2) {
-        result[r ^ 1] = q + 1 + j;
-        result[2] = q + 1 + k;
-      } else {
-        result[0] = q + 1 + j;
-        result[1] = q + 1 + k;
-      }
-    } else {
-      i = i - z3 + z1;
-      j += z1;
-      k += z1;
-      i = j < k ? iAdjustmentWindowedTriple(i, j, k) : iAdjustmentWindowedTriple(i, k, j);
-      result[0] = i;
-      result[1] = j;
-      result[2] = k;
-    }
   }
 }
