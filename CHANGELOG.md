@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-05-07
+## [Unreleased] - 2024-05-09
 
 **BREAKING CHANGES: See Removed and Changed sections for details.**
 
@@ -14,12 +14,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Versions of nextIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
 * Versions of nextIntTriple methods that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
 * Versions of nextWindowedIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
+* Versions of nextWindowedIntTriple methods that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
 * Streams of random pairs of distinct integers as streams of IndexPair objects.
 * Streams of random triples of distinct integers as streams of IndexTriple objects.
+* Streams of random triples of distinct sorted integers as streams of IndexTriple objects.
+* RandomIndexer.nextSortedIntTriple and EnhancedRandomGenerator.nextSortedIntTriple methods: variation of nextIntTriple whose result is in sorted order.
+* RandomIndexer.nextSortedWindowedIntTriple and EnhancedRandomGenerator.nextSortedWindowedIntTriple: variation of RandomIndexer.nextWindowedIntTriple method whose result is in sorted order.
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
 * Refactored and optimized RandomIndexer.nextWindowedIntPair methods.
+* Refactored and optimized RandomIndexer.nextWindowedIntTriple methods.
 * Changed ZigguratGaussian to a package-access class (BREAKING CHANGE).
 
 ### Deprecated

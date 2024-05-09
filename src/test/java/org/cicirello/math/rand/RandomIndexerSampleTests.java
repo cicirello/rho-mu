@@ -541,7 +541,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 3; n <= 6; n++) {
       for (int i = 0; i < 10; i++) {
-        int[] result = RandomIndexer.nextIntTriple(n, null, true);
+        int[] result = RandomIndexer.nextSortedIntTriple(n, (int[]) null);
         assertEquals(3, result.length);
         assertNotEquals(result[0], result[1]);
         assertNotEquals(result[2], result[1]);
@@ -554,9 +554,9 @@ public class RandomIndexerSampleTests {
     }
 
     int[] expected = new int[3];
-    int[] actual = RandomIndexer.nextIntTriple(5, expected, false);
+    int[] actual = RandomIndexer.nextSortedIntTriple(5, expected);
     assertTrue(expected == actual);
-    actual = RandomIndexer.nextIntTriple(5, new int[2], false);
+    actual = RandomIndexer.nextSortedIntTriple(5, new int[2]);
     assertEquals(3, actual.length);
 
     if (DISABLE_CHI_SQUARE_TESTS) return;
@@ -566,7 +566,7 @@ public class RandomIndexerSampleTests {
         int[][][] buckets = new int[n][n][n];
         int numBuckets = n * (n - 1) * (n - 2) / 6;
         for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-          int[] result = RandomIndexer.nextIntTriple(n, null, true);
+          int[] result = RandomIndexer.nextSortedIntTriple(n, (int[]) null);
           buckets[result[0]][result[1]][result[2]]++;
         }
         double chi = chiSquare(buckets, numBuckets);
@@ -626,7 +626,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 3; n <= 6; n++) {
       for (int i = 0; i < 10; i++) {
-        int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
+        int[] result = RandomIndexer.nextSortedIntTriple(n, null, gen);
         assertEquals(3, result.length);
         assertNotEquals(result[0], result[1]);
         assertNotEquals(result[2], result[1]);
@@ -643,7 +643,7 @@ public class RandomIndexerSampleTests {
         int[][][] buckets = new int[n][n][n];
         int numBuckets = n * (n - 1) * (n - 2) / 6;
         for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-          int[] result = RandomIndexer.nextIntTriple(n, null, true, gen);
+          int[] result = RandomIndexer.nextSortedIntTriple(n, null, gen);
           buckets[result[0]][result[1]][result[2]]++;
         }
         double chi = chiSquare(buckets, numBuckets);
@@ -654,9 +654,9 @@ public class RandomIndexerSampleTests {
     }
 
     int[] expected = new int[3];
-    int[] actual = RandomIndexer.nextIntTriple(5, expected, false, gen);
+    int[] actual = RandomIndexer.nextSortedIntTriple(5, expected, gen);
     assertTrue(expected == actual);
-    actual = RandomIndexer.nextIntTriple(5, new int[2], false, gen);
+    actual = RandomIndexer.nextSortedIntTriple(5, new int[2], gen);
     assertEquals(3, actual.length);
   }
 
@@ -779,7 +779,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 3; n <= 6; n++) {
       for (int i = 0; i < 10; i++) {
-        IndexTriple result = RandomIndexer.nextIntTriple(n, true);
+        IndexTriple result = RandomIndexer.nextSortedIntTriple(n);
         assertNotEquals(result.i(), result.j());
         assertNotEquals(result.k(), result.j());
         assertNotEquals(result.i(), result.k());
@@ -797,7 +797,7 @@ public class RandomIndexerSampleTests {
         int[][][] buckets = new int[n][n][n];
         int numBuckets = n * (n - 1) * (n - 2) / 6;
         for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-          IndexTriple result = RandomIndexer.nextIntTriple(n, true);
+          IndexTriple result = RandomIndexer.nextSortedIntTriple(n);
           buckets[result.i()][result.j()][result.k()]++;
         }
         double chi = chiSquare(buckets, numBuckets);
@@ -846,43 +846,6 @@ public class RandomIndexerSampleTests {
   }
 
   @Test
-  public void testTriple_IndexTriple_SortIsFalse_SplittableRandom() {
-    SplittableRandom gen = new SplittableRandom(42);
-    final int REPS_PER_BUCKET = 100;
-    final int TRIALS = 100;
-
-    for (int n = 3; n <= 6; n++) {
-      for (int i = 0; i < 10; i++) {
-        IndexTriple result = RandomIndexer.nextIntTriple(n, false, gen);
-        assertNotEquals(result.i(), result.j());
-        assertNotEquals(result.k(), result.j());
-        assertNotEquals(result.i(), result.k());
-        assertTrue(result.i() >= 0);
-        assertTrue(result.i() < n);
-        assertTrue(result.j() >= 0);
-        assertTrue(result.j() < n);
-        assertTrue(result.k() >= 0);
-        assertTrue(result.k() < n);
-      }
-    }
-    for (int n = 3; n <= 6; n++) {
-      int countH = 0;
-      for (int trial = 0; trial < TRIALS; trial++) {
-        int[][][] buckets = new int[n][n][n];
-        int numBuckets = n * (n - 1) * (n - 2);
-        for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-          IndexTriple result = RandomIndexer.nextIntTriple(n, false, gen);
-          buckets[result.i()][result.j()][result.k()]++;
-        }
-        double chi = chiSquareAll(buckets, numBuckets);
-        if (chi > limit95[numBuckets - 1]) countH++;
-      }
-      assertTrue(
-          countH <= TRIALS * 0.1, "chi square too high too often, countHigh=" + countH + " n=" + n);
-    }
-  }
-
-  @Test
   public void testTripleSorted_IndexTriple_SplittableRandom() {
     SplittableRandom gen = new SplittableRandom(42);
     final int REPS_PER_BUCKET = 100;
@@ -890,7 +853,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 3; n <= 6; n++) {
       for (int i = 0; i < 10; i++) {
-        IndexTriple result = RandomIndexer.nextIntTriple(n, true, gen);
+        IndexTriple result = RandomIndexer.nextSortedIntTriple(n, gen);
         assertNotEquals(result.i(), result.j());
         assertNotEquals(result.k(), result.j());
         assertNotEquals(result.i(), result.k());
@@ -906,7 +869,7 @@ public class RandomIndexerSampleTests {
         int[][][] buckets = new int[n][n][n];
         int numBuckets = n * (n - 1) * (n - 2) / 6;
         for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-          IndexTriple result = RandomIndexer.nextIntTriple(n, true, gen);
+          IndexTriple result = RandomIndexer.nextSortedIntTriple(n, gen);
           buckets[result.i()][result.j()][result.k()]++;
         }
         double chi = chiSquare(buckets, numBuckets);
@@ -1239,7 +1202,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 3; n <= 10; n++) {
       for (int w = 2; w < n; w++) {
-        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null);
+        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, (int[]) null);
         assertEquals(3, result.length);
         assertNotEquals(result[0], result[1]);
         assertNotEquals(result[0], result[2]);
@@ -1248,7 +1211,7 @@ public class RandomIndexerSampleTests {
         assertTrue(result[0] >= 0);
         assertTrue(result[2] < n);
         assertTrue(result[2] - result[0] <= w);
-        result = RandomIndexer.nextWindowedIntTriple(n, w, null, true);
+        result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null);
         assertEquals(3, result.length);
         assertNotEquals(result[0], result[1]);
         assertNotEquals(result[0], result[2]);
@@ -1269,9 +1232,9 @@ public class RandomIndexerSampleTests {
     actual = RandomIndexer.nextWindowedIntTriple(5, 3, new int[2]);
     assertEquals(3, actual.length);
 
-    actual = RandomIndexer.nextWindowedIntTriple(5, 3, expected, false);
+    actual = RandomIndexer.nextSortedWindowedIntTriple(5, 3, expected);
     assertTrue(expected == actual);
-    actual = RandomIndexer.nextWindowedIntTriple(5, 3, new int[2], false);
+    actual = RandomIndexer.nextSortedWindowedIntTriple(5, 3, new int[2]);
     assertEquals(3, actual.length);
 
     if (DISABLE_CHI_SQUARE_TESTS) return;
@@ -1283,7 +1246,7 @@ public class RandomIndexerSampleTests {
           int numBuckets = w * (n - w) * (w - 1) / 2 + w * (w - 1) * (w - 2) / 6;
           numBuckets *= 6;
           for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-            int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null);
+            int[] result = RandomIndexer.nextWindowedIntTriple(n, w, (int[]) null);
             buckets[result[0]][result[1]][result[2]]++;
           }
           int[] flatBuckets = new int[numBuckets];
@@ -1323,7 +1286,7 @@ public class RandomIndexerSampleTests {
       // This is the easy path through the method, even one sample
       // should be sufficient with n=3 and w=2.
       for (int i = 0; i < 3; i++) {
-        int[] result = RandomIndexer.nextWindowedIntTriple(3, 2, null, true, gen);
+        int[] result = RandomIndexer.nextSortedWindowedIntTriple(3, 2, (int[]) null, gen);
         assertEquals(3, result.length);
         assertEquals(0, result[0]);
         assertEquals(1, result[1]);
@@ -1336,7 +1299,7 @@ public class RandomIndexerSampleTests {
       int n = 1000;
       int w = n - 1;
       for (int i = 0; i < 30; i++) {
-        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+        int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);
         assertTrue(result[1] < result[2]);
@@ -1344,7 +1307,7 @@ public class RandomIndexerSampleTests {
       n = 10000;
       w = n - 1;
       for (int i = 0; i < 30; i++) {
-        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+        int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);
         assertTrue(result[1] < result[2]);
@@ -1352,7 +1315,7 @@ public class RandomIndexerSampleTests {
       n = 100;
       w = n - 1;
       for (int i = 0; i < 30; i++) {
-        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+        int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);
         assertTrue(result[1] < result[2]);
@@ -1360,7 +1323,7 @@ public class RandomIndexerSampleTests {
       n = 10;
       w = n - 1;
       for (int i = 0; i < 30; i++) {
-        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+        int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);
         assertTrue(result[1] < result[2]);
@@ -1369,7 +1332,7 @@ public class RandomIndexerSampleTests {
 
     for (int n = 3; n <= 10; n++) {
       for (int w = 2; w < n; w++) {
-        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
+        int[] result = RandomIndexer.nextWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertNotEquals(result[0], result[1]);
         assertNotEquals(result[0], result[2]);
@@ -1378,7 +1341,7 @@ public class RandomIndexerSampleTests {
         assertTrue(result[0] >= 0);
         assertTrue(result[2] < n);
         assertTrue(result[2] - result[0] <= w);
-        result = RandomIndexer.nextWindowedIntTriple(n, w, null, true, gen);
+        result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertNotEquals(result[0], result[1]);
         assertNotEquals(result[0], result[2]);
@@ -1400,8 +1363,93 @@ public class RandomIndexerSampleTests {
           int numBuckets = w * (n - w) * (w - 1) / 2 + w * (w - 1) * (w - 2) / 6;
           numBuckets *= 6;
           for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
-            int[] result = RandomIndexer.nextWindowedIntTriple(n, w, null, gen);
+            int[] result = RandomIndexer.nextWindowedIntTriple(n, w, (int[]) null, gen);
             buckets[result[0]][result[1]][result[2]]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+              if (j == i) continue;
+              if (Math.abs(j - i) > w) continue;
+              for (int h = 0; h < n; h++) {
+                if (h == i || h == j) continue;
+                if (Math.abs(h - i) > w) continue;
+                if (Math.abs(j - h) > w) continue;
+                flatBuckets[k] = buckets[i][j][h];
+                k++;
+              }
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) {
+            countH++;
+            /*System.out.println(
+            "chi="
+                + chi
+                + " n,w="
+                + n
+                + ","
+                + w
+                + "  Buckets: "
+                + Arrays.toString(flatBuckets));*/
+          }
+        }
+        assertTrue(countH <= TRIALS * 0.1, "chi too high: " + countH + " n,w=" + n + "," + w);
+      }
+    }
+
+    int[] expected = new int[3];
+    int[] actual = RandomIndexer.nextWindowedIntTriple(5, 3, expected, gen);
+    assertTrue(expected == actual);
+    actual = RandomIndexer.nextWindowedIntTriple(5, 3, new int[2], gen);
+    assertEquals(3, actual.length);
+
+    actual = RandomIndexer.nextSortedWindowedIntTriple(5, 3, expected, gen);
+    assertTrue(expected == actual);
+    actual = RandomIndexer.nextSortedWindowedIntTriple(5, 3, new int[2], gen);
+    assertEquals(3, actual.length);
+  }
+
+  @Test
+  public void testNextWindowedIntTriple_IndexTriple_TLR() {
+    final int REPS_PER_BUCKET = 300;
+    final int TRIALS = 100;
+
+    for (int n = 3; n <= 10; n++) {
+      for (int w = 2; w < n; w++) {
+        IndexTriple result = RandomIndexer.nextWindowedIntTriple(n, w);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertNotEquals(result.k(), result.j());
+        int min = Math.min(Math.min(result.i(), result.j()), result.k());
+        int max = Math.max(Math.max(result.i(), result.j()), result.k());
+        assertTrue(min >= 0);
+        assertTrue(max < n);
+        assertTrue(max - min <= w);
+        result = RandomIndexer.nextSortedWindowedIntTriple(n, w);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertNotEquals(result.k(), result.j());
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+        assertTrue(result.i() >= 0);
+        assertTrue(result.k() < n);
+        assertTrue(result.k() - result.i() <= w);
+      }
+    }
+
+    if (DISABLE_CHI_SQUARE_TESTS) return;
+    for (int n = 3; n <= 6; n++) {
+      for (int w = 2; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][][] buckets = new int[n][n][n];
+          int numBuckets = w * (n - w) * (w - 1) / 2 + w * (w - 1) * (w - 2) / 6;
+          numBuckets *= 6;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            IndexTriple result = RandomIndexer.nextWindowedIntTriple(n, w);
+            buckets[result.i()][result.j()][result.k()]++;
           }
           int[] flatBuckets = new int[numBuckets];
           int k = 0;
@@ -1424,17 +1472,126 @@ public class RandomIndexerSampleTests {
         assertTrue(countH <= TRIALS * 0.1);
       }
     }
+  }
 
-    int[] expected = new int[3];
-    int[] actual = RandomIndexer.nextWindowedIntTriple(5, 3, expected, gen);
-    assertTrue(expected == actual);
-    actual = RandomIndexer.nextWindowedIntTriple(5, 3, new int[2], gen);
-    assertEquals(3, actual.length);
+  @Test
+  public void testNextWindowedIntTriple_IndexTriple_SR() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 100;
+    final int TRIALS = 100;
 
-    actual = RandomIndexer.nextWindowedIntTriple(5, 3, expected, false, gen);
-    assertTrue(expected == actual);
-    actual = RandomIndexer.nextWindowedIntTriple(5, 3, new int[2], false, gen);
-    assertEquals(3, actual.length);
+    {
+      // Make sure sorting covers all cases:
+      // This part of the test aims to fully cover the
+      // helper method: sortSetAndAdjustWindowedTriple
+
+      // This is the easy path through the method, even one sample
+      // should be sufficient with n=3 and w=2.
+      for (int i = 0; i < 3; i++) {
+        IndexTriple result = RandomIndexer.nextSortedWindowedIntTriple(3, 2, gen);
+        assertEquals(0, result.i());
+        assertEquals(1, result.j());
+        assertEquals(2, result.k());
+      }
+
+      // With n=1000 and w=n-1, approximately 99.7% of the following samples should
+      // go through the alternate path from above. That alternate path has
+      // 3 potential subpaths, all approximately equally likely.
+      int n = 1000;
+      int w = n - 2;
+      for (int i = 0; i < 60; i++) {
+        IndexTriple result = RandomIndexer.nextSortedWindowedIntTriple(n, w, gen);
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+      }
+      n = 10000;
+      w = n - 2;
+      for (int i = 0; i < 60; i++) {
+        IndexTriple result = RandomIndexer.nextSortedWindowedIntTriple(n, w, gen);
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+      }
+      n = 100;
+      w = n - 2;
+      for (int i = 0; i < 60; i++) {
+        IndexTriple result = RandomIndexer.nextSortedWindowedIntTriple(n, w, gen);
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+      }
+      n = 10;
+      w = n - 2;
+      for (int i = 0; i < 60; i++) {
+        IndexTriple result = RandomIndexer.nextSortedWindowedIntTriple(n, w, gen);
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+      }
+    }
+
+    for (int n = 3; n <= 10; n++) {
+      for (int w = 2; w < n; w++) {
+        IndexTriple result = RandomIndexer.nextWindowedIntTriple(n, w, gen);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertNotEquals(result.k(), result.j());
+        int min = Math.min(Math.min(result.i(), result.j()), result.k());
+        int max = Math.max(Math.max(result.i(), result.j()), result.k());
+        assertTrue(min >= 0);
+        assertTrue(max < n);
+        assertTrue(max - min <= w);
+        result = RandomIndexer.nextSortedWindowedIntTriple(n, w, gen);
+        assertNotEquals(result.i(), result.j());
+        assertNotEquals(result.i(), result.k());
+        assertNotEquals(result.k(), result.j());
+        assertTrue(0 <= result.i());
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() < result.k());
+        assertTrue(result.k() < n);
+        assertTrue(result.k() - result.i() <= w);
+      }
+    }
+    for (int n = 3; n <= 6; n++) {
+      for (int w = 2; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][][] buckets = new int[n][n][n];
+          int numBuckets = w * (n - w) * (w - 1) / 2 + w * (w - 1) * (w - 2) / 6;
+          numBuckets *= 6;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            IndexTriple result = RandomIndexer.nextWindowedIntTriple(n, w, gen);
+            buckets[result.i()][result.j()][result.k()]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+              if (j == i) continue;
+              if (Math.abs(j - i) > w) continue;
+              for (int h = 0; h < n; h++) {
+                if (h == i || h == j) continue;
+                if (Math.abs(h - i) > w) continue;
+                if (Math.abs(j - h) > w) continue;
+                flatBuckets[k] = buckets[i][j][h];
+                k++;
+              }
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) {
+            countH++;
+            /*System.out.println(
+            "chi="
+                + chi
+                + " n,w="
+                + n
+                + ","
+                + w
+                + "  Buckets: "
+                + Arrays.toString(flatBuckets));*/
+          }
+        }
+        assertTrue(countH <= TRIALS * 0.1, "chi too high: " + countH + " n,w=" + n + "," + w);
+      }
+    }
   }
 
   private boolean validSample(int n, int[] result) {
