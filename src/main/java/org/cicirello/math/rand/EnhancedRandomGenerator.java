@@ -500,20 +500,19 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Generates a random sample of 3 integers, without replacement, from the set of integers in the
-   * interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
+   * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
+   * increasing order. <b>Enhanced Functionality.</b>
    *
    * <p>The runtime is O(1).
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the triple that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
-   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
-   *     order.
    * @return An array containing the triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
-  public final int[] nextIntTriple(int n, int[] result, boolean sort) {
-    return RandomIndexer.nextIntTriple(n, result, sort, generator);
+  public final int[] nextSortedIntTriple(int n, int[] result) {
+    return RandomIndexer.nextSortedIntTriple(n, result, generator);
   }
 
   /**
@@ -532,18 +531,17 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Generates a random sample of 3 integers, without replacement, from the set of integers in the
-   * interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
+   * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
+   * increasing order. <b>Enhanced Functionality.</b>
    *
    * <p>The runtime is O(1).
    *
    * @param n The number of integers to choose from.
-   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
-   *     order.
    * @return A triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
-  public final IndexTriple nextIntTriple(int n, boolean sort) {
-    return RandomIndexer.nextIntTriple(n, sort, generator);
+  public final IndexTriple nextSortedIntTriple(int n) {
+    return RandomIndexer.nextSortedIntTriple(n, generator);
   }
 
   /**
@@ -605,8 +603,8 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   /**
    * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
    * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
-   * window. All triples that satisfy the window constraint are equally likely. <b>Enhanced
-   * Functionality.</b>
+   * window. All triples that satisfy the window constraint are equally likely. The result is sorted
+   * in increasing order. <b>Enhanced Functionality.</b>
    *
    * <p>The runtime is O(1).
    *
@@ -614,13 +612,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * @param window The maximum difference between the integers of the triple.
    * @param result An array to hold the triple that is generated. If result is null or if
    *     result.length is less than 3, then this method will construct an array for the result.
-   * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
    * @return An array containing the triple of randomly chosen integers, i, j, k from the interval
    *     [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.
    * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
    */
-  public final int[] nextWindowedIntTriple(int n, int window, int[] result, boolean sort) {
-    return RandomIndexer.nextWindowedIntTriple(n, window, result, sort, generator);
+  public final int[] nextSortedWindowedIntTriple(int n, int window, int[] result) {
+    return RandomIndexer.nextSortedWindowedIntTriple(n, window, result, generator);
   }
 
   /**
@@ -789,31 +786,28 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Returns an effectively unlimited stream of pseudorandom triples of int values, without
-   * replacement, from the interval [0, n). <b>Enhanced Functionality.</b>
+   * replacement, from the interval [0, n). Each triple is sorted in increasing order. <b>Enhanced
+   * Functionality.</b>
    *
    * @param n bound on random values, exclusive.
-   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
-   *     order.
    * @return an effectively unlimited stream of pseudorandom triples of int values, without
    *     replacement, from the interval [0, n).
    */
-  public final Stream<IndexTriple> triples(int n, boolean sort) {
-    return Stream.generate(() -> nextIntTriple(n, sort)).sequential();
+  public final Stream<IndexTriple> sortedTriples(int n) {
+    return Stream.generate(() -> nextSortedIntTriple(n)).sequential();
   }
 
   /**
    * Returns a stream of pseudorandom triples of int values, without replacement, from the interval
-   * [0, n). <b>Enhanced Functionality.</b>
+   * [0, n). Each triple is sorted in increasing order. <b>Enhanced Functionality.</b>
    *
    * @param streamSize The number of values in the stream.
    * @param n bound on random values, exclusive.
-   * @param sort If true, the result is sorted in increasing order; otherwise it is in arbitrary
-   *     order.
    * @return a stream of pseudorandom triples of int values, without replacement, from the interval
    *     [0, n).
    */
-  public final Stream<IndexTriple> triples(long streamSize, int n, boolean sort) {
-    return Stream.generate(() -> nextIntTriple(n, sort)).sequential().limit(streamSize);
+  public final Stream<IndexTriple> sortedTriples(long streamSize, int n) {
+    return Stream.generate(() -> nextSortedIntTriple(n)).sequential().limit(streamSize);
   }
 
   // METHODS THAT CHANGE FUNCTIONALITY:

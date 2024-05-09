@@ -64,11 +64,11 @@ public class ERGPairsTriplesTests {
   @Test
   public void testNextIntTripleSorted() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-    int[] result = erg.nextIntTriple(8, null, true);
+    int[] result = erg.nextSortedIntTriple(8, null);
     validateCombo(8, 3, result);
     assertTrue(result[0] < result[1]);
     assertTrue(result[1] < result[2]);
-    int[] result2 = erg.nextIntTriple(8, result, true);
+    int[] result2 = erg.nextSortedIntTriple(8, result);
     assertTrue(result == result2);
     validateCombo(8, 3, result);
     assertTrue(result2[0] < result2[1]);
@@ -90,7 +90,7 @@ public class ERGPairsTriplesTests {
   @Test
   public void testNextIntTripleSorted_IndexTriple() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-    IndexTriple result = erg.nextIntTriple(8, true);
+    IndexTriple result = erg.nextSortedIntTriple(8);
     assertTrue(0 <= result.i());
     assertTrue(result.i() < result.j());
     assertTrue(result.j() < result.k());
@@ -132,11 +132,11 @@ public class ERGPairsTriplesTests {
   @Test
   public void testNextWindowedIntTripleSorted() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
-    int[] result = erg.nextWindowedIntTriple(100, 6, null, true);
+    int[] result = erg.nextSortedWindowedIntTriple(100, 6, null);
     validateWindowed(100, 6, 3, result);
     assertTrue(result[0] < result[1]);
     assertTrue(result[1] < result[2]);
-    int[] result2 = erg.nextWindowedIntTriple(100, 6, result, true);
+    int[] result2 = erg.nextSortedWindowedIntTriple(100, 6, result);
     assertTrue(result == result2);
     validateWindowed(100, 6, 3, result);
     assertTrue(result2[0] < result2[1]);

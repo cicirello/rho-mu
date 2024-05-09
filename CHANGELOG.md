@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Versions of nextWindowedIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
 * Streams of random pairs of distinct integers as streams of IndexPair objects.
 * Streams of random triples of distinct integers as streams of IndexTriple objects.
+* Streams of random triples of distinct sorted integers as streams of IndexTriple objects.
+* RandomIndexer.nextSortedIntTriple and EnhancedRandomGenerator.nextSortedIntTriple methods: variation of nextIntTriple whose result is in sorted order.
+* RandomIndexer.nextSortedWindowedIntTriple and EnhancedRandomGenerator.nextSortedWindowedIntTriple: variation of RandomIndexer.nextWindowedIntTriple method whose result is in sorted order.
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
