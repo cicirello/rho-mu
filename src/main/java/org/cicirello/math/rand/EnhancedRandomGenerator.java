@@ -603,6 +603,24 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   /**
    * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
    * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely. <b>Enhanced
+   * Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
+   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public final IndexTriple nextWindowedIntTriple(int n, int window) {
+    return RandomIndexer.nextWindowedIntTriple(n, window, generator);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
    * window. All triples that satisfy the window constraint are equally likely. The result is sorted
    * in increasing order. <b>Enhanced Functionality.</b>
    *
@@ -618,6 +636,24 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final int[] nextSortedWindowedIntTriple(int n, int window, int[] result) {
     return RandomIndexer.nextSortedWindowedIntTriple(n, window, result, generator);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely. The result is sorted
+   * in increasing order. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
+   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public final IndexTriple nextSortedWindowedIntTriple(int n, int window) {
+    return RandomIndexer.nextSortedWindowedIntTriple(n, window, generator);
   }
 
   /**
