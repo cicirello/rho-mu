@@ -851,4 +851,147 @@ public final class RandomIndexer {
     }
     return result;
   }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
+   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public static IndexTriple nextWindowedIntTriple(int n, int window) {
+    return nextWindowedIntTriple(n, window, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
+   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
+   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public static IndexTriple nextWindowedIntTriple(int n, int window, boolean sort) {
+    return nextWindowedIntTriple(n, window, sort, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @param gen The source of randomness.
+   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
+   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public static IndexTriple nextWindowedIntTriple(int n, int window, RandomGenerator gen) {
+    if (window >= n - 1) return nextIntTriple(n, gen);
+    final int z1 = n - window;
+    final int z3 = 3 * z1;
+    int i = nextInt(z3 + window - 2, gen);
+    int j = nextInt(window - 1, gen);
+    int k = nextInt(window, gen);
+    if (j == k) {
+      j = window - 1;
+    }
+    if (i < z3) {
+      final int q = i / 3;
+      switch (i % 3) {
+        case 0:
+          return new IndexTriple(q, q + 1 + j, q + 1 + k);
+        case 1:
+          return new IndexTriple(q + 1 + j, q, q + 1 + k);
+        default:
+          return new IndexTriple(q + 1 + j, q + 1 + k, q);
+      }
+    } else {
+      i -= (z3 - z1);
+      j += z1;
+      k += z1;
+      if (i == j) {
+        i = n - 2;
+      }
+      if (i == k) {
+        i = n - 1;
+      }
+      if (i == j) {
+        i = n - 2;
+      }
+    }
+    return new IndexTriple(i, j, k);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @param sort If true, the result is sorted in increasing order, otherwise it is in random order.
+   * @param gen The source of randomness.
+   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
+   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public static IndexTriple nextWindowedIntTriple(
+      int n, int window, boolean sort, RandomGenerator gen) {
+    if (window >= n - 1) return nextIntTriple(n, sort, gen);
+    final int z1 = n - window;
+    final int z3 = 3 * z1;
+    int i = nextInt(z3 + window - 2, gen);
+    int j = nextInt(window - 1, gen);
+    int k = nextInt(window, gen);
+    if (i < z3) {
+      final int q = i / 3;
+      if (j == k) {
+        return new IndexTriple(q, q + 1 + k, q + window);
+      }
+      return j < k
+          ? new IndexTriple(q, q + 1 + j, q + 1 + k)
+          : new IndexTriple(q, q + 1 + k, q + 1 + j);
+    } else {
+      if (j == k) {
+        j = window - 1;
+      }
+      i -= (z3 - z1);
+      j += z1;
+      k += z1;
+      if (i == j) {
+        i = n - 2;
+      }
+      if (i == k) {
+        i = n - 1;
+      }
+      if (i == j) {
+        i = n - 2;
+      }
+    }
+    return IndexTriple.sorted(i, j, k);
+  }
 }
