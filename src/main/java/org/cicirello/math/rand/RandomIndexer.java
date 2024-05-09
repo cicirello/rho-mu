@@ -962,6 +962,7 @@ public final class RandomIndexer {
   public static IndexTriple nextWindowedIntTriple(
       int n, int window, boolean sort, RandomGenerator gen) {
     if (window >= n - 1) return nextIntTriple(n, sort, gen);
+    if (!sort) return nextWindowedIntTriple(n, window, gen);
     final int z1 = n - window;
     final int z3 = 3 * z1;
     int i = nextInt(z3 + window - 2, gen);
