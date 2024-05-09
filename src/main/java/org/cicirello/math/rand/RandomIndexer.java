@@ -802,12 +802,12 @@ public final class RandomIndexer {
       final int q = i / 3;
       final int r = i % 3;
       result[r] = q;
-      if (r != 2) {
-        result[r ^ 1] = q + 1 + j;
-        result[2] = q + 1 + k;
-      } else {
+      if (r == 2) {
         result[0] = q + 1 + j;
         result[1] = q + 1 + k;
+      } else {
+        result[r ^ 1] = q + 1 + j;
+        result[2] = q + 1 + k;
       }
     } else {
       result[0] = i - z3 + z1;
