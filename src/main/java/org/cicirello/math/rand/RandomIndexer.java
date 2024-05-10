@@ -836,8 +836,40 @@ public final class RandomIndexer {
    */
   public static int[] nextSortedWindowedIntTriple(
       int n, int window, int[] result, RandomGenerator gen) {
-    result = nextWindowedIntTriple(n, window, result, gen);
-    SortingNetwork.sort(result, 0, 1, 2);
+    if (window >= n - 1) return nextSortedIntTriple(n, result, gen);
+    result = ArrayMinimumLengthEnforcer.enforce(result, 3);
+    final int z1 = n - window;
+    final int z3 = 3 * z1;
+    final int i = nextInt(z3 + window - 2, gen);
+    final int j = nextInt(window - 1, gen);
+    final int k = nextInt(window, gen);
+    if (i < z3) {
+      final int q = i / 3;
+      result[0] = q;
+      if (j < k) {
+        result[1] = q + 1 + j;
+        result[2] = q + 1 + k;
+      } else if (j == k) {
+        result[1] = q + 1 + k;
+        result[2] = q + window;
+      } else {
+        result[1] = q + 1 + k;
+        result[2] = q + 1 + j;
+      }
+    } else {
+      result[0] = i - z3 + z1;
+      result[1] = z1 + (j == k ? window - 1 : j);
+      result[2] = k + z1;
+      SortingNetwork.compareExchange(result, 1, 2);
+      if (result[0] == result[1]) {
+        result[0] = n - 2;
+      }
+      if (result[0] == result[2]) {
+        result[0] = n - 1;
+      }
+      SortingNetwork.compareExchange(result, 0, 1);
+      SortingNetwork.compareExchange(result, 1, 2);
+    }
     return result;
   }
 
@@ -957,29 +989,38 @@ public final class RandomIndexer {
     int k = nextInt(window, gen);
     if (i < z3) {
       final int q = i / 3;
-      if (j == k) {
-        return new IndexTriple(q, q + 1 + k, q + window);
+      if (j < k) {
+        return new IndexTriple(q, q + 1 + j, q + 1 + k);
       }
-      return j < k
-          ? new IndexTriple(q, q + 1 + j, q + 1 + k)
+      return j == k
+          ? new IndexTriple(q, q + 1 + k, q + window)
           : new IndexTriple(q, q + 1 + k, q + 1 + j);
     } else {
-      if (j == k) {
-        j = window - 1;
-      }
       i -= (z3 - z1);
-      j += z1;
+      j = z1 + (j == k ? window - 1 : j);
       k += z1;
+      if (j > k) {
+        int temp = j;
+        j = k;
+        k = temp;
+      }
       if (i == j) {
         i = n - 2;
       }
       if (i == k) {
         i = n - 1;
       }
-      if (i == j) {
-        i = n - 2;
+      if (i > j) {
+        int temp = i;
+        i = j;
+        j = temp;
       }
+      if (j > k) {
+        int temp = j;
+        j = k;
+        k = temp;
+      }
+      return new IndexTriple(i, j, k);
     }
-    return IndexTriple.sorted(i, j, k);
   }
 }
