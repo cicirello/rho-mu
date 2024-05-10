@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -59,6 +59,34 @@ public class StreamsIndexCombinationsTests {
               assertTrue(x.j() < 6);
               assertTrue(x.j() >= 0);
               assertNotEquals(x.j(), x.i());
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
+  public void testSortedPairs() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.sortedPairs(10)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 10);
+              assertTrue(x.j() > x.i());
+            });
+  }
+
+  @Test
+  public void testSortedPairsLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.sortedPairs(10, 6)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 6);
+              assertTrue(x.j() > x.i());
               w.count++;
             });
     assertEquals(10, w.count);

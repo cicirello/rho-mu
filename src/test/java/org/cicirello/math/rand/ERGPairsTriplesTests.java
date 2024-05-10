@@ -50,6 +50,26 @@ public class ERGPairsTriplesTests {
   }
 
   @Test
+  public void testNextIntPairSorted() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+    int[] result = erg.nextSortedIntPair(6, null);
+    validateCombo(6, 2, result);
+    assertTrue(result[0] < result[1]);
+    int[] result2 = erg.nextSortedIntPair(6, result);
+    assertTrue(result == result2);
+    validateCombo(6, 2, result2);
+    assertTrue(result2[0] < result2[1]);
+  }
+
+  @Test
+  public void testNextIntPairSorted_IndexPair() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+    IndexPair result = erg.nextSortedIntPair(6);
+    validateCombo(6, result);
+    assertTrue(result.i() < result.j());
+  }
+
+  @Test
   public void testNextIntTriple() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
     int[] result = erg.nextIntTriple(8, null);
