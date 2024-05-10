@@ -213,6 +213,38 @@ public class StreamsIndexCombinationsTests {
     assertEquals(10, w.count);
   }
 
+  @Test
+  public void testWindowedTriplesSorted() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.sortedWindowedTriples(10, 4)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.i() < x.j());
+              assertTrue(x.j() < x.k());
+              assertTrue(x.k() < 10);
+              assertTrue(x.k() - x.i() <= 4);
+            });
+  }
+
+  @Test
+  public void testWindowedTriplesSortedLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.sortedWindowedTriples(10, 12, 4)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.i() < x.j());
+              assertTrue(x.j() < x.k());
+              assertTrue(x.k() < 12);
+              assertTrue(x.k() - x.i() <= 4);
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
   private static class Wrapper {
     int count;
   }
