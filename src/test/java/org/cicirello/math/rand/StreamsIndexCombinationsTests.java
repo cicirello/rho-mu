@@ -65,6 +65,39 @@ public class StreamsIndexCombinationsTests {
   }
 
   @Test
+  public void testWindowedPairs() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.windowedPairs(10, 3)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 10);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 10);
+              assertTrue(x.j() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertTrue(Math.abs(x.j() - x.i()) <= 3);
+            });
+  }
+
+  @Test
+  public void testWindowedPairsLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.windowedPairs(10, 8, 3)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 8);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 8);
+              assertTrue(x.j() >= 0);
+              assertTrue(Math.abs(x.j() - x.i()) <= 3);
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
   public void testTriples() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
     erg.triples(10)
@@ -105,6 +138,52 @@ public class StreamsIndexCombinationsTests {
   }
 
   @Test
+  public void testWindowedTriples() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.windowedTriples(10, 4)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 10);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 10);
+              assertTrue(x.j() >= 0);
+              assertTrue(x.k() < 10);
+              assertTrue(x.k() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertNotEquals(x.k(), x.i());
+              assertNotEquals(x.j(), x.k());
+              assertTrue(Math.abs(x.j() - x.i()) <= 4);
+              assertTrue(Math.abs(x.k() - x.i()) <= 4);
+              assertTrue(Math.abs(x.j() - x.k()) <= 4);
+            });
+  }
+
+  @Test
+  public void testWindowedTriplesLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.windowedTriples(10, 12, 4)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 12);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 12);
+              assertTrue(x.j() >= 0);
+              assertTrue(x.k() < 12);
+              assertTrue(x.k() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertNotEquals(x.k(), x.i());
+              assertNotEquals(x.j(), x.k());
+              assertTrue(Math.abs(x.j() - x.i()) <= 4);
+              assertTrue(Math.abs(x.k() - x.i()) <= 4);
+              assertTrue(Math.abs(x.j() - x.k()) <= 4);
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
   public void testTriplesSorted() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
     erg.sortedTriples(10)
@@ -129,6 +208,38 @@ public class StreamsIndexCombinationsTests {
               assertTrue(x.i() < x.j());
               assertTrue(x.j() < x.k());
               assertTrue(x.k() < 6);
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
+  public void testWindowedTriplesSorted() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.sortedWindowedTriples(10, 4)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.i() < x.j());
+              assertTrue(x.j() < x.k());
+              assertTrue(x.k() < 10);
+              assertTrue(x.k() - x.i() <= 4);
+            });
+  }
+
+  @Test
+  public void testWindowedTriplesSortedLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.sortedWindowedTriples(10, 12, 4)
+        .forEach(
+            x -> {
+              assertTrue(x.i() >= 0);
+              assertTrue(x.i() < x.j());
+              assertTrue(x.j() < x.k());
+              assertTrue(x.k() < 12);
+              assertTrue(x.k() - x.i() <= 4);
               w.count++;
             });
     assertEquals(10, w.count);

@@ -1297,32 +1297,32 @@ public class RandomIndexerSampleTests {
       // go through the alternate path from above. That alternate path has
       // 3 potential subpaths, all approximately equally likely.
       int n = 1000;
-      int w = n - 1;
-      for (int i = 0; i < 30; i++) {
+      int w = n - 2;
+      for (int i = 0; i < 60; i++) {
         int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);
         assertTrue(result[1] < result[2]);
       }
       n = 10000;
-      w = n - 1;
-      for (int i = 0; i < 30; i++) {
+      w = n - 2;
+      for (int i = 0; i < 60; i++) {
         int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);
         assertTrue(result[1] < result[2]);
       }
       n = 100;
-      w = n - 1;
-      for (int i = 0; i < 30; i++) {
+      w = n - 2;
+      for (int i = 0; i < 60; i++) {
         int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);
         assertTrue(result[1] < result[2]);
       }
       n = 10;
-      w = n - 1;
-      for (int i = 0; i < 30; i++) {
+      w = n - 2;
+      for (int i = 0; i < 60; i++) {
         int[] result = RandomIndexer.nextSortedWindowedIntTriple(n, w, (int[]) null, gen);
         assertEquals(3, result.length);
         assertTrue(result[0] < result[1]);

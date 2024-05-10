@@ -500,23 +500,6 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Generates a random sample of 3 integers, without replacement, from the set of integers in the
-   * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
-   * increasing order. <b>Enhanced Functionality.</b>
-   *
-   * <p>The runtime is O(1).
-   *
-   * @param n The number of integers to choose from.
-   * @param result An array to hold the triple that is generated. If result is null or if
-   *     result.length is less than 3, then this method will construct an array for the result.
-   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
-   * @throws IllegalArgumentException if n &lt; 3.
-   */
-  public final int[] nextSortedIntTriple(int n, int[] result) {
-    return RandomIndexer.nextSortedIntTriple(n, result, generator);
-  }
-
-  /**
-   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
    * interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
    *
    * <p>The runtime is O(1).
@@ -537,11 +520,66 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * <p>The runtime is O(1).
    *
    * @param n The number of integers to choose from.
+   * @param result An array to hold the triple that is generated. If result is null or if
+   *     result.length is less than 3, then this method will construct an array for the result.
+   * @return An array containing the triple of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 3.
+   */
+  public final int[] nextSortedIntTriple(int n, int[] result) {
+    return RandomIndexer.nextSortedIntTriple(n, result, generator);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, without replacement, from the set of integers in the
+   * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
+   * increasing order. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
    * @return A triple of randomly chosen integers from the interval [0, n).
    * @throws IllegalArgumentException if n &lt; 3.
    */
   public final IndexTriple nextSortedIntTriple(int n) {
     return RandomIndexer.nextSortedIntTriple(n, generator);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely. The result is sorted
+   * in increasing order. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @param result An array to hold the triple that is generated. If result is null or if
+   *     result.length is less than 3, then this method will construct an array for the result.
+   * @return An array containing the triple of randomly chosen integers, i, j, k from the interval
+   *     [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public final int[] nextSortedWindowedIntTriple(int n, int window, int[] result) {
+    return RandomIndexer.nextSortedWindowedIntTriple(n, window, result, generator);
+  }
+
+  /**
+   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
+   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
+   * window. All triples that satisfy the window constraint are equally likely. The result is sorted
+   * in increasing order. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the triple.
+   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
+   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
+   */
+  public final IndexTriple nextSortedWindowedIntTriple(int n, int window) {
+    return RandomIndexer.nextSortedWindowedIntTriple(n, window, generator);
   }
 
   /**
@@ -616,44 +654,6 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final IndexTriple nextWindowedIntTriple(int n, int window) {
     return RandomIndexer.nextWindowedIntTriple(n, window, generator);
-  }
-
-  /**
-   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
-   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
-   * window. All triples that satisfy the window constraint are equally likely. The result is sorted
-   * in increasing order. <b>Enhanced Functionality.</b>
-   *
-   * <p>The runtime is O(1).
-   *
-   * @param n The number of integers to choose from.
-   * @param window The maximum difference between the integers of the triple.
-   * @param result An array to hold the triple that is generated. If result is null or if
-   *     result.length is less than 3, then this method will construct an array for the result.
-   * @return An array containing the triple of randomly chosen integers, i, j, k from the interval
-   *     [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.
-   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-   */
-  public final int[] nextSortedWindowedIntTriple(int n, int window, int[] result) {
-    return RandomIndexer.nextSortedWindowedIntTriple(n, window, result, generator);
-  }
-
-  /**
-   * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
-   * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
-   * window. All triples that satisfy the window constraint are equally likely. The result is sorted
-   * in increasing order. <b>Enhanced Functionality.</b>
-   *
-   * <p>The runtime is O(1).
-   *
-   * @param n The number of integers to choose from.
-   * @param window The maximum difference between the integers of the triple.
-   * @return A triple of randomly chosen integers, i, j, k from the interval [0, n), such that |i-j|
-   *     &le; window, and |i-k| &le; window, and |k-j| &le; window.
-   * @throws IllegalArgumentException if window &lt; 2 or n &lt; 3.
-   */
-  public final IndexTriple nextSortedWindowedIntTriple(int n, int window) {
-    return RandomIndexer.nextSortedWindowedIntTriple(n, window, generator);
   }
 
   /**
@@ -797,6 +797,65 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Returns an effectively unlimited stream of pseudorandom triples of int values, without
+   * replacement, from the interval [0, n). Each triple is sorted in increasing order. <b>Enhanced
+   * Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @return an effectively unlimited stream of pseudorandom triples of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexTriple> sortedTriples(int n) {
+    return Stream.generate(() -> nextSortedIntTriple(n)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom triples of int values, without replacement, from the interval
+   * [0, n). Each triple is sorted in increasing order. <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @return a stream of pseudorandom triples of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexTriple> sortedTriples(long streamSize, int n) {
+    return Stream.generate(() -> nextSortedIntTriple(n)).sequential().limit(streamSize);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom triples (i, j , k) of int values,
+   * without replacement, from the interval [0, n), such that |i-j| &le; window, and |i-k| &le;
+   * window, and |k-j| &le; window. Each triple is sorted in increasing order. All triples that
+   * satisfy the window constraint are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the triple.
+   * @return an effectively unlimited stream of pseudorandom triples of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexTriple> sortedWindowedTriples(int n, int window) {
+    return Stream.generate(() -> nextSortedWindowedIntTriple(n, window)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom triples (i, j , k) of int values, without replacement, from
+   * the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * Each triple is sorted in increasing order. All triples that satisfy the window constraint are
+   * equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the triple.
+   * @return a stream of pseudorandom triples of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexTriple> sortedWindowedTriples(long streamSize, int n, int window) {
+    return Stream.generate(() -> nextSortedWindowedIntTriple(n, window))
+        .sequential()
+        .limit(streamSize);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom triples of int values, without
    * replacement, from the interval [0, n). <b>Enhanced Functionality.</b>
    *
    * @param n bound on random values, exclusive.
@@ -821,29 +880,63 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   }
 
   /**
-   * Returns an effectively unlimited stream of pseudorandom triples of int values, without
-   * replacement, from the interval [0, n). Each triple is sorted in increasing order. <b>Enhanced
-   * Functionality.</b>
+   * Returns an effectively unlimited stream of pseudorandom pairs (i, j) of int values, without
+   * replacement, from the interval [0, n), such that |i-j| &le; window. All pairs that satisfy the
+   * window constraint are equally likely. <b>Enhanced Functionality.</b>
    *
    * @param n bound on random values, exclusive.
-   * @return an effectively unlimited stream of pseudorandom triples of int values, without
+   * @param window The maximum difference between the integers of the pair.
+   * @return an effectively unlimited stream of pseudorandom pairs of int values, without
    *     replacement, from the interval [0, n).
    */
-  public final Stream<IndexTriple> sortedTriples(int n) {
-    return Stream.generate(() -> nextSortedIntTriple(n)).sequential();
+  public final Stream<IndexPair> windowedPairs(int n, int window) {
+    return Stream.generate(() -> nextWindowedIntPair(n, window)).sequential();
   }
 
   /**
-   * Returns a stream of pseudorandom triples of int values, without replacement, from the interval
-   * [0, n). Each triple is sorted in increasing order. <b>Enhanced Functionality.</b>
+   * Returns a stream of pseudorandom pairs of int values (i, j), without replacement, from the
+   * interval [0, n), such that |i-j| &le; window. All pairs that satisfy the window constraint are
+   * equally likely.. <b>Enhanced Functionality.</b>
    *
    * @param streamSize The number of values in the stream.
    * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the pair.
+   * @return a stream of pseudorandom pairs of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexPair> windowedPairs(long streamSize, int n, int window) {
+    return Stream.generate(() -> nextWindowedIntPair(n, window)).sequential().limit(streamSize);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom triples (i, j , k) of int values,
+   * without replacement, from the interval [0, n), such that |i-j| &le; window, and |i-k| &le;
+   * window, and |k-j| &le; window. All triples that satisfy the window constraint are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the triple.
+   * @return an effectively unlimited stream of pseudorandom triples of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexTriple> windowedTriples(int n, int window) {
+    return Stream.generate(() -> nextWindowedIntTriple(n, window)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom triples (i, j , k) of int values, without replacement, from
+   * the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * All triples that satisfy the window constraint are equally likely. <b>Enhanced
+   * Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the triple.
    * @return a stream of pseudorandom triples of int values, without replacement, from the interval
    *     [0, n).
    */
-  public final Stream<IndexTriple> sortedTriples(long streamSize, int n) {
-    return Stream.generate(() -> nextSortedIntTriple(n)).sequential().limit(streamSize);
+  public final Stream<IndexTriple> windowedTriples(long streamSize, int n, int window) {
+    return Stream.generate(() -> nextWindowedIntTriple(n, window)).sequential().limit(streamSize);
   }
 
   // METHODS THAT CHANGE FUNCTIONALITY:

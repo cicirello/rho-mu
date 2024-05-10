@@ -4,22 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-05-09
+## [Unreleased] - 2024-05-10
 
 **BREAKING CHANGES: See Removed and Changed sections for details.**
 
 ### Added
 * IndexPair record class for use in methods generating pairs of random indexes.
 * IndexTriple record class for use in methods generating triples of random indexes.
-* Versions of nextIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
-* Versions of nextIntTriple methods that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
-* Versions of nextWindowedIntPair methods that utilize the new IndexPair class added to both RandomIndexer and EnhancedRandomGenerator classes.
-* Versions of nextWindowedIntTriple methods that utilize the new IndexTriple class added to both RandomIndexer and EnhancedRandomGenerator classes.
-* Streams of random pairs of distinct integers as streams of IndexPair objects.
-* Streams of random triples of distinct integers as streams of IndexTriple objects.
-* Streams of random triples of distinct sorted integers as streams of IndexTriple objects.
-* RandomIndexer.nextSortedIntTriple and EnhancedRandomGenerator.nextSortedIntTriple methods: variation of nextIntTriple whose result is in sorted order.
-* RandomIndexer.nextSortedWindowedIntTriple and EnhancedRandomGenerator.nextSortedWindowedIntTriple: variation of RandomIndexer.nextWindowedIntTriple method whose result is in sorted order.
+* Methods in the RandomIndexer and EnhancedRandomGenerator classes that utilize the new IndexPair and IndexTriple when generating combinations of distinct random integers, as an alternative to the existing methods that return arrays, including:
+  * Versions of nextIntPair using the new IndexPair class
+  * Versions of nextIntTriple using the new IndexTriple class
+  * Versions of nextWindowedIntPair using the new IndexPair class
+  * Versions of nextWindowedIntTriple using the new IndexTriple class
+* Methods in the RandomIndexer and EnhancedRandomGenerator classes for generating additional combinations of distinct integers (both array-based versions and versions using IndexPair and IndexTriple), including:
+  * nextSortedIntTriple: a variation of nextIntTriple whose result is in sorted order.
+  * nextSortedWindowedIntTriple: a variation of nextWindowedIntTriple whose result is in sorted order.
+* Methods in the EnhancedRandomGenerator class for generating streams of combinations of distinct integers as streams of IndexPair or IndexTriple objects, including streams of the following:
+  * Streams of random pairs of distinct integers (method pairs)
+  * Streams of random pairs of distinct integers, separated by at most a specified window (method windowedPairs)
+  * Streams of random triples of distinct integers (method triples)
+  * Streams of random triples of distinct sorted integers (method sortedTriples)
+  * Streams of random triples of distinct integers, separated by at most a specified window (method windowedTriples)
+  * Streams of random triples of distinct sorted integers, separated by at most a specified window (method sortedWindowedTriples)
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
@@ -37,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Dependencies
 * Bump org.cicirello:core from 2.5.0 to 2.6.0.
-* Retired publishing of a `jar-with-dependencies` (BREAKING CHANGE if you were using the `jar-with-dependencies`).
+* Retired publishing of a `jar-with-dependencies` (BREAKING CHANGE only if you were using the `jar-with-dependencies`).
 
 ### CI/CD
 
