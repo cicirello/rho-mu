@@ -526,6 +526,94 @@ public final class RandomIndexer {
   }
 
   /**
+   * Generates a random sample of 2 integers, without replacement, from the set of integers in the
+   * interval [0, n). The integers in the pair are sorted with minimum first followed by maximum.
+   * All n choose 2 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @param result An array to hold the pair that is generated. If result is null or if
+   *     result.length is less than 2, then this method will construct an array for the result.
+   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public static int[] nextSortedIntPair(int n, int[] result) {
+    return nextSortedIntPair(n, result, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 2 integers, without replacement, from the set of integers in the
+   * interval [0, n). The integers in the pair are sorted with minimum first followed by maximum.
+   * All n choose 2 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param result An array to hold the pair that is generated. If result is null or if
+   *     result.length is less than 2, then this method will construct an array for the result.
+   * @param gen Source of randomness.
+   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public static int[] nextSortedIntPair(int n, int[] result, RandomGenerator gen) {
+    result = ArrayMinimumLengthEnforcer.enforce(result, 2);
+    result[0] = nextInt(n, gen);
+    result[1] = nextInt(n - 1, gen);
+    if (result[1] == result[0]) {
+      result[1] = n - 1;
+    } else {
+      SortingNetwork.compareExchange(result, 0, 1);
+    }
+    return result;
+  }
+
+  /**
+   * Generates a random sample of 2 integers (i, j) without replacement, from the set of integers in
+   * the interval [0, n). The integers in the pair are sorted with i equal to the minimum and j
+   * equal to the maximum. All n choose 2 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @return A pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public static IndexPair nextSortedIntPair(int n) {
+    return nextSortedIntPair(n, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 2 integers (i, j) without replacement, from the set of integers in
+   * the interval [0, n). The integers in the pair are sorted with i equal to the minimum and j
+   * equal to the maximum. All n choose 2 combinations are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param gen Source of randomness.
+   * @return A pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public static IndexPair nextSortedIntPair(int n, RandomGenerator gen) {
+    final int i = nextInt(n, gen);
+    final int j = nextInt(n - 1, gen);
+    if (i < j) {
+      return new IndexPair(i, j);
+    } else if (i == j) {
+      return new IndexPair(i, n - 1);
+    } else {
+      return new IndexPair(j, i);
+    }
+  }
+
+  /**
    * Generates a random sample of 3 integers, without replacement, from the set of integers in the
    * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
    * increasing order.

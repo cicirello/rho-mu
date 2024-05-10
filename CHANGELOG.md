@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Versions of nextWindowedIntPair using the new IndexPair class
   * Versions of nextWindowedIntTriple using the new IndexTriple class
 * Methods in the RandomIndexer and EnhancedRandomGenerator classes for generating additional combinations of distinct integers (both array-based versions and versions using IndexPair and IndexTriple), including:
+  * nextSortedIntPair: a variation of nextIntPair whose result is in sorted order.
   * nextSortedIntTriple: a variation of nextIntTriple whose result is in sorted order.
   * nextSortedWindowedIntTriple: a variation of nextWindowedIntTriple whose result is in sorted order.
 * Methods in the EnhancedRandomGenerator class for generating streams of combinations of distinct integers as streams of IndexPair or IndexTriple objects, including streams of the following:

@@ -513,6 +513,38 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   }
 
   /**
+   * Generates a random sample of 2 integers, without replacement, from the set of integers in the
+   * interval [0, n). The result is sorted with the minimum first followed by the maximum. All n
+   * choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param result An array to hold the pair that is generated. If result is null or if
+   *     result.length is less than 2, then this method will construct an array for the result.
+   * @return An array containing the pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public final int[] nextSortedIntPair(int n, int[] result) {
+    return RandomIndexer.nextSortedIntPair(n, result, generator);
+  }
+
+  /**
+   * Generates a random sample of 2 integers (i, j) without replacement, from the set of integers in
+   * the interval [0, n). The pair is sorted such that i is the minimum and j is the maximum. All n
+   * choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @return A pair of randomly chosen integers from the interval [0, n).
+   * @throws IllegalArgumentException if n &lt; 2.
+   */
+  public final IndexPair nextSortedIntPair(int n) {
+    return RandomIndexer.nextSortedIntPair(n, generator);
+  }
+
+  /**
    * Generates a random sample of 3 integers, without replacement, from the set of integers in the
    * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
    * increasing order. <b>Enhanced Functionality.</b>
@@ -793,6 +825,33 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final int[] sampleReservoir(int n, int k, int[] result) {
     return RandomSampler.sampleReservoir(n, k, result, generator);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom pairs of int values, without
+   * replacement, from the interval [0, n). Each pair is sorted such that i is the minimum and j is
+   * the maximum of the pair. <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @return an effectively unlimited stream of pseudorandom pairs of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexPair> sortedPairs(int n) {
+    return Stream.generate(() -> nextSortedIntPair(n)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom pairs of int values, without replacement, from the interval
+   * [0, n). Each pair is sorted such that i is the minimum and j is the maximum of the pair.
+   * <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @return a stream of pseudorandom pairs of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexPair> sortedPairs(long streamSize, int n) {
+    return Stream.generate(() -> nextSortedIntPair(n)).sequential().limit(streamSize);
   }
 
   /**
