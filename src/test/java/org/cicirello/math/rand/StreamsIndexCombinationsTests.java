@@ -65,6 +65,39 @@ public class StreamsIndexCombinationsTests {
   }
 
   @Test
+  public void testWindowedPairs() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    erg.windowedPairs(10, 3)
+        .limit(10)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 10);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 10);
+              assertTrue(x.j() >= 0);
+              assertNotEquals(x.j(), x.i());
+              assertTrue(Math.abs(x.j() - x.i()) <= 3);
+            });
+  }
+
+  @Test
+  public void testWindowedPairsLimited() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
+    final Wrapper w = new Wrapper();
+    erg.windowedPairs(10, 8, 3)
+        .forEach(
+            x -> {
+              assertTrue(x.i() < 8);
+              assertTrue(x.i() >= 0);
+              assertTrue(x.j() < 8);
+              assertTrue(x.j() >= 0);
+              assertTrue(Math.abs(x.j() - x.i()) <= 3);
+              w.count++;
+            });
+    assertEquals(10, w.count);
+  }
+
+  @Test
   public void testTriples() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator(42L);
     erg.triples(10)

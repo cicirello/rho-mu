@@ -846,6 +846,35 @@ public class EnhancedRandomGenerator implements RandomGenerator {
     return Stream.generate(() -> nextIntTriple(n)).sequential().limit(streamSize);
   }
 
+  /**
+   * Returns an effectively unlimited stream of pseudorandom pairs (i, j) of int values, without
+   * replacement, from the interval [0, n), such that |i-j| &le; window. All pairs that satisfy the
+   * window constraint are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the pair.
+   * @return an effectively unlimited stream of pseudorandom pairs of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexPair> windowedPairs(int n, int window) {
+    return Stream.generate(() -> nextWindowedIntPair(n, window)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom pairs of int values (i, j), without replacement, from the
+   * interval [0, n), such that |i-j| &le; window. All pairs that satisfy the window constraint are
+   * equally likely.. <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the pair.
+   * @return a stream of pseudorandom pairs of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexPair> windowedPairs(long streamSize, int n, int window) {
+    return Stream.generate(() -> nextWindowedIntPair(n, window)).sequential().limit(streamSize);
+  }
+
   // METHODS THAT CHANGE FUNCTIONALITY:
 
   /**
