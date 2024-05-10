@@ -697,6 +697,128 @@ public final class RandomIndexer {
   }
 
   /**
+   * Generates a random sample of 2 integers (i, j) without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window, and sorted such that i is less than j. All
+   * pairs that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @param result An array to hold the pair that is generated. If result is null or if
+   *     result.length is less than 2, then this method will construct an array for the result.
+   * @return An array containing the pair of randomly chosen integers, i, j, from the interval [0,
+   *     n), such that |i-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public static int[] nextSortedWindowedIntPair(int n, int window, int[] result) {
+    return nextSortedWindowedIntPair(n, window, result, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 2 integers (i, j) without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window, and sorted such that i is less than j. All
+   * pairs that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @param result An array to hold the pair that is generated. If result is null or if
+   *     result.length is less than 2, then this method will construct an array for the result.
+   * @param gen Source of randomness.
+   * @return An array containing the pair of randomly chosen integers, i, j, from the interval [0,
+   *     n), such that |i-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public static int[] nextSortedWindowedIntPair(
+      int n, int window, int[] result, RandomGenerator gen) {
+    if (window >= n - 1) return nextSortedIntPair(n, result, gen);
+    result = ArrayMinimumLengthEnforcer.enforce(result, 2);
+    final int z1 = n - window;
+    final int z2 = z1 << 1;
+    int i = nextInt(z2 + window - 1, gen);
+    int j = nextInt(window, gen);
+    if (i < z2) {
+      result[0] = i >> 1;
+      result[1] = result[0] + 1 + j;
+    } else {
+      i -= z1;
+      j += z1;
+      if (i == j) {
+        result[0] = j;
+        result[1] = n - 1;
+      } else if (i < j) {
+        result[0] = i;
+        result[1] = j;
+      } else {
+        result[0] = j;
+        result[1] = i;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Generates a random sample of 2 integers (i, j) without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window, and sorted such that i is less than j. All
+   * pairs that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @return A pair of randomly chosen integers, i, j, from the interval [0, n), such that |i-j|
+   *     &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public static IndexPair nextSortedWindowedIntPair(int n, int window) {
+    return nextSortedWindowedIntPair(n, window, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Generates a random sample of 2 integers (i, j) without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window, and sorted such that i is less than j. All
+   * pairs that satisfy the window constraint are equally likely.
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @param gen Source of randomness.
+   * @return A pair of randomly chosen integers, i, j, from the interval [0, n), such that |i-j|
+   *     &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public static IndexPair nextSortedWindowedIntPair(int n, int window, RandomGenerator gen) {
+    if (window >= n - 1) return nextSortedIntPair(n, gen);
+    final int z1 = n - window;
+    final int z2 = z1 << 1;
+    int i = nextInt(z2 + window - 1, gen);
+    int j = nextInt(window, gen);
+    if (i < z2) {
+      i >>= 1;
+      return new IndexPair(i, i + 1 + j);
+    } else {
+      i -= z1;
+      j += z1;
+      if (i == j) {
+        return new IndexPair(j, n - 1);
+      } else if (i < j) {
+        return new IndexPair(i, j);
+      } else {
+        return new IndexPair(j, i);
+      }
+    }
+  }
+
+  /**
    * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
    * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
    * window. All triples that satisfy the window constraint are equally likely. The result is sorted

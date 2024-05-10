@@ -128,6 +128,26 @@ public class ERGPairsTriplesTests {
   }
 
   @Test
+  public void testNextSortedWindowedIntPair() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+    int[] result = erg.nextSortedWindowedIntPair(100, 5, null);
+    validateWindowed(100, 5, 2, result);
+    assertTrue(result[0] < result[1]);
+    int[] result2 = erg.nextSortedWindowedIntPair(100, 5, result);
+    assertTrue(result == result2);
+    validateWindowed(100, 5, 2, result2);
+    assertTrue(result2[0] < result2[1]);
+  }
+
+  @Test
+  public void testNextSortedWindowedIntPair_IndexPair() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
+    IndexPair result = erg.nextSortedWindowedIntPair(100, 5);
+    validateWindowed(100, 5, result);
+    assertTrue(result.i() < result.j());
+  }
+
+  @Test
   public void testNextWindowedIntTriple() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
     int[] result = erg.nextWindowedIntTriple(100, 6, null);
