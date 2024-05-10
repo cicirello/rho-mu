@@ -875,6 +875,37 @@ public class EnhancedRandomGenerator implements RandomGenerator {
     return Stream.generate(() -> nextWindowedIntPair(n, window)).sequential().limit(streamSize);
   }
 
+  /**
+   * Returns an effectively unlimited stream of pseudorandom triples (i, j , k) of int values,
+   * without replacement, from the interval [0, n), such that |i-j| &le; window, and |i-k| &le;
+   * window, and |k-j| &le; window. All triples that satisfy the window constraint are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the triple.
+   * @return an effectively unlimited stream of pseudorandom triples of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexTriple> windowedTriples(int n, int window) {
+    return Stream.generate(() -> nextWindowedIntTriple(n, window)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom triples (i, j , k) of int values, without replacement, from
+   * the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le; window.
+   * All triples that satisfy the window constraint are equally likely. <b>Enhanced
+   * Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the triple.
+   * @return a stream of pseudorandom triples of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexTriple> windowedTriples(long streamSize, int n, int window) {
+    return Stream.generate(() -> nextWindowedIntTriple(n, window)).sequential().limit(streamSize);
+  }
+
   // METHODS THAT CHANGE FUNCTIONALITY:
 
   /**

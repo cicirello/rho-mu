@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Random pairs of distinct integers, separated by at most a specified window (method windowedPairs)
   * Random triples of distinct integers (method triples)
   * Random triples of distinct sorted integers (method sortedTriples)
+  * Random triples of distinct integers, separated by at most a specified window (method windowedTriples)
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
