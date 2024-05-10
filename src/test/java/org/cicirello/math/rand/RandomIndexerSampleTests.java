@@ -1336,6 +1336,190 @@ public class RandomIndexerSampleTests {
   }
 
   @Test
+  public void testNextSortedWindowedIntPair_TLR() {
+    final int REPS_PER_BUCKET = 600;
+    final int TRIALS = 100;
+
+    for (int n = 2; n <= 10; n++) {
+      for (int w = 1; w < n; w++) {
+        int[] result = RandomIndexer.nextSortedWindowedIntPair(n, w, (int[]) null);
+        assertEquals(2, result.length);
+        assertTrue(result[0] >= 0);
+        assertTrue(result[1] < n);
+        assertTrue(result[0] < result[1]);
+        assertTrue(result[1] - result[0] <= w);
+      }
+    }
+
+    int[] expected = new int[2];
+    int[] actual = RandomIndexer.nextSortedWindowedIntPair(5, 1, expected);
+    assertTrue(expected == actual);
+    actual = RandomIndexer.nextSortedWindowedIntPair(5, 1, new int[1]);
+    assertEquals(2, actual.length);
+
+    if (DISABLE_CHI_SQUARE_TESTS) return;
+    for (int n = 2; n <= 7; n++) {
+      for (int w = 1; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][] buckets = new int[n][n];
+          int numBuckets = w * (n - w) + w * (w - 1) / 2;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            int[] result = RandomIndexer.nextSortedWindowedIntPair(n, w, (int[]) null);
+            buckets[result[0]][result[1]]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+              if (j - i > w) continue;
+              flatBuckets[k] = buckets[i][j];
+              k++;
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) countH++;
+        }
+        assertTrue(countH <= TRIALS * 0.1);
+      }
+    }
+  }
+
+  @Test
+  public void testNextSortedWindowedIntPair_SR() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 200;
+    final int TRIALS = 100;
+
+    for (int n = 2; n <= 10; n++) {
+      for (int w = 1; w < n; w++) {
+        int[] result = RandomIndexer.nextSortedWindowedIntPair(n, w, (int[]) null, gen);
+        assertEquals(2, result.length);
+        assertTrue(result[0] >= 0);
+        assertTrue(result[1] < n);
+        assertTrue(result[0] < result[1]);
+        assertTrue(result[1] - result[0] <= w);
+      }
+    }
+    for (int n = 2; n <= 7; n++) {
+      for (int w = 1; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][] buckets = new int[n][n];
+          int numBuckets = w * (n - w) + w * (w - 1) / 2;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            int[] result = RandomIndexer.nextSortedWindowedIntPair(n, w, (int[]) null, gen);
+            buckets[result[0]][result[1]]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+              if (j - i > w) continue;
+              flatBuckets[k] = buckets[i][j];
+              k++;
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) countH++;
+        }
+        assertTrue(countH <= TRIALS * 0.1, "countH:" + countH);
+      }
+    }
+
+    int[] expected = new int[2];
+    int[] actual = RandomIndexer.nextSortedWindowedIntPair(5, 1, expected, gen);
+    assertTrue(expected == actual);
+    actual = RandomIndexer.nextSortedWindowedIntPair(5, 1, new int[1], gen);
+    assertEquals(2, actual.length);
+  }
+
+  @Test
+  public void testNextSortedWindowedIntPair_IndexPair_TLR() {
+    final int REPS_PER_BUCKET = 600;
+    final int TRIALS = 100;
+
+    for (int n = 2; n <= 10; n++) {
+      for (int w = 1; w < n; w++) {
+        IndexPair result = RandomIndexer.nextSortedWindowedIntPair(n, w);
+        assertTrue(result.i() >= 0);
+        assertTrue(result.j() < n);
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() - result.i() <= w);
+      }
+    }
+
+    if (DISABLE_CHI_SQUARE_TESTS) return;
+    for (int n = 2; n <= 7; n++) {
+      for (int w = 1; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][] buckets = new int[n][n];
+          int numBuckets = w * (n - w) + w * (w - 1) / 2;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            IndexPair result = RandomIndexer.nextSortedWindowedIntPair(n, w);
+            buckets[result.i()][result.j()]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+              if (j - i > w) continue;
+              flatBuckets[k] = buckets[i][j];
+              k++;
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) countH++;
+        }
+        assertTrue(countH <= TRIALS * 0.1);
+      }
+    }
+  }
+
+  @Test
+  public void testNextSortedWindowedIntPair_IndexPair_SR() {
+    SplittableRandom gen = new SplittableRandom(42);
+    final int REPS_PER_BUCKET = 200;
+    final int TRIALS = 100;
+
+    for (int n = 2; n <= 10; n++) {
+      for (int w = 1; w < n; w++) {
+        IndexPair result = RandomIndexer.nextSortedWindowedIntPair(n, w, gen);
+        assertTrue(result.i() >= 0);
+        assertTrue(result.j() < n);
+        assertTrue(result.i() < result.j());
+        assertTrue(result.j() - result.i() <= w);
+      }
+    }
+    for (int n = 2; n <= 7; n++) {
+      for (int w = 1; w < n; w++) {
+        int countH = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+          int[][] buckets = new int[n][n];
+          int numBuckets = w * (n - w) + w * (w - 1) / 2;
+          for (int i = 0; i < REPS_PER_BUCKET * numBuckets; i++) {
+            IndexPair result = RandomIndexer.nextSortedWindowedIntPair(n, w, gen);
+            buckets[result.i()][result.j()]++;
+          }
+          int[] flatBuckets = new int[numBuckets];
+          int k = 0;
+          for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+              if (j - i > w) continue;
+              flatBuckets[k] = buckets[i][j];
+              k++;
+            }
+          }
+          double chi = chiSquare(flatBuckets, numBuckets);
+          if (chi > limit95[numBuckets - 1]) countH++;
+        }
+        assertTrue(countH <= TRIALS * 0.1, "countH:" + countH);
+      }
+    }
+  }
+
+  @Test
   public void testNextWindowedIntTriple_TLR() {
     final int REPS_PER_BUCKET = 300;
     final int TRIALS = 100;

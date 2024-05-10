@@ -577,6 +577,42 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   }
 
   /**
+   * Generates a random sample of 2 integers, i, j, without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window, and sorted such that i is less than j. All
+   * pairs that satisfy the window constraint are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @param result An array to hold the pair that is generated. If result is null or if
+   *     result.length is less than 2, then this method will construct an array for the result.
+   * @return An array containing the pair of randomly chosen integers, i, j, from the interval [0,
+   *     n), such that |i-j| &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public final int[] nextSortedWindowedIntPair(int n, int window, int[] result) {
+    return RandomIndexer.nextSortedWindowedIntPair(n, window, result, generator);
+  }
+
+  /**
+   * Generates a random sample of 2 integers, i, j, without replacement, from the set of integers in
+   * the interval [0, n), such that |i-j| &le; window, and sorted such that i is less than j. All
+   * pairs that satisfy the window constraint are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * <p>The runtime is O(1).
+   *
+   * @param n The number of integers to choose from.
+   * @param window The maximum difference between the integers of the pair.
+   * @return A pair of randomly chosen integers, i, j, from the interval [0, n), such that |i-j|
+   *     &le; window.
+   * @throws IllegalArgumentException if window &lt; 1 or n &lt; 2.
+   */
+  public final IndexPair nextSortedWindowedIntPair(int n, int window) {
+    return RandomIndexer.nextSortedWindowedIntPair(n, window, generator);
+  }
+
+  /**
    * Generates a random sample of 3 integers, i, j, k without replacement, from the set of integers
    * in the interval [0, n), such that |i-j| &le; window, and |i-k| &le; window, and |k-j| &le;
    * window. All triples that satisfy the window constraint are equally likely. The result is sorted
@@ -878,6 +914,38 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final Stream<IndexTriple> sortedTriples(long streamSize, int n) {
     return Stream.generate(() -> nextSortedIntTriple(n)).sequential().limit(streamSize);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandom pairs (i, j) of int values, without
+   * replacement, from the interval [0, n), such that |i-j| &le; window, and sorted such that i is
+   * less than j. All pairs that satisfy the window constraint are equally likely. <b>Enhanced
+   * Functionality.</b>
+   *
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the pair.
+   * @return an effectively unlimited stream of pseudorandom pairs of int values, without
+   *     replacement, from the interval [0, n).
+   */
+  public final Stream<IndexPair> sortedWindowedPairs(int n, int window) {
+    return Stream.generate(() -> nextSortedWindowedIntPair(n, window)).sequential();
+  }
+
+  /**
+   * Returns a stream of pseudorandom pairs of int values (i, j), without replacement, from the
+   * interval [0, n), such that |i-j| &le; window, and sorted such that i is less than j. All pairs
+   * that satisfy the window constraint are equally likely.. <b>Enhanced Functionality.</b>
+   *
+   * @param streamSize The number of values in the stream.
+   * @param n bound on random values, exclusive.
+   * @param window The maximum difference between the integers of the pair.
+   * @return a stream of pseudorandom pairs of int values, without replacement, from the interval
+   *     [0, n).
+   */
+  public final Stream<IndexPair> sortedWindowedPairs(long streamSize, int n, int window) {
+    return Stream.generate(() -> nextSortedWindowedIntPair(n, window))
+        .sequential()
+        .limit(streamSize);
   }
 
   /**
