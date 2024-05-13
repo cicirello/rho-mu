@@ -61,8 +61,7 @@ public final class Shuffler {
   public static void shuffle(byte[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -96,8 +95,7 @@ public final class Shuffler {
   public static void shuffle(byte[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 
   /**
@@ -123,8 +121,7 @@ public final class Shuffler {
   public static void shuffle(char[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -158,8 +155,7 @@ public final class Shuffler {
   public static void shuffle(char[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 
   /**
@@ -185,8 +181,7 @@ public final class Shuffler {
   public static void shuffle(double[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -220,8 +215,7 @@ public final class Shuffler {
   public static void shuffle(double[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 
   /**
@@ -247,8 +241,7 @@ public final class Shuffler {
   public static void shuffle(float[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -282,8 +275,7 @@ public final class Shuffler {
   public static void shuffle(float[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 
   /**
@@ -309,8 +301,7 @@ public final class Shuffler {
   public static void shuffle(int[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -344,8 +335,7 @@ public final class Shuffler {
   public static void shuffle(int[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 
   /**
@@ -371,8 +361,7 @@ public final class Shuffler {
   public static void shuffle(long[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -406,8 +395,7 @@ public final class Shuffler {
   public static void shuffle(long[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 
   /**
@@ -433,8 +421,7 @@ public final class Shuffler {
   public static void shuffle(short[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -468,8 +455,7 @@ public final class Shuffler {
   public static void shuffle(short[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 
   /**
@@ -495,8 +481,7 @@ public final class Shuffler {
   public static void shuffle(Object[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
-        swap(array, RandomIndexer.nextInt(bound, gen), --bound))
-      ;
+        swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
   }
 
   /**
@@ -530,7 +515,6 @@ public final class Shuffler {
   public static void shuffle(Object[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
-      ;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first)) {}
   }
 }
