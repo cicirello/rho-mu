@@ -112,11 +112,11 @@ classDiagram
   EnhancedRandomGenerator : -RandomGenerator generator
   RandomGenerator <|.. EnhancedRandomGenerator
   class RandomSampler
-  RandomSampler <.. EnhancedRandomGenerator
   class RandomIndexer
   RandomIndexer <.. EnhancedRandomGenerator
   RandomIndexer <.. RandomSampler
   RandomSampler <.. RandomIndexer
+  RandomSampler <.. EnhancedRandomGenerator
   class Shuffler
   RandomIndexer <.. Shuffler
   Shuffler <.. EnhancedRandomGenerator
