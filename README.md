@@ -125,9 +125,9 @@ classDiagram
   RandomVariates <.. RandomSampler
   class IndexPair
   class IndexTriple
+  IndexPair <.. EnhancedRandomGenerator
   IndexPair <.. RandomIndexer
   IndexTriple <.. RandomIndexer
-  IndexPair <.. EnhancedRandomGenerator
   IndexTriple <.. EnhancedRandomGenerator
   class EnhancedStreamableGenerator
   EnhancedStreamableGenerator : -StreamableGenerator generator
