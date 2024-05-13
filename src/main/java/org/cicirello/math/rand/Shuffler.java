@@ -22,6 +22,8 @@
  */
 package org.cicirello.math.rand;
 
+import static org.cicirello.util.SimpleSwapper.*;
+
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
@@ -530,53 +532,5 @@ public final class Shuffler {
         bound >= 2;
         swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
       ;
-  }
-
-  private static void swap(byte[] array, int i, int j) {
-    byte temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-
-  private static void swap(char[] array, int i, int j) {
-    char temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-
-  private static void swap(double[] array, int i, int j) {
-    double temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-
-  private static void swap(float[] array, int i, int j) {
-    float temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-
-  private static void swap(int[] array, int i, int j) {
-    int temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-
-  private static void swap(long[] array, int i, int j) {
-    long temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-
-  private static void swap(short[] array, int i, int j) {
-    short temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-
-  private static void swap(Object[] array, int i, int j) {
-    Object temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
   }
 }
