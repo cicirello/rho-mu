@@ -59,6 +59,7 @@ import java.util.stream.Stream;
  *       distributions, and Gaussian distributions.
  *   <li>Methods to generate streams of pairs of distinct integers, and streams of triples of
  *       distinct integers.
+ *   <li>Methods for shuffling the elements of arrays.
  * </ul>
  *
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
@@ -861,6 +862,198 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public final int[] sampleReservoir(int n, int k, int[] result) {
     return RandomSampler.sampleReservoir(n, k, result, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(byte[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(byte[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(char[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(char[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(double[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(double[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(float[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(float[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(int[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(int[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(long[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(long[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(short[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(short[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of an array. All possible reorderings are equally
+   * likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   */
+  public final void shuffle(Object[] array) {
+    Shuffler.shuffle(array, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely. <b>Enhanced Functionality.</b>
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public final void shuffle(Object[] array, int first, int last) {
+    Shuffler.shuffle(array, first, last, generator);
   }
 
   /**

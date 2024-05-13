@@ -32,6 +32,166 @@ import org.junit.jupiter.api.*;
 public final class ShufflerTests {
 
   @Nested
+  public final class ShufflerEnhancedRandomGeneratorTests extends AbstractShufflerTests {
+
+    public ShufflerEnhancedRandomGeneratorTests() {
+      super(
+          new Randomizer() {
+
+            private final EnhancedRandomGenerator gen =
+                new EnhancedRandomGenerator(new SplittableRandom(42));
+
+            @Override
+            public void shuffle(byte[] array) {
+              gen.shuffle(array);
+            }
+
+            @Override
+            public void shuffle(char[] array) {
+              gen.shuffle(array);
+            }
+
+            @Override
+            public void shuffle(double[] array) {
+              gen.shuffle(array);
+            }
+
+            @Override
+            public void shuffle(float[] array) {
+              gen.shuffle(array);
+            }
+
+            @Override
+            public void shuffle(int[] array) {
+              gen.shuffle(array);
+            }
+
+            @Override
+            public void shuffle(long[] array) {
+              gen.shuffle(array);
+            }
+
+            @Override
+            public void shuffle(short[] array) {
+              gen.shuffle(array);
+            }
+
+            @Override
+            public void shuffle(Object[] array) {
+              gen.shuffle(array);
+            }
+          });
+    }
+  }
+
+  @Nested
+  public final class ShufflerFullRangeEnhancedRandomGeneratorTests extends AbstractShufflerTests {
+
+    public ShufflerFullRangeEnhancedRandomGeneratorTests() {
+      super(
+          new Randomizer() {
+
+            private final EnhancedRandomGenerator gen =
+                new EnhancedRandomGenerator(new SplittableRandom(42));
+
+            @Override
+            public void shuffle(byte[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public void shuffle(char[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public void shuffle(double[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public void shuffle(float[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public void shuffle(int[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public void shuffle(long[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public void shuffle(short[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public void shuffle(Object[] array) {
+              gen.shuffle(array, 0, array.length);
+            }
+          });
+    }
+  }
+
+  @Nested
+  public final class ShufflerPartialRangeEnhancedRandomGeneratorTests
+      extends AbstractPartialShufflerTests {
+
+    public ShufflerPartialRangeEnhancedRandomGeneratorTests() {
+      super(
+          new Randomizer() {
+
+            private final EnhancedRandomGenerator gen =
+                new EnhancedRandomGenerator(new SplittableRandom(42));
+
+            @Override
+            public void shuffle(byte[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public void shuffle(char[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public void shuffle(double[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public void shuffle(float[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public void shuffle(int[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public void shuffle(long[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public void shuffle(short[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public void shuffle(Object[] array, int first, int last) {
+              gen.shuffle(array, first, last);
+            }
+          });
+    }
+  }
+
+  @Nested
   public final class ShufflerSpecificRandomGeneratorTests extends AbstractShufflerTests {
 
     public ShufflerSpecificRandomGeneratorTests() {
