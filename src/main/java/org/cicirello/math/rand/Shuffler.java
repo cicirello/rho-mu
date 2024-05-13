@@ -94,7 +94,7 @@ public final class Shuffler {
   public static void shuffle(byte[] array, int first, int last, RandomGenerator gen) {
     for (int bound = last - first;
         bound >= 2;
-        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound))
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
       ;
   }
 
@@ -126,6 +126,41 @@ public final class Shuffler {
   }
 
   /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(char[] array, int first, int last) {
+    shuffle(array, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param gen the source of randomness
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(char[] array, int first, int last, RandomGenerator gen) {
+    for (int bound = last - first;
+        bound >= 2;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
+      ;
+  }
+
+  /**
    * Randomizes the ordering of the elements of an array. All possible reorderings are equally
    * likely.
    *
@@ -149,6 +184,41 @@ public final class Shuffler {
     for (int bound = array.length;
         bound >= 2;
         swap(array, RandomIndexer.nextInt(bound, gen), --bound))
+      ;
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(double[] array, int first, int last) {
+    shuffle(array, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param gen the source of randomness
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(double[] array, int first, int last, RandomGenerator gen) {
+    for (int bound = last - first;
+        bound >= 2;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
       ;
   }
 
@@ -180,6 +250,41 @@ public final class Shuffler {
   }
 
   /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(float[] array, int first, int last) {
+    shuffle(array, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param gen the source of randomness
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(float[] array, int first, int last, RandomGenerator gen) {
+    for (int bound = last - first;
+        bound >= 2;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
+      ;
+  }
+
+  /**
    * Randomizes the ordering of the elements of an array. All possible reorderings are equally
    * likely.
    *
@@ -203,6 +308,41 @@ public final class Shuffler {
     for (int bound = array.length;
         bound >= 2;
         swap(array, RandomIndexer.nextInt(bound, gen), --bound))
+      ;
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(int[] array, int first, int last) {
+    shuffle(array, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param gen the source of randomness
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(int[] array, int first, int last, RandomGenerator gen) {
+    for (int bound = last - first;
+        bound >= 2;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
       ;
   }
 
@@ -234,6 +374,41 @@ public final class Shuffler {
   }
 
   /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(long[] array, int first, int last) {
+    shuffle(array, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param gen the source of randomness
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(long[] array, int first, int last, RandomGenerator gen) {
+    for (int bound = last - first;
+        bound >= 2;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
+      ;
+  }
+
+  /**
    * Randomizes the ordering of the elements of an array. All possible reorderings are equally
    * likely.
    *
@@ -261,6 +436,41 @@ public final class Shuffler {
   }
 
   /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(short[] array, int first, int last) {
+    shuffle(array, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param gen the source of randomness
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(short[] array, int first, int last, RandomGenerator gen) {
+    for (int bound = last - first;
+        bound >= 2;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
+      ;
+  }
+
+  /**
    * Randomizes the ordering of the elements of an array. All possible reorderings are equally
    * likely.
    *
@@ -284,6 +494,41 @@ public final class Shuffler {
     for (int bound = array.length;
         bound >= 2;
         swap(array, RandomIndexer.nextInt(bound, gen), --bound))
+      ;
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(Object[] array, int first, int last) {
+    shuffle(array, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements within a portion of an array. All possible reorderings
+   * are equally likely.
+   *
+   * @param array the array to shuffle
+   * @param first the first element (inclusive) of the part of the array to shuffle
+   * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param gen the source of randomness
+   * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
+   *     array.length
+   */
+  public static void shuffle(Object[] array, int first, int last, RandomGenerator gen) {
+    for (int bound = last - first;
+        bound >= 2;
+        swap(array, first + RandomIndexer.nextInt(bound, gen), --bound + first))
       ;
   }
 
