@@ -56,6 +56,8 @@ Some of the randomization enhancements include:
 * Methods for generating random samples of k integers without replacement from a range of integers.
 * Methods to generate streams of numbers from distributions other than uniform, such as streams of random numbers 
   from binomial distributions, Cauchy distributions, exponential distributions, and Gaussian distributions.
+* Methods to generate streams of pairs of distinct integers, and streams of triples of distinct integers.
+* Methods for shuffling the elements of arrays and Lists.
 
 The &rho;&mu; library is a dependency of some of our other projects, 
 including [JavaPermutationTools](https://github.com/cicirello/JavaPermutationTools)
@@ -179,7 +181,7 @@ and minimum supported Java version.
 
 | version | Java requirements |
 | --- | --- |
-| 2.w.x to 3.y.z | Java 17+ |
+| 2.w.x to 4.y.z | Java 17+ |
 | 1.x.y | Java 11+ |
 
 ## Versioning Scheme
@@ -252,7 +254,7 @@ the version number with the version that you want to use.
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>rho-mu</artifactId>
-  <version>3.0.0</version>
+  <version>4.0.0</version>
 </dependency>
 ```
 

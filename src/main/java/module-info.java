@@ -109,7 +109,7 @@
  *       distributions, and Gaussian distributions.
  *   <li>Methods to generate streams of pairs of distinct integers, and streams of triples of
  *       distinct integers.
- *   <li>Methods for shuffling the elements of arrays.
+ *   <li>Methods for shuffling the elements of arrays and Lists.
  * </ul>
  *
  * <p>The <a href="https://github.com/cicirello/rho-mu" target=_top>source code repository</a> is
