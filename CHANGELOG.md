@@ -6,6 +6,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2024-05-14
 
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+### Other
+
+
+## [4.0.0] - 2024-05-14
+
 **BREAKING CHANGES: See Removed and Changed sections for details.**
 
 ### Added
@@ -32,16 +51,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Streams of random triples of distinct sorted integers, separated by at most a specified window (method sortedWindowedTriples)
 * Shuffler class, and shuffle methods in EnhancedRandomGenerator class, for efficiently randomizing the ordering of elements in arrays and Lists.
 
-### Changed
+### Changed (BREAKING)
+* Changed ZigguratGaussian to a package-access class (BREAKING CHANGE): Instead use corresponding methods of the RandomVariates class.
+
+### Changed (non-breaking)
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
 * Refactored and optimized RandomIndexer.nextWindowedIntPair methods.
 * Refactored and optimized RandomIndexer.nextWindowedIntTriple methods.
-* Changed ZigguratGaussian to a package-access class (BREAKING CHANGE).
-
-### Deprecated
 
 ### Removed
-* Removed PolarGaussian (BREAKING CHANGE).
+* Removed PolarGaussian (BREAKING): Instead use corresponding methods of the RandomVariates class.
 
 ### Fixed
 * Fixed potential finalizer vulnerability in class JacobiDiagonalization, identified by SpotBugs.
@@ -49,10 +68,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Dependencies
 * Bump org.cicirello:core from 2.5.0 to 2.7.0.
 * Retired publishing of a `jar-with-dependencies` (BREAKING CHANGE only if you were using the `jar-with-dependencies`).
-
-### CI/CD
-
-### Other
 
 
 ## [3.2.0] - 2024-03-29
