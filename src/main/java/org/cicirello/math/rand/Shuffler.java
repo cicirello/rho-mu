@@ -33,7 +33,8 @@ import java.util.random.RandomGenerator;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-@SuppressWarnings("PMD.GodClass")
+@SuppressWarnings(
+    "PMD.GodClass") // PMD is flagging as GodClass due to array.length (foreign data accesses)
 public final class Shuffler {
 
   /** Class of static utility methods, so instantiation is not allowed. */
