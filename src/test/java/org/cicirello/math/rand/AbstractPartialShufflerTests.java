@@ -26,6 +26,8 @@ package org.cicirello.math.rand;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.*;
 
 /** JUnit tests for Shuffler. */
@@ -53,7 +55,9 @@ public abstract class AbstractPartialShufflerTests {
 
     void shuffle(short[] array, int first, int last);
 
-    void shuffle(Object[] array, int first, int last);
+    <T> void shuffle(T[] array, int first, int last);
+
+    <T> void shuffle(List<T> list, int first, int last);
   }
 
   @Test
@@ -268,6 +272,64 @@ public abstract class AbstractPartialShufflerTests {
       for (int i = 0; i < MAX_TRIALS && caseCount < expectedCaseCount; i++) {
         Integer[] testCase = c.clone();
         gen.shuffle(testCase, 1, c.length - 1);
+        assertEquals(5, testCase[0]);
+        assertEquals(55, testCase[testCase.length - 1]);
+        for (int j = 1; j < c.length - 1; j++) {
+          int k = testCase[j] - 42;
+          if (!elementAtIndex[j - 1][k]) {
+            caseCount++;
+            elementAtIndex[j - 1][k] = true;
+          }
+        }
+        Arrays.sort(testCase);
+        assertArrayEquals(c, testCase);
+      }
+      assertEquals(expectedCaseCount, caseCount);
+    }
+  }
+
+  @Test
+  public final void testList() {
+    Integer[][] cases = {
+      {5, 55}, {5, 42, 55}, {5, 42, 43, 55}, {5, 42, 43, 44, 55}, {5, 42, 43, 44, 45, 55}
+    };
+    for (Integer[] c : cases) {
+      boolean[][] elementAtIndex = new boolean[c.length - 2][c.length - 2];
+      int expectedCaseCount = (c.length - 2) * (c.length - 2);
+      int caseCount = 0;
+      for (int i = 0; i < MAX_TRIALS && caseCount < expectedCaseCount; i++) {
+        Integer[] testCase = c.clone();
+        gen.shuffle(Arrays.asList(testCase), 1, c.length - 1);
+        assertEquals(5, testCase[0]);
+        assertEquals(55, testCase[testCase.length - 1]);
+        for (int j = 1; j < c.length - 1; j++) {
+          int k = testCase[j] - 42;
+          if (!elementAtIndex[j - 1][k]) {
+            caseCount++;
+            elementAtIndex[j - 1][k] = true;
+          }
+        }
+        Arrays.sort(testCase);
+        assertArrayEquals(c, testCase);
+      }
+      assertEquals(expectedCaseCount, caseCount);
+    }
+  }
+
+  @Test
+  public final void testLinkedList() {
+    Integer[][] cases = {
+      {5, 55}, {5, 42, 55}, {5, 42, 43, 55}, {5, 42, 43, 44, 55}, {5, 42, 43, 44, 45, 55}
+    };
+    for (Integer[] c : cases) {
+      boolean[][] elementAtIndex = new boolean[c.length - 2][c.length - 2];
+      int expectedCaseCount = (c.length - 2) * (c.length - 2);
+      int caseCount = 0;
+      for (int i = 0; i < MAX_TRIALS && caseCount < expectedCaseCount; i++) {
+        Integer[] testCase = c.clone();
+        LinkedList<Integer> list = new LinkedList<Integer>(Arrays.asList(testCase));
+        gen.shuffle(list, 1, c.length - 1);
+        testCase = list.toArray(testCase);
         assertEquals(5, testCase[0]);
         assertEquals(55, testCase[testCase.length - 1]);
         for (int j = 1; j < c.length - 1; j++) {

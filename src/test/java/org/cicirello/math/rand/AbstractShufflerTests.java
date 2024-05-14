@@ -26,6 +26,8 @@ package org.cicirello.math.rand;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.*;
 
 /** JUnit tests for Shuffler. */
@@ -53,7 +55,9 @@ public abstract class AbstractShufflerTests {
 
     void shuffle(short[] array);
 
-    void shuffle(Object[] array);
+    <T> void shuffle(T[] array);
+
+    <T> void shuffle(List<T> list);
   }
 
   @Test
@@ -234,6 +238,56 @@ public abstract class AbstractShufflerTests {
       for (int i = 0; i < MAX_TRIALS && caseCount < expectedCaseCount; i++) {
         Integer[] testCase = c.clone();
         gen.shuffle(testCase);
+        for (int j = 0; j < c.length; j++) {
+          int k = testCase[j] - 42;
+          if (!elementAtIndex[j][k]) {
+            caseCount++;
+            elementAtIndex[j][k] = true;
+          }
+        }
+        Arrays.sort(testCase);
+        assertArrayEquals(c, testCase);
+      }
+      assertEquals(expectedCaseCount, caseCount);
+    }
+  }
+
+  @Test
+  public final void testList() {
+    Integer[][] cases = {{}, {42}, {42, 43}, {42, 43, 44}, {42, 43, 44, 45}};
+    for (Integer[] c : cases) {
+      boolean[][] elementAtIndex = new boolean[c.length][c.length];
+      int expectedCaseCount = c.length * c.length;
+      int caseCount = 0;
+      for (int i = 0; i < MAX_TRIALS && caseCount < expectedCaseCount; i++) {
+        Integer[] testCase = c.clone();
+        gen.shuffle(Arrays.asList(testCase));
+        for (int j = 0; j < c.length; j++) {
+          int k = testCase[j] - 42;
+          if (!elementAtIndex[j][k]) {
+            caseCount++;
+            elementAtIndex[j][k] = true;
+          }
+        }
+        Arrays.sort(testCase);
+        assertArrayEquals(c, testCase);
+      }
+      assertEquals(expectedCaseCount, caseCount);
+    }
+  }
+
+  @Test
+  public final void testLinkedList() {
+    Integer[][] cases = {{}, {42}, {42, 43}, {42, 43, 44}, {42, 43, 44, 45}};
+    for (Integer[] c : cases) {
+      boolean[][] elementAtIndex = new boolean[c.length][c.length];
+      int expectedCaseCount = c.length * c.length;
+      int caseCount = 0;
+      for (int i = 0; i < MAX_TRIALS && caseCount < expectedCaseCount; i++) {
+        Integer[] testCase = c.clone();
+        LinkedList<Integer> list = new LinkedList<Integer>(Arrays.asList(testCase));
+        gen.shuffle(list);
+        testCase = list.toArray(testCase);
         for (int j = 0; j < c.length; j++) {
           int k = testCase[j] - 42;
           if (!elementAtIndex[j][k]) {

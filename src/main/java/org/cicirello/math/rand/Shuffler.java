@@ -24,6 +24,8 @@ package org.cicirello.math.rand;
 
 import static org.cicirello.util.SimpleSwapper.*;
 
+import java.util.List;
+import java.util.RandomAccess;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
@@ -468,8 +470,9 @@ public final class Shuffler {
    * and efficient (i.e., non-blocking), for use with threads.
    *
    * @param array the array to shuffle
+   * @param <T> type of array elements
    */
-  public static void shuffle(Object[] array) {
+  public static <T> void shuffle(T[] array) {
     shuffle(array, ThreadLocalRandom.current());
   }
 
@@ -479,8 +482,9 @@ public final class Shuffler {
    *
    * @param array the array to shuffle
    * @param gen the source of randomness
+   * @param <T> type of array elements
    */
-  public static void shuffle(Object[] array, RandomGenerator gen) {
+  public static <T> void shuffle(T[] array, RandomGenerator gen) {
     for (int bound = array.length;
         bound >= 2;
         swap(array, RandomIndexer.nextInt(bound, gen), --bound)) {}
@@ -496,10 +500,11 @@ public final class Shuffler {
    * @param array the array to shuffle
    * @param first the first element (inclusive) of the part of the array to shuffle
    * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param <T> type of array elements
    * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
    *     array.length
    */
-  public static void shuffle(Object[] array, int first, int last) {
+  public static <T> void shuffle(T[] array, int first, int last) {
     shuffle(array, first, last, ThreadLocalRandom.current());
   }
 
@@ -511,12 +516,93 @@ public final class Shuffler {
    * @param first the first element (inclusive) of the part of the array to shuffle
    * @param last the last element (exclusive) of the part of the array to shuffle
    * @param gen the source of randomness
+   * @param <T> type of array elements
    * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
    *     array.length
    */
-  public static void shuffle(Object[] array, int first, int last, RandomGenerator gen) {
+  public static <T> void shuffle(T[] array, int first, int last, RandomGenerator gen) {
     for (final int minBound = first + 2;
         last >= minBound;
         swap(array, RandomIndexer.nextInt(first, last, gen), --last)) {}
+  }
+
+  /**
+   * Randomizes the ordering of the elements of a List. All possible reorderings are equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param list the List to shuffle
+   * @param <T> type of List elements
+   */
+  public static <T> void shuffle(List<T> list) {
+    shuffle(list, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements of a List. All possible reorderings are equally likely.
+   *
+   * @param list the List to shuffle
+   * @param gen the source of randomness
+   * @param <T> type of List elements
+   */
+  public static <T> void shuffle(List<T> list, RandomGenerator gen) {
+    if (list instanceof RandomAccess) {
+      for (int bound = list.size();
+          bound >= 2;
+          swap(list, RandomIndexer.nextInt(bound, gen), --bound)) {}
+    } else {
+      Object[] array = list.toArray();
+      shuffle(array, gen);
+      list.clear();
+      for (int i = 0; i < array.length; i++) {
+        @SuppressWarnings("unchecked")
+        T element = (T) array[i];
+        list.add(element);
+      }
+    }
+  }
+
+  /**
+   * Randomizes the ordering of the elements of a portion of a List. All possible reorderings are
+   * equally likely.
+   *
+   * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
+   * and efficient (i.e., non-blocking), for use with threads.
+   *
+   * @param list the List to shuffle
+   * @param first the first element (inclusive) of the part of the List to shuffle
+   * @param last the last element (exclusive) of the part of the List to shuffle
+   * @param <T> type of List elements
+   */
+  public static <T> void shuffle(List<T> list, int first, int last) {
+    shuffle(list, first, last, ThreadLocalRandom.current());
+  }
+
+  /**
+   * Randomizes the ordering of the elements of a portion of a List. All possible reorderings are
+   * equally likely.
+   *
+   * @param list the List to shuffle
+   * @param first the first element (inclusive) of the part of the List to shuffle
+   * @param last the last element (exclusive) of the part of the List to shuffle
+   * @param gen the source of randomness
+   * @param <T> type of List elements
+   */
+  public static <T> void shuffle(List<T> list, int first, int last, RandomGenerator gen) {
+    if (list instanceof RandomAccess) {
+      for (final int minBound = first + 2;
+          last >= minBound;
+          swap(list, RandomIndexer.nextInt(first, last, gen), --last)) {}
+    } else {
+      Object[] array = list.toArray();
+      shuffle(array, first, last, gen);
+      list.clear();
+      for (int i = 0; i < array.length; i++) {
+        @SuppressWarnings("unchecked")
+        T element = (T) array[i];
+        list.add(element);
+      }
+    }
   }
 }

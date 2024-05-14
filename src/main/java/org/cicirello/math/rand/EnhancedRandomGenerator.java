@@ -22,6 +22,7 @@
  */
 package org.cicirello.math.rand;
 
+import java.util.List;
 import java.util.SplittableRandom;
 import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
@@ -1037,8 +1038,9 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * likely. <b>Enhanced Functionality.</b>
    *
    * @param array the array to shuffle
+   * @param <T> type of array elements
    */
-  public final void shuffle(Object[] array) {
+  public final <T> void shuffle(T[] array) {
     Shuffler.shuffle(array, generator);
   }
 
@@ -1049,11 +1051,35 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * @param array the array to shuffle
    * @param first the first element (inclusive) of the part of the array to shuffle
    * @param last the last element (exclusive) of the part of the array to shuffle
+   * @param <T> type of array elements
    * @throws ArrayIndexOutOfBoundsException if first is less than 0 or if last is greater than
    *     array.length
    */
-  public final void shuffle(Object[] array, int first, int last) {
+  public final <T> void shuffle(T[] array, int first, int last) {
     Shuffler.shuffle(array, first, last, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of a List. All possible reorderings are equally likely.
+   *
+   * @param list the List to shuffle
+   * @param <T> type of List elements
+   */
+  public final <T> void shuffle(List<T> list) {
+    Shuffler.shuffle(list, generator);
+  }
+
+  /**
+   * Randomizes the ordering of the elements of a portion of a List. All possible reorderings are
+   * equally likely.
+   *
+   * @param list the List to shuffle
+   * @param first the first element (inclusive) of the part of the List to shuffle
+   * @param last the last element (exclusive) of the part of the List to shuffle
+   * @param <T> type of List elements
+   */
+  public final <T> void shuffle(List<T> list, int first, int last) {
+    Shuffler.shuffle(list, first, last, generator);
   }
 
   /**

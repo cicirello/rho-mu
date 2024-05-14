@@ -25,6 +25,7 @@ package org.cicirello.math.rand;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
@@ -77,8 +78,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array) {
+            public <T> void shuffle(T[] array) {
               gen.shuffle(array);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list) {
+              gen.shuffle(list);
             }
           });
     }
@@ -130,8 +136,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array) {
+            public <T> void shuffle(T[] array) {
               gen.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list) {
+              gen.shuffle(list, 0, list.size());
             }
           });
     }
@@ -184,8 +195,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array, int first, int last) {
+            public <T> void shuffle(T[] array, int first, int last) {
               gen.shuffle(array, first, last);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list, int first, int last) {
+              gen.shuffle(list, first, last);
             }
           });
     }
@@ -236,8 +252,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array) {
+            public <T> void shuffle(T[] array) {
               Shuffler.shuffle(array, gen);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list) {
+              Shuffler.shuffle(list, gen);
             }
           });
     }
@@ -289,8 +310,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array) {
+            public <T> void shuffle(T[] array) {
               Shuffler.shuffle(array, 0, array.length, gen);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list) {
+              Shuffler.shuffle(list, 0, list.size(), gen);
             }
           });
     }
@@ -342,8 +368,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array, int first, int last) {
+            public <T> void shuffle(T[] array, int first, int last) {
               Shuffler.shuffle(array, first, last, gen);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list, int first, int last) {
+              Shuffler.shuffle(list, first, last, gen);
             }
           });
     }
@@ -392,8 +423,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array) {
+            public <T> void shuffle(T[] array) {
               Shuffler.shuffle(array);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list) {
+              Shuffler.shuffle(list);
             }
           });
     }
@@ -442,8 +478,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array) {
+            public <T> void shuffle(T[] array) {
               Shuffler.shuffle(array, 0, array.length);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list) {
+              Shuffler.shuffle(list, 0, list.size());
             }
           });
     }
@@ -493,8 +534,13 @@ public final class ShufflerTests {
             }
 
             @Override
-            public void shuffle(Object[] array, int first, int last) {
+            public <T> void shuffle(T[] array, int first, int last) {
               Shuffler.shuffle(array, first, last);
+            }
+
+            @Override
+            public <T> void shuffle(List<T> list, int first, int last) {
+              Shuffler.shuffle(list, first, last);
             }
           });
     }

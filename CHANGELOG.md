@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Streams of random triples of distinct sorted integers (method sortedTriples)
   * Streams of random triples of distinct integers, separated by at most a specified window (method windowedTriples)
   * Streams of random triples of distinct sorted integers, separated by at most a specified window (method sortedWindowedTriples)
-* Shuffler class, and shuffle methods in EnhancedRandomGenerator class, for efficiently randomizing the ordering of elements in arrays.
+* Shuffler class, and shuffle methods in EnhancedRandomGenerator class, for efficiently randomizing the ordering of elements in arrays and Lists.
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
