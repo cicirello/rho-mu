@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-05-10
+## [Unreleased] - 2024-05-14
 
 **BREAKING CHANGES: See Removed and Changed sections for details.**
 
@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Streams of random triples of distinct sorted integers (method sortedTriples)
   * Streams of random triples of distinct integers, separated by at most a specified window (method windowedTriples)
   * Streams of random triples of distinct sorted integers, separated by at most a specified window (method sortedWindowedTriples)
+* Shuffler class, and shuffle methods in EnhancedRandomGenerator class, for efficiently randomizing the ordering of elements in arrays and Lists.
 
 ### Changed
 * Refactored and optimized RandomIndexer.nextIntTriple methods.
@@ -46,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fixed potential finalizer vulnerability in class JacobiDiagonalization, identified by SpotBugs.
 
 ### Dependencies
-* Bump org.cicirello:core from 2.5.0 to 2.6.0.
+* Bump org.cicirello:core from 2.5.0 to 2.7.0.
 * Retired publishing of a `jar-with-dependencies` (BREAKING CHANGE only if you were using the `jar-with-dependencies`).
 
 ### CI/CD
