@@ -1458,6 +1458,18 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   }
 
   /**
+   * Return true if the implementation of the RandomGenerator (algorithm) that is wrapped by this
+   * EnhancedRandomGenerator has been marked for deprecation.
+   *
+   * @return true if the implementation of the RandomGenerator (algorithm) that is wrapped by this
+   *     EnhancedRandomGenerator has been marked for deprecation
+   */
+  @Override
+  public final boolean isDeprecated() {
+    return generator.isDeprecated();
+  }
+
+  /**
    * Returns an effectively unlimited stream of pseudorandom long values. <b>Delegates
    * implementation to the wrapped object.</b>
    *

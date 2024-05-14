@@ -30,6 +30,11 @@ import org.junit.jupiter.api.*;
 public class EnhancedRandomGeneratorTests {
 
   @Test
+  public void testIsDeprecated() {
+    assertFalse(new EnhancedRandomGenerator().isDeprecated());
+  }
+
+  @Test
   public void testNextBiasedInt() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator();
     assertEquals(0, erg.nextBiasedInt(1));
