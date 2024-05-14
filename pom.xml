@@ -6,7 +6,7 @@
  
 	<groupId>org.cicirello</groupId>
 	<artifactId>rho-mu</artifactId>
-	<version>3-SNAPSHOT</version>
+	<version>4-SNAPSHOT</version>
 	<packaging>jar</packaging>
   
 	<name>rho mu</name>
