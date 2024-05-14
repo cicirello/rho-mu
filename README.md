@@ -170,6 +170,9 @@ classDiagram
   link Statistics "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/stats/Statistics.html"
   link MatrixOps "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/MatrixOps.html"
   link JacobiDiagonalization "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/la/JacobiDiagonalization.html"
+  link IndexPair "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/IndexPair.html"
+  link IndexTriple "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/IndexTriple.html"
+  link Shuffler "https://rho-mu.cicirello.org/api/org.cicirello.rho_mu/org/cicirello/math/rand/Shuffler.html"
 ```
 
 ## Java Requirements
