@@ -115,10 +115,14 @@ public class TimeRandomPairs {
 
     URLClassLoader classLoader = (URLClassLoader) TimeRandomPairs.class.getClassLoader();
     StringBuilder classpath = new StringBuilder();
-    for (URL url : classLoader.getURLs())
+    for (URL url : classLoader.getURLs()) {
       classpath.append(url.getPath()).append(File.pathSeparator);
+    }
     System.setProperty("java.class.path", classpath.toString());
-    org.openjdk.jmh.Main.main(args);
+    String[] realArgs = new String[args.length + 1];
+    System.arraycopy(args, 0, realArgs, 0, args.length);
+    realArgs[args.length] = "TimeRandomPairs";
+    org.openjdk.jmh.Main.main(realArgs);
   }
 
   /** Prints copyright and license notices. */
