@@ -1,0 +1,839 @@
+
+Experiments comparing different algorithms for generating random pairs of distinct ints.
+Copyright (C) 2024 Vincent A. Cicirello
+This program comes with ABSOLUTELY NO WARRANTY.  This is free
+software, and you are welcome to redistribute it under certain
+conditions.  See the GNU General Public License for more
+details: https://www.gnu.org/licenses/gpl-3.0.html
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray
+# Parameters: (n = 16)
+
+# Run progress: 0.00% complete, ETA 00:40:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 17.372 ns/op
+# Warmup Iteration   2: 17.239 ns/op
+# Warmup Iteration   3: 13.608 ns/op
+# Warmup Iteration   4: 13.587 ns/op
+# Warmup Iteration   5: 13.603 ns/op
+Iteration   1: 13.582 ns/op
+Iteration   2: 13.599 ns/op
+Iteration   3: 13.596 ns/op
+Iteration   4: 13.598 ns/op
+Iteration   5: 13.597 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray":
+  13.594 ±(99.9%) 0.026 ns/op [Average]
+  (min, avg, max) = (13.582, 13.594, 13.599), stdev = 0.007
+  CI (99.9%): [13.568, 13.621] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray
+# Parameters: (n = 64)
+
+# Run progress: 4.17% complete, ETA 00:38:35
+# Fork: 1 of 1
+# Warmup Iteration   1: 16.173 ns/op
+# Warmup Iteration   2: 16.307 ns/op
+# Warmup Iteration   3: 13.135 ns/op
+# Warmup Iteration   4: 13.146 ns/op
+# Warmup Iteration   5: 13.132 ns/op
+Iteration   1: 13.201 ns/op
+Iteration   2: 13.138 ns/op
+Iteration   3: 13.132 ns/op
+Iteration   4: 13.137 ns/op
+Iteration   5: 13.129 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray":
+  13.148 ±(99.9%) 0.117 ns/op [Average]
+  (min, avg, max) = (13.129, 13.148, 13.201), stdev = 0.030
+  CI (99.9%): [13.031, 13.265] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray
+# Parameters: (n = 256)
+
+# Run progress: 8.33% complete, ETA 00:36:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 16.150 ns/op
+# Warmup Iteration   2: 14.190 ns/op
+# Warmup Iteration   3: 12.915 ns/op
+# Warmup Iteration   4: 12.970 ns/op
+# Warmup Iteration   5: 12.902 ns/op
+Iteration   1: 12.945 ns/op
+Iteration   2: 12.910 ns/op
+Iteration   3: 12.943 ns/op
+Iteration   4: 12.909 ns/op
+Iteration   5: 12.901 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray":
+  12.922 ±(99.9%) 0.080 ns/op [Average]
+  (min, avg, max) = (12.901, 12.922, 12.945), stdev = 0.021
+  CI (99.9%): [12.842, 13.002] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray
+# Parameters: (n = 1024)
+
+# Run progress: 12.50% complete, ETA 00:35:13
+# Fork: 1 of 1
+# Warmup Iteration   1: 16.155 ns/op
+# Warmup Iteration   2: 16.384 ns/op
+# Warmup Iteration   3: 12.941 ns/op
+# Warmup Iteration   4: 12.935 ns/op
+# Warmup Iteration   5: 12.938 ns/op
+Iteration   1: 12.936 ns/op
+Iteration   2: 12.957 ns/op
+Iteration   3: 12.943 ns/op
+Iteration   4: 12.945 ns/op
+Iteration   5: 12.936 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairPreconstructedArray":
+  12.943 ±(99.9%) 0.033 ns/op [Average]
+  (min, avg, max) = (12.936, 12.943, 12.957), stdev = 0.009
+  CI (99.9%): [12.910, 12.976] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray
+# Parameters: (n = 16)
+
+# Run progress: 16.67% complete, ETA 00:33:32
+# Fork: 1 of 1
+# Warmup Iteration   1: 19.762 ns/op
+# Warmup Iteration   2: 20.939 ns/op
+# Warmup Iteration   3: 16.101 ns/op
+# Warmup Iteration   4: 16.108 ns/op
+# Warmup Iteration   5: 16.110 ns/op
+Iteration   1: 16.119 ns/op
+Iteration   2: 16.109 ns/op
+Iteration   3: 16.111 ns/op
+Iteration   4: 16.103 ns/op
+Iteration   5: 16.109 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray":
+  16.110 ±(99.9%) 0.021 ns/op [Average]
+  (min, avg, max) = (16.103, 16.110, 16.119), stdev = 0.006
+  CI (99.9%): [16.089, 16.131] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray
+# Parameters: (n = 64)
+
+# Run progress: 20.83% complete, ETA 00:31:52
+# Fork: 1 of 1
+# Warmup Iteration   1: 20.230 ns/op
+# Warmup Iteration   2: 20.513 ns/op
+# Warmup Iteration   3: 15.679 ns/op
+# Warmup Iteration   4: 15.613 ns/op
+# Warmup Iteration   5: 15.604 ns/op
+Iteration   1: 15.611 ns/op
+Iteration   2: 15.788 ns/op
+Iteration   3: 15.582 ns/op
+Iteration   4: 15.585 ns/op
+Iteration   5: 15.594 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray":
+  15.632 ±(99.9%) 0.339 ns/op [Average]
+  (min, avg, max) = (15.582, 15.632, 15.788), stdev = 0.088
+  CI (99.9%): [15.293, 15.971] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray
+# Parameters: (n = 256)
+
+# Run progress: 25.00% complete, ETA 00:30:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 20.263 ns/op
+# Warmup Iteration   2: 20.572 ns/op
+# Warmup Iteration   3: 15.524 ns/op
+# Warmup Iteration   4: 15.518 ns/op
+# Warmup Iteration   5: 15.561 ns/op
+Iteration   1: 15.528 ns/op
+Iteration   2: 15.561 ns/op
+Iteration   3: 15.521 ns/op
+Iteration   4: 15.590 ns/op
+Iteration   5: 15.514 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray":
+  15.543 ±(99.9%) 0.124 ns/op [Average]
+  (min, avg, max) = (15.514, 15.543, 15.590), stdev = 0.032
+  CI (99.9%): [15.419, 15.667] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray
+# Parameters: (n = 1024)
+
+# Run progress: 29.17% complete, ETA 00:28:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 20.280 ns/op
+# Warmup Iteration   2: 20.492 ns/op
+# Warmup Iteration   3: 15.530 ns/op
+# Warmup Iteration   4: 15.545 ns/op
+# Warmup Iteration   5: 15.543 ns/op
+Iteration   1: 15.718 ns/op
+Iteration   2: 15.391 ns/op
+Iteration   3: 15.396 ns/op
+Iteration   4: 15.390 ns/op
+Iteration   5: 15.403 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningArray":
+  15.460 ±(99.9%) 0.557 ns/op [Average]
+  (min, avg, max) = (15.390, 15.460, 15.718), stdev = 0.145
+  CI (99.9%): [14.903, 16.016] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair
+# Parameters: (n = 16)
+
+# Run progress: 33.33% complete, ETA 00:26:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 18.608 ns/op
+# Warmup Iteration   2: 19.074 ns/op
+# Warmup Iteration   3: 15.518 ns/op
+# Warmup Iteration   4: 15.506 ns/op
+# Warmup Iteration   5: 15.501 ns/op
+Iteration   1: 15.519 ns/op
+Iteration   2: 15.580 ns/op
+Iteration   3: 15.595 ns/op
+Iteration   4: 15.557 ns/op
+Iteration   5: 15.569 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair":
+  15.564 ±(99.9%) 0.111 ns/op [Average]
+  (min, avg, max) = (15.519, 15.564, 15.595), stdev = 0.029
+  CI (99.9%): [15.452, 15.675] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair
+# Parameters: (n = 64)
+
+# Run progress: 37.50% complete, ETA 00:25:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 18.582 ns/op
+# Warmup Iteration   2: 18.837 ns/op
+# Warmup Iteration   3: 15.032 ns/op
+# Warmup Iteration   4: 15.035 ns/op
+# Warmup Iteration   5: 15.022 ns/op
+Iteration   1: 15.088 ns/op
+Iteration   2: 15.054 ns/op
+Iteration   3: 15.028 ns/op
+Iteration   4: 15.021 ns/op
+Iteration   5: 15.014 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair":
+  15.041 ±(99.9%) 0.117 ns/op [Average]
+  (min, avg, max) = (15.014, 15.041, 15.088), stdev = 0.030
+  CI (99.9%): [14.924, 15.158] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair
+# Parameters: (n = 256)
+
+# Run progress: 41.67% complete, ETA 00:23:28
+# Fork: 1 of 1
+# Warmup Iteration   1: 18.508 ns/op
+# Warmup Iteration   2: 18.728 ns/op
+# Warmup Iteration   3: 15.165 ns/op
+# Warmup Iteration   4: 15.171 ns/op
+# Warmup Iteration   5: 15.178 ns/op
+Iteration   1: 15.180 ns/op
+Iteration   2: 15.190 ns/op
+Iteration   3: 15.164 ns/op
+Iteration   4: 15.172 ns/op
+Iteration   5: 15.173 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair":
+  15.176 ±(99.9%) 0.038 ns/op [Average]
+  (min, avg, max) = (15.164, 15.176, 15.190), stdev = 0.010
+  CI (99.9%): [15.138, 15.214] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair
+# Parameters: (n = 1024)
+
+# Run progress: 45.83% complete, ETA 00:21:48
+# Fork: 1 of 1
+# Warmup Iteration   1: 18.691 ns/op
+# Warmup Iteration   2: 18.837 ns/op
+# Warmup Iteration   3: 14.895 ns/op
+# Warmup Iteration   4: 14.883 ns/op
+# Warmup Iteration   5: 14.891 ns/op
+Iteration   1: 14.922 ns/op
+Iteration   2: 14.907 ns/op
+Iteration   3: 14.899 ns/op
+Iteration   4: 14.904 ns/op
+Iteration   5: 14.882 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.nextIntPairReturningIndexPair":
+  14.903 ±(99.9%) 0.056 ns/op [Average]
+  (min, avg, max) = (14.882, 14.903, 14.922), stdev = 0.015
+  CI (99.9%): [14.846, 14.959] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion
+# Parameters: (n = 16)
+
+# Run progress: 50.00% complete, ETA 00:20:07
+# Fork: 1 of 1
+# Warmup Iteration   1: 28.862 ns/op
+# Warmup Iteration   2: 30.755 ns/op
+# Warmup Iteration   3: 24.509 ns/op
+# Warmup Iteration   4: 24.517 ns/op
+# Warmup Iteration   5: 24.507 ns/op
+Iteration   1: 25.086 ns/op
+Iteration   2: 24.560 ns/op
+Iteration   3: 24.520 ns/op
+Iteration   4: 24.539 ns/op
+Iteration   5: 24.553 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion":
+  24.651 ±(99.9%) 0.938 ns/op [Average]
+  (min, avg, max) = (24.520, 24.651, 25.086), stdev = 0.244
+  CI (99.9%): [23.713, 25.590] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion
+# Parameters: (n = 64)
+
+# Run progress: 54.17% complete, ETA 00:18:27
+# Fork: 1 of 1
+# Warmup Iteration   1: 30.521 ns/op
+# Warmup Iteration   2: 30.482 ns/op
+# Warmup Iteration   3: 23.882 ns/op
+# Warmup Iteration   4: 23.895 ns/op
+# Warmup Iteration   5: 23.941 ns/op
+Iteration   1: 23.668 ns/op
+Iteration   2: 23.874 ns/op
+Iteration   3: 23.657 ns/op
+Iteration   4: 23.862 ns/op
+Iteration   5: 24.131 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion":
+  23.838 ±(99.9%) 0.744 ns/op [Average]
+  (min, avg, max) = (23.657, 23.838, 24.131), stdev = 0.193
+  CI (99.9%): [23.095, 24.582] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion
+# Parameters: (n = 256)
+
+# Run progress: 58.33% complete, ETA 00:16:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 31.012 ns/op
+# Warmup Iteration   2: 30.734 ns/op
+# Warmup Iteration   3: 23.667 ns/op
+# Warmup Iteration   4: 23.664 ns/op
+# Warmup Iteration   5: 23.660 ns/op
+Iteration   1: 23.666 ns/op
+Iteration   2: 23.757 ns/op
+Iteration   3: 23.690 ns/op
+Iteration   4: 23.607 ns/op
+Iteration   5: 23.670 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion":
+  23.678 ±(99.9%) 0.208 ns/op [Average]
+  (min, avg, max) = (23.607, 23.678, 23.757), stdev = 0.054
+  CI (99.9%): [23.470, 23.886] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion
+# Parameters: (n = 1024)
+
+# Run progress: 62.50% complete, ETA 00:15:05
+# Fork: 1 of 1
+# Warmup Iteration   1: 30.829 ns/op
+# Warmup Iteration   2: 30.868 ns/op
+# Warmup Iteration   3: 31.206 ns/op
+# Warmup Iteration   4: 31.325 ns/op
+# Warmup Iteration   5: 31.205 ns/op
+Iteration   1: 31.266 ns/op
+Iteration   2: 31.280 ns/op
+Iteration   3: 31.216 ns/op
+Iteration   4: 31.228 ns/op
+Iteration   5: 31.198 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleInsertion":
+  31.238 ±(99.9%) 0.133 ns/op [Average]
+  (min, avg, max) = (31.198, 31.238, 31.280), stdev = 0.034
+  CI (99.9%): [31.105, 31.370] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool
+# Parameters: (n = 16)
+
+# Run progress: 66.67% complete, ETA 00:13:25
+# Fork: 1 of 1
+# Warmup Iteration   1: 51.761 ns/op
+# Warmup Iteration   2: 63.280 ns/op
+# Warmup Iteration   3: 55.046 ns/op
+# Warmup Iteration   4: 55.219 ns/op
+# Warmup Iteration   5: 55.116 ns/op
+Iteration   1: 55.078 ns/op
+Iteration   2: 55.049 ns/op
+Iteration   3: 55.217 ns/op
+Iteration   4: 55.016 ns/op
+Iteration   5: 55.102 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool":
+  55.092 ±(99.9%) 0.294 ns/op [Average]
+  (min, avg, max) = (55.016, 55.092, 55.217), stdev = 0.076
+  CI (99.9%): [54.799, 55.386] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool
+# Parameters: (n = 64)
+
+# Run progress: 70.83% complete, ETA 00:11:44
+# Fork: 1 of 1
+# Warmup Iteration   1: 85.447 ns/op
+# Warmup Iteration   2: 85.965 ns/op
+# Warmup Iteration   3: 89.854 ns/op
+# Warmup Iteration   4: 89.752 ns/op
+# Warmup Iteration   5: 90.235 ns/op
+Iteration   1: 89.926 ns/op
+Iteration   2: 89.793 ns/op
+Iteration   3: 89.848 ns/op
+Iteration   4: 89.821 ns/op
+Iteration   5: 89.820 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool":
+  89.842 ±(99.9%) 0.196 ns/op [Average]
+  (min, avg, max) = (89.793, 89.842, 89.926), stdev = 0.051
+  CI (99.9%): [89.646, 90.037] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool
+# Parameters: (n = 256)
+
+# Run progress: 75.00% complete, ETA 00:10:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 293.705 ns/op
+# Warmup Iteration   2: 298.524 ns/op
+# Warmup Iteration   3: 299.864 ns/op
+# Warmup Iteration   4: 299.853 ns/op
+# Warmup Iteration   5: 299.647 ns/op
+Iteration   1: 300.385 ns/op
+Iteration   2: 300.625 ns/op
+Iteration   3: 300.509 ns/op
+Iteration   4: 299.800 ns/op
+Iteration   5: 299.652 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool":
+  300.194 ±(99.9%) 1.691 ns/op [Average]
+  (min, avg, max) = (299.652, 300.194, 300.625), stdev = 0.439
+  CI (99.9%): [298.504, 301.885] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool
+# Parameters: (n = 1024)
+
+# Run progress: 79.17% complete, ETA 00:08:23
+# Fork: 1 of 1
+# Warmup Iteration   1: 1193.882 ns/op
+# Warmup Iteration   2: 1213.235 ns/op
+# Warmup Iteration   3: 1208.026 ns/op
+# Warmup Iteration   4: 1208.388 ns/op
+# Warmup Iteration   5: 1213.512 ns/op
+Iteration   1: 1208.765 ns/op
+Iteration   2: 1207.583 ns/op
+Iteration   3: 1214.411 ns/op
+Iteration   4: 1209.111 ns/op
+Iteration   5: 1209.338 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.samplePool":
+  1209.842 ±(99.9%) 10.175 ns/op [Average]
+  (min, avg, max) = (1207.583, 1209.842, 1214.411), stdev = 2.642
+  CI (99.9%): [1199.667, 1220.016] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir
+# Parameters: (n = 16)
+
+# Run progress: 83.33% complete, ETA 00:06:42
+# Fork: 1 of 1
+# Warmup Iteration   1: 148.602 ns/op
+# Warmup Iteration   2: 149.348 ns/op
+# Warmup Iteration   3: 177.603 ns/op
+# Warmup Iteration   4: 178.305 ns/op
+# Warmup Iteration   5: 177.632 ns/op
+Iteration   1: 177.598 ns/op
+Iteration   2: 177.558 ns/op
+Iteration   3: 177.523 ns/op
+Iteration   4: 177.514 ns/op
+Iteration   5: 177.541 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir":
+  177.547 ±(99.9%) 0.127 ns/op [Average]
+  (min, avg, max) = (177.514, 177.547, 177.598), stdev = 0.033
+  CI (99.9%): [177.420, 177.674] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir
+# Parameters: (n = 64)
+
+# Run progress: 87.50% complete, ETA 00:05:01
+# Fork: 1 of 1
+# Warmup Iteration   1: 486.549 ns/op
+# Warmup Iteration   2: 486.272 ns/op
+# Warmup Iteration   3: 632.219 ns/op
+# Warmup Iteration   4: 632.601 ns/op
+# Warmup Iteration   5: 632.916 ns/op
+Iteration   1: 633.869 ns/op
+Iteration   2: 632.334 ns/op
+Iteration   3: 632.559 ns/op
+Iteration   4: 635.441 ns/op
+Iteration   5: 632.036 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir":
+  633.248 ±(99.9%) 5.437 ns/op [Average]
+  (min, avg, max) = (632.036, 633.248, 635.441), stdev = 1.412
+  CI (99.9%): [627.811, 638.685] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir
+# Parameters: (n = 256)
+
+# Run progress: 91.67% complete, ETA 00:03:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 1567.378 ns/op
+# Warmup Iteration   2: 1522.210 ns/op
+# Warmup Iteration   3: 2082.029 ns/op
+# Warmup Iteration   4: 2081.905 ns/op
+# Warmup Iteration   5: 2080.655 ns/op
+Iteration   1: 2080.892 ns/op
+Iteration   2: 2081.007 ns/op
+Iteration   3: 2081.354 ns/op
+Iteration   4: 2081.766 ns/op
+Iteration   5: 2081.760 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir":
+  2081.356 ±(99.9%) 1.574 ns/op [Average]
+  (min, avg, max) = (2080.892, 2081.356, 2081.766), stdev = 0.409
+  CI (99.9%): [2079.782, 2082.930] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.2, OpenJDK 64-Bit Server VM, 17.0.2+8
+# VM invoker: D:\InstalledPrograms\Adoptium\jdk-17.0.2.8-hotspot\bin\java.exe
+# VM options: -Dclassworlds.conf=D:\DevTools\apache-maven-3.8.5\bin\m2.conf -Dmaven.home=D:\DevTools\apache-maven-3.8.5 -Dlibrary.jansi.path=D:\DevTools\apache-maven-3.8.5\lib\jansi-native -Dmaven.multiModuleProjectDirectory=D:\GitHub-repos\rho-mu\examples
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir
+# Parameters: (n = 1024)
+
+# Run progress: 95.83% complete, ETA 00:01:40
+# Fork: 1 of 1
+# Warmup Iteration   1: 5990.431 ns/op
+# Warmup Iteration   2: 5818.753 ns/op
+# Warmup Iteration   3: 7974.979 ns/op
+# Warmup Iteration   4: 7932.513 ns/op
+# Warmup Iteration   5: 7928.704 ns/op
+Iteration   1: 7929.281 ns/op
+Iteration   2: 7924.568 ns/op
+Iteration   3: 7922.038 ns/op
+Iteration   4: 7922.738 ns/op
+Iteration   5: 7960.135 ns/op
+
+
+Result "org.cicirello.examples.rho_mu.TimeRandomPairs.sampleReservoir":
+  7931.752 ±(99.9%) 62.058 ns/op [Average]
+  (min, avg, max) = (7922.038, 7931.752, 7960.135), stdev = 16.116
+  CI (99.9%): [7869.694, 7993.810] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:40:15
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                        (n)  Mode  Cnt     Score    Error  Units
+TimeRandomPairs.nextIntPairPreconstructedArray    16  avgt    5    13.594 ±  0.026  ns/op
+TimeRandomPairs.nextIntPairPreconstructedArray    64  avgt    5    13.148 ±  0.117  ns/op
+TimeRandomPairs.nextIntPairPreconstructedArray   256  avgt    5    12.922 ±  0.080  ns/op
+TimeRandomPairs.nextIntPairPreconstructedArray  1024  avgt    5    12.943 ±  0.033  ns/op
+TimeRandomPairs.nextIntPairReturningArray         16  avgt    5    16.110 ±  0.021  ns/op
+TimeRandomPairs.nextIntPairReturningArray         64  avgt    5    15.632 ±  0.339  ns/op
+TimeRandomPairs.nextIntPairReturningArray        256  avgt    5    15.543 ±  0.124  ns/op
+TimeRandomPairs.nextIntPairReturningArray       1024  avgt    5    15.460 ±  0.557  ns/op
+TimeRandomPairs.nextIntPairReturningIndexPair     16  avgt    5    15.564 ±  0.111  ns/op
+TimeRandomPairs.nextIntPairReturningIndexPair     64  avgt    5    15.041 ±  0.117  ns/op
+TimeRandomPairs.nextIntPairReturningIndexPair    256  avgt    5    15.176 ±  0.038  ns/op
+TimeRandomPairs.nextIntPairReturningIndexPair   1024  avgt    5    14.903 ±  0.056  ns/op
+TimeRandomPairs.sampleInsertion                   16  avgt    5    24.651 ±  0.938  ns/op
+TimeRandomPairs.sampleInsertion                   64  avgt    5    23.838 ±  0.744  ns/op
+TimeRandomPairs.sampleInsertion                  256  avgt    5    23.678 ±  0.208  ns/op
+TimeRandomPairs.sampleInsertion                 1024  avgt    5    31.238 ±  0.133  ns/op
+TimeRandomPairs.samplePool                        16  avgt    5    55.092 ±  0.294  ns/op
+TimeRandomPairs.samplePool                        64  avgt    5    89.842 ±  0.196  ns/op
+TimeRandomPairs.samplePool                       256  avgt    5   300.194 ±  1.691  ns/op
+TimeRandomPairs.samplePool                      1024  avgt    5  1209.842 ± 10.175  ns/op
+TimeRandomPairs.sampleReservoir                   16  avgt    5   177.547 ±  0.127  ns/op
+TimeRandomPairs.sampleReservoir                   64  avgt    5   633.248 ±  5.437  ns/op
+TimeRandomPairs.sampleReservoir                  256  avgt    5  2081.356 ±  1.574  ns/op
+TimeRandomPairs.sampleReservoir                 1024  avgt    5  7931.752 ± 62.058  ns/op
