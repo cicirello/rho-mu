@@ -1,10 +1,10 @@
 # Directory of Example Programs for &rho;&mu; Usage
 
 This directory contains programs demonstrating the usage of some of
-the functionality of the &rho;&mu; library. A couple of the example
-programs also demonstrate the speed advantage over the Java API's
-builtin methods, with output from my runs available in the [data](data)
-subdirectory.
+the functionality of the &rho;&mu; library. A couple of the programs 
+implement experiments with the algorithms of the library, or 
+demonstrate the speed advantage over the Java API's builtin methods, 
+with output from my runs available in the [data](data) subdirectory.
 
 ## Building the Examples
 
@@ -98,3 +98,25 @@ Results on your system may differ due to differences in CPU, OS, etc. Also note 
 are not directly comparable to those of the prior example because this example required timing a
 much larger number of samples to get sufficiently measurable times (due to how much faster `nextBiasedInt(bound)` is).
 The details of my test system are found in [data/system-stats.txt](data/system-stats.txt).
+
+### Experiments Sampling Pairs and Triples of Distinct Integers
+
+The library includes methods for sampling pairs and triples of distinct integers. The algorithms
+used for this are described in the following report:
+
+> Vincent A. Cicirello. 2024. [Algorithms for Generating Small Random Samples](https://reports.cicirello.org/24/008/). Technical Report ALG-24-008, Cicirello.org, May 2024. [[PDF]](https://reports.cicirello.org/24/008/ALG-24-008.pdf)
+
+The programs to recreate the experiments from the above report can be executed with the following commands:
+
+```Shell
+mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimeRandomPairs
+mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimeRandomTriples
+mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimeRandomCombinations
+```
+
+The above programs utilize the Java Microbenchmarking Harness (JMH). The data from my runs
+are available in the repository at: [data/sample-2-and-3](data/sample-2-and-3). I used 
+version 4.0.0 of the library at the time that I ran these experiments. Note that as
+new versions are released I update the version of rho-mu used by the examples package.
+Thus, your results may vary if you use a different version of rho-mu.
+
