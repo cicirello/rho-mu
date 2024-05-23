@@ -458,7 +458,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * Generates a random sample of 2 integers, without replacement, from the set of integers in the
    * interval [0, n). All n choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the pair that is generated. If result is null or if
@@ -474,7 +479,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * Generates a random sample of 2 integers, without replacement, from the set of integers in the
    * interval [0, n). All n choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A pair of randomly chosen integers from the interval [0, n).
@@ -488,7 +498,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * Generates a random sample of 3 integers, without replacement, from the set of integers in the
    * interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the triple that is generated. If result is null or if
@@ -504,7 +519,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * Generates a random sample of 3 integers, without replacement, from the set of integers in the
    * interval [0, n). All n choose 3 combinations are equally likely. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A triple of randomly chosen integers from the interval [0, n).
@@ -519,7 +539,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * interval [0, n). The result is sorted with the minimum first followed by the maximum. All n
    * choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the pair that is generated. If result is null or if
@@ -536,7 +561,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * the interval [0, n). The pair is sorted such that i is the minimum and j is the maximum. All n
    * choose 2 combinations are equally likely. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A pair of randomly chosen integers from the interval [0, n).
@@ -551,7 +581,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
    * increasing order. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the triple that is generated. If result is null or if
@@ -568,7 +603,12 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * interval [0, n). All n choose 3 combinations are equally likely. The result is sorted in
    * increasing order. <b>Enhanced Functionality.</b>
    *
-   * <p>The runtime is O(1).
+   * <p>The runtime of this method is O(1), and it uses an algorithm described in:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
+   * Generating Small Random Samples. <a
+   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
+   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A triple of randomly chosen integers from the interval [0, n).
