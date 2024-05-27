@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -29,9 +29,9 @@ import java.util.stream.Stream;
 /**
  * An EnhancedSplittableGenerator is used to wrap an object of any class that implements {@link
  * RandomGenerator.SplittableGenerator} for the purpose of adding all of the functionality of the
- * {@link RandomIndexer} and {@link RandomVariates}. See the superclass {@link
- * EnhancedRandomGenerator} for documentation of the enhanced functionality that is added to the
- * wrapped object.
+ * {@link RandomIndexer}, {@link RandomSampler}, and {@link RandomVariates}. See the superclass
+ * {@link EnhancedRandomGenerator} for documentation of the enhanced functionality that is added to
+ * the wrapped object.
  *
  * <p>The methods of the {@link RandomGenerator.SplittableGenerator} interface, such as {@link
  * #splits}, that return streams of RandomGenerator.SplittableGenerator are implemented to return
@@ -44,7 +44,7 @@ import java.util.stream.Stream;
  * @author <a href=https://www.cicirello.org/ target=_top>Vincent A. Cicirello</a>, <a
  *     href=https://www.cicirello.org/ target=_top>https://www.cicirello.org/</a>
  */
-public class EnhancedSplittableGenerator extends EnhancedStreamableGenerator
+public final class EnhancedSplittableGenerator extends EnhancedStreamableGenerator
     implements RandomGenerator.SplittableGenerator {
 
   private final RandomGenerator.SplittableGenerator generator;
@@ -262,5 +262,25 @@ public class EnhancedSplittableGenerator extends EnhancedStreamableGenerator
   public final Stream<RandomGenerator.SplittableGenerator> splits(
       RandomGenerator.SplittableGenerator source) {
     return generator.splits(source).map(gen -> new EnhancedSplittableGenerator(gen));
+  }
+
+  @Override
+  public final Stream<EnhancedRandomGenerator> erngs() {
+    return this.esplits().map(x -> x);
+  }
+
+  @Override
+  public final Stream<EnhancedRandomGenerator> erngs(long streamSize) {
+    return this.esplits(streamSize).map(x -> x);
+  }
+
+  @Override
+  public final Stream<RandomGenerator> rngs() {
+    return this.splits().map(x -> x);
+  }
+
+  @Override
+  public final Stream<RandomGenerator> rngs(long streamSize) {
+    return this.splits(streamSize).map(x -> x);
   }
 }

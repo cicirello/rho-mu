@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -131,6 +131,74 @@ public class EnhancedJumpableGeneratorTests {
     }
     final Counter c = new Counter();
     esg.ejumps(5)
+        .forEach(
+            gen -> {
+              // calls a method added by the EnhancedRandomGenerator class
+              gen.nextCauchy(1.0);
+              c.count++;
+            });
+    assertEquals(5, c.count);
+  }
+
+  @Test
+  public void testUnlimitedStream_rngs() {
+    EnhancedJumpableGenerator esg = EnhancedJumpableGenerator.of(jumpableAlgorithmName);
+    class Counter {
+      int count;
+    }
+    final Counter c = new Counter();
+    esg.rngs()
+        .limit(10)
+        .forEach(
+            gen -> {
+              assertTrue(gen instanceof EnhancedRandomGenerator);
+              c.count++;
+            });
+    assertEquals(10, c.count);
+  }
+
+  @Test
+  public void testLimitedStream_rngs() {
+    EnhancedJumpableGenerator esg = EnhancedJumpableGenerator.of(jumpableAlgorithmName);
+    class Counter {
+      int count;
+    }
+    final Counter c = new Counter();
+    esg.rngs(5)
+        .forEach(
+            gen -> {
+              assertTrue(gen instanceof EnhancedRandomGenerator);
+              c.count++;
+            });
+    assertEquals(5, c.count);
+  }
+
+  @Test
+  public void testUnlimitedStreamE_erngs() {
+    EnhancedJumpableGenerator esg = EnhancedJumpableGenerator.of(jumpableAlgorithmName);
+    class Counter {
+      int count;
+    }
+    final Counter c = new Counter();
+    esg.erngs()
+        .limit(10)
+        .forEach(
+            gen -> {
+              // calls a method added by the EnhancedRandomGenerator class
+              gen.nextCauchy(1.0);
+              c.count++;
+            });
+    assertEquals(10, c.count);
+  }
+
+  @Test
+  public void testLimitedStreamE_erngs() {
+    EnhancedJumpableGenerator esg = EnhancedJumpableGenerator.of(jumpableAlgorithmName);
+    class Counter {
+      int count;
+    }
+    final Counter c = new Counter();
+    esg.erngs(5)
         .forEach(
             gen -> {
               // calls a method added by the EnhancedRandomGenerator class

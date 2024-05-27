@@ -29,9 +29,9 @@ import java.util.stream.Stream;
 /**
  * An EnhancedStreamableGenerator is used to wrap an object of any class that implements {@link
  * RandomGenerator.StreamableGenerator} for the purpose of adding all of the functionality of the
- * {@link RandomIndexer} and {@link RandomVariates}. See the superclass {@link
- * EnhancedRandomGenerator} for documentation of the enhanced functionality that is added to the
- * wrapped object.
+ * {@link RandomIndexer}, {@link RandomSampler}, and {@link RandomVariates}. See the superclass
+ * {@link EnhancedRandomGenerator} for documentation of the enhanced functionality that is added to
+ * the wrapped object.
  *
  * <p>The methods of the {@link RandomGenerator.StreamableGenerator} interface, such as {@link
  * #rngs}, that return streams of RandomGenerator are implemented to return streams of
@@ -121,7 +121,7 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator
    *
    * @return a stream of EnhancedRandomGenerator objects
    */
-  public final Stream<EnhancedRandomGenerator> erngs() {
+  public Stream<EnhancedRandomGenerator> erngs() {
     return generator.rngs().map(gen -> new EnhancedRandomGenerator(gen));
   }
 
@@ -135,7 +135,7 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator
    * @param streamSize the number of EnhancedRandomGenerator objects in the stream
    * @return a stream of EnhancedRandomGenerator objects
    */
-  public final Stream<EnhancedRandomGenerator> erngs(long streamSize) {
+  public Stream<EnhancedRandomGenerator> erngs(long streamSize) {
     return generator.rngs(streamSize).map(gen -> new EnhancedRandomGenerator(gen));
   }
 
@@ -152,7 +152,7 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator
    * @return a stream of EnhancedRandomGenerator objects
    */
   @Override
-  public final Stream<RandomGenerator> rngs() {
+  public Stream<RandomGenerator> rngs() {
     return generator.rngs().map(gen -> new EnhancedRandomGenerator(gen));
   }
 
@@ -170,7 +170,7 @@ public class EnhancedStreamableGenerator extends EnhancedRandomGenerator
    * @return a stream of EnhancedRandomGenerator objects
    */
   @Override
-  public final Stream<RandomGenerator> rngs(long streamSize) {
+  public Stream<RandomGenerator> rngs(long streamSize) {
     return generator.rngs(streamSize).map(gen -> new EnhancedRandomGenerator(gen));
   }
 }

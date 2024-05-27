@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -28,9 +28,9 @@ import java.util.stream.Stream;
 /**
  * An EnhancedArbitrarilyJumpableGenerator is used to wrap an object of any class that implements
  * {@link RandomGenerator.ArbitrarilyJumpableGenerator} for the purpose of adding all of the
- * functionality of the {@link RandomIndexer} and {@link RandomVariates}. See the superclass {@link
- * EnhancedRandomGenerator} for documentation of the enhanced functionality that is added to the
- * wrapped object.
+ * functionality of the {@link RandomIndexer}, {@link RandomSampler}, and {@link RandomVariates}.
+ * See the superclass {@link EnhancedRandomGenerator} for documentation of the enhanced
+ * functionality that is added to the wrapped object.
  *
  * <p>The methods of the {@link RandomGenerator.ArbitrarilyJumpableGenerator} interface, such as
  * {@link #jumps(double)}, that return streams of RandomGenerator.ArbitrarilyJumpableGenerator are

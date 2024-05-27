@@ -1101,6 +1101,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Randomizes the ordering of the elements of a List. All possible reorderings are equally likely.
+   * <b>Enhanced Functionality.</b>
    *
    * @param list the List to shuffle
    * @param <T> type of List elements
@@ -1111,7 +1112,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Randomizes the ordering of the elements of a portion of a List. All possible reorderings are
-   * equally likely.
+   * equally likely. <b>Enhanced Functionality.</b>
    *
    * @param list the List to shuffle
    * @param first the first element (inclusive) of the part of the List to shuffle
@@ -1525,7 +1526,8 @@ public class EnhancedRandomGenerator implements RandomGenerator {
 
   /**
    * Return true if the implementation of the RandomGenerator (algorithm) that is wrapped by this
-   * EnhancedRandomGenerator has been marked for deprecation.
+   * EnhancedRandomGenerator has been marked for deprecation. <b>Delegates implementation to the
+   * wrapped object.</b>
    *
    * @return true if the implementation of the RandomGenerator (algorithm) that is wrapped by this
    *     EnhancedRandomGenerator has been marked for deprecation
