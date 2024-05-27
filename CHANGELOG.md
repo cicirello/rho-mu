@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-05-14
+## [Unreleased] - 2024-05-27
 
 ### Added
 
@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+* Added missing overrides in EnhancedSplittableRandom of the rngs and erngs methods.
+* Added missing overrides in EnhancedJumpableRandom of the rngs and erngs methods.
 
 ### Dependencies
 

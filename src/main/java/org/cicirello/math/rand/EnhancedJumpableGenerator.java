@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -198,5 +198,25 @@ public class EnhancedJumpableGenerator extends EnhancedStreamableGenerator
   @Override
   public final Stream<RandomGenerator> jumps(long streamSize) {
     return generator.jumps(streamSize).map(gen -> new EnhancedRandomGenerator(gen));
+  }
+
+  @Override
+  public final Stream<EnhancedRandomGenerator> erngs() {
+    return this.ejumps();
+  }
+
+  @Override
+  public final Stream<EnhancedRandomGenerator> erngs(long streamSize) {
+    return this.ejumps(streamSize);
+  }
+
+  @Override
+  public final Stream<RandomGenerator> rngs() {
+    return this.jumps();
+  }
+
+  @Override
+  public final Stream<RandomGenerator> rngs(long streamSize) {
+    return this.jumps(streamSize);
   }
 }
