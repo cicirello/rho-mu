@@ -28,9 +28,9 @@ import java.util.stream.Stream;
 /**
  * An EnhancedLeapableGenerator is used to wrap an object of any class that implements {@link
  * RandomGenerator.LeapableGenerator} for the purpose of adding all of the functionality of the
- * {@link RandomIndexer} and {@link RandomVariates}. See the superclass {@link
- * EnhancedRandomGenerator} for documentation of the enhanced functionality that is added to the
- * wrapped object.
+ * {@link RandomIndexer}, {@link RandomSampler}, and {@link RandomVariates}. See the superclass
+ * {@link EnhancedRandomGenerator} for documentation of the enhanced functionality that is added to
+ * the wrapped object.
  *
  * <p>The methods of the {@link RandomGenerator.LeapableGenerator} interface, such as {@link
  * #leaps}, that return streams of RandomGenerator.JumpableGenerator are implemented to return
