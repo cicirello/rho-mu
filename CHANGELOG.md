@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Improved Gaussian random number generation from ThreadLocalRandom in methods of RandomVariates class (internal change).
 * Improved Gaussian random number generation in static methods of RandomVariates to choose between internal implementation of original ziggurat algorithm (for Java legacy random number generators Random and SecureRandom) or the Java API implementation of the modified ziggurat for all others (internal change).
-* Improved Gaussian random number generation in EnhancedRandomGenerator class by replacing our implementation of ziggurat algorithm with delegation to RandomGenerator.nextGaussian method, which for most RandomGenerators is now the modified ziggurat, which is faster than the original version (internal change).
+* Improved Gaussian random number generation in EnhancedRandomGenerator class to choose between internal implementation of original ziggurat algorithm (for Java legacy random number generators Random and SecureRandom) or the Java API implementation of the modified ziggurat for all others (internal change).
 
 ### Deprecated
 
