@@ -23,6 +23,7 @@
 package org.cicirello.math.rand;
 
 import java.util.List;
+import java.util.Random;
 import java.util.SplittableRandom;
 import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
@@ -45,6 +46,8 @@ import java.util.stream.Stream;
  * <ul>
  *   <li>Faster generation of random int values subject to a bound or bound and origin.
  *   <li>Faster generation of random int values within an IntStream subject to a bound and origin.
+ *   <li>Faster generation of Gaussian distributed random doubles for Java's legacy random number
+ *       generators.
  *   <li>Additional distributions available beyond what is supported by the Java API's
  *       RandomGenerator classes, such as Binomial and Cauchy random vaiables.
  *   <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity for speed by
@@ -68,6 +71,7 @@ import java.util.stream.Stream;
 public class EnhancedRandomGenerator implements RandomGenerator {
 
   private final RandomGenerator generator;
+  private final RandomGenerator generatorForGaussians;
 
   private Binomial binomial;
 
@@ -76,7 +80,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * generator as obtained via a call to {@link RandomGenerator#getDefault}.
    */
   public EnhancedRandomGenerator() {
-    this(RandomGenerator.getDefault());
+    this(RandomGenerator.getDefault(), false);
   }
 
   /**
@@ -87,7 +91,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * @param seed The seed for the random number generator.
    */
   public EnhancedRandomGenerator(long seed) {
-    this(new SplittableRandom(seed));
+    this(new SplittableRandom(seed), false);
   }
 
   /**
@@ -96,7 +100,7 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * @param generator The RandomGenerator to wrap, which serves as the source of randomness.
    */
   public EnhancedRandomGenerator(RandomGenerator generator) {
-    this.generator = generator;
+    this(generator, generator instanceof Random);
   }
 
   /**
@@ -111,6 +115,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    */
   public EnhancedRandomGenerator(String algorithmName) {
     this(RandomGenerator.of(algorithmName));
+  }
+
+  private EnhancedRandomGenerator(RandomGenerator generator, boolean replaceGaussian) {
+    this.generator = generator;
+    generatorForGaussians = replaceGaussian ? internalGaussian(generator) : generator;
   }
 
   /**
@@ -441,14 +450,24 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * Generates a random number from a Gaussian distribution with mean 0 and standard deviation,
    * stddev, of your choosing.
    *
-   * <p><b>Enhanced Functionality:</b> This method is a convenience method that delegates to the
-   * wrapped RandomGenerator's implementation of nextGaussian(mean, stdev), with a mean of 0.
+   * <p><b>Enhanced Functionality:</b> This method is a convenience method for nextGaussian(mean,
+   * stdev), with a mean of 0. If the wrapped RandomGenerator is one of the legacy classes {@link
+   * Random} or {@link java.security.SecureRandom SecureRandom}, then this method uses our
+   * implementation of the original ziggurat algorithm. In all other cases, it uses the Java API's
+   * implementation from the RandomGenerator interface, which is the modified ziggurat algorithm,
+   * which is faster than the original. For more information as well as experimental comparison, see
+   * the following report:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
+   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param stddev The standard deviation of the Gaussian.
    * @return A random number from a Gaussian distribution with mean 0 and standard deviation stddev.
    */
   public final double nextGaussian(double stddev) {
-    return generator.nextGaussian(0, stddev);
+    return generatorForGaussians.nextGaussian(0, stddev);
   }
 
   /**
@@ -1326,6 +1345,53 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   // METHODS THAT CHANGE FUNCTIONALITY:
 
   /**
+   * Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
+   *
+   * <p><b>Enhanced Functionality:</b> If the wrapped RandomGenerator is one of the legacy classes
+   * {@link Random} or {@link java.security.SecureRandom SecureRandom}, then this method enhances
+   * Gaussian generation by using our implementation of the original ziggurat algorithm. In all
+   * other cases, it delegates to the Java API's implementation from the RandomGenerator interface,
+   * which is the modified ziggurat algorithm, which is faster than the original. For more
+   * information as well as experimental comparison, see the following report:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
+   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
+   *
+   * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
+   */
+  @Override
+  public final double nextGaussian() {
+    return generatorForGaussians.nextGaussian();
+  }
+
+  /**
+   * Generates a random number from a Gaussian distribution with specified mean and standard
+   * deviation.
+   *
+   * <p><b>Enhanced Functionality:</b> If the wrapped RandomGenerator is one of the legacy classes
+   * {@link Random} or {@link java.security.SecureRandom SecureRandom}, then this method enhances
+   * Gaussian generation by using our implementation of the original ziggurat algorithm. In all
+   * other cases, it delegates to the Java API's implementation from the RandomGenerator interface,
+   * which is the modified ziggurat algorithm, which is faster than the original. For more
+   * information as well as experimental comparison, see the following report:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
+   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
+   *
+   * @param mean The mean of the Gaussian.
+   * @param stddev The standard deviation of the Gaussian.
+   * @return A random number from a Gaussian distribution with mean 0 and standard deviation stddev.
+   */
+  @Override
+  public final double nextGaussian(double mean, double stddev) {
+    return generatorForGaussians.nextGaussian(mean, stddev);
+  }
+
+  /**
    * Generates a random integer uniformly distributed in the interval: [0, bound).
    *
    * <p><b>Enhanced Functionality:</b> This method is an implementation of the algorithm proposed in
@@ -1671,30 +1737,6 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   }
 
   /**
-   * Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
-   * <b>Delegates implementation to the wrapped object.</b>
-   *
-   * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
-   */
-  @Override
-  public final double nextGaussian() {
-    return generator.nextGaussian();
-  }
-
-  /**
-   * Generates a random number from a Gaussian distribution with specified mean and standard
-   * deviation. <b>Delegates implementation to the wrapped object.</b>
-   *
-   * @param mean The mean of the Gaussian.
-   * @param stddev The standard deviation of the Gaussian.
-   * @return A random number from a Gaussian distribution with mean 0 and standard deviation stddev.
-   */
-  @Override
-  public final double nextGaussian(double mean, double stddev) {
-    return generator.nextGaussian(mean, stddev);
-  }
-
-  /**
    * Generates a pseudorandom int value. <b>Delegates implementation to the wrapped object.</b>
    *
    * @return a pseudorandom int
@@ -1739,5 +1781,29 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   @Override
   public final long nextLong(long origin, long bound) {
     return generator.nextLong(origin, bound);
+  }
+
+  /*
+   * package private to support testing, but otherwise used internally only,
+   * and only for nextGaussian. Do not try to use for anything else.
+   */
+  static RandomGenerator internalGaussian(RandomGenerator generator) {
+    return new RandomGenerator() {
+      @Override
+      public long nextLong() {
+        throw new UnsupportedOperationException(
+            "This internal class is for use with Gaussians only. Something is implemented incorrectly.");
+      }
+
+      @Override
+      public double nextGaussian() {
+        return RandomVariates.nextGaussian(generator);
+      }
+
+      @Override
+      public double nextGaussian(double mean, double stdev) {
+        return RandomVariates.nextGaussian(mean, stdev, generator);
+      }
+    };
   }
 }
