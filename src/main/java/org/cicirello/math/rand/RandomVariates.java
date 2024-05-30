@@ -23,6 +23,7 @@
 
 package org.cicirello.math.rand;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
@@ -142,9 +143,18 @@ public final class RandomVariates {
 
   /**
    * Generates a random number from a Gaussian distribution with mean mu and standard deviation
-   * sigma. This method uses the library's current most-efficient algorithm for Gaussian random
-   * number generation, which may change in future releases. If you require a guarantee of the
-   * algorithm used, then see the API for the classes that implement specific Gaussian algorithms.
+   * sigma.
+   *
+   * <p>If the RandomGenerator r is one of Java's legacy pseudorandom number generators Random or
+   * one of its subclasses, then this method uses our implementation of the original ziggurat
+   * algorithm, and otherwise it uses the RandomGenerator's default implementation of nextGaussian
+   * introduced in Java 17 which is McFarland's modified ziggurat. See the following report for
+   * relevant experiments:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
+   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param mu The mean of the Gaussian.
    * @param sigma The standard deviation of the Gaussian.
@@ -152,7 +162,9 @@ public final class RandomVariates {
    * @return A random number from a Gaussian distribution with mean mu and standard deviation sigma.
    */
   public static double nextGaussian(double mu, double sigma, RandomGenerator r) {
-    return mu + sigma * ZigguratGaussian.nextGaussian(r);
+    return r instanceof Random
+        ? mu + sigma * ZigguratGaussian.nextGaussian(r)
+        : r.nextGaussian(mu, sigma);
   }
 
   /**
@@ -178,16 +190,27 @@ public final class RandomVariates {
 
   /**
    * Generates a random number from a Gaussian distribution with mean 0 and standard deviation
-   * sigma. This method uses the library's current most-efficient algorithm for Gaussian random
-   * number generation, which may change in future releases. If you require a guarantee of the
-   * algorithm used, then see the API for the classes that implement specific Gaussian algorithms.
+   * sigma.
+   *
+   * <p>If the RandomGenerator r is one of Java's legacy pseudorandom number generators Random or
+   * one of its subclasses, then this method uses our implementation of the original ziggurat
+   * algorithm, and otherwise it uses the RandomGenerator's default implementation of nextGaussian
+   * introduced in Java 17 which is McFarland's modified ziggurat. See the following report for
+   * relevant experiments:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
+   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param sigma The standard deviation of the Gaussian.
    * @param r The pseudorandom number generator to use for the source of randomness.
    * @return A random number from a Gaussian distribution with mean 0 and standard deviation sigma.
    */
   public static double nextGaussian(double sigma, RandomGenerator r) {
-    return sigma * ZigguratGaussian.nextGaussian(r);
+    return r instanceof Random
+        ? sigma * ZigguratGaussian.nextGaussian(r)
+        : r.nextGaussian(0, sigma);
   }
 
   /**
@@ -211,15 +234,23 @@ public final class RandomVariates {
 
   /**
    * Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
-   * This method uses the library's current most-efficient algorithm for Gaussian random number
-   * generation, which may change in future releases. If you require a guarantee of the algorithm
-   * used, then see the API for the classes that implement specific Gaussian algorithms.
+   *
+   * <p>If the RandomGenerator r is one of Java's legacy pseudorandom number generators Random or
+   * one of its subclasses, then this method uses our implementation of the original ziggurat
+   * algorithm, and otherwise it uses the RandomGenerator's default implementation of nextGaussian
+   * introduced in Java 17 which is McFarland's modified ziggurat. See the following report for
+   * relevant experiments:
+   *
+   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
+   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param r The pseudorandom number generator to use for the source of randomness.
    * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
    */
   public static double nextGaussian(RandomGenerator r) {
-    return ZigguratGaussian.nextGaussian(r);
+    return r instanceof Random ? ZigguratGaussian.nextGaussian(r) : r.nextGaussian();
   }
 
   /*
