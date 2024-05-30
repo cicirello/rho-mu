@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -29,8 +29,8 @@ import java.util.Random;
 import java.util.SplittableRandom;
 import org.junit.jupiter.api.*;
 
-/** JUnit test cases for the methods of the library's default Gaussian class. */
-public class DefaultGaussianTests {
+/** JUnit test cases for the nextGaussian methods of RandomVariates. */
+public class GaussianTests {
 
   // Test cases use chi square goodness of fit.  This constant
   // can be used to adjust the number of samples used for this test.
