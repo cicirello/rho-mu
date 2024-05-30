@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -24,7 +24,9 @@ package org.cicirello.math.rand;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Random;
 import java.util.SplittableRandom;
+import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.*;
 
 /**
@@ -125,6 +127,115 @@ public class ERGNonUniformTests {
   @Test
   public void testGaussianMeanStDev() {
     EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SplittableRandom(42));
+    int greater = 0;
+    int lesser = 0;
+    double stdev = 0.05;
+    double mean = 42.0;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian(mean, stdev);
+      if (g > mean) greater++;
+      if (g < mean) lesser++;
+      assertTrue(Math.abs(g - mean) < 5.0 * stdev);
+    }
+    assertTrue(greater > 0);
+    assertTrue(lesser > 0);
+    mean = -42.0;
+    greater = 0;
+    lesser = 0;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian(mean, stdev);
+      if (g > mean) greater++;
+      if (g < mean) lesser++;
+      assertTrue(Math.abs(g - mean) < 5.0 * stdev);
+    }
+    assertTrue(greater > 0);
+    assertTrue(lesser > 0);
+  }
+
+  @Test
+  public void testGaussianRandom() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new Random(42));
+    int positive = 0;
+    int negative = 0;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian();
+      if (g > 0) positive++;
+      if (g < 0) negative++;
+      assertTrue(Math.abs(g) < 5.0);
+    }
+    assertTrue(positive > 0);
+    assertTrue(negative > 0);
+  }
+
+  @Test
+  public void testGaussianStDevRandom() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new Random(42));
+    int positive = 0;
+    int negative = 0;
+    double stdev = 0.05;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian(stdev);
+      if (g > 0) positive++;
+      if (g < 0) negative++;
+      assertTrue(Math.abs(g) < 5.0 * stdev);
+    }
+    assertTrue(positive > 0);
+    assertTrue(negative > 0);
+  }
+
+  @Test
+  public void testGaussianMeanStDevRandom() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new Random(42));
+    int greater = 0;
+    int lesser = 0;
+    double stdev = 0.05;
+    double mean = 42.0;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian(mean, stdev);
+      if (g > mean) greater++;
+      if (g < mean) lesser++;
+      assertTrue(Math.abs(g - mean) < 5.0 * stdev);
+    }
+    assertTrue(greater > 0);
+    assertTrue(lesser > 0);
+    mean = -42.0;
+    greater = 0;
+    lesser = 0;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian(mean, stdev);
+      if (g > mean) greater++;
+      if (g < mean) lesser++;
+      assertTrue(Math.abs(g - mean) < 5.0 * stdev);
+    }
+    assertTrue(greater > 0);
+    assertTrue(lesser > 0);
+  }
+
+  @Test
+  public void testInternalGaussianRandom() {
+    RandomGenerator erg = EnhancedRandomGenerator.internalGaussian(new Random(42));
+    int positive = 0;
+    int negative = 0;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian();
+      if (g > 0) positive++;
+      if (g < 0) negative++;
+      assertTrue(Math.abs(g) < 5.0);
+    }
+    assertTrue(positive > 0);
+    assertTrue(negative > 0);
+  }
+
+  @Test
+  public void testInternalGaussianException() {
+    RandomGenerator erg = EnhancedRandomGenerator.internalGaussian(new Random(42));
+    UnsupportedOperationException thrown =
+        assertThrows(UnsupportedOperationException.class, () -> erg.nextLong());
+  }
+
+  @Test
+  public void testInternalGaussianMeanStDevRandom() {
+    RandomGenerator erg = EnhancedRandomGenerator.internalGaussian(new Random(42));
     int greater = 0;
     int lesser = 0;
     double stdev = 0.05;

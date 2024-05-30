@@ -94,7 +94,8 @@
  * <ul>
  *   <li>Faster generation of random int values subject to a bound or bound and origin.
  *   <li>Faster generation of random int values within an IntStream subject to a bound and origin.
- *   <li>Faster generation of Gaussian distributed random doubles.
+ *   <li>Faster generation of Gaussian distributed random doubles for Java's legacy random number
+ *       generators.
  *   <li>Additional distributions available beyond what is supported by the Java API's
  *       RandomGenerator classes, such as Binomial and Cauchy random vaiables.
  *   <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity for speed by
