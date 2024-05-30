@@ -78,6 +78,24 @@ public class GaussianTests {
   }
 
   @Test
+  public void testRandom10mu5() {
+    Random r = new Random(42);
+    int[] buckets = new int[20];
+    final int N = buckets.length * EXPECTED_SAMPLES_PER_BUCKET;
+    for (int i = 0; i < N; i++) {
+      int j = whichBucket(RandomVariates.nextGaussian(5, 10, r) - 5.0, 10);
+      buckets[j]++;
+    }
+    double chi = chiSquare(buckets);
+    assertTrue(
+        chi <= 30.144); // 19 degrees of freedom, 95% percentage point of chi square distribution:
+    // 30.144
+    if (VERBOSE_OUTPUT) {
+      System.out.printf("Random, sigma=10, chi=%5.4f\n", chi);
+    }
+  }
+
+  @Test
   public void testSplittableRandom1() {
     SplittableRandom r = new SplittableRandom(42);
     int[] buckets = new int[20];

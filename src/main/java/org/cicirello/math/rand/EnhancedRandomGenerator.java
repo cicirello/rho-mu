@@ -45,7 +45,6 @@ import java.util.stream.Stream;
  * <ul>
  *   <li>Faster generation of random int values subject to a bound or bound and origin.
  *   <li>Faster generation of random int values within an IntStream subject to a bound and origin.
- *   <li>Faster generation of Gaussian distributed random doubles.
  *   <li>Additional distributions available beyond what is supported by the Java API's
  *       RandomGenerator classes, such as Binomial and Cauchy random vaiables.
  *   <li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity for speed by
@@ -442,16 +441,14 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * Generates a random number from a Gaussian distribution with mean 0 and standard deviation,
    * stddev, of your choosing.
    *
-   * <p><b>Enhanced Functionality:</b> This method uses the library's current most-efficient
-   * algorithm for Gaussian random number generation, which may change in future releases. If you
-   * require a guarantee of the algorithm used, then see the API for the classes that implement
-   * specific Gaussian algorithms.
+   * <p><b>Enhanced Functionality:</b> This method is a convenience method that delegates to the
+   * wrapped RandomGenerator's implementation of nextGaussian(mean, stdev), with a mean of 0.
    *
    * @param stddev The standard deviation of the Gaussian.
    * @return A random number from a Gaussian distribution with mean 0 and standard deviation stddev.
    */
   public final double nextGaussian(double stddev) {
-    return RandomVariates.nextGaussian(stddev, generator);
+    return generator.nextGaussian(0, stddev);
   }
 
   /**
@@ -1329,39 +1326,6 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   // METHODS THAT CHANGE FUNCTIONALITY:
 
   /**
-   * Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
-   *
-   * <p><b>Enhanced Functionality:</b> This method uses the library's current most-efficient
-   * algorithm for Gaussian random number generation, which may change in future releases. If you
-   * require a guarantee of the algorithm used, then see the API for the classes that implement
-   * specific Gaussian algorithms.
-   *
-   * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
-   */
-  @Override
-  public final double nextGaussian() {
-    return RandomVariates.nextGaussian(generator);
-  }
-
-  /**
-   * Generates a random number from a Gaussian distribution with mean and standard deviation of your
-   * choosing.
-   *
-   * <p><b>Enhanced Functionality:</b> This method uses the library's current most-efficient
-   * algorithm for Gaussian random number generation, which may change in future releases. If you
-   * require a guarantee of the algorithm used, then see the API for the classes that implement
-   * specific Gaussian algorithms.
-   *
-   * @param mean The mean of the Gaussian.
-   * @param stddev The standard deviation of the Gaussian.
-   * @return A random number from a Gaussian distribution with mean 0 and standard deviation stddev.
-   */
-  @Override
-  public final double nextGaussian(double mean, double stddev) {
-    return RandomVariates.nextGaussian(mean, stddev, generator);
-  }
-
-  /**
    * Generates a random integer uniformly distributed in the interval: [0, bound).
    *
    * <p><b>Enhanced Functionality:</b> This method is an implementation of the algorithm proposed in
@@ -1704,6 +1668,30 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   @Override
   public final float nextFloat(float origin, float bound) {
     return generator.nextFloat(origin, bound);
+  }
+
+  /**
+   * Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
+   * <b>Delegates implementation to the wrapped object.</b>
+   *
+   * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
+   */
+  @Override
+  public final double nextGaussian() {
+    return generator.nextGaussian();
+  }
+
+  /**
+   * Generates a random number from a Gaussian distribution with specified mean and standard
+   * deviation. <b>Delegates implementation to the wrapped object.</b>
+   *
+   * @param mean The mean of the Gaussian.
+   * @param stddev The standard deviation of the Gaussian.
+   * @return A random number from a Gaussian distribution with mean 0 and standard deviation stddev.
+   */
+  @Override
+  public final double nextGaussian(double mean, double stddev) {
+    return generator.nextGaussian(mean, stddev);
   }
 
   /**
