@@ -49,7 +49,6 @@
 
 package org.cicirello.math.rand;
 
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
 /**
@@ -62,12 +61,22 @@ import java.util.random.RandomGenerator;
  * of the class. If interested, see the source code comments, which highlights any differences
  * between this Java implementation and the C implementation on which it is based.
  *
+ * <p>See the following report for more information about this implementation along with
+ * experimental results:
+ *
+ * <ul>
+ *   <li>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+ *       Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>.
+ *       Technical Report ALG-24-009, Cicirello.org, May 2024. <a
+ *       href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
+ * </ul>
+ *
  * <p>This Java implementation originated as part of an effort to speed up the runtime of a parallel
  * genetic algorithm (PGA). The PGA in question evolved its control parameters (i.e., crossover and
  * mutation rates, etc) using Gaussian mutation. The only Gaussian implementation within the Java
  * API, at that time, was the polar method (nextGaussian method of the {@link java.util.Random
- * Random} and {@link ThreadLocalRandom} classes, however the polar method is quite slow relative to
- * other newer available alternatives, such as the Ziggurat method.
+ * Random} class, however the polar method is quite slow relative to other newer available
+ * alternatives, such as the Ziggurat method.
  *
  * <p>You can find some experimental data comparing the performance of a sequential genetic
  * algorithm (GA) using this implementation of the Ziggurat method for Gaussian mutation vs using
@@ -104,25 +113,18 @@ final class ZigguratGaussian {
    * A Few Java Implementation Notes:
    *
    * - I wanted to support generating Gaussian distributed random
-   *   numbers via the Ziggurat method using any of the following
-   *   Java classes as the underlying pseudorandom number generator:
-   *   Random, ThreadLocalRandom, and SplittableRandom. Aside from SecureRandom,
-   *   these were all of the random number generator classes available
-   *   in the Java API at the time this was originally implemented for Java 8.
+   *   numbers via the Ziggurat method using any of the Java 8
+   *   pseudorandom number generator classes.
    *
-   * - One option to accomplish that would be to have three classes,
-   *   each extending one of those three and either overriding
-   *   nextGaussian (for the two classes that have such a method),
-   *   or in the case of SplittableRandom adding such a method.
-   *   There are problems with this.  First, SplittableRandom is a
-   *   final class so extending is not an option.  Second, although
-   *   ThreadLocalRandom is not final, it is impractical to extend
-   *   none-the-less due to how it manages each local thread's
+   * - One option considered was extending each of those classes and
+   *   overriding nextGaussian. However, SplittableRandom is a final
+   *   class, and although ThreadLocalRandom is not final, it is
+   *   impractical to extend due to how it manages each local thread's
    *   ThreadLocalRandom instance, relying on the static method current().
    *   Overriding ThreadLocalRandom would likely involve recreating most
    *   of the class's functionality due to this.  So although this option
-   *   would be fine for the Random class, I desired a common approach
-   *   to support all three.
+   *   would be fine for the Random class and SecureRandom class, I desired
+   *   a common approach to support all three.
    *
    * - A second option would be to have three classes, one corresponding to
    *   each of the three Java library classes above.  In the cases of
@@ -162,6 +164,30 @@ final class ZigguratGaussian {
    *   by using this interface. That is, rather than the previous one method that takes
    *   a Random and another method that takes a SplittableRandom, we now have a single
    *   method that takes a RandomGenerator.
+   *
+   * COMMENT UPDATE (5/30/2024):
+   * - Also as of Java 17, McFarland's modified ziggurat algorithm, which is faster than
+   *   my port of the original ziggurat from C, is available as the default implementation
+   *   in the RandomGenerator interface. However, it has requirements that the
+   *   Random class does not meet, so the Random class in Java 17 continues to use the
+   *   slow polar method. SecureRandom and ThreadLocalRandom both extend Random and as a
+   *   consequence inherit the slow polar method, despite both meeting requirements of
+   *   the modified ziggurat. So, my implementation of the original ziggurat still has
+   *   a meaningful purpose for SecureRandom, as well as for Random (the original ziggurat)
+   *   does not have the same statistical requirements of the underlying pseudorandom
+   *   number generator. However, there is a way of gaining access to the Java 17
+   *   modified ziggurat for the ThreadLocalRandom class, which is now done in the
+   *   RandomVariates class. See the following report for more detailed explanations of
+   *   the relevant issues:
+   *
+   *   Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+   *   Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>.
+   *   Technical Report ALG-24-009, Cicirello.org, May 2024. <a
+   *   href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
+   *
+   * - Thus, as of 5/30/2024, we are stripping out all of the ThreadLocalRandom related
+   *   parts of this class as they are no longer needed. Since this class is an internal
+   *   class, this is not a breaking change.
    */
 
   /*
@@ -392,47 +418,12 @@ final class ZigguratGaussian {
   };
 
   /**
-   * Generates a random number from a Gaussian distribution with mean 0 and standard deviation,
-   * sigma, of your choosing. {@link ThreadLocalRandom} is used as the pseudorandom number generator
-   * for the source of randomness.
-   *
-   * @param sigma The standard deviation of the Gaussian.
-   * @return A random number from a Gaussian distribution with mean 0 and standard deviation sigma.
-   */
-  public static double nextGaussian(double sigma) {
-    return sigma * nextGaussian(ThreadLocalRandom.current());
-  }
-
-  /**
-   * Generates a random number from a Gaussian distribution with mean 0 and standard deviation,
-   * sigma, of your choosing.
-   *
-   * @param sigma The standard deviation of the Gaussian.
-   * @param r The pseudorandom number generator to use for the source of randomness.
-   * @return A random number from a Gaussian distribution with mean 0 and standard deviation sigma.
-   */
-  public static double nextGaussian(double sigma, RandomGenerator r) {
-    return sigma * nextGaussian(r);
-  }
-
-  /**
-   * Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
-   * {@link ThreadLocalRandom} is used as the pseudorandom number generator for the source of
-   * randomness.
-   *
-   * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
-   */
-  public static double nextGaussian() {
-    return nextGaussian(ThreadLocalRandom.current());
-  }
-
-  /**
    * Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
    *
    * @param r The pseudorandom number generator to use for the source of randomness.
    * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
    */
-  public static double nextGaussian(RandomGenerator r) {
+  static double nextGaussian(RandomGenerator r) {
     double x, y;
     int sign;
 
