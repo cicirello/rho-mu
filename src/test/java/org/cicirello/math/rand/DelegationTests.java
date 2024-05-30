@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2022 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -24,6 +24,7 @@ package org.cicirello.math.rand;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Random;
 import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -86,6 +87,8 @@ public class DelegationTests {
     dStream = e.doubles(5, 4000, 5000);
     assertEquals(4217.0, dStream.findFirst().getAsDouble(), 0.0);
     dStream.close();
+    assertEquals(0.314159, e.nextGaussian());
+    assertEquals(1.314159, e.nextGaussian(10, 1));
   }
 
   @Test
@@ -93,12 +96,28 @@ public class DelegationTests {
     EnhancedRandomGenerator e = new EnhancedRandomGenerator(new FakeRNG());
     e.nextInt(128);
     e.nextInt(0, 128);
-    e.nextGaussian();
-    e.nextGaussian(10, 1);
     IntStream intStream = e.ints(10, 100);
     intStream.close();
     intStream = e.ints(5, 10, 100);
     intStream.close();
+
+    e = new EnhancedRandomGenerator(new NoDelegateGaussianFakeRNG());
+    e.nextGaussian();
+    e.nextGaussian(10, 1);
+  }
+
+  private static class NoDelegateGaussianFakeRNG extends Random {
+    @Override
+    public double nextGaussian() {
+      fail("Should not delegate nextGaussian()");
+      return 0.0;
+    }
+
+    @Override
+    public double nextGaussian(double mean, double stdev) {
+      fail("Should not delegate nextGaussian(mean, stdev)");
+      return 0.0;
+    }
   }
 
   private static class FakeRNG implements RandomGenerator {
@@ -137,14 +156,12 @@ public class DelegationTests {
 
     @Override
     public double nextGaussian() {
-      fail("Should not delegate nextGaussian()");
-      return 0.0;
+      return 0.314159;
     }
 
     @Override
     public double nextGaussian(double mean, double stdev) {
-      fail("Should not delegate nextGaussian(mean, stdev)");
-      return mean;
+      return 1.314159;
     }
 
     @Override
