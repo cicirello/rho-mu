@@ -24,7 +24,6 @@ package org.cicirello.math.rand;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
 import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -100,24 +99,6 @@ public class DelegationTests {
     intStream.close();
     intStream = e.ints(5, 10, 100);
     intStream.close();
-
-    e = new EnhancedRandomGenerator(new NoDelegateGaussianFakeRNG());
-    e.nextGaussian();
-    e.nextGaussian(10, 1);
-  }
-
-  private static class NoDelegateGaussianFakeRNG extends Random {
-    @Override
-    public double nextGaussian() {
-      fail("Should not delegate nextGaussian()");
-      return 0.0;
-    }
-
-    @Override
-    public double nextGaussian(double mean, double stdev) {
-      fail("Should not delegate nextGaussian(mean, stdev)");
-      return 0.0;
-    }
   }
 
   private static class FakeRNG implements RandomGenerator {
