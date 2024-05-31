@@ -24,6 +24,7 @@ package org.cicirello.math.rand;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.SplittableRandom;
 import java.util.random.RandomGenerator;
@@ -209,6 +210,21 @@ public class ERGNonUniformTests {
     }
     assertTrue(greater > 0);
     assertTrue(lesser > 0);
+  }
+
+  @Test
+  public void testGaussianSecureRandom() {
+    EnhancedRandomGenerator erg = new EnhancedRandomGenerator(new SecureRandom());
+    int positive = 0;
+    int negative = 0;
+    for (int i = 0; i < 20; i++) {
+      double g = erg.nextGaussian();
+      if (g > 0) positive++;
+      if (g < 0) negative++;
+      assertTrue(Math.abs(g) < 5.0);
+    }
+    assertTrue(positive > 0);
+    assertTrue(negative > 0);
   }
 
   @Test
