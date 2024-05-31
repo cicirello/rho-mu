@@ -4,14 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-05-30
+## [Unreleased] - 2024-05-31
 
 ### Added
 
 ### Changed
 * Improved Gaussian random number generation from ThreadLocalRandom in methods of RandomVariates class (internal change).
 * Improved Gaussian random number generation in static methods of RandomVariates to choose between internal implementation of original ziggurat algorithm (for Java legacy random number generators Random and SecureRandom) or the Java API implementation of the modified ziggurat for all others (internal change).
-* Improved Gaussian random number generation in EnhancedRandomGenerator class to choose between internal implementation of original ziggurat algorithm (for Java legacy random number generators Random and SecureRandom) or the Java API implementation of the modified ziggurat for all others (internal change).
+* Improved Gaussian random number generation in EnhancedRandomGenerator class to choose between internal implementation of original ziggurat algorithm (for Java legacy random number generator Random) or the Java API implementation of the modified ziggurat for all others (internal change).
 
 ### Deprecated
 

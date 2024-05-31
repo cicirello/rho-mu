@@ -22,6 +22,7 @@
  */
 package org.cicirello.math.rand;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Random;
 import java.util.SplittableRandom;
@@ -1791,22 +1792,33 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    * and only for nextGaussian. Do not try to use for anything else.
    */
   static RandomGenerator internalGaussian(RandomGenerator generator) {
-    return new RandomGenerator() {
-      @Override
-      public long nextLong() {
-        throw new UnsupportedOperationException(
-            "This internal class is for use with Gaussians only. Something is implemented incorrectly.");
-      }
+    return generator instanceof SecureRandom
+        ? new RandomGenerator() {
+          @Override
+          public long nextLong() {
+            // For SecureRandom, just delegate nextLong to SecureRandom.nextLong
+            // to gain access to Java's modified ziggurat for nextGaussian.
+            return generator.nextLong();
+          }
+        }
+        : new RandomGenerator() {
+          @Override
+          public long nextLong() {
+            throw new UnsupportedOperationException(
+                "This internal class is for use with Gaussians only. Something is implemented incorrectly.");
+          }
 
-      @Override
-      public double nextGaussian() {
-        return RandomVariates.nextGaussian(generator);
-      }
+          @Override
+          public double nextGaussian() {
+            // Use library's implementation of original ziggurat gaussian for Random class
+            return ZigguratGaussian.nextGaussian(generator);
+          }
 
-      @Override
-      public double nextGaussian(double mean, double stdev) {
-        return RandomVariates.nextGaussian(mean, stdev, generator);
-      }
-    };
+          @Override
+          public double nextGaussian(double mean, double stdev) {
+            // Use library's implementation of original ziggurat gaussian for Random class
+            return mean + stdev * ZigguratGaussian.nextGaussian(generator);
+          }
+        };
   }
 }
