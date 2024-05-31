@@ -129,8 +129,9 @@ public final class RandomVariates {
    * implementation of McFarland's modified ziggurat algorithm, which is much faster.
    *
    * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
-   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
-   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a
+   * href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a
+   * href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a
    * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param mu The mean of the Gaussian.
@@ -152,8 +153,9 @@ public final class RandomVariates {
    * relevant experiments:
    *
    * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
-   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
-   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a
+   * href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a
+   * href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a
    * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param mu The mean of the Gaussian.
@@ -177,8 +179,9 @@ public final class RandomVariates {
    * implementation of McFarland's modified ziggurat algorithm, which is much faster.
    *
    * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
-   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
-   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a
+   * href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a
+   * href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a
    * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param sigma The standard deviation of the Gaussian.
@@ -199,8 +202,9 @@ public final class RandomVariates {
    * relevant experiments:
    *
    * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
-   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
-   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a
+   * href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a
+   * href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a
    * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param sigma The standard deviation of the Gaussian.
@@ -222,8 +226,9 @@ public final class RandomVariates {
    * implementation of McFarland's modified ziggurat algorithm, which is much faster.
    *
    * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
-   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
-   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a
+   * href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a
+   * href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a
    * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @return A random number from a Gaussian distribution with mean 0 and standard deviation 1.
@@ -242,8 +247,9 @@ public final class RandomVariates {
    * relevant experiments:
    *
    * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
-   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. Technical
-   * Report ALG-24-009, Cicirello.org, May 2024. <a
+   * Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a
+   * href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a
+   * href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a
    * href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a>
    *
    * @param r The pseudorandom number generator to use for the source of randomness.
