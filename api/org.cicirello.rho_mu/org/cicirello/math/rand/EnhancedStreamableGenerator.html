@@ -96,8 +96,9 @@ loadScripts(document, 'script');</script>
 <span class="extends-implements">extends <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>
 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.StreamableGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator.StreamableGenerator</a></span></div>
 <div class="block">An EnhancedStreamableGenerator is used to wrap an object of any class that implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.StreamableGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.StreamableGenerator</code></a> for the purpose of adding all of the functionality of the
- <a href="RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a> and <a href="RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a>. See the superclass <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> for documentation of the enhanced functionality that is added to the
- wrapped object.
+ <a href="RandomIndexer.html" title="class in org.cicirello.math.rand"><code>RandomIndexer</code></a>, <a href="RandomSampler.html" title="class in org.cicirello.math.rand"><code>RandomSampler</code></a>, and <a href="RandomVariates.html" title="class in org.cicirello.math.rand"><code>RandomVariates</code></a>. See the superclass
+ <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> for documentation of the enhanced functionality that is added to
+ the wrapped object.
 
  <p>The methods of the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.StreamableGenerator.html" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.StreamableGenerator</code></a> interface, such as <a href="#rngs()"><code>rngs()</code></a>, that return streams of RandomGenerator are implemented to return streams of
  EnhancedRandomGenerator objects that wrap the RandomGenerator objects in the streams returned by
@@ -159,13 +160,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#erngs()" class="member-name-link">erngs</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets an effectively unlimited stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping
  an object of the same random number generator algorithm as this one.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#erngs(long)" class="member-name-link">erngs</a><wbr>(long&nbsp;streamSize)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets a stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping an object of the same
@@ -177,13 +178,13 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <div class="block">Gets an EnhancedStreamableGenerator wrapping an instance of any random number generator
  supported by your version of Java as specified by its name, as documented via the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.StreamableGenerator.html#of(java.lang.String)" title="class or interface in java.util.random" class="external-link"><code>RandomGenerator.StreamableGenerator.of(java.lang.String)</code></a> method.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rngs()" class="member-name-link">rngs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets an effectively unlimited stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping
  an object of the same random number generator algorithm as this one.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rngs(long)" class="member-name-link">rngs</a><wbr>(long&nbsp;streamSize)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets a stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping an object of the same
@@ -290,7 +291,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <li>
 <section class="detail" id="erngs()">
 <h3>erngs</h3>
-<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">erngs</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">erngs</span>()</div>
 <div class="block">Gets an effectively unlimited stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping
  an object of the same random number generator algorithm as this one.
 
@@ -305,7 +306,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <li>
 <section class="detail" id="erngs(long)">
 <h3>erngs</h3>
-<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">erngs</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand">EnhancedRandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">erngs</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
 <div class="block">Gets a stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping an object of the same
  random number generator algorithm as this one.
 
@@ -322,7 +323,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <li>
 <section class="detail" id="rngs()">
 <h3>rngs</h3>
-<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">rngs</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">rngs</span>()</div>
 <div class="block">Gets an effectively unlimited stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping
  an object of the same random number generator algorithm as this one.
 
@@ -342,7 +343,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <li>
 <section class="detail" id="rngs(long)">
 <h3>rngs</h3>
-<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">rngs</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&gt;</span>&nbsp;<span class="element-name">rngs</span><wbr><span class="parameters">(long&nbsp;streamSize)</span></div>
 <div class="block">Gets a stream of <a href="EnhancedRandomGenerator.html" title="class in org.cicirello.math.rand"><code>EnhancedRandomGenerator</code></a> objects, each wrapping an object of the same
  random number generator algorithm as this one.
 

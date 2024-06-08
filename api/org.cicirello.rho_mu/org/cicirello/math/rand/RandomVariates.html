@@ -295,10 +295,15 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;mu,
  double&nbsp;sigma)</span></div>
 <div class="block">Generates a random number from a Gaussian distribution with mean mu and standard deviation
- sigma. This method uses the library's current most-efficient algorithm for Gaussian random
- number generation, which may change in future releases. If you require a guarantee of the
- algorithm used, then see the API for the classes that implement specific Gaussian algorithms.
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the source of randomness.</div>
+ sigma.
+
+ <p><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the source of randomness. However, it does not directly
+ use ThreadLocalRandom's nextGaussian, which is the slow polar method. Instead, it uses the
+ approach described in the following paper to use the RandomGenerator interface's default
+ implementation of McFarland's modified ziggurat algorithm, which is much faster.
+
+ <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+ Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>mu</code> - The mean of the Gaussian.</dd>
@@ -315,9 +320,16 @@ loadScripts(document, 'script');</script>
  double&nbsp;sigma,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
 <div class="block">Generates a random number from a Gaussian distribution with mean mu and standard deviation
- sigma. This method uses the library's current most-efficient algorithm for Gaussian random
- number generation, which may change in future releases. If you require a guarantee of the
- algorithm used, then see the API for the classes that implement specific Gaussian algorithms.</div>
+ sigma.
+
+ <p>If the RandomGenerator r is one of Java's legacy pseudorandom number generators Random or
+ one of its subclasses, then this method uses our implementation of the original ziggurat
+ algorithm, and otherwise it uses the RandomGenerator's default implementation of nextGaussian
+ introduced in Java 17 which is McFarland's modified ziggurat. See the following report for
+ relevant experiments:
+
+ <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+ Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>mu</code> - The mean of the Gaussian.</dd>
@@ -333,10 +345,15 @@ loadScripts(document, 'script');</script>
 <h3>nextGaussian</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;sigma)</span></div>
 <div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation
- sigma. This method uses the library's current most-efficient algorithm for Gaussian random
- number generation, which may change in future releases. If you require a guarantee of the
- algorithm used, then see the API for the classes that implement specific Gaussian algorithms.
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the source of randomness.</div>
+ sigma.
+
+ <p><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the source of randomness. However, it does not directly
+ use ThreadLocalRandom's nextGaussian, which is the slow polar method. Instead, it uses the
+ approach described in the following paper to use the RandomGenerator interface's default
+ implementation of McFarland's modified ziggurat algorithm, which is much faster.
+
+ <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+ Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>sigma</code> - The standard deviation of the Gaussian.</dd>
@@ -351,9 +368,16 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(double&nbsp;sigma,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
 <div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation
- sigma. This method uses the library's current most-efficient algorithm for Gaussian random
- number generation, which may change in future releases. If you require a guarantee of the
- algorithm used, then see the API for the classes that implement specific Gaussian algorithms.</div>
+ sigma.
+
+ <p>If the RandomGenerator r is one of Java's legacy pseudorandom number generators Random or
+ one of its subclasses, then this method uses our implementation of the original ziggurat
+ algorithm, and otherwise it uses the RandomGenerator's default implementation of nextGaussian
+ introduced in Java 17 which is McFarland's modified ziggurat. See the following report for
+ relevant experiments:
+
+ <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+ Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>sigma</code> - The standard deviation of the Gaussian.</dd>
@@ -368,9 +392,14 @@ loadScripts(document, 'script');</script>
 <h3>nextGaussian</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span>()</div>
 <div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
- This method uses the library's current most-efficient algorithm for Gaussian random number
- generation, which may change in future releases. If you require a guarantee of the algorithm
- used, then see the API for the classes that implement specific Gaussian algorithms. <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the pseudorandom number generator for the source of randomness.</div>
+
+ <p><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html" title="class or interface in java.util.concurrent" class="external-link"><code>ThreadLocalRandom</code></a> is used as the source of randomness. However, it does not directly
+ use ThreadLocalRandom's nextGaussian, which is the slow polar method. Instead, it uses the
+ approach described in the following paper to use the RandomGenerator interface's default
+ implementation of McFarland's modified ziggurat algorithm, which is much faster.
+
+ <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+ Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a></div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>A random number from a Gaussian distribution with mean 0 and standard deviation 1.</dd>
@@ -382,9 +411,15 @@ loadScripts(document, 'script');</script>
 <h3>nextGaussian</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">nextGaussian</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html" title="class or interface in java.util.random" class="external-link">RandomGenerator</a>&nbsp;r)</span></div>
 <div class="block">Generates a random number from a Gaussian distribution with mean 0 and standard deviation 1.
- This method uses the library's current most-efficient algorithm for Gaussian random number
- generation, which may change in future releases. If you require a guarantee of the algorithm
- used, then see the API for the classes that implement specific Gaussian algorithms.</div>
+
+ <p>If the RandomGenerator r is one of Java's legacy pseudorandom number generators Random or
+ one of its subclasses, then this method uses our implementation of the original ziggurat
+ algorithm, and otherwise it uses the RandomGenerator's default implementation of nextGaussian
+ introduced in Java 17 which is McFarland's modified ziggurat. See the following report for
+ relevant experiments:
+
+ <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/009/">Fast Gaussian
+ Distributed Pseudorandom Number Generation in Java via the Ziggurat Algorithm</a>. arXiv:<a href="https://arxiv.org/abs/2405.19493">2405.19493</a>, May 2024. doi:<a href="https://doi.org/10.48550/arXiv.2405.19493">10.48550/arXiv.2405.19493</a>. <a href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a></div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>r</code> - The pseudorandom number generator to use for the source of randomness.</dd>
