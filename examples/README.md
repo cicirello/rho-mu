@@ -101,22 +101,7 @@ The details of my test system are found in [data/system-stats.txt](data/system-s
 
 ### Experiments Sampling Pairs and Triples of Distinct Integers
 
-The library includes methods for sampling pairs and triples of distinct integers. The algorithms
-used for this are described in the following report:
+The code for the experiments for the following report has moved 
+to [cicirello/small-sample-experiments](https://github.com/cicirello/small-sample-experiments).
 
 > Vincent A. Cicirello. 2024. [Algorithms for Generating Small Random Samples](https://reports.cicirello.org/24/008/). Technical Report ALG-24-008, Cicirello.org, May 2024. [[PDF]](https://reports.cicirello.org/24/008/ALG-24-008.pdf)
-
-The programs to recreate the experiments from the above report can be executed with the following commands:
-
-```Shell
-mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimeRandomPairs
-mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimeRandomTriples
-mvn exec:java -q -Dexec.mainClass=org.cicirello.examples.rho_mu.TimeRandomCombinations
-```
-
-The above programs utilize the Java Microbenchmarking Harness (JMH). The data from my runs
-are available in the repository at: [data/sample-2-and-3](data/sample-2-and-3). I used 
-version 4.0.0 of the library at the time that I ran these experiments. Note that as
-new versions are released I update the version of rho-mu used by the examples package.
-Thus, your results may vary if you use a different version of rho-mu.
-
