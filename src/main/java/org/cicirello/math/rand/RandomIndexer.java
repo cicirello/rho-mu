@@ -498,18 +498,14 @@ public final class RandomIndexer {
     result[0] = nextInt(n, gen);
     result[1] = nextInt(n - 1, gen);
     result[2] = nextInt(n - 2, gen);
+    if (result[2] == result[1]) {
+      result[2] = n - 2;
+    }
     if (result[1] == result[0]) {
       result[1] = n - 1;
-      if (result[2] == result[0]) {
-        result[2] = n - 2;
-      }
-    } else {
-      if (result[2] == result[1]) {
-        result[2] = n - 2;
-      }
-      if (result[2] == result[0]) {
-        result[2] = n - 1;
-      }
+    }
+    if (result[2] == result[0]) {
+      result[2] = n - 1;
     }
     return result;
   }
@@ -556,13 +552,10 @@ public final class RandomIndexer {
     final int i = nextInt(n, gen);
     final int j = nextInt(n - 1, gen);
     int k = nextInt(n - 2, gen);
-    if (j == i) {
-      return new IndexTriple(i, n - 1, k == i ? n - 2 : k);
-    }
     if (k == j) {
       k = n - 2;
     }
-    return new IndexTriple(i, j, k == i ? n - 1 : k);
+    return new IndexTriple(i, j == i ? n - 1 : j, k == i ? n - 1 : k);
   }
 
   /**
