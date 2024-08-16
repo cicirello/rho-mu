@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-06-08
+## [Unreleased] - 2024-08-16
 
 ### Added
 
@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 ### Other
+
+
+## [4.2.0] - 2024-08-16
+
+### Changed
+* Refactored nextIntTriple to simplify logic, based on suggestion from anonymous reviewer of journal article submission. No impact on performance of array version of method, but code easier to read. Version that returns a record a few nanoseconds faster per call as well as easier to read.
 
 
 ## [4.1.0] - 2024-06-08
