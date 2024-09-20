@@ -478,10 +478,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the pair that is generated. If result is null or if
@@ -499,10 +500,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A pair of randomly chosen integers from the interval [0, n).
@@ -518,10 +520,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the triple that is generated. If result is null or if
@@ -539,10 +542,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A triple of randomly chosen integers from the interval [0, n).
@@ -559,10 +563,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the pair that is generated. If result is null or if
@@ -581,10 +586,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A pair of randomly chosen integers from the interval [0, n).
@@ -601,10 +607,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @param result An array to hold the triple that is generated. If result is null or if
@@ -623,10 +630,11 @@ public class EnhancedRandomGenerator implements RandomGenerator {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a href="https://reports.cicirello.org/24/008/">Algorithms for
-   * Generating Small Random Samples. <a
-   * href="https://arxiv.org/abs/2405.12371">arXiv:2405.12371</a>, May 2024. <a
-   * href="https://reports.cicirello.org/24/008/ALG-24-008.pdf">[PDF]</a>
+   * <p>Vincent A. Cicirello. 2024. <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
+   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
    * @return A triple of randomly chosen integers from the interval [0, n).
