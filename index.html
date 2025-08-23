@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html amp lang=en itemscope itemtype="http://schema.org/WebPage" itemref="logo">
+<html lang=en itemscope itemtype="http://schema.org/WebPage" itemref="logo">
 <head>
 <meta charset=utf-8>
 <link rel="canonical" href="https://rho-mu.cicirello.org/">
 <link itemprop="url" href="https://rho-mu.cicirello.org/">
-<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="title" content="rho-mu - Java library of Randomization enHancements and Other Math Utilities">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="object-src https://rho-mu.cicirello.org/images/rho-mu-uml.svg; script-src 'sha384-i9On6a8pULeN0XD9l3J0gZMnvbggxt4HiEpfuxzePuYS3uDQJ/7mbPyYPfqe/wSg' 'sha384-d4YOhBtxn1YZo6bjT3h8O9J9lOxNJ4OIauaaKOXGw5bBUhDe+lDgB4QJNNwZONeu' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'; style-src https://*.doubleclick.net https://*.googlesyndication.com https://fonts.googleapis.com 'unsafe-inline'; font-src fonts.gstatic.com;">
 <meta itemprop="name" content="rho-mu - Java library of Randomization enHancements and Other Math Utilities">
 <meta name="description" content="rho-mu
 is a Java library of Randomization enHancements and Other Math Utilities (rho mu). It includes implementations of 
 various algorithms for efficiently randomly sampling combinations of indexes into arrays and other sequential 
 structures. It also includes efficient implementations of random number generation from distributions other than 
-uniform, such as Gaussian, Cauchy, etc. Additionally, it includes implementations of other math functions that 
+uniform, such as Gaussian, Cauchy, Binomial, etc. Additionally, it includes implementations of other math functions that 
 are either needed by the randomization utilities, or which are needed by some of our other projects.">
 <meta itemprop="description" content="rho-mu
 is a Java library of Randomization enHancements and Other Math Utilities (rho mu). It includes implementations of 
 various algorithms for efficiently randomly sampling combinations of indexes into arrays and other sequential 
 structures. It also includes efficient implementations of random number generation from distributions other than 
-uniform, such as Gaussian, Cauchy, etc. Additionally, it includes implementations of other math functions that 
+uniform, such as Gaussian, Cauchy, Binomial, etc. Additionally, it includes implementations of other math functions that 
 are either needed by the randomization utilities, or which are needed by some of our other projects.">
 <title>rho-mu - Java library of Randomization enHancements and Other Math Utilities</title>
 <link rel="icon" href="/images/favicon.svg" sizes="any" type="image/svg+xml">
@@ -31,18 +32,20 @@ are either needed by the randomization utilities, or which are needed by some of
 <meta property="og:description" content="rho-mu is a Java library of Randomization enHancements and Other 
 Math Utilities (rho mu). It includes implementations of various algorithms for efficiently randomly sampling 
 combinations of indexes into arrays and other sequential structures. It also includes efficient implementations 
-of random number generation from distributions other than uniform, such as Gaussian, Cauchy, etc. Additionally, 
+of random number generation from distributions other than uniform, such as Gaussian, Cauchy, Binomial, etc. Additionally, 
 it includes implementations of other math functions that are either needed by the randomization utilities, or 
 which are needed by some of our other projects.">
-<style amp-custom>
+<style>
 header, nav, footer, article, aside, section { display: block; }
 footer { clear: both; }
-body { background-color: #f6f0bb; font-family: Arial, Helvetica, sans-serif; }
+body { background-color: #f6f0bb; font-family: Georgia, Times, "Times New Roman", serif; }
 #siteheader, aside, footer { background-color: #bfd9bf; }
-#siteheader, aside, footer, article { border: 2px solid #4CAF50; border-radius: 25px; margin: 10px; padding: 10px; }
+#siteheader, aside, footer, article { border: 2px solid #4CAF50; border-radius: 25px; margin-bottom: 5px; padding: 8px; }
+#siteheader h2 {font-size: 2em; text-align: center;}
+img.respimg { max-width: 100%; height: auto; }
 h1, h2, h3, h4, h5, h6, strong { color: #862d2d; }
-h2, h3, div.sponsor-badges { text-align:center; }
-div.sponsor-badges amp-img { margin-top: 8px; }
+h1, h2, h3, div.sponsor-badges, div.center { text-align:center; }
+div.sponsor-badges img { margin-top: 8px; }
 a { color: #005500; }
 a:visited { color:#862d2d; }
 #toggle { position: absolute; left: -100vw; display: none; }
@@ -62,102 +65,49 @@ article li { margin-bottom: 8px; margin-top: 8px; }
 section li { margin-bottom: 16px; }
 section ul { margin-bottom: 32px; }
 #copyright { text-align: center; color: #862d2d; }
-#logo, #backup-logo, h1 {max-width: 1280px;}
 h1 {margin: 10px auto; padding: 10px;}
-amp-img.contain img { object-fit: contain; }
 .badge-height { position: relative; width: 100%; height: 20px;}
+.footer-link { padding: 0 10px 0 10px; }
+ins.adsbygoogle[data-ad-status="unfilled"] {display: none !important;}
+.container-for-ad {margin: 20px 0;}
 @media screen and (min-width:601px){
 #menu-icon { display: none; }
 nav div a:not(.active) { display: block; }
 }
+.scroll-container { max-width: 100%; overflow: auto; border: 2px solid #305030; }
 </style>
-<style amp-boilerplate>
-  body {
-	-webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-	-moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-	-ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-	animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-  }
-  @-webkit-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @-moz-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @-ms-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @-o-keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-  @keyframes -amp-start {
-	from {
-	  visibility: hidden;
-	}
-	to {
-	  visibility: visible;
-	}
-  }
-</style>
-<noscript><style amp-boilerplate>
-	body {
-	  -webkit-animation: none;
-	  -moz-animation: none;
-	  -ms-animation: none;
-	  animation: none;
-	}
-  </style></noscript>
-<script async src="https://cdn.ampproject.org/v0.js"></script>
+
+
 </head>
 <body>
 <header itemprop="hasPart" itemscope itemtype="https://schema.org/WPHeader" id="siteheader">
 <div itemscope>
-<h1>
+<h2>
 <a href=".">
-<amp-img id="logo" itemprop="primaryImageOfPage" itemscope itemtype="http://schema.org/ImageObject" 
+<img id="logo" itemprop="primaryImageOfPage" itemscope itemtype="http://schema.org/ImageObject" 
   src="images/rho-mu.svg" 
   alt="&rho;&mu; - Java library of Randomization enHancements and Other Math Utilities" 
   width="1280" 
   height="640" 
-  layout="responsive">
-</amp-img>
+  class="respimg">
 </a>
-</h1>
+</h2>
 <nav>
 <input type="checkbox" id="toggle">
 <label for="toggle" id="menu-icon">&#9776;</label>
 <div><a href="/" class="active">Home</a></div>
+<div><a href="api/org.cicirello.rho_mu/module-summary.html">Documentation</a></div>
 <div><a href="https://github.com/cicirello/rho-mu">Source Code</a></div>
-<div><a href="api/org.cicirello.rho_mu/module-summary.html">API Docs</a></div>
 <div><a href="https://central.sonatype.com/artifact/org.cicirello/rho-mu/">Maven Central</a></div>
 <div><a href="https://github.com/cicirello/rho-mu/issues">Issue Tracker</a></div>
 <div><a href="https://github.com/cicirello/rho-mu/blob/main/CHANGELOG.md">ChangeLog</a></div>
+<div><a href="https://www.cicirello.org/">Author</a></div>
 </nav>
 </div>
 <div class="sponsor-badges">
-<a href="https://github.com/sponsors/cicirello"><amp-img src="/images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28">GitHub Sponsors</amp-img></a>
-<a href="https://liberapay.com/cicirello"><amp-img src="/images/Liberapay.svg" alt="Liberapay" width="119" height="28">Sponsor on Liberapay</amp-img></a>
-<a href="https://ko-fi.com/cicirello"><amp-img src="/images/ko-fi.svg" alt="Ko-Fi" width="82" height="28">Sponsor on Ko-Fi</amp-img></a>
+<a href="https://github.com/sponsors/cicirello"><img src="images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28"></a>
+<a href="https://liberapay.com/cicirello"><img src="images/Liberapay.svg" alt="Liberapay" width="119" height="28"></a>
+<a href="https://ko-fi.com/cicirello"><img src="images/ko-fi.svg" alt="Ko-Fi" width="82" height="28"></a>
 </div>
 </header>
 <article itemprop="mainEntity" itemscope itemtype="http://schema.org/SoftwareSourceCode">
@@ -175,27 +125,31 @@ needed by the randomization utilities, or which are needed by some of our other 
 including <a href="https://jpt.cicirello.org/">JavaPermutationTools</a> and 
 <a href="https://chips-n-salsa.cicirello.org/">Chips-n-Salsa</a>. However, we found ourselves beginning 
 to add one or the other of those libraries as dependencies in some other projects strictly for the 
-randomization utilities, which is certainly less than ideal. Therefore, we have extracted &rho;&mu; from 
-those libraries.</p>
-<p>Much of the core randomization enhancements is in a pair of utility 
-classes: <a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html">RandomIndexer</a> and
-<a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html">RandomVariates</a>. Beginning 
+randomization utilities, which is certainly less than ideal. Therefore, we extracted &rho;&mu; from 
+those libraries, and we have since continued development of &rho;&mu; independently of those other
+projects.</p>
+<p>Much of the core randomization enhancements is in three utility 
+classes: <a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomIndexer.html">RandomIndexer</a>, 
+<a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomVariates.html">RandomVariates</a>, and
+<a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/RandomSampler.html">RandomSampler</a>. Beginning 
 with v2.0.0, the &rho;&mu; library was revised to utilize Java 17's hierarchy of random number generator 
 interfaces (i.e., 
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/random/RandomGenerator.html">RandomGenerator</a> 
-and its nested subinterfaces). Specifically, &rho;&mu; now provides a class
+and its nested subinterfaces). Specifically, &rho;&mu; provides a class
 <a href="/api/org.cicirello.rho_mu/org/cicirello/math/rand/EnhancedRandomGenerator.html">EnhancedRandomGenerator</a> 
 that wraps an instance RandomGenerator while also implementing RandomGenerator, enabling adding the enhanced
 randomization features to any of Java 17's many random number generators, while also serving
 as a drop-in replacement. Additionally, &rho;&mu; provides a hierarchy of such wrapper classes,
-corresponding to Java 17's hierarchy of random number generator interfaces.</p>
-<p>The randomization enhancements includes:</p>
+corresponding to Java 17's hierarchy of random number generator interfaces, as illustrated in the
+<a href="#uml">interactive UML diagram</a> further down the page.</p>
+<p><strong>Features:</strong> The randomization enhancements includes:</p>
 <ul>
 <li>Faster generation of random int values subject to a bound or bound and origin.</li>
 <li>Faster generation of random int values within an IntStream subject to a bound and origin.</li>
-<li>Faster generation of Gaussian distributed random doubles.</li>
+<li>Faster generation of Gaussian distributed random doubles for Java's legacy random number generators.</li>
 <li>Additional distributions available beyond what is supported by the Java API's RandomGenerator classes, such as Binomial and Cauchy random vaiables.</li>
-<li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity for speed by excluding the rejection sampling necessary to ensure uniformity, as well as a biasedInts methods for generating streams of such integers.</li>
+<li>Ultrafast, but biased, nextBiasedInt methods that sacrifices uniformity for speed by excluding the rejection sampling necessary to ensure uniformity, as well as a biasedInts methods for generating streams of such integers. The nextBiasedInt methods may be useful
+in cases where speed is highly important, but strict uniformity is not.</li>
 <li>Methods for generating random pairs of integers without replacement, and random triples of integers without replacement.</li>
 <li>Methods for generating random samples of k integers without replacement from a range of integers.</li>
 <li>Methods to generate streams of numbers from distributions other than uniform, such as streams of random numbers from binomial distributions, Cauchy distributions, exponential distributions, and Gaussian distributions.</li>
@@ -211,15 +165,14 @@ The library is regularly published
 to <a href="https://central.sonatype.com/artifact/org.cicirello/rho-mu/">Maven Central</a>, 
 from which it is easily imported into software projects using Maven and other 
 commonly used build tools.</p>
-<p itemprop="author copyrightHolder" itemscope itemtype="http://schema.org/Person">The &rho;&mu; library
-originated as part of the research 
-of <a itemprop="url mainEntityOfPage" href="https://www.cicirello.org/"><span itemprop="name">Vincent 
-A. Cicirello</span></a>.</p>
 </section>
+
 <section>
 <h3>How to Cite</h3>
-<div class="badge-height"><a href="https://doi.org/10.21105/joss.04663"><amp-img class="contain" layout="fill" alt="https://doi.org/10.21105/joss.04663" src="https://joss.theoj.org/papers/10.21105/joss.04663/status.svg"></amp-img></a></div>
-<p>If you use the &rho;&mu; library in your research, please cite the following article which introduces the library:</p>
+<div class="center"><a href="https://doi.org/10.21105/joss.04663"><img alt="https://doi.org/10.21105/joss.04663" src="https://joss.theoj.org/papers/10.21105/joss.04663/status.svg" height="20" width="168"></a></div>
+<p>The &rho;&mu; library originated as part of the research 
+of <span itemprop="author copyrightHolder" itemscope itemtype="http://schema.org/Person"><a itemprop="url mainEntityOfPage" href="https://www.cicirello.org/"><span itemprop="name">Vincent A. Cicirello</span></a></span>.
+If you use the &rho;&mu; library in your research, please cite the following article which introduces the library:</p>
 <ul>
 <li>Vincent A. Cicirello. 
 <a href="https://www.cicirello.org/publications/cicirello2022joss.html">&rho;&mu;: A Java library of randomization enhancements and other math utilities</a>.
@@ -227,9 +180,37 @@ A. Cicirello</span></a>.</p>
 <a href="https://www.cicirello.org/publications/cicirello2022joss.pdf">[PDF]</a> <a href="https://www.cicirello.org/publications/cicirello2022joss.bib">[BIB]</a> <a href="https://doi.org/10.21105/joss.04663">[DOI]</a></li>
 </ul>
 </section>
+
+<section>
+<h3>Dependencies</h3>
+<p>&rho;&mu; has minimal dependencies, and include:</p>
+<ul>
+<li><a href="https://core.cicirello.org/">org.cicirello.core</a>: The org.cicirello.core
+library provides implementations of core data structures and algorithms that are used
+across multiple of our projects.</li>
+</ul>
+</section>
+
+<section>
+<h3>Dependent Libraries</h3>
+<p>The following libraries depend upon &rho;&mu;</p>
+<ul>
+<li><a href="https://chips-n-salsa.cicirello.org/">Chips-n-Salsa</a>: The Chips-n-Salsa 
+Java library is a library for evolutionary computation, stochastic search, and related 
+metaheuristics. These types of algorithms depend very heavily on randomization. Thus,
+efficient implementation requires carefully considering how to implement randomized
+behavior. This is where the &rho;&mu; comes into play.</li>
+<li><a href="https://jpt.cicirello.org/">JavaPermutationTools</a>: The JavaPermutationTools (JPT)
+library focuses on permutations and other ordered data types, like strings and arrays, along with
+computation on permutations and other sequential data types. JPT includes some randomized operations
+on permutations, as well as random permutation generation. Thus, JPT also relies on &rho;&mu;'s
+efficient randomization.</li>
+</ul>
+</section>
+
 <section>
 <h3>Importing from Maven Central</h3>
-<div class="badge-height"><a href="https://central.sonatype.com/artifact/org.cicirello/rho-mu/"><amp-img class="contain" layout="fill" alt="Latest release on Maven Central" src="https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?label=Maven%20Central&logo=apachemaven"></amp-img></a></div>
+<div class="center badge-height"><a href="https://central.sonatype.com/artifact/org.cicirello/rho-mu/"><img alt="Latest release on Maven Central" src="https://img.shields.io/maven-central/v/org.cicirello/rho-mu.svg?label=Maven%20Central&logo=apachemaven"></a></div>
 <p>To import &rho;&mu; from the Maven Central repository (if your build tool is
 Maven), add the following to the dependencies section of 
 your &ldquo;pom.xml&rdquo; (for other build tools, see your build 
@@ -242,6 +223,7 @@ tool's documentation for the equivalent):</p>
 </code></pre>
 <p>Just replace <code>x.y.z</code> with your desired version of the library.</p>
 </section>
+
 <section>
 <h3>Java Modules</h3>
 <p>&rho;&mu; provides a Java module, org.cicirello.rho_mu. To use in your project, add the 
@@ -252,6 +234,21 @@ module your.module.name.here {
 }
 </code></pre>
 </section>
+
+<section id="uml">
+<h3>UML Class Diagram</h3>
+<p>The following UML class diagram shows the structure of the &rho;&mu; library. Classes and
+interfaces shown in blue are classes within the &rho;&mu; library, and are clickable links to the
+page documenting the class. Classes and interfaces shown in gray are in the Java API, and are
+also clickable links to the relevant page within the Java API documentation. For brevity in the
+diagram, methods are omitted, and most attributes are omitted, aside from the attributes
+corresponding to the wrapped random number generator instances.</p>
+
+<div class="scroll-container">
+<object type="image/svg+xml" data="https://rho-mu.cicirello.org/images/rho-mu-uml.svg" width="1064" height="1151">UML 
+diagram</object></div>
+</section>
+
 <section>
 <h3>Semantic Versioning</h3>
 <p>&rho;&mu; uses <a href="https://semver.org/">Semantic Versioning</a> with 
@@ -260,6 +257,7 @@ correspond to incompatible API changes, differences in MINOR correspond
 to introduction of backwards compatible new functionality, and PATCH 
 corresponds to backwards compatible bug fixes.</p> 
 </section>
+
 <section>
 <h3>Development Process</h3>
 To maintain a high quality library, our development process utilizes
@@ -285,14 +283,7 @@ present time, this includes running:
 </ul></li>
 </ul>
 </section>
-<section>
-<h3>Dependent Libraries</h3>
-<p>The following libraries depend upon &rho;&mu;</p>
-<ul>
-<li><a href="https://chips-n-salsa.cicirello.org/">Chips-n-Salsa</a></li>
-<li><a href="https://jpt.cicirello.org/">JavaPermutationTools</a></li>
-</ul>
-</section>
+
 <section class="publist">
 <h3>Related Publications</h3>
 <p>The following is a list of publications that either 
@@ -300,6 +291,27 @@ influenced the design of the &rho;&mu;
 library, introduced algorithms included within &rho;&mu;, or are otherwise
 directly related in some substantial way.</p>
 <ul>
+<li>Vincent A. Cicirello.
+<a href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for 
+Generating Small Random Samples</a>. <i>Software: Practice and Experience</i>, 55(2): 298-306,
+February 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a>.
+<a href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a> 
+<a href="https://www.cicirello.org/publications/cicirello2025spe.bib">[BIB]</a> 
+<a href="https://doi.org/10.1002/spe.3379">[DOI]</a> 
+<a href="https://onlinelibrary.wiley.com/share/author/J3S4KWMDVFFZNMFS9RY5?target=10.1002/spe.3379">[PUB]</a> 
+<a href="https://arxiv.org/abs/2405.12371">[arXiv]</a> 
+<a href="https://github.com/cicirello/small-sample-experiments">[CODE]</a></li>
+<li>Vincent A. Cicirello.
+<a href="https://www.cicirello.org/publications/cicirello2024ecta2.html">Optimizing Genetic Algorithms Using the Binomial Distribution</a>.
+In <i>Proceedings of the 16th International Joint Conference on Computational Intelligence</i>, pages 159-169. November 2024. doi:<a href="https://doi.org/10.5220/0013038300003837">10.5220/0013038300003837</a>.
+<a href="https://www.cicirello.org/publications/cicirello2024ecta-optimize-ga.pdf">[PDF]</a> <a href="https://www.cicirello.org/publications/cicirello2024ecta2.bib">[BIB]</a> <a href="https://doi.org/10.5220/0013038300003837">[DOI]</a> <a href="https://arxiv.org/abs/2412.02009">[arXiv]</a> <a href="https://github.com/cicirello/optimize-ga-operators">[CODE]</a></li>
+<li>Vincent A. Cicirello.
+<a href="https://reports.cicirello.org/24/009/">Fast Gaussian Distributed Pseudorandom Number Generation 
+in Java via the Ziggurat Algorithm</a>. Technical Report ALG-24-009, Cicirello.org, May 2024.
+<a href="https://reports.cicirello.org/24/009/ALG-24-009.pdf">[PDF]</a> 
+<a href="https://www.cicirello.org/publications/cicirello2024techreport2.bib">[BIB]</a> 
+<a href="https://arxiv.org/abs/2405.19493">[arXiv]</a> 
+<a href="https://github.com/cicirello/ZigguratGaussian">[CODE]</a></li>
 <li>Vincent A. Cicirello. <a href="https://reports.cicirello.org/24/007/">On the Average Runtime of an Open Source Binomial Random Variate Generation Algorithm</a>.
 Technical Report ALG-24-007, Cicirello.org, March 2024. 
 <a href="https://reports.cicirello.org/24/007/ALG-24-007.pdf">[PDF]</a> <a href="https://www.cicirello.org/publications/cicirello2024techreport.bib">[BIB]</a> <a href="https://arxiv.org/abs/2403.11018">[arXiv]</a> <a href="https://github.com/cicirello/btpe-iterations">[CODE]</a></li>
@@ -331,8 +343,12 @@ AAAI Press, May 2018. <a href="https://www.cicirello.org/publications/cicirello-
 </section>
 </article>
 <footer>
-<small><a rel="nofollow" href="https://www.cicirello.org/e/">Contact</a></small>
-<div id="copyright"><small>Copyright &copy; 2017-<span itemprop="copyrightYear">2023</span> <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
+<p><small>
+<a class="footer-link" href="https://www.cicirello.org/e/">Contact</a>
+<strong>&#x25C6;</strong>
+<a class="footer-link" href="https://www.cicirello.org/policy/privacy/">Privacy Policy</a>
+</small></p>
+<div id="copyright"><small>Copyright &copy; 2017-<span itemprop="copyrightYear">2025</span> <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
 </footer>
 </body>
 </html>
