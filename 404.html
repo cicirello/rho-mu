@@ -12,11 +12,12 @@
 <style>
 header, nav, footer, article, aside, section { display: block; }
 footer { clear: both; }
-body { background-color: #f6f0bb; font-family: Arial, Helvetica, sans-serif; }
+body { background-color: #f6f0bb; font-family: Georgia, Times, "Times New Roman", serif; }
 #siteheader, aside, footer { background-color: #bfd9bf; }
-#siteheader, aside, footer, article { border: 2px solid #4CAF50; border-radius: 25px; margin: 10px; padding: 10px; }
+#siteheader, aside, footer, article { border: 2px solid #4CAF50; border-radius: 25px; margin-bottom: 5px; padding: 8px; }
 h1, h2, h3, h4, h5, h6, strong { color: #862d2d; }
 h2, h3, div.centered { text-align:center; }
+#siteheader h2 {font-size: 2em; text-align: center;}
 div.centered img { margin-top: 8px; }
 a { color: #005500; }
 a:visited { color:#862d2d; }
@@ -44,6 +45,7 @@ img.contain img { object-fit: contain; }
 th { text-align: left; }
 table, th, td { border: 1px solid black; }
 th, td { padding: 15px; }
+.footer-link { padding: 0 10px 0 10px; }
 @media screen and (min-width:601px){
 #menu-icon { display: none; }
 nav div a:not(.active) { display: block; }
@@ -52,21 +54,22 @@ nav div a:not(.active) { display: block; }
 </head>
 <body>
 <header id="siteheader">
-<h1>
+<h2>
 <a href="/">
 <img id="logo" src="images/rho-mu.svg" alt="&rho;&mu; - Java library of Randomization enHancements and Other Math Utilities" 
-  width="1280" height="640">
+  width="1280" height="640" class="respimg">
 </a>
-</h1>
+</h2>
 <nav>
 <input type="checkbox" id="toggle">
 <label for="toggle" id="menu-icon">&#9776;</label>
 <div><a href="/">Home</a></div>
+<div><a href="api/org.cicirello.rho_mu/module-summary.html">Documentation</a></div>
 <div><a href="https://github.com/cicirello/rho-mu">Source Code</a></div>
-<div><a href="api/org.cicirello.rho_mu/module-summary.html">API Docs</a></div>
 <div><a href="https://central.sonatype.com/artifact/org.cicirello/rho-mu/">Maven Central</a></div>
 <div><a href="https://github.com/cicirello/rho-mu/issues">Issue Tracker</a></div>
 <div><a href="https://github.com/cicirello/rho-mu/blob/main/CHANGELOG.md">ChangeLog</a></div>
+<div><a href="https://www.cicirello.org/">Author</a></div>
 </nav>
 <div class="centered">
 <a href="https://github.com/sponsors/cicirello"><img src="images/github-sponsors.svg" alt="GitHub Sponsors" width="107" height="28"></a>
@@ -80,8 +83,12 @@ nav div a:not(.active) { display: block; }
 <div class="centered">This site does not contain the requested page. Use the menu in the site header above to find what you are looking for.</div>
 </article>
 <footer>
-<small><a rel="nofollow" href="https://www.cicirello.org/e/">Contact</a></small>
-<div id="copyright"><small>Copyright &copy; 2017-2023 <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
+<p><small>
+<a class="footer-link" href="https://www.cicirello.org/e/">Contact</a>
+<strong>&#x25C6;</strong>
+<a class="footer-link" href="https://www.cicirello.org/policy/privacy/">Privacy Policy</a>
+</small></p>
+<div id="copyright"><small>Copyright &copy; 2017-2025 <a href="https://www.cicirello.org/">Vincent A. Cicirello</a>.</small></div>
 </footer>
 </body>
 </html>
