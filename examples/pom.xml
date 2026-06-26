@@ -6,7 +6,7 @@
  
 	<groupId>org.cicirello</groupId>
 	<artifactId>rho-mu-examples</artifactId>
-	<version>4-SNAPSHOT</version>
+	<version>5-SNAPSHOT</version>
 	<packaging>jar</packaging>
   
 	<name>rho mu Example Programs</name>
@@ -34,7 +34,7 @@
 		<distribution>repo</distribution>
 		<comments>
 		Example programs for the rho mu library.
-		Copyright (C) 2017-2024 Vincent A. Cicirello.
+		Copyright (C) 2017-2026 Vincent A. Cicirello.
  
 		This program is free software: you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
@@ -192,7 +192,7 @@
   
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.release>17</maven.compiler.release>
+		<maven.compiler.release>25</maven.compiler.release>
 	</properties>
   
 	<build>
@@ -202,7 +202,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.15.0</version>
 				<configuration>
-					<release>17</release>
+					<release>25</release>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -239,7 +239,7 @@
 					<version>false</version>
 					<nosince>true</nosince>
 					<notimestamp>true</notimestamp>
-					<bottom><![CDATA[Copyright &copy; 2017-2024 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
+					<bottom><![CDATA[Copyright &copy; 2017-2026 <a href=\"https://www.cicirello.org/\" target=_top>Vincent A. Cicirello</a>.  All rights reserved.]]></bottom>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -2,7 +2,7 @@
 
 <img src="https://rho-mu.cicirello.org/images/rho-mu.png" width="640" alt="&rho;&mu; - Java library of Randomization enHancements and Other Math Utilities">
 
-Copyright (C) 2017-2024 [Vincent A. Cicirello](https://www.cicirello.org/).
+Copyright (C) 2017-2026 [Vincent A. Cicirello](https://www.cicirello.org/).
 
 Website: https://rho-mu.cicirello.org/
 
@@ -15,7 +15,7 @@ API documentation: https://rho-mu.cicirello.org/api/
 | __JaCoCo Test Coverage__ | [![coverage](https://raw.githubusercontent.com/cicirello/rho-mu/badges/jacoco.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) [![branches coverage](https://github.com/cicirello/rho-mu/blob/badges/branches.svg)](https://github.com/cicirello/rho-mu/actions/workflows/build.yml) |
 | __Security__ | [![Snyk security score](https://snyk-widget.herokuapp.com/badge/mvn/org.cicirello/rho-mu/badge.svg)](https://snyk.io/vuln/maven%3Aorg.cicirello%3Arho-mu) [![Snyk Known Vulnerabilities](https://snyk.io/test/github/cicirello/rho-mu/badge.svg)](https://snyk.io/test/github/cicirello/rho-mu) |
 | __DOI__ | [![DOI](https://zenodo.org/badge/408560166.svg)](https://zenodo.org/badge/latestdoi/408560166) | 
-| __Other Information__ | [![GitHub](https://img.shields.io/github/license/cicirello/rho-mu)](https://github.com/cicirello/rho-mu/blob/main/LICENSE) [![style](https://img.shields.io/badge/style-Google%20Java%20Style-informational)](https://google.github.io/styleguide/javaguide.html) | 
+| __Other Information__ | [![GitHub](https://img.shields.io/github/license/cicirello/rho-mu)](https://github.com/cicirello/rho-mu/blob/main/LICENSE) [![style](https://img.shields.io/badge/style-Google%20Java%20Style-informational)](https://google.github.io/styleguide/javaguide.html) ![Minimum supported Java version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcicirello%2Frho-mu%2Frefs%2Fheads%2Fmain%2Fpom.xml&query=%2F*%5Blocal-name()%3D'project'%5D%2F*%5Blocal-name()%3D'properties'%5D%2F*%5Blocal-name()%3D'maven.compiler.release'%5D&prefix=%3E%3D&label=Java) | 
 | __Support__ | [![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/cicirello) [![Liberapay](https://img.shields.io/badge/Liberapay-F6C915?logo=liberapay&logoColor=black)](https://liberapay.com/cicirello) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/cicirello) |
 
 ## How to Cite
@@ -184,6 +184,7 @@ and minimum supported Java version.
 
 | version | Java requirements |
 | --- | --- |
+| 5.x.y | Java 25+ |
 | 2.w.x to 4.y.z | Java 17+ |
 | 1.x.y | Java 11+ |
 
@@ -257,7 +258,7 @@ the version number with the version that you want to use.
 <dependency>
   <groupId>org.cicirello</groupId>
   <artifactId>rho-mu</artifactId>
-  <version>4.0.0</version>
+  <version>x.y.z</version>
 </dependency>
 ```
 
