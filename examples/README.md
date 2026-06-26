@@ -17,7 +17,7 @@ mvn package
 ```
 
 The requirements for building the examples are the same as for building
-the library itself (e.g., Java 17+).
+the library itself (see [mapping between library version and minimum supported Java version](https://github.com/cicirello/rho-mu#java-requirements)).
 
 Building the examples will produce a jar file in a target subdirectory of
 this examples directory.
