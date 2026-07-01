@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2026 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -1540,6 +1540,35 @@ public class EnhancedRandomGenerator implements RandomGenerator {
   public final DoubleStream doubles(
       long streamSize, double randomNumberOrigin, double randomNumberBound) {
     return generator.doubles(streamSize, randomNumberOrigin, randomNumberBound);
+  }
+
+  /**
+   * Returns an effectively unlimited stream of pseudorandomly chosen double values, where each
+   * value is between the specified left boundary and the specified right boundary. The left
+   * boundary is included as indicated by isLeftIncluded; similarly, the right boundary is included
+   * as indicated by isRightIncluded.
+   *
+   * <p>The stream potentially produces all multiples k δ (k integer) lying in the interval
+   * specified by the parameters, where δ &gt; 0 is the smallest number for which all these
+   * multiples are exact doubles. They are therefore all equidistant. The uniformity of the
+   * distribution of the doubles produced by the stream depends on the quality of the underlying
+   * {@link RandomGenerator#nextLong(long)}.
+   *
+   * <p><b>This implementation delegates the implementation to the wrapped object.</b>
+   *
+   * @param left the left boundary
+   * @param right the right boundary
+   * @param isLeftIncluded whether the left boundary is included
+   * @param isRightIncluded whether the right boundary is included
+   * @return a stream of pseudorandomly chosen double values, each between left and right, as
+   *     specified above.
+   * @throws IllegalArgumentException if left is not finite, or right is not finite, or if the
+   *     specified interval is empty.
+   */
+  @Override
+  public final DoubleStream equiDoubles(
+      double left, double right, boolean isLeftIncluded, boolean isRightIncluded) {
+    return generator.equiDoubles(left, right, isLeftIncluded, isRightIncluded);
   }
 
   /**

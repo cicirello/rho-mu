@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2026 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -214,7 +214,7 @@ public class EnhancedArbitrarilyJumpableGeneratorTests {
   }
 
   /*
-   * Java 17 doesn't have any RandomGenerator.ArbitrarilyJumpableGenerator in the API.
+   * Java 17 through Jaba 25 doesn't have any RandomGenerator.ArbitrarilyJumpableGenerator in the API.
    * This class is a fake one for testing purposes only. It is not real. Just serves
    * testing purposes. Do not use in any real application.
    */

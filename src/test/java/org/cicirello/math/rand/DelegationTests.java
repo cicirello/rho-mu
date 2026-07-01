@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2026 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -85,6 +85,9 @@ public class DelegationTests {
     dStream.close();
     dStream = e.doubles(5, 4000, 5000);
     assertEquals(4217.0, dStream.findFirst().getAsDouble(), 0.0);
+    dStream.close();
+    dStream = e.equiDoubles(0.0, 5000.0, true, true);
+    assertEquals(4218.0, dStream.findFirst().getAsDouble(), 0.0);
     dStream.close();
     assertEquals(0.314159, e.nextGaussian());
     assertEquals(1.314159, e.nextGaussian(10, 1));
@@ -251,6 +254,12 @@ public class DelegationTests {
     @Override
     public DoubleStream doubles(long streamSize, double origin, double bound) {
       return DoubleStream.generate(() -> 4217.0).sequential().limit(streamSize);
+    }
+
+    @Override
+    public DoubleStream equiDoubles(
+        double left, double right, boolean isLeftIncluded, boolean isRightIncluded) {
+      return DoubleStream.generate(() -> 4218.0).sequential();
     }
   }
 }
