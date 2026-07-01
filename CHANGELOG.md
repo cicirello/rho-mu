@@ -21,6 +21,7 @@ __BREAKING CHANGES: Next version will be 5.0.0__
 
 ### Dependencies
 * Minimum supported Java is now Java 25
+* Bump org.cicirello:core from 2.7.1 to 3.0.0.
 
 ### CI/CD
 
