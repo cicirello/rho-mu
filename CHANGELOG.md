@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Other
 
 
-## [Unreleased] - 2026-07-02
+## [5.0.0] - 2026-07-02
 
 __BREAKING CHANGES: Java 25 or later is now required__
 
