@@ -4,12 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2026-07-01
-
-__BREAKING CHANGES: Next version will be 5.0.0__
+## [Unreleased] - 2026-07-02
 
 ### Added
-* Implementation of the new RandomGenerator.equiDoubles method of Java 25 in the EnhancedRandomGenerator class, which simply delegates to the wrapped RandomGenerator instance.
 
 ### Changed
 
@@ -20,12 +17,23 @@ __BREAKING CHANGES: Next version will be 5.0.0__
 ### Fixed
 
 ### Dependencies
-* Minimum supported Java is now Java 25
-* Bump org.cicirello:core from 2.7.1 to 3.0.0.
 
 ### CI/CD
 
 ### Other
+
+
+## [Unreleased] - 2026-07-02
+
+__BREAKING CHANGES: Java 25 or later is now required__
+
+### Added
+* Implementation of the new RandomGenerator.equiDoubles method of Java 25 in the EnhancedRandomGenerator class, which simply delegates to the wrapped RandomGenerator instance.
+
+### Dependencies
+* Minimum supported Java is now Java 25
+* Bump org.cicirello:core from 2.7.1 to 3.0.0.
+
 
 
 ## [4.2.1] - 2025-05-15
