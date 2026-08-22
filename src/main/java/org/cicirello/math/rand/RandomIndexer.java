@@ -1,6 +1,6 @@
 /*
  * rho mu - A Java library of randomization enhancements and other math utilities.
- * Copyright (C) 2017-2024 Vincent A. Cicirello, <https://www.cicirello.org/>.
+ * Copyright (C) 2017-2026 Vincent A. Cicirello, <https://www.cicirello.org/>.
  *
  * This file is part of the rho mu library.
  *
@@ -361,10 +361,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -386,10 +386,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
@@ -415,10 +415,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -438,10 +438,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
@@ -461,10 +461,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -486,10 +486,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
@@ -522,10 +522,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -545,10 +545,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
@@ -573,10 +573,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -599,10 +599,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
@@ -631,10 +631,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -655,10 +655,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
@@ -681,10 +681,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -707,10 +707,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
@@ -733,10 +733,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * <p>This method uses ThreadLocalRandom as the pseudorandom number generator, and is thus safe,
@@ -757,10 +757,10 @@ public final class RandomIndexer {
    *
    * <p>The runtime of this method is O(1), and it uses an algorithm described in:
    *
-   * <p>Vincent A. Cicirello. 2024. <a
-   * href="https://www.cicirello.org/publications/cicirello2024spe.html">Algorithms for Generating
-   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, September 2024. doi:<a
-   * href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
+   * <p>Vincent A. Cicirello. 2025. <a
+   * href="https://www.cicirello.org/publications/cicirello2025spe.html">Algorithms for Generating
+   * Small Random Samples.</a> <i>Software: Practice and Experience</i>, 55(2): 298-306, February
+   * 2025. doi:<a href="https://doi.org/10.1002/spe.3379">10.1002/spe.3379</a> <a
    * href="https://www.cicirello.org/publications/cicirello2024spe.pdf">[PDF]</a>
    *
    * @param n The number of integers to choose from.
